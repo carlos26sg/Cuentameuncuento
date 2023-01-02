@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "117430995398",
+    "project_id": "cuentame-un-cuento-carlossega",
+    "storage_bucket": "cuentame-un-cuento-carlossega.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117430995398:android:ace70e3019ef08ee1acac7",
+        "android_client_info": {
+          "package_name": "com.carlossega.cuentameuncuento"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "117430995398-tpebq2v6gjiofidbnduttrtr6654vp7f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdXeVYdrvdxIlARLkBl-XtcYrFD8nUlkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "117430995398-tpebq2v6gjiofidbnduttrtr6654vp7f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

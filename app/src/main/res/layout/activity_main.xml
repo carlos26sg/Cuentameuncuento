@@ -4,24 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/fondo1">
+    android:background="@drawable/fondo1"
+    android:foregroundTint="#FFFFFF"
+    tools:context=".MainActivity">
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/imgbtnComenzar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/comenzar"
         android:backgroundTint="#00FFFFFF"
         android:contextClickable="true"
         android:onClick="comenzar"
+        android:text="Comenzar"
         android:tooltipText="COMENZAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/comenzar"
-        android:text= "Comenzar"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txt_info"
@@ -45,16 +46,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/logo_csg" />
 
-    <TextView
-        android:id="@+id/txt_inicio"
-        android:layout_width="294dp"
-        android:layout_height="27dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_register"
+        android:layout_width="138dp"
+        android:layout_height="56dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Lorem Ipsum"
-        android:textColor="@color/white"
-        android:textSize="16sp"
+        android:background="@drawable/btn"
+        android:onClick="register"
+        android:text="Registrarse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="147dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/btn"
+        android:onClick="login"
+        android:text="Iniciar sesion"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_register" />
+
+    <TextView
+        android:id="@+id/txt_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="152dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
