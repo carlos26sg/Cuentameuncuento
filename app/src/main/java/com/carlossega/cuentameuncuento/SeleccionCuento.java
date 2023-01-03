@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class SeleccionCuento extends AppCompatActivity {
 
     Button atras;
+    TextView selecciona;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +19,9 @@ public class SeleccionCuento extends AppCompatActivity {
         //Ocultamos barra
         getSupportActionBar().hide();
         atras = (Button) findViewById(R.id.btn_atras);
+        atras.setText(getString(R.string.atras));
+        selecciona = (TextView) findViewById(R.id.tv_selecciona);
+        selecciona.setText(R.string.selecciona);
         //Click del boton atrás
         atras.setOnClickListener(new View.OnClickListener() {
             @Override

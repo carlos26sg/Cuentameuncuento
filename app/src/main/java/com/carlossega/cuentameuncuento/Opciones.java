@@ -3,15 +3,68 @@ package com.carlossega.cuentameuncuento;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 public class Opciones extends AppCompatActivity {
+
+    Button atras;
+    TextView opciones;
+    Spinner sp_banderas;
+    String[] idiomas= {"Español", "Catalan", "Ingles"};
+    int[] banderas= {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opciones);
         getSupportActionBar().hide();
+        atras = (Button) findViewById(R.id.btn_atras_opciones);
+        atras.setText(getString(R.string.atras));
+        opciones = (TextView) findViewById(R.id.tv_opciones);
+        opciones.setText(getString(R.string.opciones));
+        sp_banderas = findViewById(R.id.sp_banderas);
+        IdiomaAdpater adapter = new IdiomaAdpater();
+        sp_banderas.setAdapter(adapter);
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    class IdiomaAdpater extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return idiomas.length;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return idiomas[i];
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            LayoutInflater inflater = LayoutInflater.from(Opciones.this);
+            view = inflater.inflate(R.layout.itemspinner, null);
+            ImageView iv = view.findViewById(R.id.iv_bandera);
+            iv.setImageResource(banderas[i]);
+            return view;
+        }
     }
 
     /**

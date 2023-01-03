@@ -31,8 +31,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.security.Provider;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,6 +48,7 @@ public class Autenticacion extends AppCompatActivity {
     private Button volver, confirmar, google;
     private String message;
     private FirebaseAuth mAuth;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +96,7 @@ public class Autenticacion extends AppCompatActivity {
         String repass = repassword.getText().toString();
         String email = mail.getText().toString();
         if (message.equals("login")){
-            mAuth.getInstance().signInWithEmailAndPassword(email, pass).
+            /*mAuth.getInstance().signInWithEmailAndPassword(email, pass).
                     addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -106,11 +112,51 @@ public class Autenticacion extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
-                    });
+                    });*/
+
         } else if (message.equals("register")){
             if (pass.equals(repass)){
                 if (esPasswordValido(pass) && !email.isEmpty() && esEmailValido(email)){
-                    mAuth.getInstance().createUserWithEmailAndPassword(email, pass).
+                    DocumentReference docRef = db.collection("usuario").document(email);
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    Toast toast = Toast.makeText(getApplicationContext(),
+                                            "Ya existe una cuenta con ese email", Toast.LENGTH_LONG);
+                                    toast.show();
+                                } else {
+                                    Map<String, Object> user = new HashMap<>();
+                                    user.put("mail", email);
+                                    user.put("pass", pass);
+                                    user.put("nombre", "");
+                                    user.put("favorito", "");
+                                    user.put("idioma", "esp");
+                                    db.collection("usuario").document(email)
+                                            .set(user)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error writing document", e);
+                                                }
+                                            });
+                                    finish();
+                                }
+                            } else {
+                                Log.d(TAG, "get failed with ", task.getException());
+                            }
+                        }
+                    });
+
+                    /*mAuth.getInstance().createUserWithEmailAndPassword(email, pass).
                             addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -131,7 +177,7 @@ public class Autenticacion extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
-                    });
+                    });*/
                 }
                 else {
                     Toast toast = Toast.makeText(getApplicationContext(),

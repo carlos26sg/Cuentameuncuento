@@ -34,6 +34,7 @@ public class MenuPrincipal extends AppCompatActivity {
         leer = (Button) findViewById(R.id.btn_leer);
         reproducir = (Button) findViewById(R.id.btn_reproducir);
         salir = (Button) findViewById(R.id.btn_salir);
+        ajustes = (Button) findViewById(R.id.btn_config);
         salir.setText(getString(R.string.salir));
         leer.setText(getString(R.string.leer));
         reproducir.setText(getString(R.string.reproducir));

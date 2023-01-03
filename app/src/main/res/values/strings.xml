@@ -6,4 +6,7 @@
     <string name="leer">Leer</string>
     <string name="reproducir">Reproducir</string>
     <string name="salir">Salir</string>
+    <string name="atras">Atras</string>
+    <string name="opciones">Opciones</string>
+    <string name="selecciona">Selecciona el cuento</string>
 </resources>
