@@ -4,14 +4,10 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.security.identity.CipherSuiteNotSupportedException;
-import android.text.method.TransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,51 +15,29 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
-import com.google.android.gms.auth.api.identity.BeginSignInResult;
-import com.google.android.gms.auth.api.identity.Identity;
-import com.google.android.gms.auth.api.identity.SignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.protobuf.Method;
 
-import org.checkerframework.checker.units.qual.K;
-
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.Key;
+import java.io.Serializable;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.Provider;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public class Autenticacion extends AppCompatActivity {
+public class Autenticacion extends AppCompatActivity implements Serializable {
 
+    //Iniciamos las variables con las que trabajamos
     private TextView mail, password, repassword;
     private TextView repite;
     private Button volver, confirmar;
@@ -78,6 +52,7 @@ public class Autenticacion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autenticacion);
         getSupportActionBar().hide();
+        //Asiganmos controles a las variables
         mail = (EditText) findViewById(R.id.et_mail);
         password = (EditText) findViewById(R.id.et_password);
         repassword = (EditText) findViewById(R.id.et_repassword);
@@ -88,39 +63,43 @@ public class Autenticacion extends AppCompatActivity {
         mantener.setText("Mantener la sesión iniciada");
         //Generamos la clave con la que encriptaremos y desencriptaremos la contraseña
         secretKey = "D€sCiFR@rP@S$WoRd.";
-        try {
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        volver.setText("Volver");
+        volver.setText(getString(R.string.atras));
         if (message.equals("login")){
             repassword.setVisibility(View.GONE);
             repite.setVisibility(View.GONE);
             confirmar.setText("Iniciar");
         } else if (message.equals("register")){
+            mantener.setVisibility(View.GONE);
             confirmar.setText("Registrarse");
         }
     }
 
+    //Función asignada al botón volver
     public void volver (View view){
         this.finish();
     }
 
+    //Función asignada al botón confirmar
     public void confirmar (View view){
+        //Recogemos en String el contenido de los TextView
         pass = password.getText().toString();
         email = mail.getText().toString();
         repass = repassword.getText().toString();
+        //Dependiendo de si es login o register haremos una cosa u otra
         if (message.equals("login")){
+            //Leemos documento de la base de datos
+            //Buscamos un documento que se llame como el email introducido
             DocumentReference docRef = db.collection("usuario").document(email);
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
+                        //Si el documento existe
                         if (document.exists()) {
                             String pass_descifrar;
                             pass_descifrar = document.get("pass").toString();
@@ -129,39 +108,51 @@ public class Autenticacion extends AppCompatActivity {
                                         "Se ha accedido correctamente", Toast.LENGTH_LONG);
                                 toast.show();
                                 if (mantener.isChecked()){guardarPreferencias();}
+                                Bundle extras = new Bundle();
+                                extras.putString("mail",document.get("mail").toString());
+                                extras.putString("nombre", document.get("nombre").toString());
+                                extras.putString("idioma", document.get("idioma").toString());
+                                extras.putString("favorito", document.get("favorito").toString());
+
+                                Intent intent = new Intent(Autenticacion.this, MainActivity.class);
+                                //Agrega el objeto bundle al Intent
+                                intent.putExtras(extras);
+                                //Inicia Activity
                                 finish();
                             } else {
                                 Toast toast = Toast.makeText(getApplicationContext(),
                                         "Contraseña incorrecta. Comprueba la contraseña.", Toast.LENGTH_LONG);
                                 toast.show();
                             }
+                        //Si el documento no existe
                         } else {
                             Toast toast = Toast.makeText(getApplicationContext(),
-                                    "Error al intentar acceder. Comprueba la contraseña.", Toast.LENGTH_LONG);
+                                    "Error al intentar acceder. No se ha encontrado el mail.", Toast.LENGTH_LONG);
                             toast.show();
                         }
                     } else {
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "No se ha encontrado el mail.", Toast.LENGTH_LONG);
-                        toast.show();
                         Log.d(TAG, "get failed with ", task.getException());
                     }
                 }
             });
-
         } else if (message.equals("register")){
+            //Nos aseguramos que la contraseña se ha introducido dos veces igual
             if (pass.equals(repass)){
+                //Comprobamos las funciones para ver que todo sea correcto
                 if (esPasswordValido(pass) && !email.isEmpty() && esEmailValido(email)){
+                    //Buscamos en la base de datos un documento con ese email
                     DocumentReference docRef = db.collection("usuario").document(email);
                     docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot document = task.getResult();
+                                //Si ya se ha creado en la bd ese mail se muestra Toast
                                 if (document.exists()) {
                                     Toast toast = Toast.makeText(getApplicationContext(),
                                             "Ya existe una cuenta con ese email", Toast.LENGTH_LONG);
                                     toast.show();
+                                //Si no hay registros de ese mail se creará uno nuevo
                                 } else {
                                     String cifrado = cifradopass(pass, secretKey);
                                     Map<String, Object> user = new HashMap<>();
@@ -173,12 +164,12 @@ public class Autenticacion extends AppCompatActivity {
                                     db.collection("usuario").document(email)
                                             .set(user)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                //Mostramos en Toast que que ha ido bien
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     Toast toast = Toast.makeText(getApplicationContext(),
                                                             "Cuenta creada con exito", Toast.LENGTH_LONG);
                                                     toast.show();
-                                                    Log.d(TAG, "DocumentSnapshot successfully written!");
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
@@ -201,12 +192,10 @@ public class Autenticacion extends AppCompatActivity {
                             "La contraseña debe tener entre 8 y 20 caracteres y contener al" +
                                     " menos mayúsculas, minúsculas y números", Toast.LENGTH_LONG);
                     toast.show();
-                    System.out.println(pass + " / " + repass);
                 }
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Las contraseñas no coinciden", Toast.LENGTH_LONG);
-                System.out.println(pass + " / " + repass);
                 toast.show();
             }
         }
@@ -220,14 +209,6 @@ public class Autenticacion extends AppCompatActivity {
         editor.putString("favorito", "");
         editor.putString("nombre", "");
         editor.putString("idioma", "esp");
-        editor.commit();
-    }
-
-    private void cargarPreferencias(){
-        SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        String user = preferences.getString("user", "No hay datos");
-        String favorito = preferences.getString("user", "No hay datos");
         editor.commit();
     }
 
@@ -335,22 +316,20 @@ public class Autenticacion extends AppCompatActivity {
 
         // Compila ReGex
         Pattern p = Pattern.compile(regex);
-
         // Si el password está vacío se devuelve false
         if (password == null) {
             return false;
         }
-
         //Buscamos si es igual el password a la expresión regular
         Matcher m = p.matcher(password);
-
         // Retorna si el password es igual a Regex
         return m.matches();
     }
 
     //Método que nos valida un email
     public boolean esEmailValido(String email) {
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\." +
+                "[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,8 +15,9 @@ import android.widget.TextView;
 
 public class MenuPrincipal extends AppCompatActivity {
 
-    Button leer, reproducir, ajustes, salir;
+    Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido;
     public static final String EXTRA_MESSAGE = "com.carlossega.cuentameuncuento.MESSAGE";
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +36,39 @@ public class MenuPrincipal extends AppCompatActivity {
         leer = (Button) findViewById(R.id.btn_leer);
         reproducir = (Button) findViewById(R.id.btn_reproducir);
         salir = (Button) findViewById(R.id.btn_salir);
-        ajustes = (Button) findViewById(R.id.btn_config);
+        act_perfil = (Button) findViewById(R.id.btn_act_perfil);
+        act_perfil.setText(R.string.perfil);
         salir.setText(getString(R.string.salir));
         leer.setText(getString(R.string.leer));
+        btn_musica = (Button) findViewById(R.id.btn_musica);
+        btn_sin_sonido = (Button) findViewById(R.id.btn_sin_musica);
         reproducir.setText(getString(R.string.reproducir));
+        mp = MediaPlayer.create(MenuPrincipal.this, R.raw.hilo_musical);
+        mp.start();
+        if (mp.isPlaying()){
+            btn_musica.setVisibility(View.VISIBLE);
+            btn_sin_sonido.setVisibility(View.GONE);
+        } else {
+            btn_musica.setVisibility(View.GONE);
+            btn_sin_sonido.setVisibility(View.VISIBLE);
+        }
+
+        btn_musica.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mp.pause();
+                btn_musica.setVisibility(View.GONE);
+                btn_sin_sonido.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btn_sin_sonido.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mp.start();
+                btn_musica.setVisibility(View.VISIBLE);
+                btn_sin_sonido.setVisibility(View.GONE);
+            }
+        });
+
         salir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finishAffinity();
@@ -61,10 +92,10 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
 
-        ajustes.setOnClickListener(new View.OnClickListener() {
+        act_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuPrincipal.this, Opciones.class);
+                Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
                 startActivity(intent);
             }
         });
@@ -72,11 +103,7 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     public void cerrarSesion(View view){
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        //Para borrar con logout
-        editor.clear();
-        editor.commit();
+
     }
 
     /**

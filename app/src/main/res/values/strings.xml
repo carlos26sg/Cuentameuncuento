@@ -9,4 +9,13 @@
     <string name="atras">Atras</string>
     <string name="opciones">Opciones</string>
     <string name="selecciona">Selecciona el cuento</string>
+    <string name="opciones_perfil">Opciones de perfil</string>
+    <string name="nombre">Nombre</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="eliminar_cuenta">Eliminar cuenta</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="favorito">Favorito</string>
+    <string name="idioma">Idioma</string>
+    <string name="perfil">Perfil</string>
+    <string name="email">Email</string>
 </resources>

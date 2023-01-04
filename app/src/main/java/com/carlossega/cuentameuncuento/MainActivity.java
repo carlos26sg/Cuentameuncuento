@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         txt_info.setText("Cuentame un cuento v1.0");
+        getPreferences();
 
         /*//Para borrar con logout
         SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
@@ -59,9 +60,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         getPreferences();
+        /*Bundle datos = this.getIntent().getExtras();
+        if (datos.getString("mail") != null) {
+            String mail = datos.getString("mail");
+            txt_perfil.setText(mail);
+        }*/
     }
 
     //Función que nos devuelve las SharedPreferences si se han guardado
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         if (email != null){
             Usuario usuario = new Usuario(email, nombre, idioma, fav);
             if (usuario.getNombre().equals("")){ txt_perfil.setText(getString(R.string.bienvenido));} else {
-                txt_perfil.setText(getString(R.string.bienvenido) + ", " + nombre);
+                txt_perfil.setText(getString(R.string.bienvenido) + ", " + email);
             }
             btn_login.setVisibility(View.INVISIBLE);
             btn_register.setVisibility(View.INVISIBLE);
@@ -92,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     public void comenzar(View view) {
         Intent intent = new Intent(this, MenuPrincipal.class);
         intent.putExtra(EXTRA_MESSAGE, "mensaje");
+        //intent.putExtra("usuario", );
         startActivity(intent);
     }
 
