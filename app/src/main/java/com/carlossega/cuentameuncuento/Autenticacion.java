@@ -10,9 +10,12 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.security.identity.CipherSuiteNotSupportedException;
+import android.text.method.TransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,20 +37,40 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.protobuf.Method;
 
+import org.checkerframework.checker.units.qual.K;
+
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
 public class Autenticacion extends AppCompatActivity {
 
     private TextView mail, password, repassword;
     private TextView repite;
-    private Button volver, confirmar, google;
-    private String message;
-    private FirebaseAuth mAuth;
+    private Button volver, confirmar;
+    private CheckBox mantener;
+    private String message, pass, repass, email;
+    private String secretKey;
+    //Instanciamos la Base de datos con la que trabajamos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -61,8 +84,14 @@ public class Autenticacion extends AppCompatActivity {
         repite = (TextView) findViewById(R.id.tv_repite);
         volver = (Button) findViewById(R.id.btn_volver);
         confirmar = (Button) findViewById(R.id.btn_confirmar);
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
+        mantener = (CheckBox) findViewById(R.id.cb_mantener_inicio);
+        mantener.setText("Mantener la sesión iniciada");
+        //Generamos la clave con la que encriptaremos y desencriptaremos la contraseña
+        secretKey = "D€sCiFR@rP@S$WoRd.";
+        try {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
@@ -77,42 +106,48 @@ public class Autenticacion extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            //reload();
-        }
-    }
-
     public void volver (View view){
         this.finish();
     }
 
     public void confirmar (View view){
-        String pass = password.getText().toString();
-        String repass = repassword.getText().toString();
-        String email = mail.getText().toString();
+        pass = password.getText().toString();
+        email = mail.getText().toString();
+        repass = repassword.getText().toString();
         if (message.equals("login")){
-            /*mAuth.getInstance().signInWithEmailAndPassword(email, pass).
-                    addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
+            DocumentReference docRef = db.collection("usuario").document(email);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String pass_descifrar;
+                            pass_descifrar = document.get("pass").toString();
+                            if (descifrar(pass_descifrar, secretKey).equals(pass)){
                                 Toast toast = Toast.makeText(getApplicationContext(),
                                         "Se ha accedido correctamente", Toast.LENGTH_LONG);
                                 toast.show();
+                                if (mantener.isChecked()){guardarPreferencias();}
                                 finish();
                             } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(Autenticacion.this, "Error." + task.getException(),
-                                        Toast.LENGTH_SHORT).show();
+                                Toast toast = Toast.makeText(getApplicationContext(),
+                                        "Contraseña incorrecta. Comprueba la contraseña.", Toast.LENGTH_LONG);
+                                toast.show();
                             }
+                        } else {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "Error al intentar acceder. Comprueba la contraseña.", Toast.LENGTH_LONG);
+                            toast.show();
                         }
-                    });*/
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "No se ha encontrado el mail.", Toast.LENGTH_LONG);
+                        toast.show();
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
 
         } else if (message.equals("register")){
             if (pass.equals(repass)){
@@ -128,9 +163,10 @@ public class Autenticacion extends AppCompatActivity {
                                             "Ya existe una cuenta con ese email", Toast.LENGTH_LONG);
                                     toast.show();
                                 } else {
+                                    String cifrado = cifradopass(pass, secretKey);
                                     Map<String, Object> user = new HashMap<>();
                                     user.put("mail", email);
-                                    user.put("pass", pass);
+                                    user.put("pass", cifrado);
                                     user.put("nombre", "");
                                     user.put("favorito", "");
                                     user.put("idioma", "esp");
@@ -139,6 +175,9 @@ public class Autenticacion extends AppCompatActivity {
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
+                                                    Toast toast = Toast.makeText(getApplicationContext(),
+                                                            "Cuenta creada con exito", Toast.LENGTH_LONG);
+                                                    toast.show();
                                                     Log.d(TAG, "DocumentSnapshot successfully written!");
                                                 }
                                             })
@@ -148,6 +187,7 @@ public class Autenticacion extends AppCompatActivity {
                                                     Log.w(TAG, "Error writing document", e);
                                                 }
                                             });
+                                    if (mantener.isChecked()){guardarPreferencias();}
                                     finish();
                                 }
                             } else {
@@ -155,47 +195,95 @@ public class Autenticacion extends AppCompatActivity {
                             }
                         }
                     });
-
-                    /*mAuth.getInstance().createUserWithEmailAndPassword(email, pass).
-                            addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                Toast toast = Toast.makeText(getApplicationContext(),
-                                        "Cuenta creada con exito", Toast.LENGTH_LONG);
-                                toast.show();
-                                SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = prefs.edit();
-                                editor.putString("email", email);
-                                editor.putString("provider", "BASIC");
-                                editor.commit();
-                                finish();
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(Autenticacion.this, "Error." + task.getException(),
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });*/
                 }
                 else {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "La contraseña debe tener entre 8 y 20 caracteres y contener al" +
                                     " menos mayúsculas, minúsculas y números", Toast.LENGTH_LONG);
                     toast.show();
+                    System.out.println(pass + " / " + repass);
                 }
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Las contraseñas no coinciden", Toast.LENGTH_LONG);
+                System.out.println(pass + " / " + repass);
                 toast.show();
             }
         }
 
-        //Para borrar con logout
-        //editor.clear();
-        //editor.commit();
+    }
 
+    private void guardarPreferencias(){
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("user", email);
+        editor.putString("favorito", "");
+        editor.putString("nombre", "");
+        editor.putString("idioma", "esp");
+        editor.commit();
+    }
+
+    private void cargarPreferencias(){
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String user = preferences.getString("user", "No hay datos");
+        String favorito = preferences.getString("user", "No hay datos");
+        editor.commit();
+    }
+
+    //Función que cifra la contraseña para guardarla en la base de datos
+    private String cifradopass(String userPass, String secretKey){
+        String pass_cifrado ="";
+        try {
+            //Cifrado MD5
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            byte[] llavePass = md5.digest(secretKey.getBytes("utf-8"));
+            byte[] bytesKey = Arrays.copyOf(llavePass, 24);
+            SecretKey key = new SecretKeySpec(bytesKey, "DESede");
+            //Inicializamos objeto Cipher con la clave
+            Cipher c = Cipher.getInstance("DESede");
+            //Iniciamos Cipher en modo Encriptacion
+            c.init(Cipher.ENCRYPT_MODE, key);
+
+            //Pasamos la contraseña del usuario a un array de bytes
+            byte[] plainTextBytes = userPass.getBytes("utf-8");
+            //Encriptamos la contraseña en bytes
+            byte[] cifrado = c.doFinal(plainTextBytes);
+            // Convertimos el byte cifrado [] a base64 para guardarlo en la base de datos
+            byte [] base64Bytes = Base64.getEncoder().encode(cifrado);
+            pass_cifrado = new String(base64Bytes);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return pass_cifrado;
+    }
+
+    //Función que descifra la contraseña que se encuentra cifrada en la base de datos
+    private String descifrar(String passDescifrar, String secretKey) {
+        String descifrada= "";
+        try {
+            //Recogemos la contraseña guardada en la base de datos y la decodificamos en Base64
+            byte[] mensaje = Base64.getDecoder().decode(passDescifrar.getBytes("utf-8"));
+            //Cifrado MD5
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+
+            //Hacemos el descifrado con la clave
+            byte[] digestOfPassword = md5.digest(secretKey.getBytes("utf-8"));
+            byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
+            SecretKey key = new SecretKeySpec(keyBytes, "DESede");
+
+            //Creamos objeto Cipher con algoritmo DES
+            Cipher desc = Cipher.getInstance("DESede");
+            //Iniciamos Cipher en Desencriptación
+            desc.init(Cipher.DECRYPT_MODE, key);
+            byte[] plainText = desc.doFinal(mensaje);
+            //Pasamos de bytes a String
+            descifrada = new String(plainText, "UTF-8");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return descifrada;
     }
 
     /**
@@ -240,27 +328,23 @@ public class Autenticacion extends AppCompatActivity {
     //Metodo para validar el password
     public static boolean esPasswordValido(String password)
     {
-        // Regex to check valid password.
+        // Regex para chequear el patron.
         String regex = "^(?=.*[0-9])"
                 + "(?=.*[a-z])(?=.*[A-Z])"
                 + "(?=\\S+$).{8,20}$";
 
-        // Compile the ReGex
+        // Compila ReGex
         Pattern p = Pattern.compile(regex);
 
-        // If the password is empty
-        // return false
+        // Si el password está vacío se devuelve false
         if (password == null) {
             return false;
         }
 
-        // Pattern class contains matcher() method
-        // to find matching between given password
-        // and regular expression.
+        //Buscamos si es igual el password a la expresión regular
         Matcher m = p.matcher(password);
 
-        // Return if the password
-        // matched the ReGex
+        // Retorna si el password es igual a Regex
         return m.matches();
     }
 

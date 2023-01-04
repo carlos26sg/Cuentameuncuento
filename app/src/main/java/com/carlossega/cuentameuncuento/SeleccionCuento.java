@@ -19,7 +19,6 @@ public class SeleccionCuento extends AppCompatActivity {
         //Ocultamos barra
         getSupportActionBar().hide();
         atras = (Button) findViewById(R.id.btn_atras);
-        atras.setText(getString(R.string.atras));
         selecciona = (TextView) findViewById(R.id.tv_selecciona);
         selecciona.setText(R.string.selecciona);
         //Click del boton atrás

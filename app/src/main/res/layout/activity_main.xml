@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo1"
+    android:background="@drawable/fondo_principal"
     android:foregroundTint="#FFFFFF"
     tools:context=".MainActivity">
 
@@ -13,12 +13,12 @@
         android:id="@+id/imgbtnComenzar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/comenzar"
-        android:backgroundTint="#00FFFFFF"
+        android:background="@drawable/libro_comenzar"
         android:contextClickable="true"
         android:onClick="comenzar"
         android:text="Comenzar"
         android:tooltipText="COMENZAR"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,11 +48,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
-        android:layout_width="138dp"
-        android:layout_height="56dp"
+        android:layout_width="140dp"
+        android:layout_height="58dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/btn"
+        android:background="@drawable/pergamino"
         android:onClick="register"
         android:text="Registrarse"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,11 +60,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
-        android:layout_width="147dp"
+        android:layout_width="140dp"
         android:layout_height="58dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/btn"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/pergamino"
         android:onClick="login"
         android:text="Iniciar sesion"
         android:textColor="@color/black"
@@ -75,10 +75,10 @@
         android:id="@+id/txt_perfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="152dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

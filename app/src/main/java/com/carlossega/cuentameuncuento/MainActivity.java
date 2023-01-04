@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import org.checkerframework.checker.units.qual.C;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -47,30 +49,40 @@ public class MainActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         txt_info.setText("Cuentame un cuento v1.0");
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        String email = prefs.getString("email", null);
-        if (email != null){
-            txt_perfil.setText(getString(R.string.bienvenido) +", " + email);
-            btn_login.setVisibility(View.INVISIBLE);
-            btn_register.setVisibility(View.INVISIBLE);
-        } else {
-            txt_perfil.setText(getString(R.string.no_inicio));
-            btn_login.setVisibility(View.VISIBLE);
-            btn_register.setVisibility(View.VISIBLE);
-        }
+
+        /*//Para borrar con logout
+        SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+        getPreferences();*/
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        getPreferences();
+    }
+
+    //Función que nos devuelve las SharedPreferences si se han guardado
+    private void getPreferences(){
+        //Consultamos si existen y recogemos los valores en caso afirmativo
         SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        String email = prefs.getString("email", null);
+        String email = prefs.getString("user", null);
+        String nombre = prefs.getString("nombre", null);
+        String idioma = prefs.getString("idioma", "");
+        String fav = prefs.getString("favorito", "");
+        //Si contiene un mail, creamos un Usuario
+        //Mostraremos o no los botones de inicio de sesión y Registro
         if (email != null){
-            txt_perfil.setText("Bienvenido, " + email);
+            Usuario usuario = new Usuario(email, nombre, idioma, fav);
+            if (usuario.getNombre().equals("")){ txt_perfil.setText(getString(R.string.bienvenido));} else {
+                txt_perfil.setText(getString(R.string.bienvenido) + ", " + nombre);
+            }
             btn_login.setVisibility(View.INVISIBLE);
             btn_register.setVisibility(View.INVISIBLE);
         } else {
-            txt_perfil.setText("Sin datos");
+            txt_perfil.setText("No se ha iniciado sesión");
             btn_login.setVisibility(View.VISIBLE);
             btn_register.setVisibility(View.VISIBLE);
         }
