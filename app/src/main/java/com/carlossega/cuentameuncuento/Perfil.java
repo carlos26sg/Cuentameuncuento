@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +37,8 @@ public class Perfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
+
+        //Asociamos todos los componentes al ID que le corresponde
         txt_perfil_nombre = (TextView) findViewById(R.id.txt_perfil_nombre);
         txt_perfil_nombre.setText(getString(R.string.nombre));
         txt_perfil_opciones = (TextView) findViewById(R.id.txt_perfil_opciones);
@@ -57,11 +60,12 @@ public class Perfil extends AppCompatActivity {
         et_nombre = (EditText) findViewById(R.id.et_perfil_nombre);
 
         //Comprobamos el mail que llega para editar
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        mensaje = prefs.getString("mail", null);
-        System.out.println("Le llega: " + mensaje);
+        Bundle extra = this.getIntent().getExtras();
+        mensaje = extra.getString("mail");
+        //Buscamos en la BD la info asociada
         checkBD(mensaje);
 
+        //Listeners de los botones
         btn_atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +80,10 @@ public class Perfil extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear();
+                editor.commit();
+                SharedPreferences pref = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = pref.edit();
+                editor.putBoolean("iniciada", false);
                 editor.commit();
                 finish();
             }

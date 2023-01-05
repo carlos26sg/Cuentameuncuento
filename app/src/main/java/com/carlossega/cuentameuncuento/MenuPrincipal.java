@@ -35,29 +35,15 @@ public class MenuPrincipal extends AppCompatActivity {
     //Instanciamos la Base de datos con la que trabajamos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Usuario user;
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
         getSupportActionBar().hide();
-        info = findViewById(R.id.txt_menu_info);
-        user = new Usuario();
-        // Get the Intent that started this activity and extract the string
-        Bundle extra = this.getIntent().getExtras();
-        email = extra.getString("mail");
-        System.out.println(email);
-        if (!email.equals("noUser")){
-            checkBD(email);
-        } else {
-            info.setText(getString(R.string.no_inicio));
-        }
 
-        /* Captura el mensaje que se le pasa de la primera activity
-        Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.txt1);
-        textView.setText(message);*/
-
+        //Asociamos todos los componentes al ID que le corresponde
         leer = (Button) findViewById(R.id.btn_leer);
         reproducir = (Button) findViewById(R.id.btn_reproducir);
         salir = (Button) findViewById(R.id.btn_salir);
@@ -68,9 +54,24 @@ public class MenuPrincipal extends AppCompatActivity {
         btn_musica = (Button) findViewById(R.id.btn_musica);
         btn_sin_sonido = (Button) findViewById(R.id.btn_sin_musica);
         reproducir.setText(getString(R.string.reproducir));
+        info = findViewById(R.id.txt_menu_info);
+        user = new Usuario();
+
+        //Recogemos los parametros que se pasan por activities
+        Bundle extra = this.getIntent().getExtras();
+        email = extra.getString("mail");
+
+        //Dependiendo de si llega o no un mail mostraremos mensajes diferentes
+        if (!email.equals("noUser")){
+            checkBD(email);
+        } else {
+            info.setText(getString(R.string.no_inicio));
+        }
+
+        //Arrancamos el hilo musical
         mp = MediaPlayer.create(MenuPrincipal.this, R.raw.hilo_musical);
         mp.start();
-
+        //Contol del icono de musica en función de la reproducción
         if (mp.isPlaying()){
             btn_musica.setVisibility(View.VISIBLE);
             btn_sin_sonido.setVisibility(View.GONE);
@@ -132,12 +133,12 @@ public class MenuPrincipal extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
                 Bundle extras = new Bundle();
+                //Pasamos mail para poder acceder al perfil
                 extras.putString("mail", email);
                 intent.putExtras(extras);
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -145,12 +146,13 @@ public class MenuPrincipal extends AppCompatActivity {
         super.onStart();
         if (!checkPreferences()){
             info.setText(getString(R.string.no_inicio));
+            act_perfil.setVisibility(View.GONE);
         }
     }
 
     public boolean checkPreferences(){
         SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        boolean iniciado = preferences.getBoolean("iniciada", false);
+        boolean iniciado = preferences.getBoolean("iniciada", true);
         return iniciado;
     }
 
