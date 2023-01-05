@@ -1,21 +1,36 @@
 package com.carlossega.cuentameuncuento;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Perfil extends AppCompatActivity {
 
     TextView txt_perfil_nombre, txt_perfil_opciones, txt_perfil_favorito, txt_perfil_idioma,
         txt_perfil_mail, txt_perfil_email;
+    EditText et_nombre;
     Button btn_eliminar, btn_cerrar, btn_confirmar, btn_atras;
     Spinner sp_favorito, sp_idioma;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String nombre, favorito, idioma, email;
+    String mensaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +47,6 @@ public class Perfil extends AppCompatActivity {
         txt_perfil_email = (TextView) findViewById(R.id.txt_perfil_email);
         txt_perfil_email.setText(getString(R.string.email));
         txt_perfil_mail = (TextView) findViewById(R.id.txt_perfil_mail);
-        //txt_perfil_mail.setText(getString(email user));
         btn_eliminar = (Button) findViewById(R.id.btn_perfil_eliminar);
         btn_eliminar.setText(getString(R.string.eliminar_cuenta));
         btn_cerrar = (Button) findViewById(R.id.btn_perfil_cerrar);
@@ -40,7 +54,13 @@ public class Perfil extends AppCompatActivity {
         btn_confirmar = (Button) findViewById(R.id.btn_perfil_confirmar);
         btn_confirmar.setText(getString(R.string.confirmar));
         btn_atras = (Button) findViewById(R.id.btn_perfil_atras);
+        et_nombre = (EditText) findViewById(R.id.et_perfil_nombre);
 
+        //Comprobamos el mail que llega para editar
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        mensaje = prefs.getString("mail", null);
+        System.out.println("Le llega: " + mensaje);
+        checkBD(mensaje);
 
         btn_atras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +77,29 @@ public class Perfil extends AppCompatActivity {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear();
                 editor.commit();
+                finish();
+            }
+        });
+    }
+
+    public void checkBD(String emailAComprobar){
+        DocumentReference docRef = db.collection("usuario").document(emailAComprobar);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        nombre = document.get("nombre").toString();;
+                        et_nombre.setText(nombre);
+                        idioma = document.get("idioma").toString();;
+                        favorito = document.get("favorito").toString();
+                        email = document.get("mail").toString();
+                        txt_perfil_mail.setText(email);
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
             }
         });
     }

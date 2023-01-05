@@ -80,6 +80,8 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
 
     //Función asignada al botón volver
     public void volver (View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         this.finish();
     }
 
@@ -114,9 +116,10 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                 extras.putString("idioma", document.get("idioma").toString());
                                 extras.putString("favorito", document.get("favorito").toString());
 
-                                Intent intent = new Intent(Autenticacion.this, MainActivity.class);
+                                Intent intent = new Intent(Autenticacion.this, MenuPrincipal.class);
                                 //Agrega el objeto bundle al Intent
                                 intent.putExtras(extras);
+                                startActivity(intent);
                                 //Inicia Activity
                                 finish();
                             } else {
@@ -178,7 +181,9 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                                     Log.w(TAG, "Error writing document", e);
                                                 }
                                             });
-                                    if (mantener.isChecked()){guardarPreferencias();}
+                                    Intent intent = new Intent(Autenticacion.this, MenuPrincipal.class);
+                                    startActivity(intent);
+                                    //Inicia Activity
                                     finish();
                                 }
                             } else {
@@ -209,6 +214,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         editor.putString("favorito", "");
         editor.putString("nombre", "");
         editor.putString("idioma", "esp");
+        editor.putBoolean("iniciada", true);
         editor.commit();
     }
 

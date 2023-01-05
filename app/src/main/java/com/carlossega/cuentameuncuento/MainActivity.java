@@ -1,6 +1,7 @@
 package com.carlossega.cuentameuncuento;
 
 import static com.carlossega.cuentameuncuento.R.id.btn_login;
+import static com.carlossega.cuentameuncuento.R.id.et_mail;
 import static com.carlossega.cuentameuncuento.R.id.txt_info;
 import static com.carlossega.cuentameuncuento.R.id.txt_perfil;
 
@@ -27,57 +28,38 @@ import org.checkerframework.checker.units.qual.C;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    //Indicamos las variables necesarias
     public static final String EXTRA_MESSAGE = "com.carlossega.cuentameuncuento.MESSAGE";
     TextView txt_info, txt_perfil;
     Button btn_login, btn_register;
+    String email, nombre, idioma, fav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        setTheme(R.style.SplashTheme);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txt_info = findViewById(R.id.txt_info);
         txt_perfil = findViewById(R.id.txt_perfil);
+        txt_info.setText("Cuentame un cuento v1.0");
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
-        txt_info.setText("Cuentame un cuento v1.0");
         getPreferences();
-
-        /*//Para borrar con logout
-        SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
-        editor.commit();
-        getPreferences();*/
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         getPreferences();
-        /*Bundle datos = this.getIntent().getExtras();
-        if (datos.getString("mail") != null) {
-            String mail = datos.getString("mail");
-            txt_perfil.setText(mail);
-        }*/
     }
 
     //Función que nos devuelve las SharedPreferences si se han guardado
     private void getPreferences(){
         //Consultamos si existen y recogemos los valores en caso afirmativo
         SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        String email = prefs.getString("user", null);
-        String nombre = prefs.getString("nombre", null);
-        String idioma = prefs.getString("idioma", "");
-        String fav = prefs.getString("favorito", "");
+        email = prefs.getString("user", null);
+        nombre = prefs.getString("nombre", null);
+        idioma = prefs.getString("idioma", "");
+        fav = prefs.getString("favorito", "");
         //Si contiene un mail, creamos un Usuario
         //Mostraremos o no los botones de inicio de sesión y Registro
         if (email != null){
@@ -96,21 +78,40 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the Send button */
     public void comenzar(View view) {
-        Intent intent = new Intent(this, MenuPrincipal.class);
-        intent.putExtra(EXTRA_MESSAGE, "mensaje");
-        //intent.putExtra("usuario", );
-        startActivity(intent);
+        if (email != null){
+            Bundle extras = new Bundle();
+            extras.putString("mail", email);
+            extras.putString("nombre", nombre);
+            extras.putString("idioma", idioma);
+            extras.putString("favorito", fav);
+            Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
+            //Agrega el objeto bundle al Intent
+            intent.putExtras(extras);
+            finish();
+            startActivity(intent);
+            System.out.println("Envio preferences");
+        } else {
+            Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
+            Bundle extras = new Bundle();
+            extras.putString("mail", "noUser");
+            intent.putExtras(extras);
+            finish();
+            startActivity(intent);
+            System.out.println("Envio comenzar directamente");
+        }
     }
 
     public void login(View view){
         Intent intent = new Intent(this, Autenticacion.class);
         intent.putExtra(EXTRA_MESSAGE, "login");
+        finish();
         startActivity(intent);
     }
 
     public void register(View view){
         Intent intent = new Intent(this, Autenticacion.class);
         intent.putExtra(EXTRA_MESSAGE, "register");
+        finish();
         startActivity(intent);
     }
 

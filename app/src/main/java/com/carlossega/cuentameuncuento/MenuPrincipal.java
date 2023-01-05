@@ -1,5 +1,8 @@
 package com.carlossega.cuentameuncuento;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,26 +10,48 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.nio.charset.StandardCharsets;
+
 public class MenuPrincipal extends AppCompatActivity {
 
     Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido;
-    public static final String EXTRA_MESSAGE = "com.carlossega.cuentameuncuento.MESSAGE";
     MediaPlayer mp;
+    String email, nombre, idioma, favorito;
+    TextView info;
+    //Instanciamos la Base de datos con la que trabajamos
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
         getSupportActionBar().hide();
+        info = findViewById(R.id.txt_menu_info);
+        user = new Usuario();
         // Get the Intent that started this activity and extract the string
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        Bundle extra = this.getIntent().getExtras();
+        email = extra.getString("mail");
+        System.out.println(email);
+        if (!email.equals("noUser")){
+            checkBD(email);
+        } else {
+            info.setText(getString(R.string.no_inicio));
+        }
 
         /* Captura el mensaje que se le pasa de la primera activity
         Capture the layout's TextView and set the string as its text
@@ -45,6 +70,7 @@ public class MenuPrincipal extends AppCompatActivity {
         reproducir.setText(getString(R.string.reproducir));
         mp = MediaPlayer.create(MenuPrincipal.this, R.raw.hilo_musical);
         mp.start();
+
         if (mp.isPlaying()){
             btn_musica.setVisibility(View.VISIBLE);
             btn_sin_sonido.setVisibility(View.GONE);
@@ -53,6 +79,7 @@ public class MenuPrincipal extends AppCompatActivity {
             btn_sin_sonido.setVisibility(View.VISIBLE);
         }
 
+        //Listeners de botones
         btn_musica.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mp.pause();
@@ -78,16 +105,24 @@ public class MenuPrincipal extends AppCompatActivity {
 
         leer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Bundle extras = new Bundle();
+                extras.putString("mail", email);
+                extras.putString("funcion", "leer");
                 Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
-                intent.putExtra(EXTRA_MESSAGE, "leer");
+                //Agrega el objeto bundle al Intent
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
 
         reproducir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Bundle extras = new Bundle();
+                extras.putString("mail", email);
+                extras.putString("funcion", "reproducir");
                 Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
-                intent.putExtra(EXTRA_MESSAGE, "reproducir");
+                //Agrega el objeto bundle al Intent
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
@@ -96,14 +131,56 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
+                Bundle extras = new Bundle();
+                extras.putString("mail", email);
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
 
     }
 
-    public void cerrarSesion(View view){
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!checkPreferences()){
+            info.setText(getString(R.string.no_inicio));
+        }
+    }
 
+    public boolean checkPreferences(){
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        boolean iniciado = preferences.getBoolean("iniciada", false);
+        return iniciado;
+    }
+
+    public void checkBD(String emailAComprobar){
+        DocumentReference docRef = db.collection("usuario").document(emailAComprobar);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        nombre = document.get("nombre").toString();;
+                        idioma = document.get("idioma").toString();;
+                        favorito = document.get("favorito").toString();
+                        System.out.println(nombre + idioma + favorito + document.get("mail").toString());
+                        user.setNombre(nombre);
+                        user.setIdioma(idioma);
+                        user.setFavorito(favorito);
+                        user.setMail(email);
+                        if (user.getNombre().equals("")){
+                            info.setText("Bienvenido " + user.getMail());
+                        } else {
+                            info.setText("Bienvenido " + user.getNombre());
+                        }
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     /**
@@ -144,5 +221,4 @@ public class MenuPrincipal extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
-
 }

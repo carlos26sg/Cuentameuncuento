@@ -7,6 +7,8 @@ public class Usuario {
     private String idioma;
     private String favorito;
 
+    public Usuario() { }
+
     public Usuario(String mail) {
         this.mail = mail;
     }
