@@ -18,4 +18,8 @@
     <string name="idioma">Idioma</string>
     <string name="perfil">Perfil</string>
     <string name="email">Email</string>
+    <string name="seguro">Está seguro?</string>
+    <string name="si">Si</string>
+    <string name="no">No</string>
+    <string name="borrar">Se va a borrar la cuenta</string>
 </resources>

@@ -66,6 +66,7 @@ public class MenuPrincipal extends AppCompatActivity {
             checkBD(email);
         } else {
             info.setText(getString(R.string.no_inicio));
+            act_perfil.setVisibility(View.GONE);
         }
 
         //Arrancamos el hilo musical

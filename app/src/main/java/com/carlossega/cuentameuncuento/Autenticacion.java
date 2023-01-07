@@ -38,12 +38,10 @@ import javax.crypto.spec.SecretKeySpec;
 public class Autenticacion extends AppCompatActivity implements Serializable {
 
     //Iniciamos las variables con las que trabajamos
-    private TextView mail, password, repassword;
-    private TextView repite;
+    private TextView mail, password, repassword, repite;
     private Button volver, confirmar;
     private CheckBox mantener;
-    private String message, pass, repass, email;
-    private String secretKey;
+    private String message, pass, repass, email, secretKey, nombre;
     //Instanciamos la Base de datos con la que trabajamos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -109,10 +107,11 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                 Toast toast = Toast.makeText(getApplicationContext(),
                                         "Se ha accedido correctamente", Toast.LENGTH_LONG);
                                 toast.show();
+                                nombre = document.get("nombre").toString();
                                 if (mantener.isChecked()){guardarPreferencias();}
                                 Bundle extras = new Bundle();
                                 extras.putString("mail",document.get("mail").toString());
-                                extras.putString("nombre", document.get("nombre").toString());
+                                extras.putString("nombre", nombre);
                                 extras.putString("idioma", document.get("idioma").toString());
                                 extras.putString("favorito", document.get("favorito").toString());
 
@@ -122,6 +121,10 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                 startActivity(intent);
                                 //Inicia Activity
                                 finish();
+                                SharedPreferences pref = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+                                SharedPreferences.Editor edit = pref.edit();
+                                edit.putBoolean("iniciada", true);
+                                edit.commit();
                             } else {
                                 Toast toast = Toast.makeText(getApplicationContext(),
                                         "Contraseña incorrecta. Comprueba la contraseña.", Toast.LENGTH_LONG);
@@ -181,7 +184,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                                     Log.w(TAG, "Error writing document", e);
                                                 }
                                             });
-                                    Intent intent = new Intent(Autenticacion.this, MenuPrincipal.class);
+                                    Intent intent = new Intent(Autenticacion.this, MainActivity.class);
                                     startActivity(intent);
                                     //Inicia Activity
                                     finish();
@@ -212,7 +215,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("user", email);
         editor.putString("favorito", "");
-        editor.putString("nombre", "");
+        editor.putString("nombre", nombre);
         editor.putString("idioma", "esp");
         editor.putBoolean("iniciada", true);
         editor.commit();

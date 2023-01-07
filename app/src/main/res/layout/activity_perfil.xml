@@ -96,9 +96,9 @@
     <EditText
         android:id="@+id/et_perfil_nombre"
         android:layout_width="168dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
         android:hint="Nombre"
         app:layout_constraintStart_toEndOf="@+id/txt_perfil_nombre"
         app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
@@ -107,40 +107,41 @@
         android:id="@+id/txt_perfil_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="116dp"
         android:layout_marginTop="72dp"
         android:text="TextView"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/et_perfil_nombre"
         app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
-
-    <TextView
-        android:id="@+id/txt_perfil_idioma"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="52dp"
-        android:text="TextView"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/et_perfil_nombre"
-        app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
-
-    <Spinner
-        android:id="@+id/sp_perfil_idioma"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toEndOf="@+id/txt_perfil_idioma"
-        app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
 
     <TextView
         android:id="@+id/txt_perfil_mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="72dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/txt_perfil_email"
         app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
+
+    <Spinner
+        android:id="@+id/sp_perfil_idioma"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toEndOf="@+id/txt_perfil_idioma"
+        app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
+
+    <TextView
+        android:id="@+id/txt_perfil_idioma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="52dp"
+        android:text="TextView"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/et_perfil_nombre"
+        app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
