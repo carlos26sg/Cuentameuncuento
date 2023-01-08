@@ -77,4 +77,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Spinner
+        android:id="@+id/sp_idioma_menu"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="12dp"
+        style="@style/spinner_style"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_salir" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

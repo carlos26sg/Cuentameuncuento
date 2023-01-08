@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_menu"
     tools:context=".SeleccionCuento">
 
     <androidx.appcompat.widget.AppCompatButton
@@ -23,7 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:text="Selecciona el cuento"
+        android:textSize="26sp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/btn_atras"
         app:layout_constraintTop_toTopOf="parent" />
 

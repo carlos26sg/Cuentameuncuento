@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/green_500">
+    android:background="#7C3700B3"
+    android:orientation="vertical"
+    app:circularflow_radiusInDP="10dp">
 
     <LinearLayout
+        android:id="@+id/llContenido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
             android:id="@+id/idImagen"
-            android:layout_margin="10dp"/>
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:foregroundTint="#000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/idTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:id="@+id/idTitulo"
+                android:text="Titulo"
+                android:textColor="@color/white"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:text="Titulo"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/idDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:id="@+id/idDescripcion"
-                android:text="Descripción"/>
+                android:text="Descripción"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
@@ -45,7 +51,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/black"
-        android:layout_marginTop="11dp"/>
+        android:layout_below="@id/llContenido"
+        android:layout_marginTop="11dp"
+        android:background="@color/black" />
 
-</LinearLayout>
+</RelativeLayout>

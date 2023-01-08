@@ -5,11 +5,6 @@ public class Cuento {
     private String titulo, descripcion;
     private String imagen;
 
-    public Cuento(String titulo, String descripcion) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-    }
-
     public Cuento(String titulo, String descripcion, String imagen) {
         this.titulo = titulo;
         this.descripcion = descripcion;
