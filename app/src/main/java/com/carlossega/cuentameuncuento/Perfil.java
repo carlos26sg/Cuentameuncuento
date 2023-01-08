@@ -4,19 +4,20 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,14 +34,15 @@ import java.util.Map;
 
 public class Perfil extends AppCompatActivity {
 
+    //Indicamos las variables necesarias
     TextView txt_perfil_nombre, txt_perfil_opciones, txt_perfil_favorito, txt_perfil_idioma,
         txt_perfil_mail, txt_perfil_email;
     EditText et_nombre;
     Button btn_eliminar, btn_cerrar, btn_confirmar, btn_atras;
     Spinner sp_favorito, sp_idioma;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String nombre, favorito, idioma, email;
-    String mensaje;
+    String nombre, favorito, idioma, email, mensaje, idioma_sp;
+    int[] banderas = {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,10 @@ public class Perfil extends AppCompatActivity {
         btn_confirmar.setText(getString(R.string.confirmar));
         btn_atras = (Button) findViewById(R.id.btn_perfil_atras);
         et_nombre = (EditText) findViewById(R.id.et_perfil_nombre);
+        sp_idioma = (Spinner) findViewById(R.id.sp_perfil_idioma);
+        //Iniciamos adaptador para el spinner
+        IdiomaAdapter adaptador = new IdiomaAdapter();
+        sp_idioma.setAdapter(adaptador);
 
         //Comprobamos el mail que llega para editar
         Bundle extra = this.getIntent().getExtras();
@@ -91,8 +97,8 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //sp_favorito.getSelectedItem();
-                //sp_idioma.getSelectedItem();
-                guardarBD(et_nombre.getText().toString());
+                idioma_sp = selectedIdioma();
+                guardarBD(et_nombre.getText().toString(), idioma_sp);
                 finish();
             }
         });
@@ -159,6 +165,9 @@ public class Perfil extends AppCompatActivity {
                         email = document.get("mail").toString();
                         txt_perfil_mail.setText(email);
                     }
+                    if (idioma.equals("esp")){sp_idioma.setSelection(0);}
+                    if (idioma.equals("cat")){sp_idioma.setSelection(1);}
+                    if (idioma.equals("eng")){sp_idioma.setSelection(2);}
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
@@ -166,15 +175,25 @@ public class Perfil extends AppCompatActivity {
         });
     }
 
+    //Función que recoge la posición del spinner y retorna el idioma seleccionado
+    public String selectedIdioma(){
+        String idioma = "";
+        int position = sp_idioma.getSelectedItemPosition();
+        if (position == 0){idioma = "esp";}
+        if (position == 1){idioma = "cat";}
+        if (position == 2){idioma = "eng";}
+        return idioma;
+    }
+
     //Función para actualizar los datos de un registro
-    public void guardarBD(String nombre){
+    public void guardarBD(String nombre, String idioma_spinner){
         Map<String, Object> data = new HashMap<>();
         data.put("nombre", nombre);
         db.collection("usuario").document(email)
                 .update(
-                        "nombre", nombre
-                        //"idioma", idioma,
-                        //"favorito", favorito
+                        "nombre", nombre,
+                        "idioma", idioma_spinner
+                        //,"favorito", favorito
                 );
     }
 
@@ -195,4 +214,33 @@ public class Perfil extends AppCompatActivity {
                     }
                 });
     }
+
+    //Clase que nos adapta el spinner para que sea un cuadrado que muestre la bandera
+    class IdiomaAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return banderas.length;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return banderas[i];
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            LayoutInflater inflater = LayoutInflater.from(Perfil.this);
+            view = inflater.inflate(R.layout.itemspinner, null);
+            ImageView iv1 = view.findViewById(R.id.iv_bandera);
+            iv1.setImageResource(banderas[i]);
+            return view;
+        }
+    }
+
 }

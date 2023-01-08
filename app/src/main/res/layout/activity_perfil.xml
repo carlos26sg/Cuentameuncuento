@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_menu"
+    android:theme="@style/Theme.CuentameUnCuento"
     tools:context=".Perfil">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_perfil_atras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,14 +17,15 @@
         android:background="@drawable/atras"
         android:shadowColor="#00FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:stateListAnimator="@null"/>
 
     <TextView
         android:id="@+id/txt_perfil_opciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -36,8 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="72dp"
-        android:text="txt_perfil_nombre"
+        android:text="TextView"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
 
@@ -48,7 +52,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="52dp"
         android:text="TextView"
+        android:textColor="@color/white"
         android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
 
@@ -58,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginTop="52dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/txt_perfil_favorito"
         app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
 
@@ -69,7 +76,8 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/pergamino"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:stateListAnimator="@null"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_perfil_eliminar"
@@ -81,7 +89,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_perfil_favorito"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:stateListAnimator="@null"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_perfil_cerrar"
@@ -90,6 +99,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/pergamino"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:stateListAnimator="@null"
         app:layout_constraintEnd_toStartOf="@+id/btn_perfil_confirmar"
         app:layout_constraintStart_toEndOf="@+id/btn_perfil_eliminar" />
 
@@ -97,9 +107,11 @@
         android:id="@+id/et_perfil_nombre"
         android:layout_width="168dp"
         android:layout_height="50dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="56dp"
         android:hint="Nombre"
+        android:textSize="18sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/txt_perfil_nombre"
         app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
 
@@ -111,6 +123,8 @@
         android:layout_marginTop="72dp"
         android:text="TextView"
         android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/et_perfil_nombre"
         app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
 
@@ -121,15 +135,17 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="72dp"
         android:text="TextView"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/txt_perfil_email"
         app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
 
     <Spinner
         android:id="@+id/sp_perfil_idioma"
+        style="@style/spinner_style"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintStart_toEndOf="@+id/txt_perfil_idioma"
         app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
 
@@ -141,6 +157,8 @@
         android:layout_marginTop="52dp"
         android:text="TextView"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/et_perfil_nombre"
         app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
 

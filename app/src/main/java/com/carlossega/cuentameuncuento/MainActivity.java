@@ -1,30 +1,13 @@
 package com.carlossega.cuentameuncuento;
 
-import static com.carlossega.cuentameuncuento.R.id.btn_login;
-import static com.carlossega.cuentameuncuento.R.id.et_mail;
-import static com.carlossega.cuentameuncuento.R.id.txt_info;
-import static com.carlossega.cuentameuncuento.R.id.txt_perfil;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseUser;
-
-import org.checkerframework.checker.units.qual.C;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
         View decorView = getWindow().getDecorView();
         pantallaCompleta.pantallaCompleta(decorView);
 
+        //Asociamos todos los componentes al ID que le corresponde
         txt_info = findViewById(R.id.txt_info);
         txt_perfil = findViewById(R.id.txt_perfil);
         txt_info.setText("Cuentame un cuento v1.0");
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
+        //Cargamos las Preferences en caso de que se encuentre alguna guardada
         getPreferences();
-
-
     }
 
     @Override
@@ -83,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /** Called when the user taps the Send button */
+    /** Se llama cuando el usuario pulsa el boton comenzar */
     public void comenzar(View view) {
         if (email != null){
             Bundle extras = new Bundle();
@@ -108,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Función que llama la actividad de Login, pasandole mensaje login
     public void login(View view){
         Intent intent = new Intent(this, Autenticacion.class);
         intent.putExtra(EXTRA_MESSAGE, "login");
@@ -115,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Función que llama la actividad de Register, pasandole mensaje register
     public void register(View view){
         Intent intent = new Intent(this, Autenticacion.class);
         intent.putExtra(EXTRA_MESSAGE, "register");

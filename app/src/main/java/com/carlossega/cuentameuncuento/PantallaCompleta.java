@@ -1,6 +1,7 @@
 package com.carlossega.cuentameuncuento;
 
 import android.view.View;
+import android.view.WindowManager;
 
 public class PantallaCompleta {
     public void pantallaCompleta(View decorView){

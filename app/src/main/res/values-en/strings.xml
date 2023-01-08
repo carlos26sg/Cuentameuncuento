@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cuentame un cuento</string>
+    <string name="no_inicio">Not logged</string>
+    <string name="bienvenido">Welcome</string>
+    <string name="leer">Read</string>
+    <string name="reproducir">Play</string>
+    <string name="salir">Exit</string>
+    <string name="atras">Back</string>
+    <string name="opciones">Options</string>
+    <string name="selecciona">Select the tale</string>
+    <string name="opciones_perfil">Profile options</string>
+    <string name="nombre">Name</string>
+    <string name="cerrar_sesion">Sign off</string>
+    <string name="eliminar_cuenta">Delete account</string>
+    <string name="confirmar">Confirm</string>
+    <string name="favorito">Fav</string>
+    <string name="idioma">Language</string>
+    <string name="perfil">Profile</string>
+    <string name="email">Mail</string>
+    <string name="seguro">Are you sure?</string>
+    <string name="si">Yes</string>
+    <string name="no">No</string>
+    <string name="borrar">The account will be deleted</string>
+</resources>

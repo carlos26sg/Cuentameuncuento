@@ -7,4 +7,19 @@
     <string name="reproducir">Reproduir</string>
     <string name="salir">Sortir</string>
     <string name="atras">Enrere</string>
+    <string name="opciones">Opcions</string>
+    <string name="selecciona">Selecciona el conte</string>
+    <string name="opciones_perfil">Opcions de perfil</string>
+    <string name="nombre">Nom</string>
+    <string name="cerrar_sesion">Tancar sessió</string>
+    <string name="eliminar_cuenta">Esborrar compte</string>
+    <string name="confirmar">Confirma</string>
+    <string name="favorito">Favorit</string>
+    <string name="idioma">Llengua</string>
+    <string name="perfil">Perfil</string>
+    <string name="email">Correu</string>
+    <string name="seguro">Estas segur?</string>
+    <string name="si">Si</string>
+    <string name="no">No</string>
+    <string name="borrar">El compte s\'esborrarà</string>
 </resources>

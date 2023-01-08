@@ -18,7 +18,7 @@
             android:name=".ReproductorCuento"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/AppFullScreenTheme">
+            android:theme="@style/Theme.CuentameUnCuento">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -27,7 +27,7 @@
             android:name=".Perfil"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/AppFullScreenTheme">
+            android:theme="@style/Theme.CuentameUnCuento">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -36,7 +36,7 @@
             android:name=".SeleccionCuento"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/AppFullScreenTheme">
+            android:theme="@style/Theme.CuentameUnCuento">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -45,7 +45,7 @@
             android:name=".Autenticacion"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/AppFullScreenTheme">
+            android:theme="@style/Theme.CuentameUnCuento">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -54,7 +54,7 @@
             android:name=".MenuPrincipal"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/AppFullScreenTheme">
+            android:theme="@style/Theme.CuentameUnCuento">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

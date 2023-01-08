@@ -4,48 +4,44 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.nio.charset.StandardCharsets;
-
 public class MenuPrincipal extends AppCompatActivity {
 
+    //Indicamos las variables necesarias
     Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido;
     MediaPlayer mp;
     String email, nombre, idioma, favorito;
     TextView info;
     Spinner sp_idioma;
-    String[] idiomas = {"esp", "cat", "eng"};
+
     int[] banderas = {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
+
     //Instanciamos la Base de datos con la que trabajamos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Usuario user;
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +54,24 @@ public class MenuPrincipal extends AppCompatActivity {
         pantallaCompleta.pantallaCompleta(decorView);
 
         //Asociamos todos los componentes al ID que le corresponde
-        leer = (Button) findViewById(R.id.btn_leer);
-        reproducir = (Button) findViewById(R.id.btn_reproducir);
-        salir = (Button) findViewById(R.id.btn_salir);
-        act_perfil = (Button) findViewById(R.id.btn_act_perfil);
+        leer = findViewById(R.id.btn_leer);
+        reproducir = findViewById(R.id.btn_reproducir);
+        salir = findViewById(R.id.btn_salir);
+        act_perfil = findViewById(R.id.btn_act_perfil);
+        btn_musica = findViewById(R.id.btn_musica);
+        btn_sin_sonido = findViewById(R.id.btn_sin_musica);
+        info = findViewById(R.id.txt_menu_info);
+        sp_idioma = findViewById(R.id.sp_idioma_menu);
+        //Establecemos valores de texto
         act_perfil.setText(R.string.perfil);
         salir.setText(getString(R.string.salir));
         leer.setText(getString(R.string.leer));
-        btn_musica = (Button) findViewById(R.id.btn_musica);
-        btn_sin_sonido = (Button) findViewById(R.id.btn_sin_musica);
         reproducir.setText(getString(R.string.reproducir));
-        info = findViewById(R.id.txt_menu_info);
-        sp_idioma = findViewById(R.id.sp_idioma_menu);
+
+
         //Iniciamos adaptador para el spinner
         IdiomaAdapter adaptador = new IdiomaAdapter();
         sp_idioma.setAdapter(adaptador);
-
         user = new Usuario();
 
         //Recogemos los parametros que se pasan por activities
@@ -178,12 +176,12 @@ public class MenuPrincipal extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return idiomas.length;
+            return banderas.length;
         }
 
         @Override
         public Object getItem(int i) {
-            return idiomas[i];
+            return banderas[i];
         }
 
         @Override
@@ -216,6 +214,7 @@ public class MenuPrincipal extends AppCompatActivity {
         return iniciado;
     }
 
+    //Hacemos busqueda en base de datos para rellenar los campos de información
     public void checkBD(String emailAComprobar){
         DocumentReference docRef = db.collection("usuario").document(emailAComprobar);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -227,7 +226,6 @@ public class MenuPrincipal extends AppCompatActivity {
                         nombre = document.get("nombre").toString();;
                         idioma = document.get("idioma").toString();;
                         favorito = document.get("favorito").toString();
-                        System.out.println(nombre + idioma + favorito + document.get("mail").toString());
                         user.setNombre(nombre);
                         user.setIdioma(idioma);
                         user.setFavorito(favorito);
@@ -238,6 +236,10 @@ public class MenuPrincipal extends AppCompatActivity {
                             info.setText("Bienvenido " + user.getNombre());
                         }
                     }
+                    //Con el dato de idioma establecemos selección del favorito del Usuario
+                    if (idioma.equals("esp")){sp_idioma.setSelection(0);}
+                    if (idioma.equals("cat")){sp_idioma.setSelection(1);}
+                    if (idioma.equals("eng")){sp_idioma.setSelection(2);}
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_menu"
+    android:theme="@style/Theme.CuentameUnCuento"
     tools:context=".MenuPrincipal">
 
     <TextView
@@ -13,50 +14,59 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_leer"
         android:layout_width="140dp"
         android:layout_height="58dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="112dp"
+        android:textSize="22sp"
         android:background="@drawable/pergamino"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:stateListAnimator="@null"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_reproducir"
         android:layout_width="140dp"
         android:layout_height="58dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:textSize="22sp"
         android:background="@drawable/pergamino"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_leer" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_leer"
+        android:stateListAnimator="@null"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_salir"
         android:layout_width="140dp"
         android:layout_height="58dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/pergamino"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:stateListAnimator="@null"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_act_perfil"
         android:layout_width="140dp"
         android:layout_height="58dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:textSize="22sp"
         android:background="@drawable/pergamino"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:stateListAnimator="@null"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_musica"
         android:layout_width="40dp"
         android:layout_height="60dp"
@@ -64,9 +74,10 @@
         android:layout_marginBottom="12dp"
         android:background="@drawable/audio"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:stateListAnimator="@null"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_sin_musica"
         android:layout_width="40dp"
         android:layout_height="60dp"
@@ -75,16 +86,19 @@
         android:background="@drawable/sin_sonido"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:stateListAnimator="@null"/>
 
     <Spinner
         android:id="@+id/sp_idioma_menu"
+        style="@style/spinner_style"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="12dp"
-        style="@style/spinner_style"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_salir" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="36dp"
+        android:theme="@style/Theme.CuentameUnCuento"
+        app:layout_constraintBottom_toTopOf="@+id/btn_salir"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:stateListAnimator="@null"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

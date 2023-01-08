@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="60dp"
     android:layout_height="45dp"
-    android:background="#00FFFFFF">
+    android:background="#00FFFFFF"
+    android:theme="@style/Theme.CuentameUnCuento">
 
     <ImageView
         android:id="@+id/iv_bandera"

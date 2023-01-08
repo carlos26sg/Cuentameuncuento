@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo_principal"
     android:foregroundTint="#FFFFFF"
+    android:theme="@style/Theme.CuentameUnCuento"
     tools:context=".MainActivity">
 
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/imgbtnComenzar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,11 +19,13 @@
         android:onClick="comenzar"
         android:text="Comenzar"
         android:tooltipText="COMENZAR"
-
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:stateListAnimator="@null"/>
 
     <TextView
         android:id="@+id/txt_info"
@@ -46,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/logo_csg" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_register"
         android:layout_width="140dp"
         android:layout_height="58dp"
@@ -55,10 +58,12 @@
         android:background="@drawable/pergamino"
         android:onClick="register"
         android:text="Registrarse"
+        android:textSize="20sp"
+        android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_login"
         android:layout_width="140dp"
         android:layout_height="58dp"
@@ -67,7 +72,9 @@
         android:background="@drawable/pergamino"
         android:onClick="login"
         android:text="Iniciar sesion"
+        android:textSize="16sp"
         android:textColor="@color/black"
+        android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_register" />
 
