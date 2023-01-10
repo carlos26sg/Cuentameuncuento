@@ -22,4 +22,6 @@
     <string name="si">Yes</string>
     <string name="no">No</string>
     <string name="borrar">The account will be deleted</string>
+    <string name="volver_seleccion">You\'ll be back in the screen of tales.</string>
+    <string name="comenzar">Start</string>
 </resources>

@@ -2,13 +2,13 @@ package com.carlossega.cuentameuncuento;
 
 public class Cuento {
 
-    private String titulo, descripcion;
-    private String imagen;
+    private String titulo, descripcion, imagen, id;
 
-    public Cuento(String titulo, String descripcion, String imagen) {
+    public Cuento(String titulo, String descripcion, String imagen, String id) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagen = imagen;
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -33,5 +33,13 @@ public class Cuento {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

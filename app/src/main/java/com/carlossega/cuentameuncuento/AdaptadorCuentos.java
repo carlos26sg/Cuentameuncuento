@@ -11,9 +11,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AdaptadorCuentos extends RecyclerView.Adapter<AdaptadorCuentos.ViewHolderCuentos> {
+public class AdaptadorCuentos extends RecyclerView.Adapter<AdaptadorCuentos.ViewHolderCuentos> implements View.OnClickListener {
     //ArrayList donde tendremos la información de los cuentos
     ArrayList<Cuento> listaCuentos;
+    private View.OnClickListener listener;
 
     public AdaptadorCuentos(ArrayList<Cuento> listaCuentos) {
         this.listaCuentos = listaCuentos;
@@ -24,6 +25,7 @@ public class AdaptadorCuentos extends RecyclerView.Adapter<AdaptadorCuentos.View
     @Override
     public AdaptadorCuentos.ViewHolderCuentos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_cuentos, null,false);
+        view.setOnClickListener(this);
         return new ViewHolderCuentos(view);
     }
 
@@ -40,6 +42,17 @@ public class AdaptadorCuentos extends RecyclerView.Adapter<AdaptadorCuentos.View
     @Override
     public int getItemCount() {
         return listaCuentos.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(listener!=null){
+            listener.onClick(view);
+        }
     }
 
     public class ViewHolderCuentos extends RecyclerView.ViewHolder {

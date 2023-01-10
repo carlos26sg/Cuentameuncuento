@@ -1,10 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:theme="@style/Theme.CuentameUnCuento"
-    tools:context=".ReproductorCuento">
+    tools:context=".ReproductorCuento"
+    android:background="@drawable/fondo_principal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="6">
+
+        <Button
+            android:id="@+id/btn_repro_salir"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/equis"
+            android:stateListAnimator="@null"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="3">
+
+        <Button
+            android:id="@+id/btn_repro_musica"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/audio"
+            android:stateListAnimator="@null"
+            android:layout_gravity="center_vertical"/>
+
+        <Button
+            android:id="@+id/btn_repro_sin_sonido"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/sin_sonido"
+            android:stateListAnimator="@null"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/txt_repro_traducido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text=""
+            android:layout_gravity="center_vertical"/>
+
+        <Spinner
+            android:id="@+id/sp_repro_traduccion"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="3">
+
+        <Button
+            android:id="@+id/btn_repro_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/play"
+            android:visibility="gone"
+            android:stateListAnimator="@null"
+            android:layout_gravity="center_vertical"/>
+
+        <Button
+            android:id="@+id/btn_repro_play"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/play"
+            android:layout_gravity="center_vertical"
+            android:stateListAnimator="@null" />
+
+        <Button
+            android:id="@+id/btn_repro_pause"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/pause"
+            android:visibility="gone"
+            android:stateListAnimator="@null"
+            android:layout_gravity="center_vertical"/>
+
+
+        <TextView
+            android:id="@+id/txt_repro_cuento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text=""
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"/>
+
+        <ImageView
+            android:id="@+id/img_bandera_seleccion"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="16dp"
+            app:srcCompat="@drawable/catalan"
+            android:layout_gravity="center_vertical"/>
+
+        <Button
+            android:id="@+id/btn_repro_next"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/play"
+            android:stateListAnimator="@null"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+</LinearLayout>

@@ -11,14 +11,12 @@
 
 
     <Button
-        android:id="@+id/imgbtnComenzar"
+        android:id="@+id/img_btn_comenzar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/libro_comenzar"
         android:contextClickable="true"
         android:onClick="comenzar"
-        android:text="Comenzar"
-        android:tooltipText="COMENZAR"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

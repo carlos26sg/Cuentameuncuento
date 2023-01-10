@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,12 +33,15 @@ public class MenuPrincipal extends AppCompatActivity {
 
     //Indicamos las variables necesarias
     Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido;
-    MediaPlayer mp;
     String email, nombre, idioma, favorito;
     TextView info;
     Spinner sp_idioma;
 
+    //Creamos array de int para almacenar las imagenes de las banderas
     int[] banderas = {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
+
+    //Hacemos static el mediaplayer para poder acceder desde otras clases
+    public static MediaPlayer mp;
 
     //Instanciamos la Base de datos con la que trabajamos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -62,6 +66,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btn_sin_sonido = findViewById(R.id.btn_sin_musica);
         info = findViewById(R.id.txt_menu_info);
         sp_idioma = findViewById(R.id.sp_idioma_menu);
+
         //Establecemos valores de texto
         act_perfil.setText(R.string.perfil);
         salir.setText(getString(R.string.salir));
@@ -206,6 +211,13 @@ public class MenuPrincipal extends AppCompatActivity {
             info.setText(getString(R.string.no_inicio));
             act_perfil.setVisibility(View.GONE);
         }
+        if(mp.isPlaying()){
+            btn_musica.setVisibility(View.VISIBLE);
+            btn_sin_sonido.setVisibility(View.GONE);
+        } else {
+            btn_musica.setVisibility(View.GONE);
+            btn_sin_sonido.setVisibility(View.VISIBLE);
+        }
     }
 
     public boolean checkPreferences(){
@@ -231,10 +243,11 @@ public class MenuPrincipal extends AppCompatActivity {
                         user.setFavorito(favorito);
                         user.setMail(email);
                         if (user.getNombre().equals("")){
-                            info.setText("Bienvenido " + user.getMail());
+                            info.setText(getString(R.string.bienvenido) + " " + user.getMail());
                         } else {
-                            info.setText("Bienvenido " + user.getNombre());
+                            info.setText(getString(R.string.bienvenido) + " " + user.getNombre());
                         }
+                        Log.d(TAG, "carga correcta desde la base de datos");
                     }
                     //Con el dato de idioma establecemos selección del favorito del Usuario
                     if (idioma.equals("esp")){sp_idioma.setSelection(0);}
@@ -246,4 +259,5 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
     }
+
 }

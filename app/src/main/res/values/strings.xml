@@ -22,4 +22,6 @@
     <string name="si">Si</string>
     <string name="no">No</string>
     <string name="borrar">Se va a borrar la cuenta</string>
+    <string name="volver_seleccion">Vas a volver a la pantalla de selección de cuento.</string>
+    <string name="comenzar">Comenzar</string>
 </resources>

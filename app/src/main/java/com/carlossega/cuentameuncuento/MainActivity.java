@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     //Indicamos las variables necesarias
     public static final String EXTRA_MESSAGE = "com.carlossega.cuentameuncuento.MESSAGE";
     TextView txt_info, txt_perfil;
-    Button btn_login, btn_register;
+    Button btn_login, btn_register, btn_comenzar;
     String email, nombre, idioma, fav;
 
     @Override
@@ -32,8 +32,13 @@ public class MainActivity extends AppCompatActivity {
         txt_info.setText("Cuentame un cuento v1.0");
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
+        btn_comenzar = findViewById(R.id.img_btn_comenzar);
+
         //Cargamos las Preferences en caso de que se encuentre alguna guardada
         getPreferences();
+
+        btn_comenzar.setText(getString(R.string.comenzar));
+
     }
 
     @Override

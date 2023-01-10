@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,7 @@ public class SeleccionCuento extends AppCompatActivity {
     ArrayList<Cuento> listaCuentos;
     RecyclerView recyclerCuentos;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String idioma, modo, cuento;
+    String idioma, modo, cuento, id_cuento;
     AdaptadorCuentos adapter;
 
 
@@ -64,6 +65,7 @@ public class SeleccionCuento extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     private void llenarCuentos(){
@@ -77,11 +79,27 @@ public class SeleccionCuento extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 //Buscamos en la BD y añadimos cada campo de los cuentos a la lista
                                 listaCuentos.add(new Cuento(document.get("titulo_" + idioma).toString(),
-                                        document.get("desc_" + idioma).toString(), document.get("imagen").toString()));
+                                        document.get("desc_" + idioma).toString(), document.get("imagen").toString(),
+                                        document.get("id").toString()));
                             }
                             //Cuando acabe de rellenar el Arraylist pasamos esa lista al adaptador
                             adapter = new AdaptadorCuentos(listaCuentos);
                             recyclerCuentos.setAdapter(adapter);
+                            //onClick del adaptador del recyclerView
+                            adapter.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    id_cuento = listaCuentos.get(recyclerCuentos.getChildAdapterPosition(view)).getId();
+                                    Bundle extras = new Bundle();
+                                    extras.putString("modo", modo);
+                                    extras.putString("idioma", idioma);
+                                    extras.putString("cuento", id_cuento);
+                                    Intent intent = new Intent(SeleccionCuento.this, ReproductorCuento.class);
+                                    //Agrega el objeto bundle al Intent
+                                    intent.putExtras(extras);
+                                    startActivity(intent);
+                                }
+                            });
                         } else {
                             //Log.d(TAG, "Error getting documents: ", task.getException());
                         }
