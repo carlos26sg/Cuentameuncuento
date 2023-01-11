@@ -34,8 +34,10 @@
         android:text="Info developer"
         android:textColor="@color/white"
         android:textSize="16sp"
+        style="@style/SombraLetras"
         app:layout_constraintBottom_toTopOf="@+id/img_logo"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <ImageView
         android:id="@+id/img_logo"

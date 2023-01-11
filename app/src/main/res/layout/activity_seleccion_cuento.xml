@@ -43,4 +43,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_atras" />
+
+    <Spinner
+        android:id="@+id/sp_seleccion_idioma"
+        style="@style/spinner_style"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:stateListAnimator="@null"
+        android:theme="@style/Theme.CuentameUnCuento"
+        app:layout_constraintBottom_toTopOf="@+id/rv_lista_cuentos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

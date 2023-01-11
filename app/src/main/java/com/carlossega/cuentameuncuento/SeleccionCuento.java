@@ -1,5 +1,7 @@
 package com.carlossega.cuentameuncuento;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,8 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +30,7 @@ import java.util.ArrayList;
 
 public class SeleccionCuento extends AppCompatActivity {
 
+    //Indicamos las variables necesarias
     Button atras;
     TextView selecciona;
     ArrayList<Cuento> listaCuentos;
@@ -28,6 +38,10 @@ public class SeleccionCuento extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String idioma, modo, cuento, id_cuento;
     AdaptadorCuentos adapter;
+    Spinner sp_idioma;
+
+    //Creamos array de int para almacenar las imagenes de las banderas
+    int[] banderas = {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
 
 
     @Override
@@ -41,8 +55,9 @@ public class SeleccionCuento extends AppCompatActivity {
         pantallaCompleta.pantallaCompleta(decorView);
 
         //Iniciamos componentes
-        atras = (Button) findViewById(R.id.btn_atras);
-        selecciona = (TextView) findViewById(R.id.tv_selecciona);
+        atras = findViewById(R.id.btn_atras);
+        sp_idioma = findViewById(R.id.sp_seleccion_idioma);
+        selecciona = findViewById(R.id.tv_selecciona);
         selecciona.setText(R.string.selecciona);
 
         //Recogemos los parametros que se pasan por activities
@@ -50,12 +65,22 @@ public class SeleccionCuento extends AppCompatActivity {
         idioma = extra.getString("idioma");
         modo = extra.getString("modo");
 
+
+        //Iniciamos adaptador para el spinner
+        IdiomaAdapter adaptador = new IdiomaAdapter();
+        sp_idioma.setAdapter(adaptador);
+        //Con el dato de idioma establecemos bandera en el imageView
+        if (idioma.equals("esp")){sp_idioma.setSelection(0);}
+        if (idioma.equals("cat")){sp_idioma.setSelection(1);}
+        if (idioma.equals("eng")){sp_idioma.setSelection(2);}
+
         //Iniciamos ArrayList donde guardaremos los cuentos con la consulta a la BD
         listaCuentos = new ArrayList<>();
         //Asociamos RecyclerView con el id del componente
-        recyclerCuentos = (RecyclerView) findViewById(R.id.rv_lista_cuentos);
+        recyclerCuentos = findViewById(R.id.rv_lista_cuentos);
         recyclerCuentos.setLayoutManager(new LinearLayoutManager(this));
-        //Llamamos función que no hará la consulta y llenará el Recycler
+
+        //Llamamos función que nos hará la consulta y llenará el Recycler
         llenarCuentos();
 
         //Click del boton atrás
@@ -66,6 +91,32 @@ public class SeleccionCuento extends AppCompatActivity {
             }
         });
 
+        sp_idioma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                /**
+                 * Recogemos idioma y eliminamos la lista previa para cargar una nueva con el idioma seleccionado
+                 */
+                idioma = selectedIdioma();
+                listaCuentos.clear();
+                llenarCuentos();
+                Log.d(TAG, "setOnSelectedListener del spinner ");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+    }
+
+    //Función que recoge la posición del spinner y retorna el idioma seleccionado
+    public String selectedIdioma(){
+        String idioma = "";
+        int position = sp_idioma.getSelectedItemPosition();
+        if (position == 0){idioma = "esp";}
+        if (position == 1){idioma = "cat";}
+        if (position == 2){idioma = "eng";}
+        return idioma;
     }
 
     private void llenarCuentos(){
@@ -82,9 +133,11 @@ public class SeleccionCuento extends AppCompatActivity {
                                         document.get("desc_" + idioma).toString(), document.get("imagen").toString(),
                                         document.get("id").toString()));
                             }
+                            Log.d(TAG, "datos recogidos ");
                             //Cuando acabe de rellenar el Arraylist pasamos esa lista al adaptador
                             adapter = new AdaptadorCuentos(listaCuentos);
                             recyclerCuentos.setAdapter(adapter);
+                            Log.d(TAG, "lista pasada al adaptador ");
                             //onClick del adaptador del recyclerView
                             adapter.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -98,10 +151,11 @@ public class SeleccionCuento extends AppCompatActivity {
                                     //Agrega el objeto bundle al Intent
                                     intent.putExtras(extras);
                                     startActivity(intent);
+                                    Log.d(TAG, "se abre nueva activity ");
                                 }
                             });
                         } else {
-                            //Log.d(TAG, "Error getting documents: ", task.getException());
+                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
@@ -111,4 +165,33 @@ public class SeleccionCuento extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
     }
+
+    //Clase que nos adapta el spinner para que sea un cuadrado que muestre la bandera
+    class IdiomaAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return banderas.length;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return banderas[i];
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            LayoutInflater inflater = LayoutInflater.from(SeleccionCuento.this);
+            view = inflater.inflate(R.layout.itemspinner, null);
+            ImageView iv1 = view.findViewById(R.id.iv_bandera);
+            iv1.setImageResource(banderas[i]);
+            return view;
+        }
+    }
+
 }

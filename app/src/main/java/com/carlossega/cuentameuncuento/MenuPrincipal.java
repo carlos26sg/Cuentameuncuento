@@ -77,6 +77,7 @@ public class MenuPrincipal extends AppCompatActivity {
         //Iniciamos adaptador para el spinner
         IdiomaAdapter adaptador = new IdiomaAdapter();
         sp_idioma.setAdapter(adaptador);
+
         user = new Usuario();
 
         //Recogemos los parametros que se pasan por activities
