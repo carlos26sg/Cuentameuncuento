@@ -21,12 +21,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -35,13 +31,13 @@ import java.util.Map;
 public class Perfil extends AppCompatActivity {
 
     //Indicamos las variables necesarias
-    TextView txt_perfil_nombre, txt_perfil_opciones, txt_perfil_favorito, txt_perfil_idioma,
+    TextView txt_perfil_nombre, txt_perfil_opciones, txt_perfil_idioma,
         txt_perfil_mail, txt_perfil_email;
     EditText et_nombre;
     Button btn_eliminar, btn_cerrar, btn_confirmar, btn_atras;
     Spinner sp_idioma;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String nombre, favorito, idioma, email, mensaje, idioma_sp;
+    String nombre, idioma, email, idioma_sp;
     int[] banderas = {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
 
     @Override
@@ -59,8 +55,6 @@ public class Perfil extends AppCompatActivity {
         txt_perfil_nombre.setText(getString(R.string.nombre));
         txt_perfil_opciones = (TextView) findViewById(R.id.txt_perfil_opciones);
         txt_perfil_opciones.setText(getString(R.string.opciones_perfil));
-        txt_perfil_favorito = (TextView) findViewById(R.id.txt_perfil_favorito);
-        txt_perfil_favorito.setText(getString(R.string.favorito));
         txt_perfil_idioma = (TextView) findViewById(R.id.txt_perfil_idioma);
         txt_perfil_idioma.setText(getString(R.string.idioma));
         txt_perfil_email = (TextView) findViewById(R.id.txt_perfil_email);
@@ -80,11 +74,15 @@ public class Perfil extends AppCompatActivity {
         IdiomaAdapter adaptador = new IdiomaAdapter();
         sp_idioma.setAdapter(adaptador);
 
-        //Comprobamos el mail que llega para editar
-        Bundle extra = this.getIntent().getExtras();
-        mensaje = extra.getString("mail");
-        //Buscamos en la BD la info asociada
-        checkBD(mensaje);
+        //Buscamos la info del usuario
+        nombre = MenuPrincipal.user.getNombre();
+        idioma = MenuPrincipal.user.getIdioma();
+        email = MenuPrincipal.user.getMail();
+        et_nombre.setText(nombre);
+        txt_perfil_mail.setText(email);
+        if (idioma.equals("esp")){sp_idioma.setSelection(0);}
+        if (idioma.equals("cat")){sp_idioma.setSelection(1);}
+        if (idioma.equals("eng")){sp_idioma.setSelection(2);}
 
         //Listeners de los botones
         btn_atras.setOnClickListener(new View.OnClickListener() {
@@ -97,9 +95,13 @@ public class Perfil extends AppCompatActivity {
         btn_confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //sp_favorito.getSelectedItem();
                 idioma_sp = selectedIdioma();
                 guardarBD(et_nombre.getText().toString(), idioma_sp);
+                SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("nombre", et_nombre.getText().toString());
+                editor.putString("idioma", idioma_sp);
+                editor.commit();
                 finish();
             }
         });
@@ -112,9 +114,8 @@ public class Perfil extends AppCompatActivity {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear();
                 editor.commit();
-                editor.putBoolean("iniciada", false);
-                editor.commit();
                 finish();
+                MenuPrincipal.user.setNombre("NombreDefecto");
             }
         });
 
@@ -132,45 +133,18 @@ public class Perfil extends AppCompatActivity {
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.clear();
                         editor.commit();
-                        editor.putBoolean("iniciada", false);
-                        editor.commit();
                         finish();
                         eliminarBD();
+                        MenuPrincipal.user.setNombre("NombreDefecto");
                     }
                 });
                 builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
                     }
                 });
                 // Create the AlertDialog
                 AlertDialog dialog = builder.create();
                 dialog.show();
-            }
-        });
-    }
-
-    public void checkBD(String emailAComprobar){
-        DocumentReference docRef = db.collection("usuario").document(emailAComprobar);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        nombre = document.get("nombre").toString();;
-                        et_nombre.setText(nombre);
-                        idioma = document.get("idioma").toString();;
-                        favorito = document.get("favorito").toString();
-                        email = document.get("mail").toString();
-                        txt_perfil_mail.setText(email);
-                        if (idioma.equals("esp")){sp_idioma.setSelection(0);}
-                        if (idioma.equals("cat")){sp_idioma.setSelection(1);}
-                        if (idioma.equals("eng")){sp_idioma.setSelection(2);}
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
             }
         });
     }
@@ -193,8 +167,9 @@ public class Perfil extends AppCompatActivity {
                 .update(
                         "nombre", nombre,
                         "idioma", idioma_spinner
-                        //,"favorito", favorito
                 );
+        MenuPrincipal.user.setNombre(nombre);
+        MenuPrincipal.user.setIdioma(idioma_spinner);
     }
 
     //Función para actualizar los datos de un registro

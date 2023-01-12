@@ -26,7 +26,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
     //Indicamos las variables necesarias
     Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido;
-    String email, nombre, idioma = "", favorito;
+    String email, nombre= "", idioma = "";
     TextView info;
     Spinner sp_idioma;
 
@@ -70,15 +70,6 @@ public class MenuPrincipal extends AppCompatActivity {
         email = extra.getString("mail");
         Log.d(TAG, "llega como usuario: " + email);
 
-        //Dependiendo de si llega o no un mail mostraremos mensajes diferentes
-        if (!email.equals("noUser")){
-            checkBD(email);
-        } else {
-            info.setText(getString(R.string.no_inicio));
-            act_perfil.setVisibility(View.GONE);
-            user.setNombre("Teo");
-        }
-
         //Arrancamos el hilo musical
         mp = MediaPlayer.create(MenuPrincipal.this, R.raw.hilo_musical);
         mp.start();
@@ -119,17 +110,16 @@ public class MenuPrincipal extends AppCompatActivity {
             public void onClick(View v) {
                 //Adjuntamos variables que pasaremos a siguiente activity y modo
                 Bundle extras = new Bundle();
-                if (user != null){
-                    extras.putString("nombre", user.getNombre());
-                } else {
-                    extras.putString("nombre", user.getNombre());
-                }
+                idioma = selectedIdioma();
+                extras.putString("nombre", user.getNombre());
                 extras.putString("modo", "leer");
-                extras.putString("idioma", selectedIdioma());
+                extras.putString("idioma", idioma);
+                //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
                 Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
-                //Agrega el objeto bundle al Intent
                 intent.putExtras(extras);
                 startActivity(intent);
+                Log.d(TAG, "se inicia SeleccionCuento en modo: leer y nombre: " +
+                        user.getNombre() + ", idioma: " + idioma);
             }
         });
 
@@ -137,17 +127,15 @@ public class MenuPrincipal extends AppCompatActivity {
             public void onClick(View v) {
                 //Adjuntamos variables que pasaremos a siguiente activity y modo
                 Bundle extras = new Bundle();
-                if (user != null){
-                    extras.putString("nombre", user.getNombre());
-                } else {
-                    extras.putString("nombre", user.getNombre());
-                }
+                extras.putString("nombre", user.getNombre());
                 extras.putString("modo", "reproducir");
-                extras.putString("idioma", selectedIdioma());
+                extras.putString("idioma", user.getIdioma());
+                //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
                 Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
-                //Agrega el objeto bundle al Intent
                 intent.putExtras(extras);
                 startActivity(intent);
+                Log.d(TAG, "se inicia SeleccionCuento en modo: reproducir y nombre: " +
+                        user.getNombre() + ", idioma: " + idioma);
             }
         });
 
@@ -155,10 +143,6 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
-                //Pasamos mail para poder acceder al perfil
-                Bundle extras = new Bundle();
-                extras.putString("mail", email);
-                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
@@ -166,22 +150,45 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private String selectedIdioma() {
         String result = "";
-        if (user != null){
-            result = user.getIdioma();
-        } else {
+        if (user.getNombre() == null){
             if(leer.getText().equals("Leer")){result = "esp";}
             if(leer.getText().equals("Llegir")){result = "cat";}
             if(leer.getText().equals("Read")){result = "eng";}
+            Log.d(TAG, "user es null");
+        } else if (user.getNombre().equals("NombreDefecto")){
+            if(leer.getText().equals("Leer")){result = "esp";}
+            if(leer.getText().equals("Llegir")){result = "cat";}
+            if(leer.getText().equals("Read")){result = "eng";}
+        } else {
+            result = user.getIdioma();
         }
+        Log.d(TAG, "se establece idioma: " + result);
         return result;
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (!checkPreferences()){
+        //Dependiendo de si llega o no un mail mostraremos mensajes diferentes
+        if (!email.equals("noUser")){
+            try {
+                if (user.getNombre().equals("NombreDefecto")){
+                    info.setText(getString(R.string.no_inicio));
+                    act_perfil.setVisibility(View.GONE);
+                    user.setIdioma(selectedIdioma());
+                } else {
+                    checkBD(email);
+                }
+            //Controlamos NullPointerException si es la primera vez que se ejecuta
+            } catch (NullPointerException e){
+                checkBD(email);
+            }
+        } else {
+            //Se establece nombre por defecto y se detecta idioma del usuario
             info.setText(getString(R.string.no_inicio));
             act_perfil.setVisibility(View.GONE);
+            user.setNombre("NombreDefecto");
+            user.setIdioma(selectedIdioma());
         }
         if(mp.isPlaying()){
             btn_musica.setVisibility(View.VISIBLE);
@@ -190,12 +197,6 @@ public class MenuPrincipal extends AppCompatActivity {
             btn_musica.setVisibility(View.GONE);
             btn_sin_sonido.setVisibility(View.VISIBLE);
         }
-    }
-
-    public boolean checkPreferences(){
-        SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        boolean iniciado = preferences.getBoolean("iniciada", true);
-        return iniciado;
     }
 
     //Hacemos busqueda en base de datos para rellenar los campos de información

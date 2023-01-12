@@ -75,14 +75,13 @@ public class MainActivity extends AppCompatActivity {
         //Si contiene un mail, creamos un Usuario
         //Mostraremos o no los botones de inicio de sesión y Registro
         if (email != null){
-            Usuario usuario = new Usuario(email, nombre, idioma);
-            if (usuario.getNombre().equals("")){
-                txt_perfil.setText(getString(R.string.bienvenido));
-            } else {
+            if (nombre.equals("")){
                 txt_perfil.setText(getString(R.string.bienvenido) + ", " + email);
+            } else {
+                txt_perfil.setText(getString(R.string.bienvenido) + ", " + nombre);
             }
-            btn_login.setVisibility(View.INVISIBLE);
-            btn_register.setVisibility(View.INVISIBLE);
+            btn_login.setVisibility(View.GONE);
+            btn_register.setVisibility(View.GONE);
         } else {
             txt_perfil.setText(R.string.no_inicio);
             btn_login.setVisibility(View.VISIBLE);

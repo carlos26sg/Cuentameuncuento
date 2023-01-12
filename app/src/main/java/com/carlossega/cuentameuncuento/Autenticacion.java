@@ -63,10 +63,10 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         confirmar = (Button) findViewById(R.id.btn_confirmar);
         mantener = (CheckBox) findViewById(R.id.cb_mantener_inicio);
         mantener.setText(R.string.mantener_sesion);
-        repassword.setText(R.string.repass);
-        password.setText(R.string.password);
+        repite.setText(R.string.repass);
         volver.setText(getString(R.string.atras));
         idioma = selectedIdioma();
+        confirmar.setText(R.string.registrarse);
 
         //Generamos la clave con la que encriptaremos y desencriptaremos la contraseña
         secretKey = "D€sCiFR@rP@S$WoRd.";
@@ -125,8 +125,6 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                 //Info que se guarda para pasar a MenuPrincipal
                                 Bundle extras = new Bundle();
                                 extras.putString("mail",document.get("mail").toString());
-                                extras.putString("nombre", nombre);
-                                extras.putString("idioma", document.get("idioma").toString());
                                 //Guardamos en SharedPreferences que iniciamos sesión
                                 SharedPreferences pref = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
                                 SharedPreferences.Editor edit = pref.edit();
@@ -234,7 +232,6 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         editor.putString("mail", email);
         editor.putString("nombre", nombre);
         editor.putString("idioma", idioma);
-        editor.putBoolean("iniciada", true);
         editor.commit();
     }
 

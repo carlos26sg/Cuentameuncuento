@@ -36,7 +36,7 @@ public class SeleccionCuento extends AppCompatActivity {
     ArrayList<Cuento> listaCuentos;
     RecyclerView recyclerCuentos;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String idioma, modo, cuento, id_cuento;
+    String idioma, modo, id_cuento, nombre;
     AdaptadorCuentos adapter;
     Spinner sp_idioma;
 
@@ -64,7 +64,7 @@ public class SeleccionCuento extends AppCompatActivity {
         Bundle extra = this.getIntent().getExtras();
         idioma = extra.getString("idioma");
         modo = extra.getString("modo");
-
+        nombre = extra.getString("nombre");
 
         //Iniciamos adaptador para el spinner
         IdiomaAdapter adaptador = new IdiomaAdapter();
