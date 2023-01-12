@@ -56,7 +56,7 @@ public class ReproductorCuento extends AppCompatActivity {
     boolean traducido_creado = false;
 
     //Creamos array de int para almacenar las imagenes
-    int[] banderas = {R.drawable.espanol, R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
+    int[] banderas = {R.drawable.sin_bandera, R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
