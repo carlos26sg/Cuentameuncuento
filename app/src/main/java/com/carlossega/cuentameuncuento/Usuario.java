@@ -5,7 +5,6 @@ public class Usuario {
     private String mail;
     private String nombre;
     private String idioma;
-    private String favorito;
 
     public Usuario() { }
 
@@ -13,11 +12,10 @@ public class Usuario {
         this.mail = mail;
     }
 
-    public Usuario(String mail, String nombre, String idioma, String favorito) {
+    public Usuario(String mail, String nombre, String idioma) {
         this.mail = mail;
         this.nombre = nombre;
         this.idioma = idioma;
-        this.favorito = favorito;
     }
 
     public String getMail() {
@@ -42,13 +40,5 @@ public class Usuario {
 
     public void setIdioma(String idioma) {
         this.idioma = idioma;
-    }
-
-    public String getFavorito() {
-        return favorito;
-    }
-
-    public void setFavorito(String favorito) {
-        this.favorito = favorito;
     }
 }

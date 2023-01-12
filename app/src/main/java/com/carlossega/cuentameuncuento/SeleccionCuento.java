@@ -80,9 +80,6 @@ public class SeleccionCuento extends AppCompatActivity {
         recyclerCuentos = findViewById(R.id.rv_lista_cuentos);
         recyclerCuentos.setLayoutManager(new LinearLayoutManager(this));
 
-        //Llamamos función que nos hará la consulta y llenará el Recycler
-        llenarCuentos();
-
         //Click del boton atrás
         atras.setOnClickListener(new View.OnClickListener() {
             @Override

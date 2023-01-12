@@ -24,4 +24,10 @@
     <string name="borrar">El compte s\'esborrarà</string>
     <string name="volver_seleccion">Tornaràs a la pantalla de selecció de contes.</string>
     <string name="comenzar">Començar</string>
+    <string name="iniciar_sesion">Iniciar sessió</string>
+    <string name="registrarse">Registrar-se</string>
+    <string name="mantener_sesion">Mantenir la sessió iniciada</string>
+    <string name="repass">Torna a introduir la contrasenya</string>
+    <string name="password">Contrasenya</string>
+    <string name="iniciar">Iniciar</string>
 </resources>

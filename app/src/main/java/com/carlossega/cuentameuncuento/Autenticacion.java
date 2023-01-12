@@ -41,7 +41,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
     private TextView mail, password, repassword, repite;
     private Button volver, confirmar;
     private CheckBox mantener;
-    private String message, pass, repass, email, secretKey, nombre;
+    private String message, pass, repass, email, secretKey, nombre, idioma;
     //Instanciamos la Base de datos con la que trabajamos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -62,29 +62,38 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         volver = (Button) findViewById(R.id.btn_volver);
         confirmar = (Button) findViewById(R.id.btn_confirmar);
         mantener = (CheckBox) findViewById(R.id.cb_mantener_inicio);
-        mantener.setText("Mantener la sesión iniciada");
+        mantener.setText(R.string.mantener_sesion);
+        repassword.setText(R.string.repass);
+        password.setText(R.string.password);
+        volver.setText(getString(R.string.atras));
+        idioma = selectedIdioma();
+
         //Generamos la clave con la que encriptaremos y desencriptaremos la contraseña
         secretKey = "D€sCiFR@rP@S$WoRd.";
 
-        // Get the Intent that started this activity and extract the string
+        //Depende del mensaje pasado la pantalla hará función de login o registro
         Intent intent = getIntent();
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        volver.setText(getString(R.string.atras));
         if (message.equals("login")){
             repassword.setVisibility(View.GONE);
             repite.setVisibility(View.GONE);
-            confirmar.setText("Iniciar");
+            confirmar.setText(R.string.iniciar_sesion);
         } else if (message.equals("register")){
             mantener.setVisibility(View.GONE);
             confirmar.setText("Registrarse");
         }
-    }
 
-    //Función asignada al botón volver
-    public void volver (View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        this.finish();
+        //Listener de boton volver
+        volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Cerramos esta activity y abrimos MainActivity
+                Intent intent = new Intent(Autenticacion.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     //Función asignada al botón confirmar
@@ -113,32 +122,34 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                 toast.show();
                                 nombre = document.get("nombre").toString();
                                 if (mantener.isChecked()){guardarPreferencias();}
+                                //Info que se guarda para pasar a MenuPrincipal
                                 Bundle extras = new Bundle();
                                 extras.putString("mail",document.get("mail").toString());
                                 extras.putString("nombre", nombre);
                                 extras.putString("idioma", document.get("idioma").toString());
-                                extras.putString("favorito", document.get("favorito").toString());
-
-                                Intent intent = new Intent(Autenticacion.this, MenuPrincipal.class);
-                                //Agrega el objeto bundle al Intent
-                                intent.putExtras(extras);
-                                startActivity(intent);
-                                //Inicia Activity
-                                finish();
+                                //Guardamos en SharedPreferences que iniciamos sesión
                                 SharedPreferences pref = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
                                 SharedPreferences.Editor edit = pref.edit();
                                 edit.putBoolean("iniciada", true);
                                 edit.commit();
+                                Log.d(TAG, "mail y contraseña correcta, se accede a MenuPrincipal");
+                                //Agrega el objeto bundle al Intent e inicia Activity MenuPrincipal y cierra Autenticacion
+                                Intent intent = new Intent(Autenticacion.this, MenuPrincipal.class);
+                                intent.putExtras(extras);
+                                startActivity(intent);
+                                finish();
                             } else {
                                 Toast toast = Toast.makeText(getApplicationContext(),
                                         "Contraseña incorrecta. Comprueba la contraseña.", Toast.LENGTH_LONG);
                                 toast.show();
+                                Log.d(TAG, "contraseña incorrecta. No se ha podido acceder");
                             }
                         //Si el documento no existe
                         } else {
                             Toast toast = Toast.makeText(getApplicationContext(),
                                     "Error al intentar acceder. No se ha encontrado el mail.", Toast.LENGTH_LONG);
                             toast.show();
+                            Log.d(TAG, "mail no encontrado. No se ha podido acceder");
                         }
                     } else {
                         Log.d(TAG, "get failed with ", task.getException());
@@ -162,6 +173,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                     Toast toast = Toast.makeText(getApplicationContext(),
                                             "Ya existe una cuenta con ese email", Toast.LENGTH_LONG);
                                     toast.show();
+                                    Log.d(TAG, "no se puede crear cuenta, ya existe mail en database");
                                 //Si no hay registros de ese mail se creará uno nuevo
                                 } else {
                                     String cifrado = cifradopass(pass, secretKey);
@@ -170,7 +182,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                     user.put("pass", cifrado);
                                     user.put("nombre", "");
                                     user.put("favorito", "");
-                                    user.put("idioma", "esp");
+                                    user.put("idioma", idioma);
                                     db.collection("usuario").document(email)
                                             .set(user)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -180,6 +192,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                                     Toast toast = Toast.makeText(getApplicationContext(),
                                                             "Cuenta creada con exito", Toast.LENGTH_LONG);
                                                     toast.show();
+                                                    Log.d(TAG, "se crea cuenta con exito");
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
@@ -188,9 +201,9 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                                     Log.w(TAG, "Error writing document", e);
                                                 }
                                             });
+                                    //Inicia MainActivity y cierra Autenticacion
                                     Intent intent = new Intent(Autenticacion.this, MainActivity.class);
                                     startActivity(intent);
-                                    //Inicia Activity
                                     finish();
                                 }
                             } else {
@@ -204,23 +217,23 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                             "La contraseña debe tener entre 8 y 20 caracteres y contener al" +
                                     " menos mayúsculas, minúsculas y números", Toast.LENGTH_LONG);
                     toast.show();
+                    Log.d(TAG, "la contraseña no respeta el patron");
                 }
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Las contraseñas no coinciden", Toast.LENGTH_LONG);
                 toast.show();
+                Log.d(TAG, "las contraseñas no coinciden");
             }
         }
-
     }
 
     private void guardarPreferencias(){
         SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("user", email);
-        editor.putString("favorito", "");
+        editor.putString("mail", email);
         editor.putString("nombre", nombre);
-        editor.putString("idioma", "esp");
+        editor.putString("idioma", idioma);
         editor.putBoolean("iniciada", true);
         editor.commit();
     }
@@ -307,6 +320,15 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
+    }
+
+    //Miramos idioma del usuario
+    private String selectedIdioma() {
+        String result = "";
+        if(volver.getText().equals("Atras")){result = "esp";}
+        if(volver.getText().equals("Enrere")){result = "cat";}
+        if(volver.getText().equals("Back")){result = "eng";}
+        return result;
     }
 
 }

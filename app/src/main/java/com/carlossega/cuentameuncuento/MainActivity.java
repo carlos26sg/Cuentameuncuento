@@ -1,10 +1,13 @@
 package com.carlossega.cuentameuncuento;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.carlossega.cuentameuncuento.MESSAGE";
     TextView txt_info, txt_perfil;
     Button btn_login, btn_register, btn_comenzar;
-    String email, nombre, idioma, fav;
+    String email, nombre, idioma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,43 +32,59 @@ public class MainActivity extends AppCompatActivity {
         //Asociamos todos los componentes al ID que le corresponde
         txt_info = findViewById(R.id.txt_info);
         txt_perfil = findViewById(R.id.txt_perfil);
-        txt_info.setText("Cuentame un cuento v1.0");
+        txt_info.setText(R.string.info_developer);
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         btn_comenzar = findViewById(R.id.img_btn_comenzar);
+        btn_comenzar.setText(getString(R.string.comenzar));
+        btn_register.setText(R.string.registrarse);
+        btn_login.setText(R.string.iniciar_sesion);
 
         //Cargamos las Preferences en caso de que se encuentre alguna guardada
         getPreferences();
 
-        btn_comenzar.setText(getString(R.string.comenzar));
+        //Listeners de botones
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Autenticacion.class);
+                intent.putExtra(EXTRA_MESSAGE, "login");
+                finish();
+                startActivity(intent);
+            }
+        });
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        getPreferences();
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Autenticacion.class);
+                intent.putExtra(EXTRA_MESSAGE, "register");
+                finish();
+                startActivity(intent);
+            }
+        });
     }
 
     //Función que nos devuelve las SharedPreferences si se han guardado
     private void getPreferences(){
         //Consultamos si existen y recogemos los valores en caso afirmativo
         SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        email = prefs.getString("user", null);
+        email = prefs.getString("mail", null);
         nombre = prefs.getString("nombre", null);
         idioma = prefs.getString("idioma", "");
-        fav = prefs.getString("favorito", "");
         //Si contiene un mail, creamos un Usuario
         //Mostraremos o no los botones de inicio de sesión y Registro
         if (email != null){
-            Usuario usuario = new Usuario(email, nombre, idioma, fav);
-            if (usuario.getNombre().equals("")){ txt_perfil.setText(getString(R.string.bienvenido));} else {
+            Usuario usuario = new Usuario(email, nombre, idioma);
+            if (usuario.getNombre().equals("")){
+                txt_perfil.setText(getString(R.string.bienvenido));
+            } else {
                 txt_perfil.setText(getString(R.string.bienvenido) + ", " + email);
             }
             btn_login.setVisibility(View.INVISIBLE);
             btn_register.setVisibility(View.INVISIBLE);
         } else {
-            txt_perfil.setText("No se ha iniciado sesión");
+            txt_perfil.setText(R.string.no_inicio);
             btn_login.setVisibility(View.VISIBLE);
             btn_register.setVisibility(View.VISIBLE);
         }
@@ -73,41 +92,22 @@ public class MainActivity extends AppCompatActivity {
 
     /** Se llama cuando el usuario pulsa el boton comenzar */
     public void comenzar(View view) {
+        /**
+         * Si no tenemos email (email=null) es que no se ha iniciado sesion anteriormente
+         * Si tenemos algo guardado (en SharedPreferences) cargamos sus datos
+         * y los pasamos al MenuPrincipal
+         */
+        Bundle extras = new Bundle();
+        Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
         if (email != null){
-            Bundle extras = new Bundle();
             extras.putString("mail", email);
-            extras.putString("nombre", nombre);
-            extras.putString("idioma", idioma);
-            extras.putString("favorito", fav);
-            Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
-            //Agrega el objeto bundle al Intent
             intent.putExtras(extras);
-            finish();
-            startActivity(intent);
-            System.out.println("Envio preferences");
+            Log.d(TAG, "se inicia app con usuario, se envian datos y abrimos Menu principal");
         } else {
-            Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
-            Bundle extras = new Bundle();
             extras.putString("mail", "noUser");
             intent.putExtras(extras);
-            finish();
-            startActivity(intent);
-            System.out.println("Envio comenzar directamente");
+            Log.d(TAG, "se inicia aplicación sin ningún usuario");
         }
-    }
-
-    //Función que llama la actividad de Login, pasandole mensaje login
-    public void login(View view){
-        Intent intent = new Intent(this, Autenticacion.class);
-        intent.putExtra(EXTRA_MESSAGE, "login");
-        finish();
-        startActivity(intent);
-    }
-
-    //Función que llama la actividad de Register, pasandole mensaje register
-    public void register(View view){
-        Intent intent = new Intent(this, Autenticacion.class);
-        intent.putExtra(EXTRA_MESSAGE, "register");
         finish();
         startActivity(intent);
     }

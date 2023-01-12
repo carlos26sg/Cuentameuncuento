@@ -4,22 +4,15 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,19 +26,16 @@ public class MenuPrincipal extends AppCompatActivity {
 
     //Indicamos las variables necesarias
     Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido;
-    String email, nombre, idioma, favorito;
+    String email, nombre, idioma = "", favorito;
     TextView info;
     Spinner sp_idioma;
-
-    //Creamos array de int para almacenar las imagenes de las banderas
-    int[] banderas = {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
 
     //Hacemos static el mediaplayer para poder acceder desde otras clases
     public static MediaPlayer mp;
 
     //Instanciamos la Base de datos con la que trabajamos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Usuario user;
+    static Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,16 +63,12 @@ public class MenuPrincipal extends AppCompatActivity {
         leer.setText(getString(R.string.leer));
         reproducir.setText(getString(R.string.reproducir));
 
-
-        //Iniciamos adaptador para el spinner
-        IdiomaAdapter adaptador = new IdiomaAdapter();
-        sp_idioma.setAdapter(adaptador);
-
         user = new Usuario();
 
         //Recogemos los parametros que se pasan por activities
         Bundle extra = this.getIntent().getExtras();
         email = extra.getString("mail");
+        Log.d(TAG, "llega como usuario: " + email);
 
         //Dependiendo de si llega o no un mail mostraremos mensajes diferentes
         if (!email.equals("noUser")){
@@ -90,6 +76,7 @@ public class MenuPrincipal extends AppCompatActivity {
         } else {
             info.setText(getString(R.string.no_inicio));
             act_perfil.setVisibility(View.GONE);
+            user.setNombre("Teo");
         }
 
         //Arrancamos el hilo musical
@@ -130,8 +117,13 @@ public class MenuPrincipal extends AppCompatActivity {
 
         leer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //Adjuntamos variables que pasaremos a siguiente activity y modo
                 Bundle extras = new Bundle();
-                extras.putString("mail", email);
+                if (user != null){
+                    extras.putString("nombre", user.getNombre());
+                } else {
+                    extras.putString("nombre", user.getNombre());
+                }
                 extras.putString("modo", "leer");
                 extras.putString("idioma", selectedIdioma());
                 Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
@@ -143,8 +135,13 @@ public class MenuPrincipal extends AppCompatActivity {
 
         reproducir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //Adjuntamos variables que pasaremos a siguiente activity y modo
                 Bundle extras = new Bundle();
-                extras.putString("mail", email);
+                if (user != null){
+                    extras.putString("nombre", user.getNombre());
+                } else {
+                    extras.putString("nombre", user.getNombre());
+                }
                 extras.putString("modo", "reproducir");
                 extras.putString("idioma", selectedIdioma());
                 Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
@@ -158,8 +155,8 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
-                Bundle extras = new Bundle();
                 //Pasamos mail para poder acceder al perfil
+                Bundle extras = new Bundle();
                 extras.putString("mail", email);
                 intent.putExtras(extras);
                 startActivity(intent);
@@ -167,42 +164,16 @@ public class MenuPrincipal extends AppCompatActivity {
         });
     }
 
-    //Función que recoge la posición del spinner y retorna el idioma seleccionado
-    public String selectedIdioma(){
-        String idioma = "";
-        int position = sp_idioma.getSelectedItemPosition();
-        if (position == 0){idioma = "esp";}
-        if (position == 1){idioma = "cat";}
-        if (position == 2){idioma = "eng";}
-        return idioma;
-    }
-
-    //Clase que nos adapta el spinner para que sea un cuadrado que muestre la bandera
-    class IdiomaAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return banderas.length;
+    private String selectedIdioma() {
+        String result = "";
+        if (user != null){
+            result = user.getIdioma();
+        } else {
+            if(leer.getText().equals("Leer")){result = "esp";}
+            if(leer.getText().equals("Llegir")){result = "cat";}
+            if(leer.getText().equals("Read")){result = "eng";}
         }
-
-        @Override
-        public Object getItem(int i) {
-            return banderas[i];
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            LayoutInflater inflater = LayoutInflater.from(MenuPrincipal.this);
-            view = inflater.inflate(R.layout.itemspinner, null);
-            ImageView iv1 = view.findViewById(R.id.iv_bandera);
-            iv1.setImageResource(banderas[i]);
-            return view;
-        }
+        return result;
     }
 
     @Override
@@ -238,11 +209,9 @@ public class MenuPrincipal extends AppCompatActivity {
                     if (document.exists()) {
                         nombre = document.get("nombre").toString();;
                         idioma = document.get("idioma").toString();;
-                        favorito = document.get("favorito").toString();
                         user.setNombre(nombre);
                         user.setIdioma(idioma);
-                        user.setFavorito(favorito);
-                        user.setMail(email);
+                        user.setMail(emailAComprobar);
                         if (user.getNombre().equals("")){
                             info.setText(getString(R.string.bienvenido) + " " + user.getMail());
                         } else {
@@ -250,10 +219,6 @@ public class MenuPrincipal extends AppCompatActivity {
                         }
                         Log.d(TAG, "carga correcta desde la base de datos");
                     }
-                    //Con el dato de idioma establecemos selección del favorito del Usuario
-                    if (idioma.equals("esp")){sp_idioma.setSelection(0);}
-                    if (idioma.equals("cat")){sp_idioma.setSelection(1);}
-                    if (idioma.equals("eng")){sp_idioma.setSelection(2);}
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }

@@ -45,8 +45,7 @@
         <TextView
             android:id="@+id/tv_repite"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Repite la contraseña" />
+            android:layout_height="wrap_content"/>
 
         <Space
             android:layout_width="match_parent"
@@ -68,8 +67,7 @@
         <CheckBox
             android:id="@+id/cb_mantener_inicio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,9 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/design_default_color_error"
-                android:onClick="volver"
-                android:text="Button" />
+                android:backgroundTint="@color/design_default_color_error"/>
 
             <Space
                 android:layout_width="8dp"
@@ -94,8 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="confirmar"
-                android:text="Button" />
+                android:onClick="confirmar"/>
         </LinearLayout>
 
     </LinearLayout>

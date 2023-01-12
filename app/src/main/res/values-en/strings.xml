@@ -24,4 +24,10 @@
     <string name="borrar">The account will be deleted</string>
     <string name="volver_seleccion">You\'ll be back in the screen of tales.</string>
     <string name="comenzar">Start</string>
+    <string name="iniciar_sesion">Log in</string>
+    <string name="registrarse">Sign up</string>
+    <string name="mantener_sesion">Keep me logged in</string>
+    <string name="repass">Write the password again</string>
+    <string name="password">Password</string>
+    <string name="iniciar">Start</string>
 </resources>

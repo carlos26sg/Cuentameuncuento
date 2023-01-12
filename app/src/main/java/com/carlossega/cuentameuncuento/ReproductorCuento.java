@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -31,10 +30,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -47,7 +42,9 @@ import java.net.URL;
 
 public class ReproductorCuento extends AppCompatActivity {
 
-    String idioma, modo, nombre_cuento, url_cuento = "", url_traducido= "", idioma_traduccion;
+    //Indicamos las variables necesarias
+    String idioma, modo, nombre_cuento, url_cuento = "", url_traducido= "",
+            url_img = "", idioma_traduccion;
     int contador_lineas, lineas_cuento;
     Button musica, sin_musica, play, pause, salir, next, back;
     Spinner sp_banderas;
@@ -57,7 +54,6 @@ public class ReproductorCuento extends AppCompatActivity {
     String[] cuento, cuento_traducido;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     boolean traducido_creado = false;
-    int[] imagenes;
 
     //Creamos array de int para almacenar las imagenes
     int[] banderas = {R.drawable.espanol, R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
@@ -93,7 +89,7 @@ public class ReproductorCuento extends AppCompatActivity {
         Log.d(TAG, "se recibe modo: " + modo);
         Log.d(TAG, "cuento elegido: " + cuento + " idioma : " + idioma);
 
-
+        //Establecemos pantalla segun el modo seleccionado por el usuario
         if (modo.equals("leer")){
             next.setVisibility(View.VISIBLE);
             bandera.setVisibility(View.GONE);
@@ -118,6 +114,7 @@ public class ReproductorCuento extends AppCompatActivity {
             }
         }, nombre_cuento, idioma);
 
+        //Miramos estado de MediaPlayer y establecemos visibilidad de botones.
         if(MenuPrincipal.mp.isPlaying()){
             musica.setVisibility(View.VISIBLE);
             sin_musica.setVisibility(View.GONE);
@@ -125,6 +122,8 @@ public class ReproductorCuento extends AppCompatActivity {
             musica.setVisibility(View.GONE);
             sin_musica.setVisibility(View.VISIBLE);
         }
+        //Establecemos la bandera del ImageView
+        checkIdiomaBandera();
 
         //Listeners de botones
         salir.setOnClickListener(new View.OnClickListener() {
@@ -202,11 +201,6 @@ public class ReproductorCuento extends AppCompatActivity {
             }
         });
 
-        //Con el dato de idioma establecemos bandera en el imageView
-        if (idioma.equals("esp")){bandera.setImageResource(R.drawable.espanol);}
-        if (idioma.equals("cat")){bandera.setImageResource(R.drawable.catalan);}
-        if (idioma.equals("eng")){bandera.setImageResource(R.drawable.ingles);}
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -217,9 +211,17 @@ public class ReproductorCuento extends AppCompatActivity {
                     contador_lineas++;
                     String[] divisor = cuento[contador_lineas].split("/");
                     seleccionado.setText(divisor[0]);
-                    setImagen(divisor[1]);
+                    //setImagen(divisor[1]);
+                    setImagen(new FirestoreCallBack() {
+                        @Override
+                        public void onCallBack(String url) {
+                            new GetImg().execute();
+                        }
+                    }, divisor[1]);
+                    Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
                     if (sp_banderas.getSelectedItemPosition() != 0){
-                        traducido.setText(cuento_traducido[contador_lineas]);
+                        String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
+                        traducido.setText(divisor_traducido[0]);
                     }
                 }
             }
@@ -234,7 +236,14 @@ public class ReproductorCuento extends AppCompatActivity {
                     contador_lineas--;
                     String[] divisor = cuento[contador_lineas].split("/");
                     seleccionado.setText(divisor[0]);
-                    setImagen(divisor[1]);
+                    //setImagen(divisor[1]);
+                    setImagen(new FirestoreCallBack() {
+                        @Override
+                        public void onCallBack(String url) {
+                            new GetImg().execute();
+                        }
+                    }, divisor[1]);
+                    Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
                     if (sp_banderas.getSelectedItemPosition() != 0){
                         String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
                         traducido.setText(divisor_traducido[0]);
@@ -242,6 +251,13 @@ public class ReproductorCuento extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void checkIdiomaBandera() {
+        //Con el dato de idioma establecemos bandera en el imageView
+        if (idioma.equals("esp")){bandera.setImageResource(R.drawable.espanol);}
+        if (idioma.equals("cat")){bandera.setImageResource(R.drawable.catalan);}
+        if (idioma.equals("eng")){bandera.setImageResource(R.drawable.ingles);}
     }
 
     class GetData extends AsyncTask<String, Void, String> {
@@ -252,15 +268,14 @@ public class ReproductorCuento extends AppCompatActivity {
             String url_main= "";
             int posicion=0;
             if(cuento == null){
-                Log.d(TAG,"estado cuento null");
                 url_main = url_cuento;
                 cuento = new String[lineas_cuento];
-                Log.d(TAG,"estado cuento " + cuento.length);
+                Log.d(TAG,"array de cuento creado");
             } else{
-                Log.d(TAG,"cuento principal ya generado");
                 url_main = url_traducido;
                 cuento_traducido = new String[lineas_cuento];
                 traducido_creado = true;
+                Log.d(TAG,"array de cuento traducido creado");
             }
             try {
                 URL url = new URL(url_main);
@@ -272,7 +287,6 @@ public class ReproductorCuento extends AppCompatActivity {
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
                         String line = "";
                         while ((line = bufferedReader.readLine()) != null){
-                            //Distribuir entre cuento y cuento traducido
                             if (traducido_creado){
                                 cuento_traducido[posicion] = line;
                                 posicion++;
@@ -281,7 +295,7 @@ public class ReproductorCuento extends AppCompatActivity {
                                 posicion++;
                             }
                         }
-                        Log.d(TAG, "se obtienen los datos ");
+                        Log.d(TAG, "se obtienen las lineas del cuento");
                     }
                     in.close();
                 }
@@ -304,10 +318,38 @@ public class ReproductorCuento extends AppCompatActivity {
                 traducido.setText(divisor[0]);
             } else {
                 String[] divisor = cuento[contador_lineas].split("/");
+                Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
                 seleccionado.setText(divisor[0]);
-                setImagen(divisor[1]);
-                Log.d(TAG, "cuento: " + divisor[0] + ", img: " +divisor[1]);
+                //setImagen(divisor[1]);
+                setImagen(new FirestoreCallBack() {
+                    @Override
+                    public void onCallBack(String url) {
+                        new GetImg().execute();
+                    }
+                }, divisor[1]);
             }
+        }
+    }
+
+    class GetImg extends AsyncTask<String, Void, Drawable> {
+        @Override
+        protected Drawable doInBackground(String... params) {
+            Drawable dr = null;
+            try  {
+                URL url = new URL(url_img);
+                Log.d(TAG, "url" + url);
+                Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                dr = new BitmapDrawable(image);
+            } catch (Exception e) {
+                Log.d(TAG, "GetImg exception " + e);
+            }
+            return dr;
+        }
+
+        @Override
+        protected void onPostExecute(Drawable result) {
+            super.onPostExecute(result);
+            fondo.setBackgroundDrawable(result);
         }
     }
 
@@ -322,14 +364,11 @@ public class ReproductorCuento extends AppCompatActivity {
                     if (document.exists()) {
                         if (url_cuento.equals("")){
                             url_cuento = document.get("txt_" + idioma).toString();
-                            Log.d(TAG, "entra en url_cuento y coge " + url_cuento);
                         } else {
-                            Log.d(TAG, "entra en url_cuento not Null");
                             url_traducido = document.get("txt_" + idioma_traduccion).toString();
+                            Log.d(TAG, "guarda la url del cuento traducido");
                         }
                         lineas_cuento = Integer.parseInt(document.get("lines").toString());
-                        Log.d(TAG, "se obtienen los datos " + url_cuento +
-                                " lineas del cuento " + lineas_cuento);
                     }
                     if (url_traducido == null){
                         firestoreCallBack.onCallBack(url_cuento);
@@ -346,6 +385,36 @@ public class ReproductorCuento extends AppCompatActivity {
     //Se crea interfaz para poder realizar una consulta sincrona
     private interface FirestoreCallBack{
         void onCallBack(String url);
+    }
+
+    //Función que recoge la posición del spinner y retorna el idioma seleccionado
+    public String selectedIdioma(){
+        String idioma = "";
+        int position = sp_banderas.getSelectedItemPosition();
+        if (position == 0){idioma = "none";}
+        if (position == 1){idioma = "esp";}
+        if (position == 2){idioma = "cat";}
+        if (position == 3){idioma = "eng";}
+        return idioma;
+    }
+
+    //Consulta a la base de datos del cuento y el idioma para obtener la url del cuento seleccionado
+    private void setImagen(FirestoreCallBack firestoreCallBack, String num_img){
+        DocumentReference docRef = db.collection("imagenes").document(nombre_cuento);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        url_img = document.get("img_" + num_img).toString();
+                    }
+                    firestoreCallBack.onCallBack(url_img);
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     //Clase que nos adapta el spinner para que sea un cuadrado que muestre la bandera
@@ -374,53 +443,6 @@ public class ReproductorCuento extends AppCompatActivity {
             iv1.setImageResource(banderas[i]);
             return view;
         }
-    }
-
-    //Función que recoge la posición del spinner y retorna el idioma seleccionado
-    public String selectedIdioma(){
-        String idioma = "";
-        int position = sp_banderas.getSelectedItemPosition();
-        if (position == 0){idioma = "none";}
-        if (position == 1){idioma = "esp";}
-        if (position == 2){idioma = "cat";}
-        if (position == 3){idioma = "eng";}
-        return idioma;
-    }
-
-    private void setImagen(String num_img){
-        final String[] result = new String[1];
-        Log.d(TAG, "entra en setImagen");
-        DocumentReference docRef = db.collection("imagenes").document(nombre_cuento);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        result[0] = document.get("img_" + num_img).toString();
-                        //Hilo para poder ejecutar operacion en linea de consulta de url
-                        Thread hilo = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try  {
-                                    URL url = new URL(result[0]);
-                                    Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                                    Drawable dr = new BitmapDrawable(image);
-                                    fondo.setBackgroundDrawable(dr);
-                                    Log.d(TAG, "carga el background con url: " + result[0]);
-                                } catch (Exception e) {
-                                    Log.d(TAG, "exception " + e);
-                                }
-                            }
-                        });
-                        hilo.start();
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-
     }
 
 }

@@ -39,7 +39,7 @@ public class Perfil extends AppCompatActivity {
         txt_perfil_mail, txt_perfil_email;
     EditText et_nombre;
     Button btn_eliminar, btn_cerrar, btn_confirmar, btn_atras;
-    Spinner sp_favorito, sp_idioma;
+    Spinner sp_idioma;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String nombre, favorito, idioma, email, mensaje, idioma_sp;
     int[] banderas = {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
@@ -75,6 +75,7 @@ public class Perfil extends AppCompatActivity {
         btn_atras = (Button) findViewById(R.id.btn_perfil_atras);
         et_nombre = (EditText) findViewById(R.id.et_perfil_nombre);
         sp_idioma = (Spinner) findViewById(R.id.sp_perfil_idioma);
+
         //Iniciamos adaptador para el spinner
         IdiomaAdapter adaptador = new IdiomaAdapter();
         sp_idioma.setAdapter(adaptador);
@@ -147,7 +148,6 @@ public class Perfil extends AppCompatActivity {
                 dialog.show();
             }
         });
-
     }
 
     public void checkBD(String emailAComprobar){
@@ -164,10 +164,10 @@ public class Perfil extends AppCompatActivity {
                         favorito = document.get("favorito").toString();
                         email = document.get("mail").toString();
                         txt_perfil_mail.setText(email);
+                        if (idioma.equals("esp")){sp_idioma.setSelection(0);}
+                        if (idioma.equals("cat")){sp_idioma.setSelection(1);}
+                        if (idioma.equals("eng")){sp_idioma.setSelection(2);}
                     }
-                    if (idioma.equals("esp")){sp_idioma.setSelection(0);}
-                    if (idioma.equals("cat")){sp_idioma.setSelection(1);}
-                    if (idioma.equals("eng")){sp_idioma.setSelection(2);}
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
