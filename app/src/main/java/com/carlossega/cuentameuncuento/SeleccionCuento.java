@@ -35,11 +35,10 @@ public class SeleccionCuento extends AppCompatActivity {
     TextView selecciona;
     ArrayList<Cuento> listaCuentos;
     RecyclerView recyclerCuentos;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
     String idioma, modo, id_cuento, nombre;
     AdaptadorCuentos adapter;
     Spinner sp_idioma;
-
+    FirebaseFirestore db;
     //Creamos array de int para almacenar las imagenes de las banderas
     int[] banderas = {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
 
@@ -66,24 +65,13 @@ public class SeleccionCuento extends AppCompatActivity {
         modo = extra.getString("modo");
         nombre = extra.getString("nombre");
 
-        //Iniciamos adaptador para el spinner
-        IdiomaAdapter adaptador = new IdiomaAdapter();
-        sp_idioma.setAdapter(adaptador);
-        //Con el dato de idioma establecemos bandera en el imageView
-        if (idioma.equals("esp")){sp_idioma.setSelection(0);}
-        if (idioma.equals("cat")){sp_idioma.setSelection(1);}
-        if (idioma.equals("eng")){sp_idioma.setSelection(2);}
-
-        //Iniciamos ArrayList donde guardaremos los cuentos con la consulta a la BD
-        listaCuentos = new ArrayList<>();
-        //Asociamos RecyclerView con el id del componente
-        recyclerCuentos = findViewById(R.id.rv_lista_cuentos);
-        recyclerCuentos.setLayoutManager(new LinearLayoutManager(this));
-
         //Click del boton atrás
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Cerramos conexión con BD para evitar errores
+                db.clearPersistence();
+                db.terminate();
                 finish();
             }
         });
@@ -139,6 +127,8 @@ public class SeleccionCuento extends AppCompatActivity {
                             adapter.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    db.clearPersistence();
+                                    db.terminate();
                                     id_cuento = listaCuentos.get(recyclerCuentos.getChildAdapterPosition(view)).getId();
                                     Bundle extras = new Bundle();
                                     extras.putString("modo", modo);
@@ -148,7 +138,9 @@ public class SeleccionCuento extends AppCompatActivity {
                                     //Agrega el objeto bundle al Intent
                                     intent.putExtras(extras);
                                     startActivity(intent);
-                                    Log.d(TAG, "se abre nueva activity ");
+
+                                    Log.d(TAG, "se abre nueva activity, cuento: " +
+                                            id_cuento + ", idioma: " + idioma + ", modo: " + modo);
                                 }
                             });
                         } else {
@@ -161,6 +153,20 @@ public class SeleccionCuento extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
+        db = FirebaseFirestore.getInstance();
+        //Iniciamos adaptador para el spinner
+        IdiomaAdapter adaptador = new IdiomaAdapter();
+        sp_idioma.setAdapter(adaptador);
+        //Con el dato de idioma establecemos bandera en el imageView
+        if (idioma.equals("esp")){sp_idioma.setSelection(0);}
+        if (idioma.equals("cat")){sp_idioma.setSelection(1);}
+        if (idioma.equals("eng")){sp_idioma.setSelection(2);}
+
+        //Iniciamos ArrayList donde guardaremos los cuentos con la consulta a la BD
+        listaCuentos = new ArrayList<>();
+        //Asociamos RecyclerView con el id del componente
+        recyclerCuentos = findViewById(R.id.rv_lista_cuentos);
+        recyclerCuentos.setLayoutManager(new LinearLayoutManager(this));
     }
 
     //Clase que nos adapta el spinner para que sea un cuadrado que muestre la bandera

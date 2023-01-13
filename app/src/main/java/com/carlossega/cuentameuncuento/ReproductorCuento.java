@@ -11,12 +11,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -24,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,6 +45,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 public class ReproductorCuento extends AppCompatActivity {
 
@@ -52,8 +59,9 @@ public class ReproductorCuento extends AppCompatActivity {
     ImageView bandera;
     LinearLayout fondo;
     String[] cuento, cuento_traducido;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore db;
     boolean traducido_creado = false;
+    private TextToSpeech tts;
 
     //Creamos array de int para almacenar las imagenes
     int[] banderas = {R.drawable.sin_bandera, R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
@@ -67,11 +75,14 @@ public class ReproductorCuento extends AppCompatActivity {
         PantallaCompleta pantallaCompleta = new PantallaCompleta();
         View decorView = getWindow().getDecorView();
         pantallaCompleta.pantallaCompleta(decorView);
+        //Forzamos para mantener pantalla encendida y no se apague para leer el cuento
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         //Iniciamos componentes
         musica = findViewById(R.id.btn_repro_musica);
         sin_musica = findViewById(R.id.btn_repro_sin_sonido);
         play =  findViewById(R.id.btn_repro_play);
+        pause = findViewById(R.id.btn_repro_pause);
         salir = findViewById(R.id.btn_repro_salir);
         sp_banderas = findViewById(R.id.sp_repro_traduccion);
         bandera = findViewById(R.id.img_bandera_seleccion);
@@ -80,6 +91,7 @@ public class ReproductorCuento extends AppCompatActivity {
         next = findViewById(R.id.btn_repro_next);
         back = findViewById(R.id.btn_repro_back);
         fondo = findViewById(R.id.llRepro);
+        db = FirebaseFirestore.getInstance();
 
         //Recogemos los parametros que se pasan por activities
         Bundle extra = this.getIntent().getExtras();
@@ -87,7 +99,7 @@ public class ReproductorCuento extends AppCompatActivity {
         modo = extra.getString("modo");
         nombre_cuento = extra.getString("cuento");
         Log.d(TAG, "se recibe modo: " + modo);
-        Log.d(TAG, "cuento elegido: " + cuento + " idioma : " + idioma);
+        Log.d(TAG, "cuento elegido: " + nombre_cuento + " idioma : " + idioma);
 
         //Establecemos pantalla segun el modo seleccionado por el usuario
         if (modo.equals("leer")){
@@ -136,6 +148,8 @@ public class ReproductorCuento extends AppCompatActivity {
                 //Se añaden los botones
                 builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        db.clearPersistence();
+                        db.terminate();
                         finish();
                     }
                 });
@@ -204,26 +218,7 @@ public class ReproductorCuento extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (cuento[contador_lineas].contains("FIN/") || cuento[contador_lineas].contains("FI/")
-                || cuento[contador_lineas].contains("THE END/")){
-                    Log.d(TAG, "se econtró un final de cuento ");
-                }else {
-                    contador_lineas++;
-                    String[] divisor = cuento[contador_lineas].split("/");
-                    seleccionado.setText(divisor[0]);
-                    //setImagen(divisor[1]);
-                    setImagen(new FirestoreCallBack() {
-                        @Override
-                        public void onCallBack(String url) {
-                            new GetImg().execute();
-                        }
-                    }, divisor[1]);
-                    Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
-                    if (sp_banderas.getSelectedItemPosition() != 0){
-                        String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
-                        traducido.setText(divisor_traducido[0]);
-                    }
-                }
+                next();
             }
         });
 
@@ -251,6 +246,55 @@ public class ReproductorCuento extends AppCompatActivity {
                 }
             }
         });
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                play.setVisibility(View.GONE);
+                pause.setVisibility(View.VISIBLE);
+                ttsFunction();
+                Log.d(TAG, "se pulsa play");
+            }
+        });
+
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                play.setVisibility(View.VISIBLE);
+                pause.setVisibility(View.GONE);
+                tts.stop();
+                tts.shutdown();
+            }
+        });
+    }
+
+    private void next(){
+        if (cuento[contador_lineas].contains("FIN/") || cuento[contador_lineas].contains("FI/")
+                || cuento[contador_lineas].contains("THE END/")){
+            Log.d(TAG, "se econtró un final de cuento ");
+        }else {
+            //Creamos hilo para evitar error android.view.ViewRootImpl$CalledFromWrongThreadException:
+            // Only the original thread that created a view hierarchy can touch its views.
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    contador_lineas++;
+                    String[] divisor = cuento[contador_lineas].split("/");
+                    seleccionado.setText(divisor[0]);
+                    setImagen(new FirestoreCallBack() {
+                        @Override
+                        public void onCallBack(String url) {
+                            new GetImg().execute();
+                        }
+                    }, divisor[1]);
+                    Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
+                    if (sp_banderas.getSelectedItemPosition() != 0){
+                        String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
+                        traducido.setText(divisor_traducido[0]);
+                    }
+                }
+            });
+        }
     }
 
     private void checkIdiomaBandera() {
@@ -258,6 +302,88 @@ public class ReproductorCuento extends AppCompatActivity {
         if (idioma.equals("esp")){bandera.setImageResource(R.drawable.espanol);}
         if (idioma.equals("cat")){bandera.setImageResource(R.drawable.catalan);}
         if (idioma.equals("eng")){bandera.setImageResource(R.drawable.ingles);}
+    }
+
+    void leerTexto(String strTexto, String ub){
+            Bundle bundle = new Bundle();
+            bundle.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM, AudioManager.STREAM_MUSIC);
+            //strTexto = strTexto.substring(0,3999); //Así funciona
+            tts.speak(strTexto, TextToSpeech.QUEUE_FLUSH, bundle, ub);
+    }
+
+    public void ttsFunction() {
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    Locale loc = null;
+                    if (idioma.equals("cat")){loc = new Locale("cat", "CAT");}
+                    if (idioma.equals("esp")){loc = new Locale("spa", "ESP");}
+                    if (idioma.equals("eng")){loc = new Locale("en", "GB");}
+                    int result = tts.setLanguage(loc);
+                    Log.d(TAG, "se establece idioma locale: " + idioma);
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Toast.makeText(getApplicationContext(), "Lenguaje no soportado", Toast.LENGTH_SHORT).show();
+                    } else {
+                        leerTexto(seleccionado.getText().toString(), seleccionado.getText().toString());
+                        Log.d(TAG, "se inicia el OnUtterancee listener y se leen datos");
+                        tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+
+                            @Override
+                            public void onStart(String s) {
+                                Log.v(TAG, "onInit exitoso");
+                            }
+
+                            @Override
+                            public void onDone(String s) {
+                                Log.d(TAG, "entra en onDone");
+                                Log.d(TAG, "s es: " + s);
+                                if (s.equals("FIN") || s.equals("FI") || s.equals("THE END")){
+                                    //Creamos hilo para evitar error android.view.ViewRootImpl$CalledFromWrongThreadException:
+                                    // Only the original thread that created a view hierarchy can touch its views.
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            //Reseteamos contador lineas y volvemos al principio
+                                            play.setVisibility(View.VISIBLE);
+                                            pause.setVisibility(View.GONE);
+                                            contador_lineas = 0;
+                                            String[] divisor = cuento[contador_lineas].split("/");
+                                            Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
+                                            seleccionado.setText(divisor[0]);
+                                            //setImagen(divisor[1]);
+                                            setImagen(new FirestoreCallBack() {
+                                                @Override
+                                                public void onCallBack(String url) {
+                                                    new GetImg().execute();
+                                                }
+                                            }, divisor[1]);
+                                            tts.stop();
+                                            tts.shutdown();
+                                        }
+                                    });
+
+                                } else {
+                                    Log.d(TAG, "pasamos a next() ");
+                                    next();
+                                    tts.stop();
+                                    tts.shutdown();
+                                    ttsFunction();
+                                }
+                            }
+
+                            @Override
+                            public void onError(String s) {
+                                Log.d(TAG, "error en la reproducción de voz");
+                            }
+                        });
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Falló la inicialización", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     class GetData extends AsyncTask<String, Void, String> {
@@ -445,4 +571,14 @@ public class ReproductorCuento extends AppCompatActivity {
         }
     }
 
+    //En caso de onDestroy, cerramos instancia db
+    @Override
+    protected void onDestroy() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        db.terminate();
+        super.onDestroy();
+    }
 }
