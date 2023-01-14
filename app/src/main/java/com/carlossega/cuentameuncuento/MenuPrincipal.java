@@ -34,7 +34,7 @@ public class MenuPrincipal extends AppCompatActivity {
     public static MediaPlayer mp;
 
     //Instanciamos la Base de datos con la que trabajamos
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore db;
     static Usuario user;
 
     @Override
@@ -169,6 +169,7 @@ public class MenuPrincipal extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        db = FirebaseFirestore.getInstance();
         //Dependiendo de si llega o no un mail mostraremos mensajes diferentes
         if (!email.equals("noUser")){
             try {

@@ -2,12 +2,10 @@ package com.carlossega.cuentameuncuento;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,8 +19,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -85,67 +81,49 @@ public class Perfil extends AppCompatActivity {
         if (idioma.equals("eng")){sp_idioma.setSelection(2);}
 
         //Listeners de los botones
-        btn_atras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        btn_atras.setOnClickListener(view -> finish());
 
-        btn_confirmar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                idioma_sp = selectedIdioma();
-                guardarBD(et_nombre.getText().toString(), idioma_sp);
-                SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("nombre", et_nombre.getText().toString());
-                editor.putString("idioma", idioma_sp);
-                editor.commit();
-                finish();
-            }
+        btn_confirmar.setOnClickListener(view -> {
+            idioma_sp = selectedIdioma();
+            guardarBD(et_nombre.getText().toString(), idioma_sp);
+            SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("nombre", et_nombre.getText().toString());
+            editor.putString("idioma", idioma_sp);
+            editor.commit();
+            finish();
         });
 
         //Borramos los datos de SharedPreferences para cerrar sesión del usuario
-        btn_cerrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btn_cerrar.setOnClickListener(view -> {
+            SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.clear();
+            editor.commit();
+            finish();
+            MenuPrincipal.user.setNombre("NombreDefecto");
+        });
+
+        btn_eliminar.setOnClickListener(view -> {
+            //Se añade alerta para borrar
+            AlertDialog.Builder builder = new AlertDialog.Builder(Perfil.this);
+            builder.setMessage(R.string.seguro)
+                    .setTitle(R.string.borrar);
+            //Se añaden los botones
+            builder.setPositiveButton(R.string.si, (dialog, id) -> {
                 SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear();
                 editor.commit();
                 finish();
+                eliminarBD();
                 MenuPrincipal.user.setNombre("NombreDefecto");
-            }
-        });
-
-        btn_eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Se añade alerta para borrar
-                AlertDialog.Builder builder = new AlertDialog.Builder(Perfil.this);
-                builder.setMessage(R.string.seguro)
-                        .setTitle(R.string.borrar);
-                //Se añaden los botones
-                builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = prefs.edit();
-                        editor.clear();
-                        editor.commit();
-                        finish();
-                        eliminarBD();
-                        MenuPrincipal.user.setNombre("NombreDefecto");
-                    }
-                });
-                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                    }
-                });
-                // Create the AlertDialog
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
+            });
+            builder.setNegativeButton(R.string.no, (dialog, id) -> {
+            });
+            // Create the AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
     }
 
@@ -176,18 +154,8 @@ public class Perfil extends AppCompatActivity {
     public void eliminarBD(){
         db.collection("usuario").document(email)
                 .delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error deleting document", e);
-                    }
-                });
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
+                .addOnFailureListener(e -> Log.w(TAG, "Error deleting document", e));
     }
 
     //Clase que nos adapta el spinner para que sea un cuadrado que muestre la bandera

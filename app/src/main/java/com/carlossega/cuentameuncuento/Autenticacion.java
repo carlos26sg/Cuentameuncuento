@@ -2,7 +2,6 @@ package com.carlossega.cuentameuncuento;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,10 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,10 +34,17 @@ import javax.crypto.spec.SecretKeySpec;
 public class Autenticacion extends AppCompatActivity implements Serializable {
 
     //Iniciamos las variables con las que trabajamos
-    private TextView mail, password, repassword, repite;
-    private Button volver, confirmar;
+    private TextView mail;
+    private TextView password;
+    private TextView repassword;
+    private Button volver;
     private CheckBox mantener;
-    private String message, pass, repass, email, secretKey, nombre, idioma;
+    private String message;
+    private String pass;
+    private String email;
+    private String secretKey;
+    private String nombre;
+    private String idioma;
     //Instanciamos la Base de datos con la que trabajamos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -58,9 +61,9 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         mail = (EditText) findViewById(R.id.et_mail);
         password = (EditText) findViewById(R.id.et_password);
         repassword = (EditText) findViewById(R.id.et_repassword);
-        repite = (TextView) findViewById(R.id.tv_repite);
+        TextView repite = (TextView) findViewById(R.id.tv_repite);
         volver = (Button) findViewById(R.id.btn_volver);
-        confirmar = (Button) findViewById(R.id.btn_confirmar);
+        Button confirmar = (Button) findViewById(R.id.btn_confirmar);
         mantener = (CheckBox) findViewById(R.id.cb_mantener_inicio);
         mantener.setText(R.string.mantener_sesion);
         repite.setText(R.string.repass);
@@ -80,18 +83,15 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
             confirmar.setText(R.string.iniciar_sesion);
         } else if (message.equals("register")){
             mantener.setVisibility(View.GONE);
-            confirmar.setText("Registrarse");
+            confirmar.setText(R.string.registrarse);
         }
 
         //Listener de boton volver
-        volver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Cerramos esta activity y abrimos MainActivity
-                Intent intent = new Intent(Autenticacion.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        volver.setOnClickListener(view -> {
+            //Cerramos esta activity y abrimos MainActivity
+            Intent intent1 = new Intent(Autenticacion.this, MainActivity.class);
+            startActivity(intent1);
+            finish();
         });
 
     }
@@ -101,57 +101,54 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         //Recogemos en String el contenido de los TextView
         pass = password.getText().toString();
         email = mail.getText().toString();
-        repass = repassword.getText().toString();
+        String repass = repassword.getText().toString();
         //Dependiendo de si es login o register haremos una cosa u otra
         if (message.equals("login")){
             //Leemos documento de la base de datos
             //Buscamos un documento que se llame como el email introducido
             DocumentReference docRef = db.collection("usuario").document(email);
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        //Si el documento existe
-                        if (document.exists()) {
-                            String pass_descifrar;
-                            pass_descifrar = document.get("pass").toString();
-                            if (descifrar(pass_descifrar, secretKey).equals(pass)){
-                                Toast toast = Toast.makeText(getApplicationContext(),
-                                        "Se ha accedido correctamente", Toast.LENGTH_LONG);
-                                toast.show();
-                                nombre = document.get("nombre").toString();
-                                if (mantener.isChecked()){guardarPreferencias();}
-                                //Info que se guarda para pasar a MenuPrincipal
-                                Bundle extras = new Bundle();
-                                extras.putString("mail",document.get("mail").toString());
-                                //Guardamos en SharedPreferences que iniciamos sesión
-                                SharedPreferences pref = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-                                SharedPreferences.Editor edit = pref.edit();
-                                edit.putBoolean("iniciada", true);
-                                edit.commit();
-                                Log.d(TAG, "mail y contraseña correcta, se accede a MenuPrincipal");
-                                //Agrega el objeto bundle al Intent e inicia Activity MenuPrincipal y cierra Autenticacion
-                                Intent intent = new Intent(Autenticacion.this, MenuPrincipal.class);
-                                intent.putExtras(extras);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Toast toast = Toast.makeText(getApplicationContext(),
-                                        "Contraseña incorrecta. Comprueba la contraseña.", Toast.LENGTH_LONG);
-                                toast.show();
-                                Log.d(TAG, "contraseña incorrecta. No se ha podido acceder");
-                            }
-                        //Si el documento no existe
+            docRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    //Si el documento existe
+                    if (document.exists()) {
+                        String pass_descifrar;
+                        pass_descifrar = document.get("pass").toString();
+                        if (descifrar(pass_descifrar, secretKey).equals(pass)){
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "Se ha accedido correctamente", Toast.LENGTH_LONG);
+                            toast.show();
+                            nombre = document.get("nombre").toString();
+                            if (mantener.isChecked()){guardarPreferencias();}
+                            //Info que se guarda para pasar a MenuPrincipal
+                            Bundle extras = new Bundle();
+                            extras.putString("mail",document.get("mail").toString());
+                            //Guardamos en SharedPreferences que iniciamos sesión
+                            SharedPreferences pref = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+                            SharedPreferences.Editor edit = pref.edit();
+                            edit.putBoolean("iniciada", true);
+                            edit.commit();
+                            Log.d(TAG, "mail y contraseña correcta, se accede a MenuPrincipal");
+                            //Agrega el objeto bundle al Intent e inicia Activity MenuPrincipal y cierra Autenticacion
+                            Intent intent = new Intent(Autenticacion.this, MenuPrincipal.class);
+                            intent.putExtras(extras);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Toast toast = Toast.makeText(getApplicationContext(),
-                                    "Error al intentar acceder. No se ha encontrado el mail.", Toast.LENGTH_LONG);
+                                    "Contraseña incorrecta. Comprueba la contraseña.", Toast.LENGTH_LONG);
                             toast.show();
-                            Log.d(TAG, "mail no encontrado. No se ha podido acceder");
+                            Log.d(TAG, "contraseña incorrecta. No se ha podido acceder");
                         }
+                    //Si el documento no existe
                     } else {
-                        Log.d(TAG, "get failed with ", task.getException());
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Error al intentar acceder. No se ha encontrado el mail.", Toast.LENGTH_LONG);
+                        toast.show();
+                        Log.d(TAG, "mail no encontrado. No se ha podido acceder");
                     }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
                 }
             });
         } else if (message.equals("register")){
@@ -161,52 +158,41 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                 if (esPasswordValido(pass) && !email.isEmpty() && esEmailValido(email)){
                     //Buscamos en la base de datos un documento con ese email
                     DocumentReference docRef = db.collection("usuario").document(email);
-                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                //Si ya se ha creado en la bd ese mail se muestra Toast
-                                if (document.exists()) {
-                                    Toast toast = Toast.makeText(getApplicationContext(),
-                                            "Ya existe una cuenta con ese email", Toast.LENGTH_LONG);
-                                    toast.show();
-                                    Log.d(TAG, "no se puede crear cuenta, ya existe mail en database");
-                                //Si no hay registros de ese mail se creará uno nuevo
-                                } else {
-                                    String cifrado = cifradopass(pass, secretKey);
-                                    Map<String, Object> user = new HashMap<>();
-                                    user.put("mail", email);
-                                    user.put("pass", cifrado);
-                                    user.put("nombre", "");
-                                    user.put("favorito", "");
-                                    user.put("idioma", idioma);
-                                    db.collection("usuario").document(email)
-                                            .set(user)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                //Mostramos en Toast que que ha ido bien
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Toast toast = Toast.makeText(getApplicationContext(),
-                                                            "Cuenta creada con exito", Toast.LENGTH_LONG);
-                                                    toast.show();
-                                                    Log.d(TAG, "se crea cuenta con exito");
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.w(TAG, "Error writing document", e);
-                                                }
-                                            });
-                                    //Inicia MainActivity y cierra Autenticacion
-                                    Intent intent = new Intent(Autenticacion.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
+                    docRef.get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            //Si ya se ha creado en la bd ese mail se muestra Toast
+                            if (document.exists()) {
+                                Toast toast = Toast.makeText(getApplicationContext(),
+                                        "Ya existe una cuenta con ese email", Toast.LENGTH_LONG);
+                                toast.show();
+                                Log.d(TAG, "no se puede crear cuenta, ya existe mail en database");
+                            //Si no hay registros de ese mail se creará uno nuevo
                             } else {
-                                Log.d(TAG, "get failed with ", task.getException());
+                                String cifrado = cifradopass(pass, secretKey);
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("mail", email);
+                                user.put("pass", cifrado);
+                                user.put("nombre", "");
+                                user.put("favorito", "");
+                                user.put("idioma", idioma);
+                                //Mostramos en Toast que que ha ido bien
+                                db.collection("usuario").document(email)
+                                        .set(user)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Toast toast = Toast.makeText(getApplicationContext(),
+                                                    "Cuenta creada con exito", Toast.LENGTH_LONG);
+                                            toast.show();
+                                            Log.d(TAG, "se crea cuenta con exito");
+                                        })
+                                        .addOnFailureListener(e -> Log.w(TAG, "Error writing document", e));
+                                //Inicia MainActivity y cierra Autenticacion
+                                Intent intent = new Intent(Autenticacion.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
                         }
                     });
                 }
