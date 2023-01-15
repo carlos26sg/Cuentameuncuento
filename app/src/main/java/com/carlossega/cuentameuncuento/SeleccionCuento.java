@@ -138,7 +138,6 @@ public class SeleccionCuento extends AppCompatActivity {
                                     //Agrega el objeto bundle al Intent
                                     intent.putExtras(extras);
                                     startActivity(intent);
-
                                     Log.d(TAG, "se abre nueva activity, cuento: " +
                                             id_cuento + ", idioma: " + idioma + ", modo: " + modo);
                                 }

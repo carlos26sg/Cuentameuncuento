@@ -8,16 +8,6 @@ public class Usuario {
 
     public Usuario() { }
 
-    public Usuario(String mail) {
-        this.mail = mail;
-    }
-
-    public Usuario(String mail, String nombre, String idioma) {
-        this.mail = mail;
-        this.nombre = nombre;
-        this.idioma = idioma;
-    }
-
     public String getMail() {
         return mail;
     }

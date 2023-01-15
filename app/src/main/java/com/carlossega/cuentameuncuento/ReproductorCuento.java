@@ -53,7 +53,7 @@ public class ReproductorCuento extends AppCompatActivity {
     ImageView bandera;
     LinearLayout fondo;
     String[] cuento, cuento_traducido;
-    FirebaseFirestore db;
+    FirebaseFirestore db, db_img;
     boolean traducido_creado = false;
     private TextToSpeech tts;
 
@@ -86,6 +86,7 @@ public class ReproductorCuento extends AppCompatActivity {
         back = findViewById(R.id.btn_repro_back);
         fondo = findViewById(R.id.llRepro);
         db = FirebaseFirestore.getInstance();
+        db_img = FirebaseFirestore.getInstance();
 
         //Recogemos los parametros que se pasan por activities
         Bundle extra = this.getIntent().getExtras();
@@ -136,6 +137,12 @@ public class ReproductorCuento extends AppCompatActivity {
             builder.setPositiveButton(R.string.si, (dialog, id) -> {
                 db.clearPersistence();
                 db.terminate();
+                db_img.clearPersistence();
+                db_img.terminate();
+                if (tts != null){
+                    tts.stop();
+                    tts.shutdown();
+                }
                 finish();
             });
             builder.setNegativeButton(R.string.no, (dialog, id) -> {
@@ -373,7 +380,6 @@ public class ReproductorCuento extends AppCompatActivity {
                 String[] divisor = cuento[contador_lineas].split("/");
                 Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
                 seleccionado.setText(divisor[0]);
-                //setImagen(divisor[1]);
                 setImagen(url -> new GetImg().execute(), divisor[1]);
             }
         }
@@ -494,7 +500,10 @@ public class ReproductorCuento extends AppCompatActivity {
             tts.stop();
             tts.shutdown();
         }
+        db.clearPersistence();
         db.terminate();
+        db_img.clearPersistence();
+        db_img.terminate();
         super.onDestroy();
     }
 }

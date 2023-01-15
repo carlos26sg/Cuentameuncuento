@@ -101,6 +101,8 @@ public class MenuPrincipal extends AppCompatActivity {
 
         salir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                db.clearPersistence();
+                db.terminate();
                 finishAffinity();
                 System.exit(0);
             }
@@ -108,6 +110,8 @@ public class MenuPrincipal extends AppCompatActivity {
 
         leer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                db.clearPersistence();
+                db.terminate();
                 //Adjuntamos variables que pasaremos a siguiente activity y modo
                 Bundle extras = new Bundle();
                 idioma = selectedIdioma();
@@ -125,6 +129,8 @@ public class MenuPrincipal extends AppCompatActivity {
 
         reproducir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                db.clearPersistence();
+                db.terminate();
                 //Adjuntamos variables que pasaremos a siguiente activity y modo
                 Bundle extras = new Bundle();
                 extras.putString("nombre", user.getNombre());
@@ -142,6 +148,8 @@ public class MenuPrincipal extends AppCompatActivity {
         act_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                db.clearPersistence();
+                db.terminate();
                 Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
                 startActivity(intent);
             }
