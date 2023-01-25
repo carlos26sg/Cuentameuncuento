@@ -15,12 +15,9 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +37,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ReproductorCuento extends AppCompatActivity {
 
@@ -56,9 +54,6 @@ public class ReproductorCuento extends AppCompatActivity {
     FirebaseFirestore db, db_img;
     boolean traducido_creado = false;
     private TextToSpeech tts;
-
-    //Creamos array de int para almacenar las imagenes
-    int[] banderas = {R.drawable.sin_bandera, R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,20 +105,29 @@ public class ReproductorCuento extends AppCompatActivity {
         }
 
         //Iniciamos adaptador para el spinner
-        IdiomaAdapter adaptador = new IdiomaAdapter();
+        BanderaAdapter adaptador = new BanderaAdapter("opcion_sin", this);
         sp_banderas.setAdapter(adaptador);
         sp_banderas.setSelection(0);
 
+        //Leemos datos del cuento
         leerDatos(url -> new GetData().execute(), nombre_cuento, idioma);
 
-        //Miramos estado de MediaPlayer y establecemos visibilidad de botones.
-        if(MenuPrincipal.mp.isPlaying()){
-            musica.setVisibility(View.VISIBLE);
-            sin_musica.setVisibility(View.GONE);
-        } else {
-            musica.setVisibility(View.GONE);
-            sin_musica.setVisibility(View.VISIBLE);
+        /*
+          Miramos estado de MediaPlayer y establecemos visibilidad de botones.
+          En bloque Try/Catch para evitar NullPointerException
+         */
+        try {
+            if(MenuPrincipal.mp.isPlaying()){
+                musica.setVisibility(View.VISIBLE);
+                sin_musica.setVisibility(View.GONE);
+            } else {
+                musica.setVisibility(View.GONE);
+                sin_musica.setVisibility(View.VISIBLE);
+            }
+        } catch (NullPointerException e){
+            Log.d(TAG, "error: " + e);
         }
+
         //Establecemos la bandera del ImageView
         checkIdiomaBandera();
 
@@ -168,14 +172,14 @@ public class ReproductorCuento extends AppCompatActivity {
             Log.d(TAG, "se pulsa boton mute ");
         });
 
-
+        //Spinner al que le cargamos las banderas
         sp_banderas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                /**
-                 * Recogemos idioma y eliminamos la lista previa para cargar una nueva con
-                 * el idioma seleccionado.
-                 * Vemos con getSelectedItemPosition si hay algun idioma seleccionado
+                /*
+                  Recogemos idioma y eliminamos la lista previa para cargar una nueva con
+                  el idioma seleccionado.
+                  Vemos con getSelectedItemPosition si hay algun idioma seleccionado
                  */
                 if (sp_banderas.getSelectedItemPosition()!=0){
                         idioma_traduccion = selectedIdioma();
@@ -201,16 +205,20 @@ public class ReproductorCuento extends AppCompatActivity {
                 contador_lineas--;
                 String[] divisor = cuento[contador_lineas].split("/");
                 seleccionado.setText(divisor[0]);
-                //setImagen(divisor[1]);
                 setImagen(url -> new GetImg().execute(), divisor[1]);
                 Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
-                if (sp_banderas.getSelectedItemPosition() != 0){
-                    String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
-                    traducido.setText(divisor_traducido[0]);
+                try {
+                    if (sp_banderas.getSelectedItemPosition() != 0){
+                        String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
+                        traducido.setText(divisor_traducido[0]);
+                    }
+                }catch (NullPointerException e){
+                    Log.d(TAG, "error: " + e);
                 }
             }
         });
 
+        //Con play iniciamos el Texto a voz de android
         play.setOnClickListener(view -> {
             play.setVisibility(View.GONE);
             pause.setVisibility(View.VISIBLE);
@@ -223,9 +231,11 @@ public class ReproductorCuento extends AppCompatActivity {
             pause.setVisibility(View.GONE);
             tts.stop();
             tts.shutdown();
+            Log.d(TAG, "se pulsa pause");
         });
     }
 
+    //Función para pasar a la siguiente linea
     private void next(){
         if (cuento[contador_lineas].contains("FIN/") || cuento[contador_lineas].contains("FI/")
                 || cuento[contador_lineas].contains("THE END/")){
@@ -234,19 +244,24 @@ public class ReproductorCuento extends AppCompatActivity {
             //Creamos hilo para evitar error android.view.ViewRootImpl$CalledFromWrongThreadException:
             // Only the original thread that created a view hierarchy can touch its views.
             runOnUiThread(() -> {
-                contador_lineas++;
-                String[] divisor = cuento[contador_lineas].split("/");
-                seleccionado.setText(divisor[0]);
-                setImagen(url -> new GetImg().execute(), divisor[1]);
-                Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
-                if (sp_banderas.getSelectedItemPosition() != 0){
-                    String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
-                    traducido.setText(divisor_traducido[0]);
+                try {
+                    contador_lineas++;
+                    String[] divisor = cuento[contador_lineas].split("/");
+                    seleccionado.setText(divisor[0]);
+                    setImagen(url -> new GetImg().execute(), divisor[1]);
+                    Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
+                    if (sp_banderas.getSelectedItemPosition() != 0){
+                        String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
+                        traducido.setText(divisor_traducido[0]);
+                    }
+                }catch (NullPointerException e){
+                    Log.d(TAG, "error: " + e);
                 }
             });
         }
     }
 
+    //Función que establece la bandera según el idioma recibido
     private void checkIdiomaBandera() {
         //Con el dato de idioma establecemos bandera en el imageView
         if (idioma.equals("esp")){bandera.setImageResource(R.drawable.espanol);}
@@ -254,6 +269,7 @@ public class ReproductorCuento extends AppCompatActivity {
         if (idioma.equals("eng")){bandera.setImageResource(R.drawable.ingles);}
     }
 
+    //Función que lee el texto con la función de texto a voz de Android
     void leerTexto(String strTexto, String ub){
             Bundle bundle = new Bundle();
             bundle.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM, AudioManager.STREAM_MUSIC);
@@ -261,6 +277,7 @@ public class ReproductorCuento extends AppCompatActivity {
             tts.speak(strTexto, TextToSpeech.QUEUE_FLUSH, bundle, ub);
     }
 
+    //Función de texto a voz de Android
     public void ttsFunction() {
         tts = new TextToSpeech(getApplicationContext(), status -> {
             if (status == TextToSpeech.SUCCESS) {
@@ -283,10 +300,9 @@ public class ReproductorCuento extends AppCompatActivity {
                             Log.v(TAG, "onInit exitoso");
                         }
 
+                        //Cuando acaba de leer, miramos si es fin del cuento o hay mas lineas
                         @Override
                         public void onDone(String s) {
-                            Log.d(TAG, "entra en onDone");
-                            Log.d(TAG, "s es: " + s);
                             if (s.equals("FIN") || s.equals("FI") || s.equals("THE END")){
                                 //Creamos hilo para evitar error android.view.ViewRootImpl$CalledFromWrongThreadException:
                                 // Only the original thread that created a view hierarchy can touch its views.
@@ -304,7 +320,6 @@ public class ReproductorCuento extends AppCompatActivity {
                                     tts.shutdown();
                                 });
                             } else {
-                                Log.d(TAG, "pasamos a next() ");
                                 next();
                                 tts.stop();
                                 tts.shutdown();
@@ -319,16 +334,16 @@ public class ReproductorCuento extends AppCompatActivity {
                     });
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "Falló la inicialización", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "falló la inicialización", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    class GetData extends AsyncTask<String, Void, String> {
+    //AsyncTask que con la url, coge el txt y lo guarda en un array linea a linea
+    class GetData extends AsyncTask<Void, Void, Void> {
         @Override
-        protected String doInBackground(String... params) {
+        protected Void doInBackground(Void... voids) {
             HttpURLConnection urlConnection = null;
-            String result = "";
             String url_main;
             int posicion=0;
             if(cuento == null){
@@ -367,12 +382,12 @@ public class ReproductorCuento extends AppCompatActivity {
                     urlConnection.disconnect();
                 }
             }
-            return result;
+            return null;
         }
 
+        //Establecemes el texto
         @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
+        protected void onPostExecute(Void unused) {
             if (traducido_creado){
                 String[] divisor = cuento_traducido[contador_lineas].split("/");
                 traducido.setText(divisor[0]);
@@ -385,6 +400,7 @@ public class ReproductorCuento extends AppCompatActivity {
         }
     }
 
+    //Función que busca en la url y consigue la imagen correspondiente
     class GetImg extends AsyncTask<String, Void, Drawable> {
         @Override
         protected Drawable doInBackground(String... params) {
@@ -393,17 +409,17 @@ public class ReproductorCuento extends AppCompatActivity {
                 URL url = new URL(url_img);
                 Log.d(TAG, "url" + url);
                 Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                dr = new BitmapDrawable(image);
+                dr = new BitmapDrawable(getResources(), image);
             } catch (Exception e) {
                 Log.d(TAG, "GetImg exception " + e);
             }
             return dr;
         }
 
+        //Se establece la imagen de fondo
         @Override
         protected void onPostExecute(Drawable result) {
-            super.onPostExecute(result);
-            fondo.setBackgroundDrawable(result);
+            fondo.setBackground(result);
         }
     }
 
@@ -415,12 +431,16 @@ public class ReproductorCuento extends AppCompatActivity {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     if (url_cuento.equals("")){
-                        url_cuento = document.get("txt_" + idioma).toString();
+                        try {
+                            url_cuento = Objects.requireNonNull(document.get("txt_" + idioma)).toString();
+                        } catch (NullPointerException e){
+                            Log.d(TAG, "error: " + e);
+                        }
                     } else {
-                        url_traducido = document.get("txt_" + idioma_traduccion).toString();
+                        url_traducido = Objects.requireNonNull(document.get("txt_" + idioma_traduccion)).toString();
                         Log.d(TAG, "guarda la url del cuento traducido");
                     }
-                    lineas_cuento = Integer.parseInt(document.get("lines").toString());
+                    lineas_cuento = Integer.parseInt(Objects.requireNonNull(document.get("lines")).toString());
                 }
                 if (url_traducido == null){
                     firestoreCallBack.onCallBack(url_cuento);
@@ -456,41 +476,13 @@ public class ReproductorCuento extends AppCompatActivity {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-                    url_img = document.get("img_" + num_img).toString();
+                    url_img = Objects.requireNonNull(document.get("img_" + num_img)).toString();
                 }
                 firestoreCallBack.onCallBack(url_img);
             } else {
                 Log.d(TAG, "get failed with ", task.getException());
             }
         });
-    }
-
-    //Clase que nos adapta el spinner para que sea un cuadrado que muestre la bandera
-    class IdiomaAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return banderas.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return banderas[i];
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            LayoutInflater inflater = LayoutInflater.from(ReproductorCuento.this);
-            view = inflater.inflate(R.layout.itemspinner, null);
-            ImageView iv1 = view.findViewById(R.id.iv_bandera);
-            iv1.setImageResource(banderas[i]);
-            return view;
-        }
     }
 
     //En caso de onDestroy, cerramos instancia db

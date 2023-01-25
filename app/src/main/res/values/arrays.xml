@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="modo">
+        <item>@string/sin_seleccion</item>
+        <item>@string/leer</item>
+        <item>@string/reproducir</item>
+    </string-array>
+</resources>

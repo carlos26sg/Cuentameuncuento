@@ -30,4 +30,7 @@
     <string name="repass">Write the password again</string>
     <string name="password">Password</string>
     <string name="iniciar">Start</string>
+    <string name="modo">Mode</string>
+    <string name="cuento_fav">Tale</string>
+    <string name="sin_seleccion">No selected</string>
 </resources>

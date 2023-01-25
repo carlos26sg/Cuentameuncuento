@@ -9,32 +9,26 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Perfil extends AppCompatActivity {
 
     //Indicamos las variables necesarias
     TextView txt_perfil_nombre, txt_perfil_opciones, txt_perfil_idioma,
-        txt_perfil_mail, txt_perfil_email;
+        txt_perfil_mail, txt_perfil_email, txt_modo_fav, txt_cuento_fav;
     EditText et_nombre;
     Button btn_eliminar, btn_cerrar, btn_confirmar, btn_atras;
-    Spinner sp_idioma;
+    Spinner sp_idioma, sp_modo, sp_fav;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String nombre, idioma, email, idioma_sp;
-    int[] banderas = {R.drawable.espanol, R.drawable.catalan, R.drawable.ingles};
+    String nombre, idioma, email, idioma_sp, modo, cuento_fav, modo_sp, cuento_sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,45 +41,72 @@ public class Perfil extends AppCompatActivity {
         pantallaCompleta.pantallaCompleta(decorView);
 
         //Asociamos todos los componentes al ID que le corresponde
-        txt_perfil_nombre = (TextView) findViewById(R.id.txt_perfil_nombre);
+        txt_perfil_nombre = findViewById(R.id.txt_perfil_nombre);
         txt_perfil_nombre.setText(getString(R.string.nombre));
-        txt_perfil_opciones = (TextView) findViewById(R.id.txt_perfil_opciones);
+        txt_perfil_opciones = findViewById(R.id.txt_perfil_opciones);
         txt_perfil_opciones.setText(getString(R.string.opciones_perfil));
-        txt_perfil_idioma = (TextView) findViewById(R.id.txt_perfil_idioma);
+        txt_perfil_idioma = findViewById(R.id.txt_perfil_idioma);
         txt_perfil_idioma.setText(getString(R.string.idioma));
-        txt_perfil_email = (TextView) findViewById(R.id.txt_perfil_email);
+        txt_perfil_email = findViewById(R.id.txt_perfil_email);
         txt_perfil_email.setText(getString(R.string.email));
-        txt_perfil_mail = (TextView) findViewById(R.id.txt_perfil_mail);
-        btn_eliminar = (Button) findViewById(R.id.btn_perfil_eliminar);
+        txt_perfil_mail = findViewById(R.id.txt_perfil_mail);
+        btn_eliminar = findViewById(R.id.btn_perfil_eliminar);
         btn_eliminar.setText(getString(R.string.eliminar_cuenta));
-        btn_cerrar = (Button) findViewById(R.id.btn_perfil_cerrar);
+        btn_cerrar = findViewById(R.id.btn_perfil_cerrar);
         btn_cerrar.setText(getString(R.string.cerrar_sesion));
-        btn_confirmar = (Button) findViewById(R.id.btn_perfil_confirmar);
+        btn_confirmar = findViewById(R.id.btn_perfil_confirmar);
         btn_confirmar.setText(getString(R.string.confirmar));
-        btn_atras = (Button) findViewById(R.id.btn_perfil_atras);
-        et_nombre = (EditText) findViewById(R.id.et_perfil_nombre);
-        sp_idioma = (Spinner) findViewById(R.id.sp_perfil_idioma);
+        txt_modo_fav = findViewById(R.id.txt_modo_fav);
+        txt_modo_fav.setText(R.string.modo);
+        txt_cuento_fav = findViewById(R.id.txt_cuento_fav);
+        txt_cuento_fav.setText(R.string.cuento_fav);
+        btn_atras = findViewById(R.id.btn_perfil_atras);
+        et_nombre = findViewById(R.id.et_perfil_nombre);
+        sp_idioma = findViewById(R.id.sp_perfil_idioma);
+        sp_fav = findViewById(R.id.sp_cuento_fav);
+        sp_modo = findViewById(R.id.sp_modo_fav);
 
         //Iniciamos adaptador para el spinner
-        IdiomaAdapter adaptador = new IdiomaAdapter();
+        BanderaAdapter adaptador = new BanderaAdapter("idiomas", this);
         sp_idioma.setAdapter(adaptador);
+        // Creamos ArrayAdapter usando array spinner por defecto
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.modo, R.layout.spinner_item_text);
+        adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
+        sp_modo.setAdapter(adapter);
 
         //Buscamos la info del usuario
-        nombre = MenuPrincipal.user.getNombre();
-        idioma = MenuPrincipal.user.getIdioma();
-        email = MenuPrincipal.user.getMail();
+        nombre = MenuPrincipal.usuario.getNombre();
+        idioma = MenuPrincipal.usuario.getIdioma();
+        email = MenuPrincipal.usuario.getMail();
+        modo = MenuPrincipal.usuario.getModo_fav();
+        cuento_fav = MenuPrincipal.usuario.getFavorito();
         et_nombre.setText(nombre);
         txt_perfil_mail.setText(email);
         if (idioma.equals("esp")){sp_idioma.setSelection(0);}
         if (idioma.equals("cat")){sp_idioma.setSelection(1);}
         if (idioma.equals("eng")){sp_idioma.setSelection(2);}
+        //Seleccionamos modo favorito
+        if (modo.equals("")){
+           sp_modo.setSelection(0);
+        } else {
+            switch (modo){
+                case "leer":
+                    sp_modo.setSelection(1);
+                    break;
+                case "repro":
+                    sp_modo.setSelection(2);
+                    break;
+            }
+        }
 
         //Listeners de los botones
         btn_atras.setOnClickListener(view -> finish());
 
         btn_confirmar.setOnClickListener(view -> {
+            modo_sp = checkModofavorito();
             idioma_sp = selectedIdioma();
-            guardarBD(et_nombre.getText().toString(), idioma_sp);
+            guardarBD(et_nombre.getText().toString(), idioma_sp, modo_sp);
             SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("nombre", et_nombre.getText().toString());
@@ -96,12 +117,12 @@ public class Perfil extends AppCompatActivity {
 
         //Borramos los datos de SharedPreferences para cerrar sesión del usuario
         btn_cerrar.setOnClickListener(view -> {
+            MenuPrincipal.usuario.setNombre("NombreDefecto");
             SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.clear();
             editor.commit();
             finish();
-            MenuPrincipal.user.setNombre("NombreDefecto");
         });
 
         btn_eliminar.setOnClickListener(view -> {
@@ -115,13 +136,13 @@ public class Perfil extends AppCompatActivity {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear();
                 editor.commit();
-                finish();
+                MenuPrincipal.usuario.setNombre("NombreDefecto");
                 eliminarBD();
-                MenuPrincipal.user.setNombre("NombreDefecto");
+                finish();
             });
             builder.setNegativeButton(R.string.no, (dialog, id) -> {
             });
-            // Create the AlertDialog
+            // Creamos el alertDialog
             AlertDialog dialog = builder.create();
             dialog.show();
         });
@@ -138,52 +159,41 @@ public class Perfil extends AppCompatActivity {
     }
 
     //Función para actualizar los datos de un registro
-    public void guardarBD(String nombre, String idioma_spinner){
-        Map<String, Object> data = new HashMap<>();
-        data.put("nombre", nombre);
+    public void guardarBD(String nombre, String idioma_spinner, String m_fav){
         db.collection("usuario").document(email)
                 .update(
                         "nombre", nombre,
-                        "idioma", idioma_spinner
+                        "idioma", idioma_spinner,
+                        "modo_fav", m_fav
                 );
-        MenuPrincipal.user.setNombre(nombre);
-        MenuPrincipal.user.setIdioma(idioma_spinner);
+        MenuPrincipal.usuario.setNombre(nombre);
+        MenuPrincipal.usuario.setIdioma(idioma_spinner);
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "Cuenta actualizada correctamente", Toast.LENGTH_LONG);
+        toast.show();
+        Log.d(TAG, "datos actualizados correctamente");
     }
 
     //Función para actualizar los datos de un registro
     public void eliminarBD(){
         db.collection("usuario").document(email)
                 .delete()
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
-                .addOnFailureListener(e -> Log.w(TAG, "Error deleting document", e));
+                .addOnSuccessListener(aVoid -> {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "Cuenta eliminada correctamente", Toast.LENGTH_LONG);
+                            toast.show();
+                            Log.d(TAG, "Documento borrado correctamente!");
+                        }
+                )
+                .addOnFailureListener(e -> Log.w(TAG, "Error borrando documento", e));
     }
 
-    //Clase que nos adapta el spinner para que sea un cuadrado que muestre la bandera
-    class IdiomaAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return banderas.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return banderas[i];
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            LayoutInflater inflater = LayoutInflater.from(Perfil.this);
-            view = inflater.inflate(R.layout.itemspinner, null);
-            ImageView iv1 = view.findViewById(R.id.iv_bandera);
-            iv1.setImageResource(banderas[i]);
-            return view;
-        }
+    private String checkModofavorito(){
+        String result = "";
+        if (sp_modo.getSelectedItemPosition()==0){result = "";}
+        if (sp_modo.getSelectedItemPosition()==1){result = "leer";}
+        if (sp_modo.getSelectedItemPosition()==2){result = "repro";}
+        return result;
     }
 
 }

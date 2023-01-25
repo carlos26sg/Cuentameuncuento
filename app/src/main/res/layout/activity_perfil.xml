@@ -1,145 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_menu"
     android:theme="@style/Theme.CuentameUnCuento"
-    tools:context=".Perfil">
+    tools:context=".Perfil"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_perfil_atras"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/atras"
-        android:shadowColor="#00FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:stateListAnimator="@null"/>
+        android:layout_marginTop="16dp">
 
-    <TextView
-        android:id="@+id/txt_perfil_opciones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/btn_perfil_atras"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btn_perfil_atras"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/atras"
+            android:shadowColor="#00FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:stateListAnimator="@null"/>
 
-    <TextView
-        android:id="@+id/txt_perfil_nombre"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txt_perfil_opciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_gravity="center_vertical"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/btn_perfil_atras"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="72dp"
-        android:background="#812735B1"
-        android:text="TextView"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_perfil_confirmar"
-        android:layout_width="160dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/pergamino"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:stateListAnimator="@null"/>
+        <TextView
+            android:id="@+id/txt_perfil_nombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="#812735B1"
+            android:text="Nombre: "
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_perfil_eliminar"
-        android:layout_width="160dp"
-        android:layout_height="58dp"
+        <EditText
+            android:id="@+id/et_perfil_nombre"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="4"
+            android:layout_marginStart="12dp"
+            android:background="#812735B1"
+            android:hint="Nombre"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_perfil_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="#812735B1"
+            android:layout_marginStart="12dp"
+            android:text="Email: "
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_perfil_mail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:layout_marginStart="12dp"
+            android:background="#812735B1"
+            android:text="TextView"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:background="#812735B1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:text="Favoritos"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp">
+
+        <TextView
+            android:id="@+id/txt_cuento_fav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="#812735B1"
+            android:text="Cuento "
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:layout_marginStart="12dp">
+
+            <Spinner
+                android:id="@+id/sp_cuento_fav"
+                android:background="#812735B1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_modo_fav"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#812735B1"
+            android:text="Modo: "
+            android:layout_marginStart="12dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:layout_marginStart="12dp">
+
+            <Spinner
+                android:background="#812735B1"
+                android:id="@+id/sp_modo_fav"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp">
+
+        <TextView
+            android:id="@+id/txt_perfil_idioma"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#812735B1"
+            android:text="Idioma: "
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/sp_perfil_idioma"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            style="@style/spinner_style"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/pergamino"
-        android:stateListAnimator="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:gravity="bottom">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_perfil_cerrar"
-        android:layout_width="160dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/pergamino"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:stateListAnimator="@null"
-        app:layout_constraintEnd_toStartOf="@+id/btn_perfil_confirmar"
-        app:layout_constraintStart_toEndOf="@+id/btn_perfil_eliminar" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_perfil_eliminar"
+            android:layout_width="160dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/pergamino"
+            android:stateListAnimator="@null" />
 
-    <EditText
-        android:id="@+id/et_perfil_nombre"
-        android:layout_width="168dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="56dp"
-        android:background="#812735B1"
-        android:hint="Nombre"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/txt_perfil_nombre"
-        app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_perfil_cerrar"
+            android:layout_width="160dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/pergamino"
+            android:stateListAnimator="@null" />
 
-    <TextView
-        android:id="@+id/txt_perfil_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="72dp"
-        android:background="#812735B1"
-        android:text="TextView"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/et_perfil_nombre"
-        app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_perfil_confirmar"
+            android:layout_width="160dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/pergamino"
+            android:stateListAnimator="@null"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_perfil_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="72dp"
-        android:background="#812735B1"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@+id/txt_perfil_email"
-        app:layout_constraintTop_toBottomOf="@+id/btn_perfil_atras" />
-
-    <Spinner
-        android:id="@+id/sp_perfil_idioma"
-        style="@style/spinner_style"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintStart_toEndOf="@+id/txt_perfil_idioma"
-        app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
-
-    <TextView
-        android:id="@+id/txt_perfil_idioma"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="52dp"
-        android:background="#812735B1"
-        android:text="TextView"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/et_perfil_nombre"
-        app:layout_constraintTop_toBottomOf="@+id/txt_perfil_nombre" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,5 +1,8 @@
 package com.carlossega.cuentameuncuento;
 
+/**
+ * Clase cuento, con constructor, getters y setters
+ */
 public class Cuento {
 
     private String titulo, descripcion, imagen, id;

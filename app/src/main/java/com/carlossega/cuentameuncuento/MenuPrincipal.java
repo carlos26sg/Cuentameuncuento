@@ -2,22 +2,16 @@ package com.carlossega.cuentameuncuento;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,16 +20,14 @@ public class MenuPrincipal extends AppCompatActivity {
 
     //Indicamos las variables necesarias
     Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido;
-    String email, nombre= "", idioma = "";
+    String email, nombre= "", idioma = "", modo_fav, cuento_fav;
     TextView info;
-    Spinner sp_idioma;
 
     //Hacemos static el mediaplayer para poder acceder desde otras clases
     public static MediaPlayer mp;
 
-    //Instanciamos la Base de datos con la que trabajamos
-    FirebaseFirestore db;
-    static Usuario user;
+    //Iniciamos el usuario con el que manejaremos el perfil
+    static Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +47,6 @@ public class MenuPrincipal extends AppCompatActivity {
         btn_musica = findViewById(R.id.btn_musica);
         btn_sin_sonido = findViewById(R.id.btn_sin_musica);
         info = findViewById(R.id.txt_menu_info);
-        sp_idioma = findViewById(R.id.sp_idioma_menu);
 
         //Establecemos valores de texto
         act_perfil.setText(R.string.perfil);
@@ -63,7 +54,8 @@ public class MenuPrincipal extends AppCompatActivity {
         leer.setText(getString(R.string.leer));
         reproducir.setText(getString(R.string.reproducir));
 
-        user = new Usuario();
+        //Creamos usuario, con el que trabajaremos para manejar la información
+        usuario = new Usuario();
 
         //Recogemos los parametros que se pasan por activities
         Bundle extra = this.getIntent().getExtras();
@@ -83,92 +75,72 @@ public class MenuPrincipal extends AppCompatActivity {
         }
 
         //Listeners de botones
-        btn_musica.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mp.pause();
-                btn_musica.setVisibility(View.GONE);
-                btn_sin_sonido.setVisibility(View.VISIBLE);
-            }
+        btn_musica.setOnClickListener(v -> {
+            mp.pause();
+            btn_musica.setVisibility(View.GONE);
+            btn_sin_sonido.setVisibility(View.VISIBLE);
         });
 
-        btn_sin_sonido.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mp.start();
-                btn_musica.setVisibility(View.VISIBLE);
-                btn_sin_sonido.setVisibility(View.GONE);
-            }
+        btn_sin_sonido.setOnClickListener(v -> {
+            mp.start();
+            btn_musica.setVisibility(View.VISIBLE);
+            btn_sin_sonido.setVisibility(View.GONE);
         });
 
-        salir.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                db.clearPersistence();
-                db.terminate();
-                finishAffinity();
-                System.exit(0);
-            }
+        salir.setOnClickListener(v -> {
+            finishAffinity();
+            System.exit(0);
         });
 
-        leer.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                db.clearPersistence();
-                db.terminate();
-                //Adjuntamos variables que pasaremos a siguiente activity y modo
-                Bundle extras = new Bundle();
-                idioma = selectedIdioma();
-                extras.putString("nombre", user.getNombre());
-                extras.putString("modo", "leer");
-                extras.putString("idioma", idioma);
-                //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
-                Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
-                intent.putExtras(extras);
-                startActivity(intent);
-                Log.d(TAG, "se inicia SeleccionCuento en modo: leer y nombre: " +
-                        user.getNombre() + ", idioma: " + idioma);
-            }
+        leer.setOnClickListener(v -> {
+            //Adjuntamos variables que pasaremos a siguiente activity y modo
+            Bundle extras = new Bundle();
+            idioma = selectedIdioma();
+            extras.putString("nombre", usuario.getNombre());
+            extras.putString("modo", "leer");
+            extras.putString("idioma", idioma);
+            //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
+            Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
+            intent.putExtras(extras);
+            startActivity(intent);
+            Log.d(TAG, "se inicia SeleccionCuento en modo: leer y nombre: " +
+                    usuario.getNombre() + ", idioma: " + idioma);
         });
 
-        reproducir.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                db.clearPersistence();
-                db.terminate();
-                //Adjuntamos variables que pasaremos a siguiente activity y modo
-                Bundle extras = new Bundle();
-                extras.putString("nombre", user.getNombre());
-                extras.putString("modo", "reproducir");
-                extras.putString("idioma", user.getIdioma());
-                //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
-                Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
-                intent.putExtras(extras);
-                startActivity(intent);
-                Log.d(TAG, "se inicia SeleccionCuento en modo: reproducir y nombre: " +
-                        user.getNombre() + ", idioma: " + idioma);
-            }
+        reproducir.setOnClickListener(v -> {
+            //Adjuntamos variables que pasaremos a siguiente activity y modo
+            Bundle extras = new Bundle();
+            extras.putString("nombre", usuario.getNombre());
+            extras.putString("modo", "reproducir");
+            extras.putString("idioma", usuario.getIdioma());
+            //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
+            Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
+            intent.putExtras(extras);
+            startActivity(intent);
+            Log.d(TAG, "se inicia SeleccionCuento en modo: reproducir y nombre: " +
+                    usuario.getNombre() + ", idioma: " + idioma);
         });
 
-        act_perfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                db.clearPersistence();
-                db.terminate();
-                Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
-                startActivity(intent);
-            }
+        act_perfil.setOnClickListener(view -> {
+            Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
+            startActivity(intent);
         });
     }
 
+    //Función para establecer el idioma según las entradas que tengamos
     private String selectedIdioma() {
         String result = "";
-        if (user.getNombre() == null){
+        if (usuario.getNombre() == null){
             if(leer.getText().equals("Leer")){result = "esp";}
             if(leer.getText().equals("Llegir")){result = "cat";}
             if(leer.getText().equals("Read")){result = "eng";}
             Log.d(TAG, "user es null");
-        } else if (user.getNombre().equals("NombreDefecto")){
+        } else if (usuario.getNombre().equals("NombreDefecto")){
             if(leer.getText().equals("Leer")){result = "esp";}
             if(leer.getText().equals("Llegir")){result = "cat";}
             if(leer.getText().equals("Read")){result = "eng";}
         } else {
-            result = user.getIdioma();
+            result = usuario.getIdioma();
         }
         Log.d(TAG, "se establece idioma: " + result);
         return result;
@@ -177,27 +149,28 @@ public class MenuPrincipal extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        db = FirebaseFirestore.getInstance();
+        //db = FirebaseFirestore.getInstance();
         //Dependiendo de si llega o no un mail mostraremos mensajes diferentes
         if (!email.equals("noUser")){
             try {
-                if (user.getNombre().equals("NombreDefecto")){
+                if (usuario.getNombre().equals("NombreDefecto")){
                     info.setText(getString(R.string.no_inicio));
                     act_perfil.setVisibility(View.GONE);
-                    user.setIdioma(selectedIdioma());
+                    usuario.setIdioma(selectedIdioma());
                 } else {
                     checkBD(email);
                 }
             //Controlamos NullPointerException si es la primera vez que se ejecuta
             } catch (NullPointerException e){
+                Log.d(TAG, "mail pasado: " + email);
                 checkBD(email);
             }
         } else {
             //Se establece nombre por defecto y se detecta idioma del usuario
             info.setText(getString(R.string.no_inicio));
             act_perfil.setVisibility(View.GONE);
-            user.setNombre("NombreDefecto");
-            user.setIdioma(selectedIdioma());
+            usuario.setNombre("NombreDefecto");
+            usuario.setIdioma(selectedIdioma());
         }
         if(mp.isPlaying()){
             btn_musica.setVisibility(View.VISIBLE);
@@ -206,34 +179,46 @@ public class MenuPrincipal extends AppCompatActivity {
             btn_musica.setVisibility(View.GONE);
             btn_sin_sonido.setVisibility(View.VISIBLE);
         }
+
+        //Codigo setOnCompletionListener para volver a reproducir la canción
+        mp.setOnCompletionListener(MediaPlayer::start);
     }
 
     //Hacemos busqueda en base de datos para rellenar los campos de información
     public void checkBD(String emailAComprobar){
+        FirebaseFirestore db;
+        db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("usuario").document(emailAComprobar);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        nombre = document.get("nombre").toString();;
-                        idioma = document.get("idioma").toString();;
-                        user.setNombre(nombre);
-                        user.setIdioma(idioma);
-                        user.setMail(emailAComprobar);
-                        if (user.getNombre().equals("")){
-                            info.setText(getString(R.string.bienvenido) + " " + user.getMail());
-                        } else {
-                            info.setText(getString(R.string.bienvenido) + " " + user.getNombre());
-                        }
-                        Log.d(TAG, "carga correcta desde la base de datos");
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    try {
+                        nombre = document.get("nombre").toString();
+                        idioma = document.get("idioma").toString();
+                        modo_fav = document.get("modo_fav").toString();
+                        cuento_fav = document.get("favorito").toString();
+                    } catch (NullPointerException e){
+                        Log.d(TAG, "error: " + e);
                     }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                    usuario.setNombre(nombre);
+                    usuario.setIdioma(idioma);
+                    usuario.setMail(emailAComprobar);
+                    usuario.setModo_fav(modo_fav);
+                    usuario.setFavorito(cuento_fav);
+                    if (usuario.getNombre().equals("")){
+                        info.setText(getString(R.string.bienvenido) + " " + usuario.getMail());
+                    } else {
+                        info.setText(getString(R.string.bienvenido) + " " + usuario.getNombre());
+                    }
+                    Log.d(TAG, "carga correcta desde la base de datos");
+                    db.clearPersistence();
+                    db.terminate();
                 }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
             }
         });
-    }
 
+    }
 }

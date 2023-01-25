@@ -63,9 +63,9 @@ public class AdaptadorCuentos extends RecyclerView.Adapter<AdaptadorCuentos.View
         public ViewHolderCuentos(@NonNull View itemView) {
             super(itemView);
             //Asignamos los componentes a su ID
-            tv_titulo = (TextView) itemView.findViewById(R.id.idTitulo);
-            tv_descripcion = (TextView) itemView.findViewById(R.id.idDescripcion);
-            portada = (ImageView) itemView.findViewById(R.id.idImagen);
+            tv_titulo = itemView.findViewById(R.id.idTitulo);
+            tv_descripcion = itemView.findViewById(R.id.idDescripcion);
+            portada = itemView.findViewById(R.id.idImagen);
         }
     }
 }

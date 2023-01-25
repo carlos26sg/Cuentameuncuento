@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Base64;
@@ -34,17 +34,10 @@ import javax.crypto.spec.SecretKeySpec;
 public class Autenticacion extends AppCompatActivity implements Serializable {
 
     //Iniciamos las variables con las que trabajamos
-    private TextView mail;
-    private TextView password;
-    private TextView repassword;
+    private TextView mail, password, repassword;
     private Button volver;
     private CheckBox mantener;
-    private String message;
-    private String pass;
-    private String email;
-    private String secretKey;
-    private String nombre;
-    private String idioma;
+    private String message, pass, email, secretKey, nombre, idioma;
     //Instanciamos la Base de datos con la que trabajamos
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -58,18 +51,20 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         pantallaCompleta.pantallaCompleta(decorView);
 
         //Asiganmos controles a las variables
-        mail = (EditText) findViewById(R.id.et_mail);
-        password = (EditText) findViewById(R.id.et_password);
-        repassword = (EditText) findViewById(R.id.et_repassword);
-        TextView repite = (TextView) findViewById(R.id.tv_repite);
-        volver = (Button) findViewById(R.id.btn_volver);
-        Button confirmar = (Button) findViewById(R.id.btn_confirmar);
-        mantener = (CheckBox) findViewById(R.id.cb_mantener_inicio);
+        mail = findViewById(R.id.et_mail);
+        password = findViewById(R.id.et_password);
+        repassword = findViewById(R.id.et_repassword);
+        TextView repite = findViewById(R.id.tv_repite);
+        volver = findViewById(R.id.btn_volver);
+        Button confirmar = findViewById(R.id.btn_confirmar);
+        mantener = findViewById(R.id.cb_mantener_inicio);
+
+        //Damos valor a idioma y establecemos texto de los TextView y botones
         mantener.setText(R.string.mantener_sesion);
         repite.setText(R.string.repass);
         volver.setText(getString(R.string.atras));
-        idioma = selectedIdioma();
         confirmar.setText(R.string.registrarse);
+        idioma = selectedIdioma();
 
         //Generamos la clave con la que encriptaremos y desencriptaremos la contraseña
         secretKey = "D€sCiFR@rP@S$WoRd.";
@@ -88,12 +83,22 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
 
         //Listener de boton volver
         volver.setOnClickListener(view -> {
+            //Cerramos conexión con BD para evitar errores
+            db.clearPersistence();
+            db.terminate();
             //Cerramos esta activity y abrimos MainActivity
             Intent intent1 = new Intent(Autenticacion.this, MainActivity.class);
             startActivity(intent1);
             finish();
         });
+    }
 
+    @Override
+    protected void onDestroy() {
+        //Cerramos conexión con BD para evitar errores
+        db.clearPersistence();
+        db.terminate();
+        super.onDestroy();
     }
 
     //Función asignada al botón confirmar
@@ -129,6 +134,9 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                             edit.putBoolean("iniciada", true);
                             edit.commit();
                             Log.d(TAG, "mail y contraseña correcta, se accede a MenuPrincipal");
+                            //Cerramos conexión con BD para evitar errores
+                            db.clearPersistence();
+                            db.terminate();
                             //Agrega el objeto bundle al Intent e inicia Activity MenuPrincipal y cierra Autenticacion
                             Intent intent = new Intent(Autenticacion.this, MenuPrincipal.class);
                             intent.putExtras(extras);
@@ -176,6 +184,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                 user.put("nombre", "");
                                 user.put("favorito", "");
                                 user.put("idioma", idioma);
+                                user.put("modo_fav", "");
                                 //Mostramos en Toast que que ha ido bien
                                 db.collection("usuario").document(email)
                                         .set(user)
@@ -186,6 +195,9 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                             Log.d(TAG, "se crea cuenta con exito");
                                         })
                                         .addOnFailureListener(e -> Log.w(TAG, "Error writing document", e));
+                                //Cerramos conexión con BD para evitar errores
+                                db.clearPersistence();
+                                db.terminate();
                                 //Inicia MainActivity y cierra Autenticacion
                                 Intent intent = new Intent(Autenticacion.this, MainActivity.class);
                                 startActivity(intent);
@@ -212,6 +224,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         }
     }
 
+    //Si se marca la casilla de mantener sesión iniciada, guardamos datos en SharedPreferences
     private void guardarPreferencias(){
         SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -227,7 +240,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         try {
             //Cifrado MD5
             MessageDigest md5 = MessageDigest.getInstance("MD5");
-            byte[] llavePass = md5.digest(secretKey.getBytes("utf-8"));
+            byte[] llavePass = md5.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] bytesKey = Arrays.copyOf(llavePass, 24);
             SecretKey key = new SecretKeySpec(bytesKey, "DESede");
             //Inicializamos objeto Cipher con la clave
@@ -236,7 +249,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
             c.init(Cipher.ENCRYPT_MODE, key);
 
             //Pasamos la contraseña del usuario a un array de bytes
-            byte[] plainTextBytes = userPass.getBytes("utf-8");
+            byte[] plainTextBytes = userPass.getBytes(StandardCharsets.UTF_8);
             //Encriptamos la contraseña en bytes
             byte[] cifrado = c.doFinal(plainTextBytes);
             // Convertimos el byte cifrado [] a base64 para guardarlo en la base de datos
@@ -253,12 +266,12 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         String descifrada= "";
         try {
             //Recogemos la contraseña guardada en la base de datos y la decodificamos en Base64
-            byte[] mensaje = Base64.getDecoder().decode(passDescifrar.getBytes("utf-8"));
+            byte[] mensaje = Base64.getDecoder().decode(passDescifrar.getBytes(StandardCharsets.UTF_8));
             //Cifrado MD5
             MessageDigest md5 = MessageDigest.getInstance("MD5");
 
             //Hacemos el descifrado con la clave
-            byte[] digestOfPassword = md5.digest(secretKey.getBytes("utf-8"));
+            byte[] digestOfPassword = md5.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
             SecretKey key = new SecretKeySpec(keyBytes, "DESede");
 
@@ -268,7 +281,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
             desc.init(Cipher.DECRYPT_MODE, key);
             byte[] plainText = desc.doFinal(mensaje);
             //Pasamos de bytes a String
-            descifrada = new String(plainText, "UTF-8");
+            descifrada = new String(plainText, StandardCharsets.UTF_8);
 
         }catch (Exception e){
             e.printStackTrace();

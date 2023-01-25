@@ -2,6 +2,8 @@ package com.carlossega.cuentameuncuento;
 
 import static android.content.ContentValues.TAG;
 
+import static androidx.core.widget.TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -44,24 +46,18 @@ public class MainActivity extends AppCompatActivity {
         getPreferences();
 
         //Listeners de botones
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Autenticacion.class);
-                intent.putExtra(EXTRA_MESSAGE, "login");
-                finish();
-                startActivity(intent);
-            }
+        btn_login.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, Autenticacion.class);
+            intent.putExtra(EXTRA_MESSAGE, "login");
+            finish();
+            startActivity(intent);
         });
 
-        btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Autenticacion.class);
-                intent.putExtra(EXTRA_MESSAGE, "register");
-                finish();
-                startActivity(intent);
-            }
+        btn_register.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, Autenticacion.class);
+            intent.putExtra(EXTRA_MESSAGE, "register");
+            finish();
+            startActivity(intent);
         });
     }
 
@@ -72,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
         email = prefs.getString("mail", null);
         nombre = prefs.getString("nombre", null);
         idioma = prefs.getString("idioma", "");
-        //Si contiene un mail, creamos un Usuario
-        //Mostraremos o no los botones de inicio de sesión y Registro
+        /*
+          Si contiene un mail, creamos un Usuario
+          Mostraremos o no los botones de inicio de sesión y Registro
+         */
         if (email != null){
             if (nombre.equals("")){
                 txt_perfil.setText(getString(R.string.bienvenido) + ", " + email);
@@ -91,22 +89,21 @@ public class MainActivity extends AppCompatActivity {
 
     /** Se llama cuando el usuario pulsa el boton comenzar */
     public void comenzar(View view) {
-        /**
-         * Si no tenemos email (email=null) es que no se ha iniciado sesion anteriormente
-         * Si tenemos algo guardado (en SharedPreferences) cargamos sus datos
-         * y los pasamos al MenuPrincipal
+        /*
+          Si no tenemos email (email=null) es que no se ha iniciado sesion anteriormente
+          Si tenemos algo guardado (en SharedPreferences) cargamos sus datos
+          y los pasamos al MenuPrincipal
          */
         Bundle extras = new Bundle();
         Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
         if (email != null){
             extras.putString("mail", email);
-            intent.putExtras(extras);
             Log.d(TAG, "se inicia app con usuario, se envian datos y abrimos Menu principal");
         } else {
             extras.putString("mail", "noUser");
-            intent.putExtras(extras);
             Log.d(TAG, "se inicia aplicación sin ningún usuario");
         }
+        intent.putExtras(extras);
         finish();
         startActivity(intent);
     }

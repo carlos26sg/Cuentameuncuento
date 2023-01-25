@@ -30,4 +30,7 @@
     <string name="repass">Torna a introduir la contrasenya</string>
     <string name="password">Contrasenya</string>
     <string name="iniciar">Iniciar</string>
+    <string name="modo">Mode</string>
+    <string name="cuento_fav">Conte</string>
+    <string name="sin_seleccion">Sense selecció</string>
 </resources>

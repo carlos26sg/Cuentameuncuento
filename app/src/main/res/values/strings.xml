@@ -31,4 +31,7 @@
     <string name="repass">Vuelve a introducir la contraseña</string>
     <string name="password">Contraseña</string>
     <string name="iniciar">Iniciar</string>
+    <string name="modo">Modo</string>
+    <string name="cuento_fav">Cuento</string>
+    <string name="sin_seleccion" >Sin selección</string>
 </resources>

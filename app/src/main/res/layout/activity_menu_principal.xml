@@ -25,6 +25,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="112dp"
         android:textSize="22sp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
         android:background="@drawable/pergamino"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -37,6 +41,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:textSize="22sp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
         android:background="@drawable/pergamino"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_leer"
@@ -50,6 +58,10 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/pergamino"
         android:textSize="22sp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:stateListAnimator="@null"/>
@@ -61,6 +73,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:textSize="22sp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
         android:background="@drawable/pergamino"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -87,18 +103,6 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:stateListAnimator="@null"/>
-
-    <Spinner
-        android:id="@+id/sp_idioma_menu"
-        style="@style/spinner_style"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="36dp"
-        android:theme="@style/Theme.CuentameUnCuento"
-        app:layout_constraintBottom_toTopOf="@+id/btn_salir"
-        app:layout_constraintEnd_toEndOf="parent"
         android:stateListAnimator="@null"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

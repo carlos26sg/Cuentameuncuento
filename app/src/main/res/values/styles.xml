@@ -11,7 +11,7 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-
+    <!--Estilo para dar efecto de sombra a las palabras del cuento-->
     <style name="SombraLetras">
         <item name="android:paddingLeft">2px</item>
         <item name="android:paddingBottom">2px</item>
@@ -20,5 +20,4 @@
         <item name="android:shadowDy">2.6</item>
         <item name="android:shadowRadius">3.2</item>
     </style>
-
 </resources>
