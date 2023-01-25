@@ -60,11 +60,12 @@
         <EditText
             android:id="@+id/et_perfil_nombre"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_weight="4"
             android:layout_marginStart="12dp"
             android:background="#812735B1"
             android:hint="Nombre"
+            android:maxLength="20"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -106,6 +107,7 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:text="Favoritos"
+            android:textStyle="bold"
             android:gravity="center_horizontal"/>
     </LinearLayout>
 

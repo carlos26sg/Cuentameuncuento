@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Perfil extends AppCompatActivity {
 
@@ -74,6 +79,8 @@ public class Perfil extends AppCompatActivity {
                 R.array.modo, R.layout.spinner_item_text);
         adapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
         sp_modo.setAdapter(adapter);
+        //Cargamos lista de cuentos
+        spinnerCuentos();
 
         //Buscamos la info del usuario
         nombre = MenuPrincipal.usuario.getNombre();
@@ -106,7 +113,7 @@ public class Perfil extends AppCompatActivity {
         btn_confirmar.setOnClickListener(view -> {
             modo_sp = checkModofavorito();
             idioma_sp = selectedIdioma();
-            guardarBD(et_nombre.getText().toString(), idioma_sp, modo_sp);
+            guardarBD(et_nombre.getText().toString(), idioma_sp, modo_sp, cuento_fav);
             SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("nombre", et_nombre.getText().toString());
@@ -159,12 +166,13 @@ public class Perfil extends AppCompatActivity {
     }
 
     //Función para actualizar los datos de un registro
-    public void guardarBD(String nombre, String idioma_spinner, String m_fav){
+    public void guardarBD(String nombre, String idioma_spinner, String m_fav, String c_fav){
         db.collection("usuario").document(email)
                 .update(
                         "nombre", nombre,
-                        "idioma", idioma_spinner,
-                        "modo_fav", m_fav
+                        "idioma", idioma_spinner
+                        //"modo_fav", m_fav,
+                        //"favorito", c_fav
                 );
         MenuPrincipal.usuario.setNombre(nombre);
         MenuPrincipal.usuario.setIdioma(idioma_spinner);
@@ -196,4 +204,46 @@ public class Perfil extends AppCompatActivity {
         return result;
     }
 
+    //Cargamos en spinner la lista de cuentos disponibles
+    public void spinnerCuentos(){
+        List<SpinnerId> lista = new ArrayList<SpinnerId>();
+        lista.add(new SpinnerId("Sin selección", ""));
+        //Realizamos la consulta de todos los documentos de la colección cuentos
+        db.collection("cuentos")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            //Buscamos en la BD y añadimos cada campo de los cuentos a la lista
+                            try {
+                                lista.add(new SpinnerId(document.get("titulo_" + idioma).toString(),
+                                        document.get("id").toString()));
+                            } catch (NullPointerException e){
+                                Log.d(TAG, "error : " + e);
+                            }
+                        }
+                        Log.d(TAG, "datos recogidos ");
+                        // Creamos ArrayAdapter usando array spinner por defecto
+                        ArrayAdapter<SpinnerId> adap = new ArrayAdapter<>(this,
+                                R.layout.spinner_item_text, lista);
+                        adap.setDropDownViewResource(R.layout.spinner_item_dropdown);
+                        sp_fav.setAdapter(adap);
+                        sp_fav.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                SpinnerId s = (SpinnerId) parent.getItemAtPosition(position);
+                                cuento_fav = s.nombre;
+                                Log.d(TAG, "seleccionado: " + cuento_fav);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
+    }
 }
