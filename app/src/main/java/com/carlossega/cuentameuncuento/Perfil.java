@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -33,7 +34,7 @@ public class Perfil extends AppCompatActivity {
     Button btn_eliminar, btn_cerrar, btn_confirmar, btn_atras;
     Spinner sp_idioma, sp_modo, sp_fav;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String nombre, idioma, email, idioma_sp, modo, cuento_fav, modo_sp, cuento_sp;
+    String nombre, idioma, email, idioma_sp, modo, cuento_fav, modo_sp, fav_sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,13 +114,7 @@ public class Perfil extends AppCompatActivity {
         btn_confirmar.setOnClickListener(view -> {
             modo_sp = checkModofavorito();
             idioma_sp = selectedIdioma();
-            guardarBD(et_nombre.getText().toString(), idioma_sp, modo_sp, cuento_fav);
-            SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("nombre", et_nombre.getText().toString());
-            editor.putString("idioma", idioma_sp);
-            editor.commit();
-            finish();
+            guardarBD(et_nombre.getText().toString(), idioma_sp, modo_sp, fav_sp);
         });
 
         //Borramos los datos de SharedPreferences para cerrar sesión del usuario
@@ -145,7 +140,6 @@ public class Perfil extends AppCompatActivity {
                 editor.commit();
                 MenuPrincipal.usuario.setNombre("NombreDefecto");
                 eliminarBD();
-                finish();
             });
             builder.setNegativeButton(R.string.no, (dialog, id) -> {
             });
@@ -167,19 +161,35 @@ public class Perfil extends AppCompatActivity {
 
     //Función para actualizar los datos de un registro
     public void guardarBD(String nombre, String idioma_spinner, String m_fav, String c_fav){
-        db.collection("usuario").document(email)
-                .update(
-                        "nombre", nombre,
-                        "idioma", idioma_spinner
-                        //"modo_fav", m_fav,
-                        //"favorito", c_fav
-                );
-        MenuPrincipal.usuario.setNombre(nombre);
-        MenuPrincipal.usuario.setIdioma(idioma_spinner);
-        Toast toast = Toast.makeText(getApplicationContext(),
-                "Cuenta actualizada correctamente", Toast.LENGTH_LONG);
-        toast.show();
-        Log.d(TAG, "datos actualizados correctamente");
+        //Creamos hilo para que cargue todos los datos correctamente
+        runOnUiThread(() -> {
+            Log.d(TAG, "entra en guardar");
+            DocumentReference usuario = db.collection("usuario").document(email);
+            usuario
+                    .update(
+                            "nombre", nombre,
+                            "idioma", idioma_spinner,
+                            "modo_fav", m_fav,
+                            "favorito", c_fav
+                    ).addOnCompleteListener(task -> {
+                        MenuPrincipal.usuario.setNombre(nombre);
+                        MenuPrincipal.usuario.setIdioma(idioma_spinner);
+                        MenuPrincipal.usuario.setModo_fav(m_fav);
+                        MenuPrincipal.usuario.setFavorito(c_fav);
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Cuenta actualizada correctamente", Toast.LENGTH_LONG);
+                        toast.show();
+                        //Guardamos SharedPreferences y cerramos actividad
+                        SharedPreferences preferences = getSharedPreferences
+                                (getString(R.string.prefs_file), Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("nombre", et_nombre.getText().toString());
+                        editor.putString("idioma", idioma_sp);
+                        editor.commit();
+                        finish();
+                        Log.d(TAG, "datos actualizados correctamente");
+                    }).addOnFailureListener(e -> Log.d(TAG, "error al actualizar"));
+        });
     }
 
     //Función para actualizar los datos de un registro
@@ -194,8 +204,10 @@ public class Perfil extends AppCompatActivity {
                         }
                 )
                 .addOnFailureListener(e -> Log.w(TAG, "Error borrando documento", e));
+        finish();
     }
 
+    //Función que nos comprueba el modo favorito
     private String checkModofavorito(){
         String result = "";
         if (sp_modo.getSelectedItemPosition()==0){result = "";}
@@ -206,44 +218,55 @@ public class Perfil extends AppCompatActivity {
 
     //Cargamos en spinner la lista de cuentos disponibles
     public void spinnerCuentos(){
-        List<SpinnerId> lista = new ArrayList<SpinnerId>();
-        lista.add(new SpinnerId("Sin selección", ""));
-        //Realizamos la consulta de todos los documentos de la colección cuentos
-        db.collection("cuentos")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            //Buscamos en la BD y añadimos cada campo de los cuentos a la lista
-                            try {
-                                lista.add(new SpinnerId(document.get("titulo_" + idioma).toString(),
-                                        document.get("id").toString()));
-                            } catch (NullPointerException e){
-                                Log.d(TAG, "error : " + e);
+        runOnUiThread(() -> {
+            List<SpinnerId> lista = new ArrayList<>();
+            lista.add(new SpinnerId("Sin selección", ""));
+            //Realizamos la consulta de todos los documentos de la colección cuentos
+            db.collection("cuentos")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                //Buscamos en la BD y añadimos cada campo de los cuentos a la lista
+                                try {
+                                    lista.add(new SpinnerId(document.get("titulo_" + idioma).toString(),
+                                            document.get("id").toString()));
+                                } catch (NullPointerException e){
+                                    Log.d(TAG, "error : " + e);
+                                }
                             }
+                            Log.d(TAG, "datos recogidos ");
+                            // Creamos ArrayAdapter usando array spinner por defecto
+                            ArrayAdapter<SpinnerId> adap = new ArrayAdapter<>(getApplicationContext(),
+                                    R.layout.spinner_item_text, lista);
+                            adap.setDropDownViewResource(R.layout.spinner_item_dropdown);
+                            sp_fav.setAdapter(adap);
+                            sp_fav.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                    SpinnerId s = (SpinnerId) parent.getItemAtPosition(position);
+                                    fav_sp = s.nombre;
+                                    Log.d(TAG, "seleccionado: " + fav_sp);
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
+
+                                }
+                            });
+                            //Recorremos con for para ver el cuento seleccionado como favorito
+                            int i = 0;
+                            for (SpinnerId spinnerId : lista){
+                                Log.d(TAG, "El cuento es: " + cuento_fav);
+                                Log.d(TAG, "El id es: " + spinnerId.nombre);
+                                if (spinnerId.nombre.equals(cuento_fav)){ sp_fav.setSelection(i); }
+                                i++;
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-                        Log.d(TAG, "datos recogidos ");
-                        // Creamos ArrayAdapter usando array spinner por defecto
-                        ArrayAdapter<SpinnerId> adap = new ArrayAdapter<>(this,
-                                R.layout.spinner_item_text, lista);
-                        adap.setDropDownViewResource(R.layout.spinner_item_dropdown);
-                        sp_fav.setAdapter(adap);
-                        sp_fav.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                SpinnerId s = (SpinnerId) parent.getItemAtPosition(position);
-                                cuento_fav = s.nombre;
-                                Log.d(TAG, "seleccionado: " + cuento_fav);
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        });
-                    } else {
-                        Log.d(TAG, "Error getting documents: ", task.getException());
-                    }
-                });
+                    });
+            db.clearPersistence();
+        });
     }
 }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Cuentame un cuento</string>
     <string name="prefs_file" translatable="false">com.carlossega.cuentameuncuento.PREFERENCE_FILE_KEY</string>
-    <string name="info_developer" translatable="false">Cuentame un cuento v0.1</string>
+    <string name="info_developer" translatable="false">Cuentame un cuento v1.0</string>
     <string name="no_inicio">No se ha iniciado sesión</string>
     <string name="bienvenido">Bienvenido</string>
     <string name="leer">Leer</string>
@@ -23,7 +23,7 @@
     <string name="si">Si</string>
     <string name="no">No</string>
     <string name="borrar">Se va a borrar la cuenta</string>
-    <string name="volver_seleccion">Vas a volver a la pantalla de selección de cuento.</string>
+    <string name="volver_seleccion">Vas a salir de la reproducción del cuento.</string>
     <string name="comenzar">Comenzar</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="registrarse">Registrarse</string>

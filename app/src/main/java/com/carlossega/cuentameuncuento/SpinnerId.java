@@ -1,5 +1,6 @@
 package com.carlossega.cuentameuncuento;
 
+//Clase para guardar datos del cuento del Spinner
 public class SpinnerId {
     public String id;
     public String nombre;
@@ -12,5 +13,13 @@ public class SpinnerId {
     @Override
     public String toString() {
         return id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }

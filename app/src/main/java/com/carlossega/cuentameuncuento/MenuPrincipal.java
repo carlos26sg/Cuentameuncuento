@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -19,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MenuPrincipal extends AppCompatActivity {
 
     //Indicamos las variables necesarias
-    Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido;
+    Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido, btn_favorito;
     String email, nombre= "", idioma = "", modo_fav, cuento_fav;
     TextView info;
 
@@ -47,12 +48,14 @@ public class MenuPrincipal extends AppCompatActivity {
         btn_musica = findViewById(R.id.btn_musica);
         btn_sin_sonido = findViewById(R.id.btn_sin_musica);
         info = findViewById(R.id.txt_menu_info);
+        btn_favorito = findViewById(R.id.btn_favorito);
 
         //Establecemos valores de texto
         act_perfil.setText(R.string.perfil);
         salir.setText(getString(R.string.salir));
         leer.setText(getString(R.string.leer));
         reproducir.setText(getString(R.string.reproducir));
+        btn_favorito.setText(R.string.favorito);
 
         //Creamos usuario, con el que trabajaremos para manejar la información
         usuario = new Usuario();
@@ -96,7 +99,6 @@ public class MenuPrincipal extends AppCompatActivity {
             //Adjuntamos variables que pasaremos a siguiente activity y modo
             Bundle extras = new Bundle();
             idioma = selectedIdioma();
-            extras.putString("nombre", usuario.getNombre());
             extras.putString("modo", "leer");
             extras.putString("idioma", idioma);
             //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
@@ -110,7 +112,6 @@ public class MenuPrincipal extends AppCompatActivity {
         reproducir.setOnClickListener(v -> {
             //Adjuntamos variables que pasaremos a siguiente activity y modo
             Bundle extras = new Bundle();
-            extras.putString("nombre", usuario.getNombre());
             extras.putString("modo", "reproducir");
             extras.putString("idioma", usuario.getIdioma());
             //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
@@ -124,6 +125,31 @@ public class MenuPrincipal extends AppCompatActivity {
         act_perfil.setOnClickListener(view -> {
             Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
             startActivity(intent);
+        });
+
+        btn_favorito.setOnClickListener(view -> {
+            if (usuario.getNombre().equals("NombreDefecto")){
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Debes iniciar sesión para usar esta función", Toast.LENGTH_LONG);
+                toast.show();
+            } else if (usuario.getModo_fav().equals("") || usuario.getFavorito().equals("")){
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Configura tus favoritos en tu perfil para acceder", Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+                //Adjuntamos variables que pasaremos a siguiente activity y modo
+                Bundle extras = new Bundle();
+                extras.putString("modo", usuario.getModo_fav());
+                extras.putString("idioma", usuario.getIdioma());
+                extras.putString("cuento", usuario.getFavorito());
+                //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
+                Intent intent = new Intent(MenuPrincipal.this, ReproductorCuento.class);
+                intent.putExtras(extras);
+                startActivity(intent);
+                Log.d(TAG, "se inicia favorito en modo: " + usuario.getModo_fav() + ", cuento: "
+                        + usuario.getFavorito() + "nombre: " + usuario.getNombre()
+                        + ", idioma: " + idioma);
+            }
         });
     }
 

@@ -14,7 +14,7 @@
     <string name="cerrar_sesion">Tancar sessió</string>
     <string name="eliminar_cuenta">Esborrar compte</string>
     <string name="confirmar">Confirma</string>
-    <string name="favorito">Favorit</string>
+    <string name="favorito">Preferit</string>
     <string name="idioma">Llengua</string>
     <string name="perfil">Perfil</string>
     <string name="email">Correu</string>
@@ -22,7 +22,7 @@
     <string name="si">Si</string>
     <string name="no">No</string>
     <string name="borrar">El compte s\'esborrarà</string>
-    <string name="volver_seleccion">Tornaràs a la pantalla de selecció de contes.</string>
+    <string name="volver_seleccion">Sortiràs de la reproduccio del conte.</string>
     <string name="comenzar">Començar</string>
     <string name="iniciar_sesion">Iniciar sessió</string>
     <string name="registrarse">Registrar-se</string>

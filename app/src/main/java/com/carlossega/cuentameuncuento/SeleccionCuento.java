@@ -27,7 +27,7 @@ public class SeleccionCuento extends AppCompatActivity {
     TextView selecciona;
     ArrayList<Cuento> listaCuentos;
     RecyclerView recyclerCuentos;
-    String idioma, modo, id_cuento, nombre;
+    String idioma, modo, id_cuento;
     AdaptadorCuentos adapter;
     Spinner sp_idioma;
 
@@ -51,7 +51,6 @@ public class SeleccionCuento extends AppCompatActivity {
         Bundle extra = this.getIntent().getExtras();
         idioma = extra.getString("idioma");
         modo = extra.getString("modo");
-        nombre = extra.getString("nombre");
 
         //Click del boton atrás
         atras.setOnClickListener(view -> finish());

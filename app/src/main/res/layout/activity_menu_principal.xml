@@ -23,16 +23,16 @@
         android:layout_width="140dp"
         android:layout_height="58dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="112dp"
-        android:textSize="22sp"
+        android:layout_marginTop="72dp"
         android:autoSizeTextType="uniform"
-        android:maxLines="1"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
         android:background="@drawable/pergamino"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:stateListAnimator="@null"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:stateListAnimator="@null"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_reproducir"
@@ -40,15 +40,31 @@
         android:layout_height="58dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:textSize="22sp"
         android:autoSizeTextType="uniform"
-        android:maxLines="1"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
         android:background="@drawable/pergamino"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:stateListAnimator="@null"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_leer"
-        android:stateListAnimator="@null"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_leer" />
+
+    <Button
+        android:id="@+id/btn_favorito"
+        android:layout_width="140dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/pergamino"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:stateListAnimator="@null"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_reproducir" />
 
     <Button
         android:id="@+id/btn_salir"

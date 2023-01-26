@@ -14,7 +14,7 @@
     <string name="cerrar_sesion">Sign off</string>
     <string name="eliminar_cuenta">Delete account</string>
     <string name="confirmar">Confirm</string>
-    <string name="favorito">Fav</string>
+    <string name="favorito">Favorite</string>
     <string name="idioma">Language</string>
     <string name="perfil">Profile</string>
     <string name="email">Mail</string>
@@ -22,7 +22,7 @@
     <string name="si">Yes</string>
     <string name="no">No</string>
     <string name="borrar">The account will be deleted</string>
-    <string name="volver_seleccion">You\'ll be back in the screen of tales.</string>
+    <string name="volver_seleccion">You\'ll leave this screen.</string>
     <string name="comenzar">Start</string>
     <string name="iniciar_sesion">Log in</string>
     <string name="registrarse">Sign up</string>
