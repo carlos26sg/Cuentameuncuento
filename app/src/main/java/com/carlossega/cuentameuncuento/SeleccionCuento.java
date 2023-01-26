@@ -111,7 +111,11 @@ public class SeleccionCuento extends AppCompatActivity {
                         adapter.setOnClickListener(view -> {
                             db.clearPersistence();
                             db.terminate();
-                            id_cuento = listaCuentos.get(recyclerCuentos.getChildAdapterPosition(view)).getId();
+                            try {
+                                id_cuento = listaCuentos.get(recyclerCuentos.getChildAdapterPosition(view)).getId();
+                            } catch (IndexOutOfBoundsException e){
+                                Log.d(TAG, "error: " + e);
+                            }
                             Bundle extras = new Bundle();
                             extras.putString("modo", modo);
                             extras.putString("idioma", idioma);

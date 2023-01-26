@@ -121,7 +121,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                         pass_descifrar = document.get("pass").toString();
                         if (descifrar(pass_descifrar, secretKey).equals(pass)){
                             Toast toast = Toast.makeText(getApplicationContext(),
-                                    "Se ha accedido correctamente", Toast.LENGTH_LONG);
+                                    getString(R.string.acceso_correcto), Toast.LENGTH_LONG);
                             toast.show();
                             nombre = document.get("nombre").toString();
                             if (mantener.isChecked()){guardarPreferencias();}
@@ -144,14 +144,14 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                             finish();
                         } else {
                             Toast toast = Toast.makeText(getApplicationContext(),
-                                    "Contraseña incorrecta. Comprueba la contraseña.", Toast.LENGTH_LONG);
+                                    getString(R.string.pass_incorrecto), Toast.LENGTH_LONG);
                             toast.show();
                             Log.d(TAG, "contraseña incorrecta. No se ha podido acceder");
                         }
                     //Si el documento no existe
                     } else {
                         Toast toast = Toast.makeText(getApplicationContext(),
-                                "Error al intentar acceder. No se ha encontrado el mail.", Toast.LENGTH_LONG);
+                                getString(R.string.mail_no_encontrado), Toast.LENGTH_LONG);
                         toast.show();
                         Log.d(TAG, "mail no encontrado. No se ha podido acceder");
                     }
@@ -172,7 +172,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                             //Si ya se ha creado en la bd ese mail se muestra Toast
                             if (document.exists()) {
                                 Toast toast = Toast.makeText(getApplicationContext(),
-                                        "Ya existe una cuenta con ese email", Toast.LENGTH_LONG);
+                                        getString(R.string.ya_existe), Toast.LENGTH_LONG);
                                 toast.show();
                                 Log.d(TAG, "no se puede crear cuenta, ya existe mail en database");
                             //Si no hay registros de ese mail se creará uno nuevo
@@ -190,7 +190,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                         .set(user)
                                         .addOnSuccessListener(aVoid -> {
                                             Toast toast = Toast.makeText(getApplicationContext(),
-                                                    "Cuenta creada con exito", Toast.LENGTH_LONG);
+                                                    getString(R.string.cuenta_exito), Toast.LENGTH_LONG);
                                             toast.show();
                                             Log.d(TAG, "se crea cuenta con exito");
                                         })
@@ -210,14 +210,13 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                 }
                 else {
                     Toast toast = Toast.makeText(getApplicationContext(),
-                            "La contraseña debe tener entre 8 y 20 caracteres y contener al" +
-                                    " menos mayúsculas, minúsculas y números", Toast.LENGTH_LONG);
+                            getString(R.string.condiciones), Toast.LENGTH_LONG);
                     toast.show();
                     Log.d(TAG, "la contraseña no respeta el patron");
                 }
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "Las contraseñas no coinciden", Toast.LENGTH_LONG);
+                        getString(R.string.pass_no_coincide), Toast.LENGTH_LONG);
                 toast.show();
                 Log.d(TAG, "las contraseñas no coinciden");
             }

@@ -20,9 +20,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MenuPrincipal extends AppCompatActivity {
 
     //Indicamos las variables necesarias
-    Button leer, reproducir, salir, act_perfil, btn_musica, btn_sin_sonido, btn_favorito;
+    Button leer, reproducir, salir, act_perfil, btn_favorito;
     String email, nombre= "", idioma = "", modo_fav, cuento_fav;
     TextView info;
+    FirebaseFirestore db;
+    static Button btn_musica, btn_sin_sonido;
 
     //Hacemos static el mediaplayer para poder acceder desde otras clases
     public static MediaPlayer mp;
@@ -68,14 +70,6 @@ public class MenuPrincipal extends AppCompatActivity {
         //Arrancamos el hilo musical
         mp = MediaPlayer.create(MenuPrincipal.this, R.raw.hilo_musical);
         mp.start();
-        //Contol del icono de musica en función de la reproducción
-        if (mp.isPlaying()){
-            btn_musica.setVisibility(View.VISIBLE);
-            btn_sin_sonido.setVisibility(View.GONE);
-        } else {
-            btn_musica.setVisibility(View.GONE);
-            btn_sin_sonido.setVisibility(View.VISIBLE);
-        }
 
         //Listeners de botones
         btn_musica.setOnClickListener(v -> {
@@ -131,27 +125,34 @@ public class MenuPrincipal extends AppCompatActivity {
         });
 
         btn_favorito.setOnClickListener(view -> {
-            if (usuario.getNombre().equals("NombreDefecto")){
+            try {
+                if (usuario.getNombre().equals("NombreDefecto")){
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            getString(R.string.inicia_sesion_acceso), Toast.LENGTH_LONG);
+                    toast.show();
+                } else if (usuario.getModo_fav().equals("") || usuario.getFavorito().equals("")){
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            getString(R.string.config_perfil), Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    //Adjuntamos variables que pasaremos a siguiente activity y modo
+                    Bundle extras = new Bundle();
+                    extras.putString("modo", modo_fav);
+                    extras.putString("idioma", idioma);
+                    extras.putString("cuento", cuento_fav);
+                    Intent intent = new Intent(this, ReproductorCuento.class);
+                    //Agrega el objeto bundle al Intent
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                    Log.d(TAG, "se inicia favorito en modo: " + usuario.getModo_fav() + ", cuento: "
+                            + usuario.getFavorito() + "nombre: " + usuario.getNombre()
+                            + ", idioma: " + idioma);
+                }
+            } catch (NullPointerException e){
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "Debes iniciar sesión para usar esta función", Toast.LENGTH_LONG);
+                        getString(R.string.espera), Toast.LENGTH_LONG);
                 toast.show();
-            } else if (usuario.getModo_fav().equals("") || usuario.getFavorito().equals("")){
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Configura tus favoritos en tu perfil para acceder", Toast.LENGTH_LONG);
-                toast.show();
-            } else {
-                //Adjuntamos variables que pasaremos a siguiente activity y modo
-                Bundle extras = new Bundle();
-                extras.putString("modo", modo_fav);
-                extras.putString("idioma", idioma);
-                extras.putString("cuento", cuento_fav);
-                Intent intent = new Intent(this, ReproductorCuento.class);
-                //Agrega el objeto bundle al Intent
-                intent.putExtras(extras);
-                startActivity(intent);
-                Log.d(TAG, "se inicia favorito en modo: " + usuario.getModo_fav() + ", cuento: "
-                        + usuario.getFavorito() + "nombre: " + usuario.getNombre()
-                        + ", idioma: " + idioma);
+                Log.d(TAG, "error: " + e);
             }
         });
     }
@@ -177,7 +178,13 @@ public class MenuPrincipal extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        try {
+            db.clearPersistence();
+        } catch (NullPointerException e){
+            Log.d(TAG, "error: " + e);
+        }
         super.onStart();
+        db = FirebaseFirestore.getInstance();
         //Dependiendo de si llega o no un mail mostraremos mensajes diferentes
         if (!email.equals("noUser")){
             try {
@@ -200,7 +207,8 @@ public class MenuPrincipal extends AppCompatActivity {
             usuario.setNombre("NombreDefecto");
             usuario.setIdioma(selectedIdioma());
         }
-        if(mp.isPlaying()){
+        //Contol del icono de musica en función de la reproducción
+        if (mp.isPlaying()){
             btn_musica.setVisibility(View.VISIBLE);
             btn_sin_sonido.setVisibility(View.GONE);
         } else {
@@ -214,8 +222,6 @@ public class MenuPrincipal extends AppCompatActivity {
 
     //Hacemos busqueda en base de datos para rellenar los campos de información
     public void checkBD(String emailAComprobar){
-        FirebaseFirestore db;
-        db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("usuario").document(emailAComprobar);
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -247,6 +253,5 @@ public class MenuPrincipal extends AppCompatActivity {
                 Log.d(TAG, "get failed with ", task.getException());
             }
         });
-
     }
 }

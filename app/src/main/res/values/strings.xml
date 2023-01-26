@@ -34,4 +34,15 @@
     <string name="modo">Modo</string>
     <string name="cuento_fav">Cuento</string>
     <string name="sin_seleccion" >Sin selección</string>
+    <string name="espera">Por favor, espera a que se carguen los datos</string>
+    <string name="config_perfil">Configura tus favoritos en tu perfil para acceder</string>
+    <string name="inicia_sesion_acceso">Debes iniciar sesión para usar esta función</string>
+    <string name="cuenta_exito">Cuenta creada con exito</string>
+    <string name="ya_existe">Ya existe una cuenta con ese email</string>
+    <string name="condiciones">La contraseña debe tener entre 8 y 20 caracteres y contener al menos mayúsculas, minúsculas y números</string>
+    <string name="pass_no_coincide">Las contraseñas no coinciden</string>
+    <string name="cuenta_eliminada">Cuenta eliminada correctamente</string>
+    <string name="mail_no_encontrado">Error al intentar acceder. No se ha encontrado el mail.</string>
+    <string name="pass_incorrecto">Contraseña incorrecta. Comprueba la contraseña</string>
+    <string name="acceso_correcto">Se ha accedido correctamente</string>
 </resources>

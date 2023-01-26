@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -83,64 +84,16 @@ public class ReproductorCuento extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         db_img = FirebaseFirestore.getInstance();
 
-        //Recogemos los parametros que se pasan por activities
-        Bundle extra = this.getIntent().getExtras();
-        idioma = extra.getString("idioma");
-        modo = extra.getString("modo");
-        nombre_cuento = extra.getString("cuento");
-        Log.d(TAG, "se recibe modo: " + modo);
-        Log.d(TAG, "cuento elegido: " + nombre_cuento + " idioma : " + idioma);
-
-        //Establecemos pantalla segun el modo seleccionado por el usuario
-        if (modo.equals("leer")){
-            next.setVisibility(View.VISIBLE);
-            bandera.setVisibility(View.GONE);
-            play.setVisibility(View.GONE);
-            back.setVisibility(View.VISIBLE);
-        } else if (modo.equals("reproducir")){
-            next.setVisibility(View.GONE);
-            bandera.setVisibility(View.VISIBLE);
-            play.setVisibility(View.VISIBLE);
-            back.setVisibility(View.GONE);
-        }
-
-        //Iniciamos adaptador para el spinner
-        BanderaAdapter adaptador = new BanderaAdapter("opcion_sin", this);
-        sp_banderas.setAdapter(adaptador);
-        sp_banderas.setSelection(0);
-
-        //Leemos datos del cuento
-        leerDatos(url -> new GetData().execute(), nombre_cuento, idioma);
-
-        /*
-          Miramos estado de MediaPlayer y establecemos visibilidad de botones.
-          En bloque Try/Catch para evitar NullPointerException
-         */
-        try {
-            if(MenuPrincipal.mp.isPlaying()){
-                musica.setVisibility(View.VISIBLE);
-                sin_musica.setVisibility(View.GONE);
-            } else {
-                musica.setVisibility(View.GONE);
-                sin_musica.setVisibility(View.VISIBLE);
-            }
-        } catch (NullPointerException e){
-            Log.d(TAG, "error: " + e);
-        }
-
-        //Establecemos la bandera del ImageView
-        checkIdiomaBandera();
-
         //Listeners de botones
         salir.setOnClickListener(view -> {
-            db.clearPersistence();
-            db_img.clearPersistence();
             //Se añade alerta para borrar
             AlertDialog.Builder builder = new AlertDialog.Builder(ReproductorCuento.this);
             builder.setMessage(R.string.seguro)
                     .setTitle(R.string.volver_seleccion);
             //Se añaden los botones
             builder.setPositiveButton(R.string.si, (dialog, id) -> {
+                db.clearPersistence();
+                db_img.clearPersistence();
                 db.terminate();
                 db_img.terminate();
                 if (tts != null){
@@ -158,19 +111,7 @@ public class ReproductorCuento extends AppCompatActivity {
             Log.d(TAG, "se abre alertdialog para cerrar ventana ");
         });
 
-        musica.setOnClickListener(view -> {
-            MenuPrincipal.mp.pause();
-            musica.setVisibility(View.GONE);
-            sin_musica.setVisibility(View.VISIBLE);
-            Log.d(TAG, "se pulsa boton musica ");
-        });
 
-        sin_musica.setOnClickListener(view -> {
-            MenuPrincipal.mp.start();
-            sin_musica.setVisibility(View.GONE);
-            musica.setVisibility(View.VISIBLE);
-            Log.d(TAG, "se pulsa boton mute ");
-        });
 
         //Spinner al que le cargamos las banderas
         sp_banderas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -233,6 +174,83 @@ public class ReproductorCuento extends AppCompatActivity {
             tts.shutdown();
             Log.d(TAG, "se pulsa pause");
         });
+
+        musica.setOnClickListener(view -> {
+            MenuPrincipal.mp.pause();
+            musica.setVisibility(View.GONE);
+            sin_musica.setVisibility(View.VISIBLE);
+            Log.d(TAG, "se pulsa boton musica ");
+        });
+
+        sin_musica.setOnClickListener(view -> {
+            MenuPrincipal.mp.start();
+            sin_musica.setVisibility(View.GONE);
+            musica.setVisibility(View.VISIBLE);
+            Log.d(TAG, "se pulsa boton mute ");
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //Recogemos los parametros que se pasan por activities
+        Bundle extra = this.getIntent().getExtras();
+        idioma = extra.getString("idioma");
+        modo = extra.getString("modo");
+        nombre_cuento = extra.getString("cuento");
+        Log.d(TAG, "se recibe modo: " + modo);
+        Log.d(TAG, "cuento elegido: " + nombre_cuento + " idioma : " + idioma);
+
+        //Establecemos pantalla segun el modo seleccionado por el usuario
+        if (modo.equals("leer")){
+            next.setVisibility(View.VISIBLE);
+            bandera.setVisibility(View.GONE);
+            play.setVisibility(View.GONE);
+            back.setVisibility(View.VISIBLE);
+        } else if (modo.equals("reproducir")){
+            next.setVisibility(View.GONE);
+            bandera.setVisibility(View.VISIBLE);
+            play.setVisibility(View.VISIBLE);
+            back.setVisibility(View.GONE);
+        }
+
+        //Iniciamos adaptador para el spinner
+        BanderaAdapter adaptador = new BanderaAdapter("opcion_sin", this);
+        sp_banderas.setAdapter(adaptador);
+        sp_banderas.setSelection(0);
+
+        //Leemos datos del cuento
+        leerDatos(url -> new GetData().execute(), nombre_cuento, idioma);
+
+        /*
+          Miramos estado de MediaPlayer y establecemos visibilidad de botones.
+          En bloque Try/Catch para evitar NullPointerException
+         */
+        try {
+            if(MenuPrincipal.mp.isPlaying()){
+                musica.setVisibility(View.VISIBLE);
+                sin_musica.setVisibility(View.GONE);
+                MenuPrincipal.btn_musica.setVisibility(View.VISIBLE);
+                MenuPrincipal.btn_sin_sonido.setVisibility(View.GONE);
+            } else {
+                musica.setVisibility(View.GONE);
+                sin_musica.setVisibility(View.VISIBLE);
+                MenuPrincipal.btn_musica.setVisibility(View.GONE);
+                MenuPrincipal.btn_sin_sonido.setVisibility(View.VISIBLE);
+            }
+        } catch (NullPointerException e){
+            Log.d(TAG, "error: " + e);
+        }
+
+        //Establecemos la bandera del ImageView
+        checkIdiomaBandera();
+
+        //Comprobamos si está activo el botón
+        if (MenuPrincipal.btn_musica.getVisibility() == View.VISIBLE){
+            MenuPrincipal.mp.start();
+        }
+
     }
 
     //Función para pasar a la siguiente linea
@@ -273,7 +291,6 @@ public class ReproductorCuento extends AppCompatActivity {
     void leerTexto(String strTexto, String ub){
             Bundle bundle = new Bundle();
             bundle.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM, AudioManager.STREAM_MUSIC);
-            //strTexto = strTexto.substring(0,3999); //Así funciona
             tts.speak(strTexto, TextToSpeech.QUEUE_FLUSH, bundle, ub);
     }
 
@@ -314,7 +331,6 @@ public class ReproductorCuento extends AppCompatActivity {
                                     String[] divisor = cuento[contador_lineas].split("/");
                                     Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
                                     seleccionado.setText(divisor[0]);
-                                    //setImagen(divisor[1]);
                                     setImagen(url -> new GetImg().execute(), divisor[1]);
                                     tts.stop();
                                     tts.shutdown();
@@ -427,28 +443,33 @@ public class ReproductorCuento extends AppCompatActivity {
     private void leerDatos(FirestoreCallBack firestoreCallBack, String cuento, String idioma){
         DocumentReference docRef = db.collection("cuentos").document(cuento);
         docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    if (url_cuento.equals("")){
-                        try {
-                            url_cuento = Objects.requireNonNull(document.get("txt_" + idioma)).toString();
-                        } catch (NullPointerException e){
-                            Log.d(TAG, "error: " + e);
+            try {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        if (url_cuento.equals("")){
+                            try {
+                                url_cuento = Objects.requireNonNull(document.get("txt_" + idioma)).toString();
+                            } catch (NullPointerException e){
+                                Log.d(TAG, "error: " + e);
+                            }
+                        } else {
+                            url_traducido = Objects.requireNonNull(document.get("txt_" + idioma_traduccion)).toString();
+                            Log.d(TAG, "guarda la url del cuento traducido");
                         }
-                    } else {
-                        url_traducido = Objects.requireNonNull(document.get("txt_" + idioma_traduccion)).toString();
-                        Log.d(TAG, "guarda la url del cuento traducido");
+                        lineas_cuento = Integer.parseInt(Objects.requireNonNull(document.get("lines")).toString());
                     }
-                    lineas_cuento = Integer.parseInt(Objects.requireNonNull(document.get("lines")).toString());
-                }
-                if (url_traducido == null){
-                    firestoreCallBack.onCallBack(url_cuento);
+                    if (url_traducido == null){
+                        firestoreCallBack.onCallBack(url_cuento);
+                    } else {
+                        firestoreCallBack.onCallBack(url_traducido);
+                    }
                 } else {
-                    firestoreCallBack.onCallBack(url_traducido);
+                    Log.d(TAG, "get failed with ", task.getException());
                 }
-            } else {
-                Log.d(TAG, "get failed with ", task.getException());
+            } catch (NullPointerException e){
+                onStart();
+                Log.d(TAG, "error: " + e);
             }
         });
     }
@@ -472,17 +493,23 @@ public class ReproductorCuento extends AppCompatActivity {
     //Consulta a la base de datos del cuento y el idioma para obtener la url del cuento seleccionado
     private void setImagen(FirestoreCallBack firestoreCallBack, String num_img){
         DocumentReference docRef = db.collection("imagenes").document(nombre_cuento);
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    url_img = Objects.requireNonNull(document.get("img_" + num_img)).toString();
+        try {
+            docRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        url_img = Objects.requireNonNull(document.get("img_" + num_img)).toString();
+                    }
+                    firestoreCallBack.onCallBack(url_img);
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
                 }
-                firestoreCallBack.onCallBack(url_img);
-            } else {
-                Log.d(TAG, "get failed with ", task.getException());
-            }
-        });
+            });
+        } catch (IllegalStateException e){
+            onStart();
+            Log.d(TAG, "error: " + e);
+        }
+
     }
 
     //En caso de onDestroy, cerramos instancia db

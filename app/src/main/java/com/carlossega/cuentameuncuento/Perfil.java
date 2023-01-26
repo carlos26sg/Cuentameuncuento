@@ -163,7 +163,6 @@ public class Perfil extends AppCompatActivity {
     public void guardarBD(String nombre, String idioma_spinner, String m_fav, String c_fav){
         //Creamos hilo para que cargue todos los datos correctamente
         runOnUiThread(() -> {
-            Log.d(TAG, "entra en guardar");
             DocumentReference usuario = db.collection("usuario").document(email);
             usuario
                     .update(
@@ -257,8 +256,6 @@ public class Perfil extends AppCompatActivity {
                             //Recorremos con for para ver el cuento seleccionado como favorito
                             int i = 0;
                             for (SpinnerId spinnerId : lista){
-                                Log.d(TAG, "El cuento es: " + cuento_fav);
-                                Log.d(TAG, "El id es: " + spinnerId.nombre);
                                 if (spinnerId.nombre.equals(cuento_fav)){ sp_fav.setSelection(i); }
                                 i++;
                             }

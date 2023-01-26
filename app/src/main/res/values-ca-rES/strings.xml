@@ -33,4 +33,15 @@
     <string name="modo">Mode</string>
     <string name="cuento_fav">Conte</string>
     <string name="sin_seleccion">Sense selecció</string>
+    <string name="espera">Si us plau, esperi a carregar les dades</string>
+    <string name="config_perfil">Configura els teus preferits per accedir</string>
+    <string name="inicia_sesion_acceso">Has d\'iniciar sessió per utilitzar aquesta funció</string>
+    <string name="cuenta_exito">El compte s\'ha creat amb èxit</string>
+    <string name="ya_existe">Ja existeix un compte amb aquest mail</string>
+    <string name="condiciones">La contrasenya ha de tenir entre 8 i 20 caràcters  contenir almenys una majúscula, minúscula i numero</string>
+    <string name="pass_no_coincide">Les contrasenyes no coincideixen</string>
+    <string name="cuenta_eliminada">Compte eliminat correctament</string>
+    <string name="mail_no_encontrado">No s\'ha pogut trobar el mail</string>
+    <string name="pass_incorrecto">Contrasenya incorrecta. Torna a provar</string>
+    <string name="acceso_correcto">S\'ha accedit correctament</string>
 </resources>

@@ -33,4 +33,15 @@
     <string name="modo">Mode</string>
     <string name="cuento_fav">Tale</string>
     <string name="sin_seleccion">No selected</string>
+    <string name="espera">Please, wait until the data is loaded</string>
+    <string name="config_perfil">Set up your profile to get access</string>
+    <string name="inicia_sesion_acceso">You must log in to use this function</string>
+    <string name="cuenta_exito">The account is created succesfully</string>
+    <string name="ya_existe">There is already an account with that email</string>
+    <string name="condiciones">" Password must contain between 8 and 20 characters and contain at least uppercase, lowercase, and numbers"</string>
+    <string name="pass_no_coincide">Passwords don\'t match</string>
+    <string name="cuenta_eliminada">Account deleted succesfully</string>
+    <string name="mail_no_encontrado">The email has not been found</string>
+    <string name="pass_incorrecto">Incorrect password. Try again</string>
+    <string name="acceso_correcto">Log in correct</string>
 </resources>
