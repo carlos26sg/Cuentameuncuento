@@ -44,4 +44,5 @@
     <string name="mail_no_encontrado">No s\'ha pogut trobar el mail</string>
     <string name="pass_incorrecto">Contrasenya incorrecta. Torna a provar</string>
     <string name="acceso_correcto">S\'ha accedit correctament</string>
+    <string name="actualizada">Compte actualitzat correctament</string>
 </resources>

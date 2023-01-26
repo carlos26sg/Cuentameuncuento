@@ -219,7 +219,7 @@ public class Perfil extends AppCompatActivity {
     public void spinnerCuentos(){
         runOnUiThread(() -> {
             List<SpinnerId> lista = new ArrayList<>();
-            lista.add(new SpinnerId("Sin selección", ""));
+            lista.add(new SpinnerId(getString(R.string.sin_seleccion), ""));
             //Realizamos la consulta de todos los documentos de la colección cuentos
             db.collection("cuentos")
                     .get()

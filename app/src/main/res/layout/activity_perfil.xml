@@ -139,8 +139,7 @@
                 android:id="@+id/sp_cuento_fav"
                 android:background="#812735B1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

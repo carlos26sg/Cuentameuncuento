@@ -45,4 +45,5 @@
     <string name="mail_no_encontrado">Error al intentar acceder. No se ha encontrado el mail.</string>
     <string name="pass_incorrecto">Contraseña incorrecta. Comprueba la contraseña</string>
     <string name="acceso_correcto">Se ha accedido correctamente</string>
+    <string name="actualizada">Cuenta actualizada correctamente</string>
 </resources>

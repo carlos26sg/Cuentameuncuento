@@ -44,4 +44,5 @@
     <string name="mail_no_encontrado">The email has not been found</string>
     <string name="pass_incorrecto">Incorrect password. Try again</string>
     <string name="acceso_correcto">Log in correct</string>
+    <string name="actualizada">Account updated succesfully</string>
 </resources>

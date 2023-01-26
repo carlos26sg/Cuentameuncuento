@@ -120,6 +120,9 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                         String pass_descifrar;
                         pass_descifrar = document.get("pass").toString();
                         if (descifrar(pass_descifrar, secretKey).equals(pass)){
+                            //Cerramos conexión con BD para evitar errores
+                            db.clearPersistence();
+                            db.terminate();
                             Toast toast = Toast.makeText(getApplicationContext(),
                                     getString(R.string.acceso_correcto), Toast.LENGTH_LONG);
                             toast.show();
@@ -134,9 +137,6 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                             edit.putBoolean("iniciada", true);
                             edit.commit();
                             Log.d(TAG, "mail y contraseña correcta, se accede a MenuPrincipal");
-                            //Cerramos conexión con BD para evitar errores
-                            db.clearPersistence();
-                            db.terminate();
                             //Agrega el objeto bundle al Intent e inicia Activity MenuPrincipal y cierra Autenticacion
                             Intent intent = new Intent(Autenticacion.this, MenuPrincipal.class);
                             intent.putExtras(extras);
