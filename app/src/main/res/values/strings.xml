@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Cuentame un cuento</string>
     <string name="prefs_file" translatable="false">com.carlossega.cuentameuncuento.PREFERENCE_FILE_KEY</string>
-    <string name="info_developer" translatable="false">Cuentame un cuento v1.0</string>
+    <string name="info_developer" translatable="false">Cuentame un cuento v</string>
     <string name="no_inicio">No se ha iniciado sesión</string>
     <string name="bienvenido">Bienvenido</string>
     <string name="leer">Leer</string>

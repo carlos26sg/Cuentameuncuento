@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         //Asociamos todos los componentes al ID que le corresponde
         txt_info = findViewById(R.id.txt_info);
         txt_perfil = findViewById(R.id.txt_perfil);
-        txt_info.setText(R.string.info_developer);
+        txt_info.setText(R.string.info_developer + BuildConfig.VERSION_NAME);
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         btn_comenzar = findViewById(R.id.img_btn_comenzar);
