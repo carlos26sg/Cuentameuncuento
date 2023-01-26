@@ -107,8 +107,9 @@ public class MenuPrincipal extends AppCompatActivity {
         reproducir.setOnClickListener(v -> {
             //Adjuntamos variables que pasaremos a siguiente activity y modo
             Bundle extras = new Bundle();
+            idioma = selectedIdioma();
             extras.putString("modo", "reproducir");
-            extras.putString("idioma", usuario.getIdioma());
+            extras.putString("idioma", idioma);
             if (idioma.equals("")){ return;}
             //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
             Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
