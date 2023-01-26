@@ -133,15 +133,15 @@ public class ReproductorCuento extends AppCompatActivity {
 
         //Listeners de botones
         salir.setOnClickListener(view -> {
+            db.clearPersistence();
+            db_img.clearPersistence();
             //Se añade alerta para borrar
             AlertDialog.Builder builder = new AlertDialog.Builder(ReproductorCuento.this);
             builder.setMessage(R.string.seguro)
                     .setTitle(R.string.volver_seleccion);
             //Se añaden los botones
             builder.setPositiveButton(R.string.si, (dialog, id) -> {
-                db.clearPersistence();
                 db.terminate();
-                db_img.clearPersistence();
                 db_img.terminate();
                 if (tts != null){
                     tts.stop();

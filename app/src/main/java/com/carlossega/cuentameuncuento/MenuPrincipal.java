@@ -101,6 +101,7 @@ public class MenuPrincipal extends AppCompatActivity {
             idioma = selectedIdioma();
             extras.putString("modo", "leer");
             extras.putString("idioma", idioma);
+            if (idioma.equals("")){ return;}
             //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
             Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
             intent.putExtras(extras);
@@ -114,6 +115,7 @@ public class MenuPrincipal extends AppCompatActivity {
             Bundle extras = new Bundle();
             extras.putString("modo", "reproducir");
             extras.putString("idioma", usuario.getIdioma());
+            if (idioma.equals("")){ return;}
             //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
             Intent intent = new Intent(MenuPrincipal.this, SeleccionCuento.class);
             intent.putExtras(extras);
@@ -123,6 +125,7 @@ public class MenuPrincipal extends AppCompatActivity {
         });
 
         act_perfil.setOnClickListener(view -> {
+            if (idioma.equals("")){ return;}
             Intent intent = new Intent(MenuPrincipal.this, Perfil.class);
             startActivity(intent);
         });
@@ -139,11 +142,11 @@ public class MenuPrincipal extends AppCompatActivity {
             } else {
                 //Adjuntamos variables que pasaremos a siguiente activity y modo
                 Bundle extras = new Bundle();
-                extras.putString("modo", usuario.getModo_fav());
-                extras.putString("idioma", usuario.getIdioma());
-                extras.putString("cuento", usuario.getFavorito());
-                //Agrega el objeto bundle al Intent y se inicia SeleccionCuento
-                Intent intent = new Intent(MenuPrincipal.this, ReproductorCuento.class);
+                extras.putString("modo", modo_fav);
+                extras.putString("idioma", idioma);
+                extras.putString("cuento", cuento_fav);
+                Intent intent = new Intent(this, ReproductorCuento.class);
+                //Agrega el objeto bundle al Intent
                 intent.putExtras(extras);
                 startActivity(intent);
                 Log.d(TAG, "se inicia favorito en modo: " + usuario.getModo_fav() + ", cuento: "
@@ -175,7 +178,6 @@ public class MenuPrincipal extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //db = FirebaseFirestore.getInstance();
         //Dependiendo de si llega o no un mail mostraremos mensajes diferentes
         if (!email.equals("noUser")){
             try {
