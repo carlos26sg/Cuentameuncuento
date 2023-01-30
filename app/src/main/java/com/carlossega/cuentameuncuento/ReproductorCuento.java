@@ -5,7 +5,6 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -37,6 +36,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -51,7 +52,7 @@ public class ReproductorCuento extends AppCompatActivity {
     TextView seleccionado, traducido;
     ImageView bandera;
     LinearLayout fondo;
-    String[] cuento, cuento_traducido;
+    List<String> cuento = new ArrayList<>(), cuento_traducido = new ArrayList<>();
     FirebaseFirestore db, db_img;
     boolean traducido_creado = false;
     private TextToSpeech tts;
@@ -127,6 +128,7 @@ public class ReproductorCuento extends AppCompatActivity {
                         leerDatos(url -> new GetData().execute(), nombre_cuento, idioma_traduccion);
                 } else {
                     traducido.setText("");
+                    traducido_creado = false;
                 }
                 Log.d(TAG, "se selecciona idioma del spinner ");
             }
@@ -144,16 +146,24 @@ public class ReproductorCuento extends AppCompatActivity {
                 Log.d(TAG, "lineas <= 0 no se hace nada ");
             }else {
                 contador_lineas--;
-                String[] divisor = cuento[contador_lineas].split("/");
-                seleccionado.setText(divisor[0]);
-                setImagen(url -> new GetImg().execute(), divisor[1]);
-                Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
-                try {
-                    if (sp_banderas.getSelectedItemPosition() != 0){
-                        String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
-                        traducido.setText(divisor_traducido[0]);
+                if (cuento != null && contador_lineas >= 0 && contador_lineas < cuento.size()) {
+                    String line = cuento.get(contador_lineas);
+                    if (line != null) {
+                        String[] divisor = line.split("/");
+                        if (divisor.length > 0) seleccionado.setText(divisor[0]);
+                        if (divisor.length > 1) setImagen(url -> new GetImg().execute(), divisor[1]);
+                        Log.d(TAG, "linea cuento: " + divisor[0] + (divisor.length > 1 ? "img: " + divisor[1] : ""));
                     }
-                }catch (NullPointerException e){
+                }
+                try {
+                    if (sp_banderas.getSelectedItemPosition() != 0 && cuento_traducido != null && contador_lineas >= 0 && contador_lineas < cuento_traducido.size()){
+                        String line = cuento_traducido.get(contador_lineas);
+                        if (line != null) {
+                            String[] divisor_traducido = line.split("/");
+                            if (divisor_traducido.length > 0) traducido.setText(divisor_traducido[0]);
+                        }
+                    }
+                }catch (Exception e){
                     Log.d(TAG, "error: " + e);
                 }
             }
@@ -255,8 +265,9 @@ public class ReproductorCuento extends AppCompatActivity {
 
     //Función para pasar a la siguiente linea
     private void next(){
-        if (cuento[contador_lineas].contains("FIN/") || cuento[contador_lineas].contains("FI/")
-                || cuento[contador_lineas].contains("THE END/")){
+        if (cuento != null && contador_lineas >= 0 && contador_lineas < cuento.size() && cuento.get(contador_lineas) != null &&
+                (cuento.get(contador_lineas).contains("FIN/") || cuento.get(contador_lineas).contains("FI/")
+                        || cuento.get(contador_lineas).contains("THE END/"))){
             Log.d(TAG, "se econtró un final de cuento ");
         }else {
             //Creamos hilo para evitar error android.view.ViewRootImpl$CalledFromWrongThreadException:
@@ -264,15 +275,23 @@ public class ReproductorCuento extends AppCompatActivity {
             runOnUiThread(() -> {
                 try {
                     contador_lineas++;
-                    String[] divisor = cuento[contador_lineas].split("/");
-                    seleccionado.setText(divisor[0]);
-                    setImagen(url -> new GetImg().execute(), divisor[1]);
-                    Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
-                    if (sp_banderas.getSelectedItemPosition() != 0){
-                        String[] divisor_traducido = cuento_traducido[contador_lineas].split("/");
-                        traducido.setText(divisor_traducido[0]);
+                    if (cuento != null && contador_lineas >= 0 && contador_lineas < cuento.size()) {
+                        String line = cuento.get(contador_lineas);
+                        if (line != null) {
+                            String[] divisor = line.split("/");
+                            if (divisor.length > 0) seleccionado.setText(divisor[0]);
+                            if (divisor.length > 1) setImagen(url -> new GetImg().execute(), divisor[1]);
+                            Log.d(TAG, "linea cuento: " + divisor[0] + (divisor.length > 1 ? "img: " + divisor[1] : ""));
+                        }
                     }
-                }catch (NullPointerException e){
+                    if (sp_banderas.getSelectedItemPosition() != 0 && cuento_traducido != null && contador_lineas >= 0 && contador_lineas < cuento_traducido.size()){
+                        String line = cuento_traducido.get(contador_lineas);
+                        if (line != null) {
+                            String[] divisor_traducido = line.split("/");
+                            if (divisor_traducido.length > 0) traducido.setText(divisor_traducido[0]);
+                        }
+                    }
+                }catch (Exception e){
                     Log.d(TAG, "error: " + e);
                 }
             });
@@ -310,6 +329,7 @@ public class ReproductorCuento extends AppCompatActivity {
                 } else {
                     leerTexto(seleccionado.getText().toString(), seleccionado.getText().toString());
                     Log.d(TAG, "se inicia el OnUtterancee listener y se leen datos");
+                    //OnUtteranceProgressListener
                     tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
 
                         @Override
@@ -328,10 +348,15 @@ public class ReproductorCuento extends AppCompatActivity {
                                     play.setVisibility(View.VISIBLE);
                                     pause.setVisibility(View.GONE);
                                     contador_lineas = 0;
-                                    String[] divisor = cuento[contador_lineas].split("/");
-                                    Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
-                                    seleccionado.setText(divisor[0]);
-                                    setImagen(url -> new GetImg().execute(), divisor[1]);
+                                    if (cuento != null && contador_lineas >= 0 && contador_lineas < cuento.size()) {
+                                        String line = cuento.get(contador_lineas);
+                                        if (line != null) {
+                                            String[] divisor = line.split("/");
+                                            if (divisor.length > 0) seleccionado.setText(divisor[0]);
+                                            if (divisor.length > 1) setImagen(url -> new GetImg().execute(), divisor[1]);
+                                            Log.d(TAG, "linea cuento: " + divisor[0] + (divisor.length > 1 ? "img: " + divisor[1] : ""));
+                                        }
+                                    }
                                     tts.stop();
                                     tts.shutdown();
                                 });
@@ -361,41 +386,44 @@ public class ReproductorCuento extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             HttpURLConnection urlConnection = null;
             String url_main;
-            int posicion=0;
-            if(cuento == null){
+            //Creamos array con las lineas del cuento. Dato que debe estar en la BD
+            if(cuento == null || cuento.isEmpty()){
                 url_main = url_cuento;
-                cuento = new String[lineas_cuento];
+                cuento = new ArrayList<>();
                 Log.d(TAG,"array de cuento creado");
             } else{
                 url_main = url_traducido;
-                cuento_traducido = new String[lineas_cuento];
+                cuento_traducido = new ArrayList<>();
                 traducido_creado = true;
                 Log.d(TAG,"array de cuento traducido creado");
             }
-            try {
-                URL url = new URL(url_main);
-                urlConnection = (HttpURLConnection) url.openConnection();
-                int code = urlConnection.getResponseCode();
-                if(code==200){
-                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null){
-                        if (traducido_creado){
-                            cuento_traducido[posicion] = line;
-                        } else {
-                            cuento[posicion] = line;
+            //Con la url, leemos el cuento y lo guardamos
+            if (url_main != null && !url_main.isEmpty()) {
+                try {
+                    URL url = new URL(url_main);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+                    int code = urlConnection.getResponseCode();
+                    if(code==200){
+                        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+                        String line;
+                        //Guardamos el cuento en un array, leyendolo linea a linea
+                        while ((line = bufferedReader.readLine()) != null){
+                            if (traducido_creado && cuento_traducido != null){
+                                cuento_traducido.add(line);
+                            } else if (cuento != null) {
+                                cuento.add(line);
+                            }
                         }
-                        posicion++;
+                        Log.d(TAG, "se obtienen las lineas del cuento");
+                        in.close();
                     }
-                    Log.d(TAG, "se obtienen las lineas del cuento");
-                    in.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
                 }
             }
             return null;
@@ -405,13 +433,31 @@ public class ReproductorCuento extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void unused) {
             if (traducido_creado){
-                String[] divisor = cuento_traducido[contador_lineas].split("/");
-                traducido.setText(divisor[0]);
+                if (cuento_traducido != null && contador_lineas >= 0 && contador_lineas < cuento_traducido.size()) {
+                    String line = cuento_traducido.get(contador_lineas);
+                    if (line != null) {
+                        String[] divisor = line.split("/");
+                        if (divisor.length > 0) {
+                            traducido.setText(divisor[0]);
+                        }
+                    }
+                }
             } else {
-                String[] divisor = cuento[contador_lineas].split("/");
-                Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
-                seleccionado.setText(divisor[0]);
-                setImagen(url -> new GetImg().execute(), divisor[1]);
+                if (cuento != null && contador_lineas >= 0 && contador_lineas < cuento.size()) {
+                    String line = cuento.get(contador_lineas);
+                    if (line != null) {
+                        String[] divisor = line.split("/");
+                        if (divisor.length > 0) {
+                            seleccionado.setText(divisor[0]);
+                        }
+                        if (divisor.length > 1) {
+                            setImagen(url -> new GetImg().execute(), divisor[1]);
+                            Log.d(TAG, "linea cuento: " + divisor[0] + "img: " + divisor[1]);
+                        } else {
+                            Log.d(TAG, "linea cuento: " + divisor[0]);
+                        }
+                    }
+                }
             }
         }
     }
@@ -446,20 +492,29 @@ public class ReproductorCuento extends AppCompatActivity {
             try {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
+                    if (document != null && document.exists()) {
                         if (url_cuento.equals("")){
                             try {
-                                url_cuento = Objects.requireNonNull(document.get("txt_" + idioma)).toString();
-                            } catch (NullPointerException e){
+                                Object txtObj = document.get("txt_" + idioma);
+                                if (txtObj != null) {
+                                    url_cuento = txtObj.toString();
+                                }
+                            } catch (Exception e){
                                 Log.d(TAG, "error: " + e);
                             }
                         } else {
-                            url_traducido = Objects.requireNonNull(document.get("txt_" + idioma_traduccion)).toString();
-                            Log.d(TAG, "guarda la url del cuento traducido");
+                            Object txtTradObj = document.get("txt_" + idioma_traduccion);
+                            if (txtTradObj != null) {
+                                url_traducido = txtTradObj.toString();
+                                Log.d(TAG, "guarda la url del cuento traducido");
+                            }
                         }
-                        lineas_cuento = Integer.parseInt(Objects.requireNonNull(document.get("lines")).toString());
+                        Object linesObj = document.get("lines");
+                        if (linesObj != null) {
+                            lineas_cuento = Integer.parseInt(linesObj.toString());
+                        }
                     }
-                    if (url_traducido == null){
+                    if (url_traducido == null || url_traducido.isEmpty()){
                         firestoreCallBack.onCallBack(url_cuento);
                     } else {
                         firestoreCallBack.onCallBack(url_traducido);
@@ -467,8 +522,7 @@ public class ReproductorCuento extends AppCompatActivity {
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
-            } catch (NullPointerException e){
-                onStart();
+            } catch (Exception e){
                 Log.d(TAG, "error: " + e);
             }
         });
@@ -492,21 +546,24 @@ public class ReproductorCuento extends AppCompatActivity {
 
     //Consulta a la base de datos del cuento y el idioma para obtener la url del cuento seleccionado
     private void setImagen(FirestoreCallBack firestoreCallBack, String num_img){
+        if (num_img == null || num_img.isEmpty()) return;
         DocumentReference docRef = db.collection("imagenes").document(nombre_cuento);
         try {
             docRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        url_img = Objects.requireNonNull(document.get("img_" + num_img)).toString();
+                    if (document != null && document.exists()) {
+                        Object imgObj = document.get("img_" + num_img);
+                        if (imgObj != null) {
+                            url_img = imgObj.toString();
+                            firestoreCallBack.onCallBack(url_img);
+                        }
                     }
-                    firestoreCallBack.onCallBack(url_img);
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             });
-        } catch (IllegalStateException e){
-            onStart();
+        } catch (Exception e){
             Log.d(TAG, "error: " + e);
         }
 
