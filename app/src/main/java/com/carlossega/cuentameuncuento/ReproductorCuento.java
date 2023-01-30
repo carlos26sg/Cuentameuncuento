@@ -310,6 +310,7 @@ public class ReproductorCuento extends AppCompatActivity {
                 } else {
                     leerTexto(seleccionado.getText().toString(), seleccionado.getText().toString());
                     Log.d(TAG, "se inicia el OnUtterancee listener y se leen datos");
+                    //OnUtteranceProgressListener
                     tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
 
                         @Override
@@ -362,6 +363,7 @@ public class ReproductorCuento extends AppCompatActivity {
             HttpURLConnection urlConnection = null;
             String url_main;
             int posicion=0;
+            //Creamos array con las lineas del cuento. Dato que debe estar en la BD
             if(cuento == null){
                 url_main = url_cuento;
                 cuento = new String[lineas_cuento];
@@ -372,6 +374,7 @@ public class ReproductorCuento extends AppCompatActivity {
                 traducido_creado = true;
                 Log.d(TAG,"array de cuento traducido creado");
             }
+            //Con la url, leemos el cuento y lo guardamos
             try {
                 URL url = new URL(url_main);
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -380,6 +383,7 @@ public class ReproductorCuento extends AppCompatActivity {
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
                     String line;
+                    //Guardamos el cuento en un array, leyendolo linea a linea
                     while ((line = bufferedReader.readLine()) != null){
                         if (traducido_creado){
                             cuento_traducido[posicion] = line;

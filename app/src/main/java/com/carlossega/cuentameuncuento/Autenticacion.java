@@ -162,7 +162,7 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
         } else if (message.equals("register")){
             //Nos aseguramos que la contraseña se ha introducido dos veces igual
             if (pass.equals(repass)){
-                //Comprobamos las funciones para ver que todo sea correcto
+                //Comprobamos las funciones para ver que sea correcto
                 if (esPasswordValido(pass) && !email.isEmpty() && esEmailValido(email)){
                     //Buscamos en la base de datos un documento con ese email
                     DocumentReference docRef = db.collection("usuario").document(email);
@@ -195,9 +195,10 @@ public class Autenticacion extends AppCompatActivity implements Serializable {
                                             Log.d(TAG, "se crea cuenta con exito");
                                         })
                                         .addOnFailureListener(e -> Log.w(TAG, "Error writing document", e));
+                                Log.d(TAG, "se cierra db y se abre Menu");
                                 //Cerramos conexión con BD para evitar errores
-                                db.clearPersistence();
-                                db.terminate();
+                                //db.clearPersistence();
+                                //db.terminate();
                                 //Inicia MainActivity y cierra Autenticacion
                                 Intent intent = new Intent(Autenticacion.this, MainActivity.class);
                                 startActivity(intent);
