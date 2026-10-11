@@ -2,12 +2,14 @@ package com.carlossega.cuentameuncuento
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.carlossega.cuentameuncuento.auth.AuthManager
+import com.carlossega.cuentameuncuento.data.repository.UserRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Nueva pantalla de inicio simplificada
@@ -15,19 +17,18 @@ import kotlinx.coroutines.launch
  * - Carga preferencias del usuario
  * - Navega directamente al menú principal
  */
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
-    private lateinit var authManager: AuthManager
+    @Inject
+    lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
         // Pantalla completa
-        val pantallaCompleta = PantallaCompleta()
-        pantallaCompleta.pantallaCompleta(window.decorView)
-
-        authManager = AuthManager(this)
+        PantallaCompleta().pantallaCompleta(window.decorView)
 
         // Inicializar autenticación
         inicializarApp()
@@ -37,15 +38,15 @@ class SplashActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 // Si no hay usuario autenticado, crear uno anónimo
-                if (!authManager.isUserSignedIn()) {
-                    authManager.signInAnonymously()
+                if (!userRepository.isUserSignedIn()) {
+                    userRepository.signInAnonymously()
                 }
 
                 // Pequeña pausa para mostrar splash
                 delay(1500)
 
                 // Cargar preferencias si existen
-                authManager.loadUserPreferences()
+                userRepository.loadUserPreferences()
 
                 // Ir al menú principal
                 navegarAMenuPrincipal()

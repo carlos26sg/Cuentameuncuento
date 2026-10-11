@@ -8,11 +8,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.carlossega.cuentameuncuento.auth.AuthManager
+import com.carlossega.cuentameuncuento.ui.menu.MenuViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MenuPrincipal : AppCompatActivity() {
 
     // UI Components
@@ -23,15 +26,13 @@ class MenuPrincipal : AppCompatActivity() {
     private lateinit var btnFavorito: Button
     private lateinit var txtInfo: TextView
 
-    // Auth y datos
-    private lateinit var authManager: AuthManager
+    // ViewModel con Hilt
+    private val viewModel: MenuViewModel by viewModels()
 
     companion object {
         private const val TAG = "MenuPrincipal"
 
-        // Variables estáticas públicas para compatibilidad con código Java antiguo
-        // TODO: Eliminar cuando todo se migre a Kotlin y se use arquitectura MVVM
-        // @JvmField hace que sean accesibles como campos públicos estáticos desde Java
+        // Variables estáticas públicas para compatibilidad temporal
         @JvmField
         var mp: MediaPlayer? = null
 
@@ -49,21 +50,11 @@ class MenuPrincipal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_principal)
 
-        // Pantalla completa
         PantallaCompleta().pantallaCompleta(window.decorView)
 
-        authManager = AuthManager(this)
-
-        // Inicializar vistas
         initViews()
-
-        // Inicializar música de fondo
         initMusic()
-
-        // Cargar datos del usuario
-        loadUserData()
-
-        // Configurar listeners
+        observeViewModel()
         setupListeners()
     }
 
@@ -77,7 +68,6 @@ class MenuPrincipal : AppCompatActivity() {
         txtInfo = findViewById(R.id.txt_menu_info)
         btnFavorito = findViewById(R.id.btn_favorito)
 
-        // Establecer textos
         btnActPerfil.text = getString(R.string.perfil)
         btnSalir.text = getString(R.string.salir)
         btnLeer.text = getString(R.string.leer)
@@ -92,45 +82,20 @@ class MenuPrincipal : AppCompatActivity() {
         }
     }
 
-    private fun loadUserData() {
-        // Cargar preferencias locales primero (rápido)
-        val prefs = authManager.getLocalPreferences()
-        usuario.nombre = prefs.nombre
-        usuario.idioma = prefs.idioma
-        usuario.favorito = prefs.favorito
-        usuario.modo_fav = prefs.modoFav
-
-        updateUI()
-
-        // Luego sincronizar desde Firestore (más lento)
+    private fun observeViewModel() {
         lifecycleScope.launch {
-            try {
-                val result = authManager.loadUserPreferences()
-                result.onSuccess { userPrefs ->
-                    usuario.nombre = userPrefs.nombre
-                    usuario.idioma = userPrefs.idioma
-                    usuario.favorito = userPrefs.favorito
-                    usuario.modo_fav = userPrefs.modoFav
-                    updateUI()
-                    Log.d(TAG, "Datos del usuario cargados desde Firestore")
-                }
-            } catch (e: Exception) {
-                Log.e(TAG, "Error cargando datos del usuario: ${e.message}")
+            viewModel.usuario.collect { user ->
+                usuario = user
+                updateUI(user)
             }
         }
     }
 
-    private fun updateUI() {
-        // Actualizar mensaje de bienvenida
-        txtInfo.text = if (usuario.nombre.isNotEmpty()) {
-            getString(R.string.bienvenido) + " " + usuario.nombre
+    private fun updateUI(user: Usuario) {
+        txtInfo.text = if (user.nombre.isNotEmpty()) {
+            getString(R.string.bienvenido) + " " + user.nombre
         } else {
             getString(R.string.bienvenido)
-        }
-
-        // Detectar idioma si no está establecido
-        if (usuario.idioma.isEmpty()) {
-            usuario.idioma = detectarIdioma()
         }
     }
 
@@ -153,102 +118,45 @@ class MenuPrincipal : AppCompatActivity() {
         }
 
         btnLeer.setOnClickListener {
-            val idioma = getIdioma()
-            if (idioma.isEmpty()) return@setOnClickListener
-
-            val intent = Intent(this, SeleccionCuento::class.java).apply {
+            startActivity(Intent(this, SeleccionCuento::class.java).apply {
                 putExtra("modo", "leer")
-                putExtra("idioma", idioma)
-            }
-            startActivity(intent)
-            Log.d(TAG, "Iniciando SeleccionCuento en modo: leer, idioma: $idioma")
+                putExtra("idioma", viewModel.getIdioma())
+            })
         }
 
         btnReproducir.setOnClickListener {
-            val idioma = getIdioma()
-            if (idioma.isEmpty()) return@setOnClickListener
-
-            val intent = Intent(this, SeleccionCuento::class.java).apply {
+            startActivity(Intent(this, SeleccionCuento::class.java).apply {
                 putExtra("modo", "reproducir")
-                putExtra("idioma", idioma)
-            }
-            startActivity(intent)
-            Log.d(TAG, "Iniciando SeleccionCuento en modo: reproducir, idioma: $idioma")
+                putExtra("idioma", viewModel.getIdioma())
+            })
         }
 
         btnActPerfil.setOnClickListener {
-            val idioma = getIdioma()
-            if (idioma.isEmpty()) return@setOnClickListener
-
-            val intent = Intent(this, Perfil::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, Perfil::class.java))
         }
 
-        btnFavorito.setOnClickListener {
-            abrirFavorito()
-        }
+        btnFavorito.setOnClickListener { abrirFavorito() }
     }
 
     private fun abrirFavorito() {
-        try {
-            when {
-                usuario.nombre.isEmpty() -> {
-                    Toast.makeText(
-                        this,
-                        getString(R.string.inicia_sesion_acceso),
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                usuario.modo_fav.isEmpty() || usuario.favorito.isEmpty() -> {
-                    Toast.makeText(
-                        this,
-                        getString(R.string.config_perfil),
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                else -> {
-                    val idioma = getIdioma()
-                    val intent = Intent(this, ReproductorCuento::class.java).apply {
-                        putExtra("modo", usuario.modo_fav)
-                        putExtra("idioma", idioma)
-                        putExtra("cuento", usuario.favorito)
-                    }
-                    startActivity(intent)
-                    Log.d(TAG, "Iniciando favorito: ${usuario.favorito}, modo: ${usuario.modo_fav}")
-                }
-            }
-        } catch (e: Exception) {
-            Toast.makeText(this, getString(R.string.espera), Toast.LENGTH_LONG).show()
-            Log.e(TAG, "Error abriendo favorito: ${e.message}")
-        }
-    }
-
-    private fun getIdioma(): String {
-        return if (usuario.idioma.isNotEmpty()) {
-            usuario.idioma
-        } else {
-            detectarIdioma()
-        }
-    }
-
-    private fun detectarIdioma(): String {
-        return when {
-            btnLeer.text == "Leer" -> "esp"
-            btnLeer.text == "Llegir" -> "cat"
-            btnLeer.text == "Read" -> "eng"
-            else -> "esp" // Default
+        when {
+            usuario.nombre.isEmpty() ->
+                Toast.makeText(this, getString(R.string.inicia_sesion_acceso), Toast.LENGTH_LONG).show()
+            usuario.modo_fav.isEmpty() || usuario.favorito.isEmpty() ->
+                Toast.makeText(this, getString(R.string.config_perfil), Toast.LENGTH_LONG).show()
+            else -> startActivity(Intent(this, ReproductorCuento::class.java).apply {
+                putExtra("modo", usuario.modo_fav)
+                putExtra("idioma", viewModel.getIdioma())
+                putExtra("cuento", usuario.favorito)
+            })
         }
     }
 
     override fun onResume() {
         super.onResume()
-
-        // Recargar preferencias por si se actualizaron en Perfil
-        loadUserData()
-
-        // Control del icono de música
-        mp?.let { mediaPlayer ->
-            if (mediaPlayer.isPlaying) {
+        viewModel.loadUserData()
+        mp?.let {
+            if (it.isPlaying) {
                 btn_musica?.visibility = View.VISIBLE
                 btn_sin_sonido?.visibility = View.GONE
             } else {
@@ -256,11 +164,6 @@ class MenuPrincipal : AppCompatActivity() {
                 btn_sin_sonido?.visibility = View.VISIBLE
             }
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // No pausar la música al cambiar de activity
     }
 
     override fun onDestroy() {
