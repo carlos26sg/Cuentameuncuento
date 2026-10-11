@@ -64,9 +64,9 @@ class Perfil : AppCompatActivity() {
 
     private fun initViews() {
         txtPerfilNombre = findViewById(R.id.txt_perfil_nombre)
-        txtPerfilNombre.text = getString(R.string.nombre)
+        txtPerfilNombre.text = "Configuración"
 
-        findViewById<TextView>(R.id.txt_perfil_opciones).text = getString(R.string.opciones_perfil)
+        findViewById<TextView>(R.id.txt_perfil_opciones).text = "Preferencias"
         findViewById<TextView>(R.id.txt_perfil_idioma).text = getString(R.string.idioma)
         findViewById<TextView>(R.id.txt_perfil_email).text = getString(R.string.email)
         findViewById<TextView>(R.id.txt_modo_fav).text = getString(R.string.modo)
@@ -75,11 +75,15 @@ class Perfil : AppCompatActivity() {
         txtPerfilMail = findViewById(R.id.txt_perfil_mail)
         etNombre = findViewById(R.id.et_perfil_nombre)
 
+        // Ocultar campo de nombre (ya no es necesario)
+        txtPerfilNombre.visibility = View.GONE
+        etNombre.visibility = View.GONE
+
         btnEliminar = findViewById(R.id.btn_perfil_eliminar)
-        btnEliminar.text = getString(R.string.eliminar_cuenta)
+        btnEliminar.text = "Borrar datos"
 
         btnCerrar = findViewById(R.id.btn_perfil_cerrar)
-        btnCerrar.text = getString(R.string.cerrar_sesion)
+        btnCerrar.visibility = View.GONE // Ocultar cerrar sesión (es anónimo)
 
         btnConfirmar = findViewById(R.id.btn_perfil_confirmar)
         btnConfirmar.text = getString(R.string.confirmar)
@@ -212,17 +216,17 @@ class Perfil : AppCompatActivity() {
     }
 
     private fun guardarCambios() {
-        val nuevoNombre = etNombre.text.toString()
+        val nuevoNombre = if (etNombre.visibility == View.VISIBLE) {
+            etNombre.text.toString()
+        } else {
+            MenuPrincipal.usuario.nombre.ifEmpty { "Usuario" }
+        }
+
         val idiomaSpinner = getIdiomaFromPosition(spIdioma.selectedItemPosition)
         val modoSpinner = when (spModo.selectedItemPosition) {
             1 -> "leer"
             2 -> "reproducir"
             else -> ""
-        }
-
-        if (nuevoNombre.isEmpty()) {
-            Toast.makeText(this, "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
-            return
         }
 
         lifecycleScope.launch {

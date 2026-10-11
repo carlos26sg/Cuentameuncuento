@@ -68,7 +68,7 @@ class MenuPrincipal : AppCompatActivity() {
         txtInfo = findViewById(R.id.txt_menu_info)
         btnFavorito = findViewById(R.id.btn_favorito)
 
-        btnActPerfil.text = getString(R.string.perfil)
+        btnActPerfil.text = "⚙️ Configuración"
         btnSalir.text = getString(R.string.salir)
         btnLeer.text = getString(R.string.leer)
         btnReproducir.text = getString(R.string.reproducir)
