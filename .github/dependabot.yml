@@ -1,0 +1,37 @@
+name: Dependabot Auto-update
+
+on:
+  schedule:
+    # Ejecutar cada lunes a las 9:00 AM
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Permite ejecución manual
+
+version: 2
+updates:
+  # Actualizar dependencias de Gradle
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "tu-usuario-github"
+    labels:
+      - "dependencies"
+      - "automerge"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+
+  # Actualizar GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "tu-usuario-github"
+    labels:
+      - "dependencies"
+      - "github-actions"
