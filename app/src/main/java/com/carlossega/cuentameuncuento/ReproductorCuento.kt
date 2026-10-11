@@ -241,7 +241,14 @@ class ReproductorCuento : AppCompatActivity() {
 
                 if (document.exists()) {
                     urlCuento = document.getString("txt_$idioma") ?: ""
-                    lineasCuento = document.getLong("lines")?.toInt() ?: 0
+
+                    // Intentar leer 'lines' como Long, o como String si falla
+                    lineasCuento = try {
+                        document.getLong("lines")?.toInt() ?: 0
+                    } catch (e: Exception) {
+                        // Si es String, convertir a Int
+                        document.getString("lines")?.toIntOrNull() ?: 0
+                    }
 
                     if (urlCuento.isNotEmpty()) {
                         // Descargar contenido del cuento
