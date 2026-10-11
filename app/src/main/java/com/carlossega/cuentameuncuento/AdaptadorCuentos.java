@@ -7,7 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.squareup.picasso.Picasso;
+import coil.Coil;
+import coil.ImageLoader;
+import coil.request.ImageRequest;
 
 import java.util.ArrayList;
 
@@ -34,8 +36,15 @@ public class AdaptadorCuentos extends RecyclerView.Adapter<AdaptadorCuentos.View
         //Asignamos los datos recogidos a los componentes donde se visualizarán
         holder.tv_titulo.setText(listaCuentos.get(position).getTitulo());
         holder.tv_descripcion.setText(listaCuentos.get(position).getDescripcion());
-        //Iniciamos la visualización con la librería Picasso
-        Picasso.get().load(listaCuentos.get(position).getImagen()).into(holder.portada);
+
+        //Usando Coil en lugar de Picasso para cargar imágenes
+        ImageLoader imageLoader = Coil.imageLoader(holder.portada.getContext());
+        ImageRequest request = new ImageRequest.Builder(holder.portada.getContext())
+                .data(listaCuentos.get(position).getImagen())
+                .target(holder.portada)
+                .crossfade(true)
+                .build();
+        imageLoader.enqueue(request);
     }
 
     //Contador de Items

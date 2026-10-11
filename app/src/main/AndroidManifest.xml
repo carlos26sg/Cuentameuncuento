@@ -42,15 +42,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Autenticacion"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.CuentameUnCuento">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".MenuPrincipal"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
@@ -60,7 +51,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/Theme.CuentameUnCuento">
@@ -70,6 +61,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.CuentameUnCuento">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
