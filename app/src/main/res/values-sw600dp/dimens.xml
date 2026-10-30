@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tablets: todo un poco más grande -->
+    <dimen name="margen_pantalla">24dp</dimen>
+    <dimen name="margen_menu">56dp</dimen>
+    <dimen name="separacion_botones">36dp</dimen>
+
+    <dimen name="boton_ancho">220dp</dimen>
+    <dimen name="boton_alto">80dp</dimen>
+    <dimen name="boton_texto">30sp</dimen>
+
+    <dimen name="icono_pequeno">64dp</dimen>
+    <dimen name="icono_musica_ancho">58dp</dimen>
+    <dimen name="icono_musica_alto">76dp</dimen>
+    <dimen name="bandera_ancho">80dp</dimen>
+    <dimen name="bandera_alto">60dp</dimen>
+    <dimen name="ancho_popup_banderas">92dp</dimen>
+
+    <dimen name="texto_titulo">34sp</dimen>
+    <dimen name="texto_normal">24sp</dimen>
+    <dimen name="texto_cuento">34sp</dimen>
+    <dimen name="texto_cuento_minimo">18sp</dimen>
+    <dimen name="alto_texto_cuento">140dp</dimen>
+    <dimen name="alto_traduccion">84dp</dimen>
+
+    <dimen name="portada">130dp</dimen>
+    <dimen name="item_titulo">30sp</dimen>
+    <dimen name="item_descripcion">19sp</dimen>
+</resources>

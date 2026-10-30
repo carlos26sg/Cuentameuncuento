@@ -1,71 +1,25 @@
 package com.carlossega.cuentameuncuento.data.repository
 
-import com.carlossega.cuentameuncuento.Usuario
-import com.carlossega.cuentameuncuento.auth.AuthManager
-import com.carlossega.cuentameuncuento.auth.UserPreferences
-import javax.inject.Inject
-import javax.inject.Singleton
+import com.carlossega.cuentameuncuento.data.model.Preferencias
+import kotlinx.coroutines.flow.Flow
 
 /**
- * Repository para gestionar datos del usuario
- * Centraliza toda la lógica de usuario
+ * Usuario anónimo y sus preferencias. La implementación real es [FirebaseUserRepository].
  */
-@Singleton
-class UserRepository @Inject constructor(
-    private val authManager: AuthManager
-) {
+interface UserRepository {
 
-    /**
-     * Obtiene el usuario actual desde las preferencias locales
-     */
-    fun getCurrentUser(): Usuario {
-        val prefs = authManager.getLocalPreferences()
-        return Usuario(
-            nombre = prefs.nombre,
-            idioma = prefs.idioma,
-            favorito = prefs.favorito,
-            modo_fav = prefs.modoFav,
-            mail = authManager.getCurrentUserId() ?: ""
-        )
-    }
+    /** Preferencias locales; emite de nuevo cada vez que cambian */
+    val preferencias: Flow<Preferencias>
 
-    /**
-     * Guarda las preferencias del usuario
-     */
-    suspend fun saveUserPreferences(
-        nombre: String,
-        idioma: String,
-        favorito: String = "",
-        modoFav: String = ""
-    ): Result<Unit> {
-        return authManager.saveUserPreferences(nombre, idioma, favorito, modoFav)
-    }
+    /** Inicia sesión anónima si todavía no hay usuario. Devuelve false si no se pudo */
+    suspend fun asegurarSesion(): Boolean
 
-    /**
-     * Carga las preferencias desde Firestore
-     */
-    suspend fun loadUserPreferences(): Result<UserPreferences> {
-        return authManager.loadUserPreferences()
-    }
+    /** Descarga de Firestore las preferencias guardadas y actualiza las locales */
+    suspend fun sincronizar(): Result<Unit>
 
-    /**
-     * Verifica si hay un usuario autenticado
-     */
-    fun isUserSignedIn(): Boolean {
-        return authManager.isUserSignedIn()
-    }
+    /** Guarda en local y en Firestore */
+    suspend fun guardar(preferencias: Preferencias): Result<Unit>
 
-    /**
-     * Cierra sesión
-     */
-    fun signOut() {
-        authManager.signOut()
-    }
-
-    /**
-     * Inicia sesión anónima
-     */
-    suspend fun signInAnonymously(): Result<String> {
-        return authManager.signInAnonymously()
-    }
+    /** Borra los datos de Firestore, el usuario anónimo y las preferencias locales */
+    suspend fun borrarDatos(): Result<Unit>
 }

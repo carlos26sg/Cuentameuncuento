@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Márgenes -->
+    <dimen name="margen_pantalla">16dp</dimen>
+    <dimen name="margen_menu">32dp</dimen>
+    <dimen name="separacion_botones">24dp</dimen>
+
+    <!-- Botones con fondo de pergamino -->
+    <dimen name="boton_ancho">160dp</dimen>
+    <dimen name="boton_alto">58dp</dimen>
+    <dimen name="boton_texto">22sp</dimen>
+
+    <!-- Botones de icono -->
+    <dimen name="icono_pequeno">48dp</dimen>
+    <dimen name="icono_musica_ancho">44dp</dimen>
+    <dimen name="icono_musica_alto">58dp</dimen>
+    <dimen name="bandera_ancho">60dp</dimen>
+    <dimen name="bandera_alto">45dp</dimen>
+    <dimen name="ancho_popup_banderas">72dp</dimen>
+
+    <!-- Textos -->
+    <dimen name="texto_titulo">26sp</dimen>
+    <dimen name="texto_normal">18sp</dimen>
+    <dimen name="texto_cuento">24sp</dimen>
+    <dimen name="texto_cuento_minimo">14sp</dimen>
+    <dimen name="alto_texto_cuento">96dp</dimen>
+    <dimen name="alto_traduccion">56dp</dimen>
+
+    <!-- Lista de cuentos -->
+    <dimen name="portada">90dp</dimen>
+    <dimen name="item_titulo">24sp</dimen>
+    <dimen name="item_descripcion">15sp</dimen>
+</resources>

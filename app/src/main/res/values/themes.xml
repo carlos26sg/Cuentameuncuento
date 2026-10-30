@@ -1,22 +1,18 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
+    <!-- Tema base. Pantalla completa y edge-to-edge se configuran en código (PantallaCompleta.kt) -->
     <style name="Theme.CuentameUnCuento" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">#4CAF50</item>
-        <item name="colorPrimaryVariant">#388E3C</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">#009688</item>
-        <item name="colorSecondaryVariant">#00796B</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">@color/green_500</item>
+        <item name="colorPrimaryDark">@color/green_700</item>
+        <item name="colorAccent">@color/teal_500</item>
+        <item name="android:windowBackground">@color/black</item>
         <item name="android:fontFamily">@font/anna</item>
+        <item name="fontFamily">@font/anna</item>
     </style>
 
+    <!-- Splash de Android 12+ (y compatible con versiones anteriores gracias a core-splashscreen) -->
+    <style name="Theme.CuentameUnCuento.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/fondo_splash</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.CuentameUnCuento</item>
+    </style>
 </resources>

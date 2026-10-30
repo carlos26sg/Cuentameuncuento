@@ -1,10 +1,13 @@
 package com.carlossega.cuentameuncuento.ui.seleccion
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carlossega.cuentameuncuento.Cuento
+import com.carlossega.cuentameuncuento.data.model.Cuento
+import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,44 +17,53 @@ import javax.inject.Inject
 /**
  * Estados posibles para la carga de cuentos
  */
-sealed class CuentosUiState {
-    object Loading : CuentosUiState()
-    data class Success(val cuentos: List<Cuento>) : CuentosUiState()
-    data class Error(val message: String) : CuentosUiState()
+sealed interface CuentosUiState {
+    data object Cargando : CuentosUiState
+    data class Listo(val cuentos: List<Cuento>) : CuentosUiState
+    data object Vacio : CuentosUiState
+    data object Error : CuentosUiState
 }
 
 /**
- * ViewModel para SeleccionCuento
- * Gestiona la carga y filtrado de cuentos
+ * ViewModel para SeleccionCuento. Los cuentos se cargan una sola vez por idioma
+ * (antes se volvían a añadir a la lista cada vez que se volvía a la pantalla).
  */
 @HiltViewModel
 class SeleccionViewModel @Inject constructor(
-    private val cuentoRepository: CuentoRepository
+    private val cuentoRepository: CuentoRepository,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<CuentosUiState>(CuentosUiState.Loading)
+    private val _idioma = MutableStateFlow(
+        Idioma.desdeCodigo(savedStateHandle.get<String>(SeleccionCuento.EXTRA_IDIOMA))
+    )
+    val idioma: StateFlow<Idioma> = _idioma.asStateFlow()
+
+    private val _uiState = MutableStateFlow<CuentosUiState>(CuentosUiState.Cargando)
     val uiState: StateFlow<CuentosUiState> = _uiState.asStateFlow()
 
-    /**
-     * Carga los cuentos desde Firestore
-     */
-    fun loadCuentos(idioma: String) {
-        viewModelScope.launch {
-            _uiState.value = CuentosUiState.Loading
+    private var carga: Job? = null
 
-            val result = cuentoRepository.getCuentos(idioma)
+    init {
+        cargar()
+    }
 
-            _uiState.value = result.fold(
-                onSuccess = { cuentos ->
-                    if (cuentos.isEmpty()) {
-                        CuentosUiState.Error("No se encontraron cuentos")
-                    } else {
-                        CuentosUiState.Success(cuentos)
-                    }
-                },
-                onFailure = { exception ->
-                    CuentosUiState.Error(exception.message ?: "Error desconocido")
-                }
+    fun cambiarIdioma(idioma: Idioma) {
+        if (idioma == _idioma.value) return
+        _idioma.value = idioma
+        savedStateHandle[SeleccionCuento.EXTRA_IDIOMA] = idioma.codigo
+        cargar()
+    }
+
+    fun reintentar() = cargar()
+
+    private fun cargar() {
+        carga?.cancel()
+        _uiState.value = CuentosUiState.Cargando
+        carga = viewModelScope.launch {
+            _uiState.value = cuentoRepository.getCuentos(_idioma.value).fold(
+                onSuccess = { if (it.isEmpty()) CuentosUiState.Vacio else CuentosUiState.Listo(it) },
+                onFailure = { CuentosUiState.Error }
             )
         }
     }

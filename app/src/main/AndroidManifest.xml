@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- Permiso para poder tener conexión a Internet -->
+
+    <!-- Firebase y descarga de los textos e ilustraciones de los cuentos -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- App para niños (política de Familias): sin identificador de publicidad -->
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
+
+    <!-- Necesario en Android 11+ para comprobar si hay motor de texto a voz -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
 
     <application
         android:name=".CuentoApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CuentameUnCuento"
-        tools:targetApi="31">
-        <activity
-            android:name=".ReproductorCuento"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.CuentameUnCuento">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Perfil"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.CuentameUnCuento">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".SeleccionCuento"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.CuentameUnCuento">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".MenuPrincipal"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.CuentameUnCuento">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+        tools:targetApi="33">
+
+        <!-- Analytics configurado para apps infantiles: sin personalización de anuncios
+             ni identificadores publicitarios -->
+        <meta-data
+            android:name="google_analytics_adid_collection_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="google_analytics_default_allow_ad_personalization_signals"
+            android:value="false" />
+        <meta-data
+            android:name="google_analytics_ssaid_collection_enabled"
+            android:value="false" />
+
+        <!-- En móviles se mantiene el diseño en horizontal. En tablets Android 16+ ignora
+             la orientación, por eso todos los layouts funcionan también en vertical.
+             SplashActivity usa la API SplashScreen (no es una pantalla de inicio propia). -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.CuentameUnCuento">
+            android:theme="@style/Theme.CuentameUnCuento.Splash"
+            tools:ignore="CustomSplashScreen,DiscouragedApi">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.menu.MenuPrincipal"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.CuentameUnCuento">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            tools:ignore="DiscouragedApi" />
+        <activity
+            android:name=".ui.seleccion.SeleccionCuento"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            tools:ignore="DiscouragedApi" />
+        <activity
+            android:name=".ui.reproductor.ReproductorCuento"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            tools:ignore="DiscouragedApi" />
+        <activity
+            android:name=".ui.ajustes.AjustesActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            tools:ignore="DiscouragedApi" />
     </application>
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
 </manifest>

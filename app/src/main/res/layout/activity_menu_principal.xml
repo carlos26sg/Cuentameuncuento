@@ -1,124 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_menu"
-    android:theme="@style/Theme.CuentameUnCuento"
-    tools:context=".MenuPrincipal">
+    tools:context=".ui.menu.MenuPrincipal">
 
-    <TextView
-        android:id="@+id/txt_menu_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondo_menu" />
 
-    <Button
-        android:id="@+id/btn_leer"
-        android:layout_width="140dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="72dp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/pergamino"
-        android:maxLines="1"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:stateListAnimator="@null"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contenido"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margen_pantalla">
 
-    <Button
-        android:id="@+id/btn_reproducir"
-        android:layout_width="140dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/pergamino"
-        android:maxLines="1"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:stateListAnimator="@null"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_leer" />
+        <TextView
+            android:id="@+id/txt_bienvenida"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margen_menu"
+            android:layout_marginEnd="@dimen/margen_pantalla"
+            android:textColor="@color/black"
+            android:textSize="@dimen/texto_titulo"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/btn_ajustes"
+            app:layout_constraintEnd_toStartOf="@id/btn_ajustes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_ajustes" />
 
-    <Button
-        android:id="@+id/btn_favorito"
-        android:layout_width="140dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/pergamino"
-        android:maxLines="1"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:stateListAnimator="@null"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_reproducir" />
+        <Button
+            android:id="@+id/btn_ajustes"
+            style="@style/BotonPergamino"
+            android:text="@string/ajustes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_salir"
-        android:layout_width="140dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/pergamino"
-        android:textSize="22sp"
-        android:autoSizeTextType="uniform"
-        android:maxLines="1"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:stateListAnimator="@null"/>
+        <!-- Opciones principales, centradas en vertical en el lado izquierdo -->
+        <Button
+            android:id="@+id/btn_leer"
+            style="@style/BotonPergamino"
+            android:layout_marginStart="@dimen/margen_menu"
+            android:text="@string/leer"
+            app:layout_constraintBottom_toTopOf="@id/btn_escuchar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_ajustes"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
-        android:id="@+id/btn_act_perfil"
-        android:layout_width="140dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="22sp"
-        android:autoSizeTextType="uniform"
-        android:maxLines="1"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:background="@drawable/pergamino"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:stateListAnimator="@null"/>
+        <Button
+            android:id="@+id/btn_escuchar"
+            style="@style/BotonPergamino"
+            android:layout_marginTop="@dimen/separacion_botones"
+            android:text="@string/escuchar"
+            app:layout_constraintBottom_toTopOf="@id/btn_favorito"
+            app:layout_constraintStart_toStartOf="@id/btn_leer"
+            app:layout_constraintTop_toBottomOf="@id/btn_leer" />
 
-    <Button
-        android:id="@+id/btn_musica"
-        android:layout_width="40dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/audio"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:stateListAnimator="@null"/>
+        <Button
+            android:id="@+id/btn_favorito"
+            style="@style/BotonPergamino"
+            android:layout_marginTop="@dimen/separacion_botones"
+            android:text="@string/favorito"
+            app:layout_constraintBottom_toTopOf="@id/btn_salir"
+            app:layout_constraintStart_toStartOf="@id/btn_leer"
+            app:layout_constraintTop_toBottomOf="@id/btn_escuchar" />
 
-    <Button
-        android:id="@+id/btn_sin_musica"
-        android:layout_width="40dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/sin_sonido"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:stateListAnimator="@null"/>
+        <ImageButton
+            android:id="@+id/btn_musica"
+            style="@style/BotonIcono"
+            android:layout_width="@dimen/icono_musica_ancho"
+            android:layout_height="@dimen/icono_musica_alto"
+            android:contentDescription="@string/silenciar_musica"
+            android:src="@drawable/audio"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_salir"
+            style="@style/BotonPergamino"
+            android:text="@string/salir"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

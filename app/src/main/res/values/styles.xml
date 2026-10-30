@@ -1,23 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="spinner_style">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/diseny_spinner</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">16dp</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
+    <!-- Botón con fondo de pergamino (menú y ajustes) -->
+    <style name="BotonPergamino" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">@dimen/boton_ancho</item>
+        <item name="android:layout_height">@dimen/boton_alto</item>
+        <item name="android:background">@drawable/pergamino</item>
+        <item name="android:textSize">@dimen/boton_texto</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMinTextSize">12sp</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/boton_texto</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:stateListAnimator">@null</item>
     </style>
-    <!--Estilo para dar efecto de sombra a las palabras del cuento-->
-    <style name="SombraLetras">
-        <item name="android:paddingLeft">2px</item>
-        <item name="android:paddingBottom">2px</item>
+
+    <!-- Botón de icono sin fondo de sistema -->
+    <style name="BotonIcono">
+        <item name="android:layout_width">@dimen/icono_pequeno</item>
+        <item name="android:layout_height">@dimen/icono_pequeno</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="SpinnerBanderas">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:popupBackground">@color/fondo_panel</item>
+        <item name="android:dropDownWidth">@dimen/ancho_popup_banderas</item>
+    </style>
+
+    <!-- Texto del cuento con sombra para que se lea sobre las ilustraciones -->
+    <style name="TextoCuento">
+        <item name="android:textSize">@dimen/texto_cuento</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMinTextSize">@dimen/texto_cuento_minimo</item>
+        <item name="android:autoSizeMaxTextSize">@dimen/texto_cuento</item>
         <item name="android:shadowColor">#000000</item>
         <item name="android:shadowDx">3</item>
         <item name="android:shadowDy">2.6</item>
         <item name="android:shadowRadius">3.2</item>
+    </style>
+
+    <!-- Etiqueta y panel semitransparente de la pantalla de ajustes -->
+    <style name="EtiquetaAjustes">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/texto_normal</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

@@ -1,61 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_menu"
-    android:theme="@style/Theme.CuentameUnCuento"
-    tools:context=".SeleccionCuento">
+    tools:context=".ui.seleccion.SeleccionCuento">
 
-    <Button
-        android:id="@+id/btn_atras"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/atras"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:stateListAnimator="@null"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondo_menu" />
 
-    <TextView
-        android:id="@+id/tv_selecciona"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center_vertical"
-        android:text="TextView"
-        android:textColor="@color/black"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/btn_atras"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contenido"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margen_pantalla">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_lista_cuentos"
-        android:layout_width="729dp"
-        android:layout_height="330dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_atras" />
+        <ImageButton
+            android:id="@+id/btn_atras"
+            style="@style/BotonIcono"
+            android:contentDescription="@string/atras"
+            android:src="@drawable/atras"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/sp_seleccion_idioma"
-        style="@style/spinner_style"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:stateListAnimator="@null"
-        android:theme="@style/Theme.CuentameUnCuento"
-        app:layout_constraintBottom_toTopOf="@+id/rv_lista_cuentos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/txt_selecciona"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margen_pantalla"
+            android:layout_marginEnd="@dimen/margen_pantalla"
+            android:text="@string/selecciona"
+            android:textColor="@color/black"
+            android:textSize="@dimen/texto_titulo"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/btn_atras"
+            app:layout_constraintEnd_toStartOf="@id/sp_idioma"
+            app:layout_constraintStart_toEndOf="@id/btn_atras"
+            app:layout_constraintTop_toTopOf="@id/btn_atras" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Spinner
+            android:id="@+id/sp_idioma"
+            style="@style/SpinnerBanderas"
+            android:contentDescription="@string/idioma"
+            app:layout_constraintBottom_toBottomOf="@id/btn_atras"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_atras" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cuentos"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_atras" />
+
+        <ProgressBar
+            android:id="@+id/progreso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_atras" />
+
+        <LinearLayout
+            android:id="@+id/grupo_mensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/fondo_panel"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/margen_pantalla"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_atras">
+
+            <TextView
+                android:id="@+id/txt_mensaje"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/texto_normal" />
+
+            <Button
+                android:id="@+id/btn_reintentar"
+                style="@style/BotonPergamino"
+                android:layout_marginTop="@dimen/margen_pantalla"
+                android:text="@string/reintentar" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
