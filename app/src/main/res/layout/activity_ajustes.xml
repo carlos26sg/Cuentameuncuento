@@ -48,12 +48,6 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/texto_titulo"
                     android:textStyle="bold" />
-
-                <ProgressBar
-                    android:id="@+id/progreso"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
             </LinearLayout>
 
             <!-- Panel de preferencias -->
@@ -147,17 +141,9 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_borrar"
-                    style="@style/BotonPergamino"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/borrar_datos" />
-
-                <Button
                     android:id="@+id/btn_privacidad"
                     style="@style/BotonPergamino"
                     android:layout_width="0dp"
-                    android:layout_marginStart="@dimen/margen_pantalla"
                     android:layout_marginEnd="@dimen/margen_pantalla"
                     android:layout_weight="1"
                     android:text="@string/privacidad" />

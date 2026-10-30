@@ -19,7 +19,7 @@ enum class Idioma(val codigo: String, val etiquetaLocale: String, @DrawableRes v
 }
 
 /**
- * Modo de uso de un cuento. `codigo` es el valor guardado en Firestore (campo modo_fav).
+ * Modo de uso de un cuento. `codigo` es el valor que se guarda en las preferencias.
  */
 enum class Modo(val codigo: String) {
     LEER("leer"),
@@ -31,10 +31,9 @@ enum class Modo(val codigo: String) {
 }
 
 /**
- * Preferencias del usuario. Se guardan en local (DataStore) y se sincronizan con Firestore.
+ * Preferencias de la app, guardadas solo en el dispositivo (DataStore)
  */
 data class Preferencias(
-    val nombre: String = "",
     val idioma: Idioma = Idioma.ESPANOL,
     val favorito: String = "",
     val modoFavorito: Modo? = null

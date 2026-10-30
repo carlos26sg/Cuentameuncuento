@@ -9,7 +9,7 @@ import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.Modo
 import com.carlossega.cuentameuncuento.data.model.Preferencias
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
-import com.carlossega.cuentameuncuento.data.repository.UserRepository
+import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
@@ -22,43 +22,37 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.cancellation.CancellationException
 
 data class AjustesUiState(
     val cargando: Boolean = true,
-    val ocupado: Boolean = false,
     val idioma: Idioma = Idioma.ESPANOL,
     val modoFavorito: Modo? = null,
     val favorito: String = "",
     val cuentos: List<Cuento> = emptyList()
 )
 
-sealed interface AjustesEvento {
-    data class Mensaje(@StringRes val texto: Int) : AjustesEvento
-    data object DatosBorrados : AjustesEvento
-}
-
 /**
- * ViewModel de la pantalla de Ajustes (antes "Perfil"). El favorito se guarda por id
- * del cuento; antes se guardaba el título y el botón Favorito no encontraba el cuento.
+ * ViewModel de la pantalla de Ajustes. El favorito se guarda por id del cuento;
+ * antes se guardaba el título y el botón Favorito no encontraba el cuento.
  */
 @HiltViewModel
 class AjustesViewModel @Inject constructor(
-    private val userRepository: UserRepository,
+    private val preferenciasRepository: PreferenciasRepository,
     private val cuentoRepository: CuentoRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AjustesUiState())
     val uiState: StateFlow<AjustesUiState> = _uiState.asStateFlow()
 
-    private val _eventos = Channel<AjustesEvento>(Channel.BUFFERED)
-    val eventos: Flow<AjustesEvento> = _eventos.receiveAsFlow()
+    private val _mensajes = Channel<Int>(Channel.BUFFERED)
+    val mensajes: Flow<Int> = _mensajes.receiveAsFlow()
 
-    private var preferencias = Preferencias()
     private var cargaCuentos: Job? = null
 
     init {
         viewModelScope.launch {
-            preferencias = userRepository.preferencias.first()
+            val preferencias = preferenciasRepository.preferencias.first()
             _uiState.update {
                 it.copy(
                     idioma = preferencias.idioma,
@@ -83,32 +77,27 @@ class AjustesViewModel @Inject constructor(
 
     fun guardar() {
         val estado = _uiState.value
-        val nuevas = preferencias.copy(
-            idioma = estado.idioma,
-            modoFavorito = estado.modoFavorito,
-            favorito = estado.favorito
-        )
-        _uiState.update { it.copy(ocupado = true) }
         viewModelScope.launch {
-            val resultado = userRepository.guardar(nuevas)
-            if (resultado.isSuccess) preferencias = nuevas
-            _uiState.update { it.copy(ocupado = false) }
-            _eventos.send(
-                AjustesEvento.Mensaje(if (resultado.isSuccess) R.string.ajustes_guardados else R.string.error_guardar)
-            )
+            val mensaje = try {
+                preferenciasRepository.guardar(
+                    Preferencias(
+                        idioma = estado.idioma,
+                        favorito = estado.favorito,
+                        modoFavorito = estado.modoFavorito
+                    )
+                )
+                R.string.ajustes_guardados
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                R.string.error_guardar
+            }
+            mostrarMensaje(mensaje)
         }
     }
 
-    fun borrarDatos() {
-        _uiState.update { it.copy(ocupado = true) }
-        viewModelScope.launch {
-            val resultado = userRepository.borrarDatos()
-            _uiState.update { it.copy(ocupado = false) }
-            _eventos.send(
-                if (resultado.isSuccess) AjustesEvento.DatosBorrados
-                else AjustesEvento.Mensaje(R.string.error_borrar_datos)
-            )
-        }
+    private fun mostrarMensaje(@StringRes mensaje: Int) {
+        _mensajes.trySend(mensaje)
     }
 
     private fun cargarCuentos(idioma: Idioma) {

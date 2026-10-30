@@ -3,10 +3,9 @@ package com.carlossega.cuentameuncuento.di
 import com.carlossega.cuentameuncuento.audio.Narrador
 import com.carlossega.cuentameuncuento.audio.TtsNarrador
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
-import com.carlossega.cuentameuncuento.data.repository.FirebaseUserRepository
 import com.carlossega.cuentameuncuento.data.repository.FirestoreCuentoRepository
-import com.carlossega.cuentameuncuento.data.repository.UserRepository
-import com.google.firebase.auth.FirebaseAuth
+import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
+import com.carlossega.cuentameuncuento.data.prefs.PreferenciasStore
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Binds
 import dagger.Module
@@ -34,10 +33,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
-
-    @Provides
-    @Singleton
     fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
 
     @Provides
@@ -60,7 +55,7 @@ abstract class RepositoryModule {
     abstract fun bindCuentoRepository(impl: FirestoreCuentoRepository): CuentoRepository
 
     @Binds
-    abstract fun bindUserRepository(impl: FirebaseUserRepository): UserRepository
+    abstract fun bindPreferenciasRepository(impl: PreferenciasStore): PreferenciasRepository
 }
 
 @Module

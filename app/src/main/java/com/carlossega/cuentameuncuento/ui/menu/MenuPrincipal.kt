@@ -43,18 +43,9 @@ class MenuPrincipal : AppCompatActivity() {
         binding.btnAjustes.setOnClickListener { startActivity(AjustesActivity.intent(this)) }
         binding.btnSalir.setOnClickListener { finishAffinity() }
 
+        // Mantiene las preferencias cargadas para que Leer/Escuchar/Favorito las tengan al instante
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.preferencias.collect(::mostrarBienvenida)
-            }
-        }
-    }
-
-    private fun mostrarBienvenida(preferencias: Preferencias) {
-        binding.txtBienvenida.text = if (preferencias.nombre.isNotEmpty()) {
-            getString(R.string.bienvenido_nombre, preferencias.nombre)
-        } else {
-            getString(R.string.bienvenido)
+            repeatOnLifecycle(Lifecycle.State.STARTED) { viewModel.preferencias.collect {} }
         }
     }
 

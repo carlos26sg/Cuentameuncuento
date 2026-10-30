@@ -7,7 +7,7 @@ import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.LineaCuento
 import com.carlossega.cuentameuncuento.data.model.Preferencias
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
-import com.carlossega.cuentameuncuento.data.repository.UserRepository
+import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.test.TestDispatcher
@@ -49,27 +49,14 @@ class FakeCuentoRepository : CuentoRepository {
         if (fallar) Result.failure(Exception("sin red")) else Result.success(imagenes)
 }
 
-class FakeUserRepository(inicial: Preferencias = Preferencias()) : UserRepository {
+class FakePreferenciasRepository(inicial: Preferencias = Preferencias()) : PreferenciasRepository {
     private val _preferencias = MutableStateFlow(inicial)
     override val preferencias: StateFlow<Preferencias> = _preferencias
     var fallar = false
-    var datosBorrados = false
 
-    override suspend fun asegurarSesion() = !fallar
-
-    override suspend fun sincronizar(): Result<Unit> = Result.success(Unit)
-
-    override suspend fun guardar(preferencias: Preferencias): Result<Unit> {
-        if (fallar) return Result.failure(Exception("error"))
+    override suspend fun guardar(preferencias: Preferencias) {
+        if (fallar) throw java.io.IOException("disco lleno")
         _preferencias.value = preferencias
-        return Result.success(Unit)
-    }
-
-    override suspend fun borrarDatos(): Result<Unit> {
-        if (fallar) return Result.failure(Exception("error"))
-        datosBorrados = true
-        _preferencias.value = Preferencias()
-        return Result.success(Unit)
     }
 }
 

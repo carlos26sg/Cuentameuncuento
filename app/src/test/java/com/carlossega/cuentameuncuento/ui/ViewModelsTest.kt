@@ -3,7 +3,7 @@ package com.carlossega.cuentameuncuento.ui
 import androidx.lifecycle.SavedStateHandle
 import com.carlossega.cuentameuncuento.FakeCuentoRepository
 import com.carlossega.cuentameuncuento.FakeNarrador
-import com.carlossega.cuentameuncuento.FakeUserRepository
+import com.carlossega.cuentameuncuento.FakePreferenciasRepository
 import com.carlossega.cuentameuncuento.MainDispatcherRule
 import com.carlossega.cuentameuncuento.R
 import com.carlossega.cuentameuncuento.audio.FalloNarrador
@@ -12,7 +12,6 @@ import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.LineaCuento
 import com.carlossega.cuentameuncuento.data.model.Modo
 import com.carlossega.cuentameuncuento.data.model.Preferencias
-import com.carlossega.cuentameuncuento.ui.ajustes.AjustesEvento
 import com.carlossega.cuentameuncuento.ui.ajustes.AjustesViewModel
 import com.carlossega.cuentameuncuento.ui.reproductor.ReproductorCuento
 import com.carlossega.cuentameuncuento.ui.reproductor.ReproductorViewModel
@@ -196,39 +195,40 @@ class AjustesViewModelTest {
     }
 
     @Test
+    fun cargaLasPreferenciasGuardadas() {
+        val preferencias = FakePreferenciasRepository(
+            Preferencias(idioma = Idioma.ESPANOL, favorito = "c1", modoFavorito = Modo.LEER)
+        )
+        val vm = AjustesViewModel(preferencias, cuentos)
+
+        assertThat(vm.uiState.value.favorito).isEqualTo("c1")
+        assertThat(vm.uiState.value.modoFavorito).isEqualTo(Modo.LEER)
+        assertThat(vm.uiState.value.cuentos).hasSize(2)
+    }
+
+    @Test
     fun guardaElFavoritoPorId() = runTest {
-        val usuario = FakeUserRepository(Preferencias(nombre = "Ana"))
-        val vm = AjustesViewModel(usuario, cuentos)
+        val preferencias = FakePreferenciasRepository()
+        val vm = AjustesViewModel(preferencias, cuentos)
 
         vm.cambiarFavorito("c2")
         vm.cambiarModo(Modo.ESCUCHAR)
         vm.guardar()
 
-        val guardadas = usuario.preferencias.value
+        val guardadas = preferencias.preferencias.value
         assertThat(guardadas.favorito).isEqualTo("c2")
         assertThat(guardadas.modoFavorito).isEqualTo(Modo.ESCUCHAR)
-        assertThat(guardadas.nombre).isEqualTo("Ana")
-        assertThat(vm.eventos.first()).isEqualTo(AjustesEvento.Mensaje(R.string.ajustes_guardados))
-    }
-
-    @Test
-    fun borrarDatos_avisaCuandoTermina() = runTest {
-        val usuario = FakeUserRepository(Preferencias(favorito = "c1", modoFavorito = Modo.LEER))
-        val vm = AjustesViewModel(usuario, cuentos)
-
-        vm.borrarDatos()
-
-        assertThat(usuario.datosBorrados).isTrue()
-        assertThat(vm.eventos.first()).isEqualTo(AjustesEvento.DatosBorrados)
+        assertThat(guardadas.tieneFavorito).isTrue()
+        assertThat(vm.mensajes.first()).isEqualTo(R.string.ajustes_guardados)
     }
 
     @Test
     fun errorAlGuardar_muestraMensaje() = runTest {
-        val usuario = FakeUserRepository().apply { fallar = true }
-        val vm = AjustesViewModel(usuario, cuentos)
+        val preferencias = FakePreferenciasRepository().apply { fallar = true }
+        val vm = AjustesViewModel(preferencias, cuentos)
 
         vm.guardar()
 
-        assertThat(vm.eventos.first()).isEqualTo(AjustesEvento.Mensaje(R.string.error_guardar))
+        assertThat(vm.mensajes.first()).isEqualTo(R.string.error_guardar)
     }
 }

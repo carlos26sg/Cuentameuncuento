@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="bienvenido">Benvingut</string>
-    <string name="bienvenido_nombre">Benvingut, %1$s</string>
     <string name="leer">Llegir</string>
     <string name="escuchar">Escoltar</string>
     <string name="favorito">Preferit</string>
@@ -41,12 +40,6 @@
     <string name="guardar">Desa</string>
     <string name="ajustes_guardados">Configuració desada</string>
     <string name="error_guardar">No s\'ha pogut desar la configuració</string>
-    <string name="borrar_datos">Esborra les dades</string>
-    <string name="borrar_datos_explicacion">S\'esborraran les teves preferències d\'aquest dispositiu i dels nostres servidors. Aquesta acció no es pot desfer.</string>
-    <string name="borrar">Esborra</string>
-    <string name="cancelar">Cancel·la</string>
-    <string name="datos_borrados">Les teves dades s\'han esborrat</string>
-    <string name="error_borrar_datos">No s\'han pogut esborrar les dades. Cal connexió a Internet.</string>
     <string name="privacidad">Privacitat</string>
     <string name="sin_navegador">No hi ha cap navegador instal·lat</string>
     <string name="version">Versió %1$s</string>

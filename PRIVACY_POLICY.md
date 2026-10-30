@@ -1,193 +1,81 @@
 # Política de Privacidad - Cuéntame un Cuento
 
-**Última actualización:** Enero 2026
+**Última actualización:** octubre de 2026 (versión 2.1 de la app)
 
-## Introducción
+> Esta es la fuente en Markdown. La versión publicada es `privacy-policy.html`
+> (https://carlos26sg.github.io/Cuentameuncuento/privacy-policy.html). Si cambias una, cambia la otra.
 
-"Cuéntame un Cuento" ("la Aplicación", "nosotros", "nuestro") respeta su privacidad y está comprometida con la protección de sus datos personales. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos su información cuando utiliza nuestra aplicación móvil.
+## Resumen para padres
 
----
+- ✅ **No hay cuentas ni usuarios.** No se pide nombre, email, contraseña ni ningún dato personal.
+- ✅ **Las preferencias se quedan en el dispositivo** (idioma, cuento favorito, música activada o no).
+- ✅ **Sin publicidad** y sin identificador de publicidad.
+- ℹ️ **Estadísticas de uso y errores anónimas** con Firebase (Google), para mejorar la app.
+- 🗑️ **Borrar todo:** desinstalar la app o borrar sus datos desde los ajustes de Android.
 
-## Información que Recopilamos
+## 1. Introducción
 
-### 1. Información que Usted Proporciona
+"Cuéntame un Cuento" es una aplicación de cuentos para niños y familias. Esta política explica
+qué información se trata y por qué.
 
-- **Nombre de usuario** (opcional): Si decide configurar su perfil
-- **Preferencias de idioma**: Español, Catalán o Inglés
-- **Cuento favorito** (opcional): Si selecciona un favorito
+## 2. Información que se guarda en el dispositivo
 
-### 2. Información Recopilada Automáticamente
+La app guarda únicamente en el propio dispositivo:
 
-- **ID de usuario anónimo**: Generado automáticamente por Firebase Authentication
-- **Datos de uso de la aplicación**: Cuentos leídos, idioma seleccionado, modo de lectura
-- **Información técnica**: Modelo de dispositivo, versión de Android, crashes de la aplicación
+- Idioma de los cuentos (español, catalán o inglés).
+- Cuento favorito y modo favorito (leer o escuchar).
+- Si la música de fondo está activada.
+- Copia de los textos e ilustraciones de los cuentos ya abiertos, para poder leerlos sin conexión.
 
-### 3. Información que NO Recopilamos
+Esta información **no se envía a ningún servidor**. Se borra al desinstalar la app o al borrar
+sus datos desde Ajustes de Android ▸ Aplicaciones ▸ Cuéntame un Cuento ▸ Almacenamiento.
 
-- ❌ **NO recopilamos direcciones de correo electrónico**
-- ❌ **NO recopilamos contraseñas**
-- ❌ **NO recopilamos información de contacto**
-- ❌ **NO recopilamos datos de ubicación**
-- ❌ **NO accedemos a cámara, micrófono o galería**
-- ❌ **NO rastreamos su actividad fuera de la aplicación**
+## 3. Información técnica que se envía a Firebase (Google)
 
----
+Para que la app funcione y para mejorarla usamos estos servicios de Firebase:
 
-## Cómo Usamos Su Información
+- **Cloud Firestore y Cloud Storage:** de ahí se descargan los cuentos y sus ilustraciones.
+  No se envía ningún dato del niño.
+- **Firebase Crashlytics:** si la app se cierra por un error, se envía un informe técnico
+  (modelo de dispositivo, versión de Android, versión de la app y el error). Se conserva
+  90 días.
+- **Google Analytics para Firebase:** estadísticas de uso agregadas (por ejemplo, pantallas
+  abiertas, duración de la sesión, país aproximado y tipo de dispositivo), asociadas a un
+  identificador aleatorio de instalación. **No** se recoge el identificador de publicidad,
+  la personalización de anuncios está desactivada y los datos no se usan para publicidad.
 
-Utilizamos la información recopilada para:
+Ninguno de estos datos permite identificar a una persona. Más información:
+https://firebase.google.com/support/privacy
 
-1. **Proporcionar el servicio**: Guardar sus preferencias (idioma, cuento favorito)
-2. **Mejorar la experiencia**: Recordar su configuración entre sesiones
-3. **Mantener la aplicación**: Detectar y corregir errores mediante Crashlytics
-4. **Sincronizar entre dispositivos**: Si usa la misma cuenta en múltiples dispositivos
+## 4. Lo que NO hacemos
 
-**NO vendemos, alquilamos ni compartimos su información personal con terceros con fines publicitarios.**
+- ❌ No hay registro, cuentas ni inicio de sesión.
+- ❌ No recogemos nombre, email, contraseñas, fotos, contactos, micrófono ni ubicación precisa.
+- ❌ No mostramos anuncios ni usamos el identificador de publicidad.
+- ❌ No vendemos ni compartimos datos con terceros para publicidad.
 
----
+## 5. Privacidad de menores
 
-## Servicios de Terceros
+La aplicación está pensada para niños. No recogemos intencionadamente información personal de
+menores y cumplimos la política de Familias de Google Play. Si cree que se ha recogido algún dato
+personal de un menor, contáctenos y lo eliminaremos.
 
-La Aplicación utiliza los siguientes servicios de terceros que pueden recopilar información:
+## 6. Seguridad
 
-### Firebase (Google)
+Todas las comunicaciones con Firebase usan conexiones cifradas (HTTPS/TLS).
 
-Utilizamos Firebase para:
-- **Authentication**: Autenticación anónima (sin email ni contraseña)
-- **Firestore**: Almacenamiento de preferencias del usuario
-- **Crashlytics**: Reporte de errores y crashes
-- **Analytics**: Datos agregados de uso (opcional)
+## 7. Sus derechos
 
-**Política de privacidad de Firebase**: https://firebase.google.com/support/privacy
+De acuerdo con el RGPD puede solicitar información sobre el tratamiento de datos, oponerse a él o
+pedir su eliminación escribiendo a la dirección de contacto. Como la app no guarda datos
+personales en servidores, normalmente basta con desinstalarla.
 
-### Datos Recopilados por Firebase:
-- ID de usuario anónimo
-- Datos de configuración (nombre, idioma, favorito)
-- Logs de crashes y errores técnicos
-- Datos agregados de uso (sin identificación personal)
+## 8. Cambios en esta política
 
----
-
-## Almacenamiento y Seguridad de Datos
-
-### Dónde se Almacenan sus Datos
-
-- **Localmente en su dispositivo**: Cifrados usando EncryptedSharedPreferences (AES-256)
-- **Firebase Firestore**: Servidores de Google Cloud (región: us-central1)
-
-### Seguridad
-
-Implementamos medidas de seguridad para proteger su información:
-
-- ✅ **Cifrado local** con AES-256-GCM
-- ✅ **Comunicación segura** mediante HTTPS/TLS
-- ✅ **Sin contraseñas almacenadas** en ningún lugar
-- ✅ **Autenticación anónima** de Firebase (sin datos personales)
-- ✅ **Reglas de seguridad** en Firestore para proteger acceso
-
-Sin embargo, ningún método de transmisión por Internet o almacenamiento electrónico es 100% seguro.
-
----
-
-## Retención de Datos
-
-- **Preferencias del usuario**: Se mantienen mientras use la aplicación
-- **Datos de crash**: Se retienen durante 90 días en Firebase Crashlytics
-- **Datos analíticos**: Se agregan y anonimizan automáticamente
-
-### Eliminación de Datos
-
-Puede eliminar sus datos en cualquier momento:
-
-1. **Desde la app**: Vaya a Perfil → Eliminar Cuenta
-2. **Contactándonos**: Envíe un email a [tu-email@ejemplo.com]
-
-Al eliminar su cuenta:
-- Se eliminan permanentemente todas sus preferencias de Firestore
-- Se borra su ID de usuario de Firebase Authentication
-- Los datos locales se eliminan de su dispositivo
-
----
-
-## Privacidad de Menores
-
-Esta aplicación está diseñada para niños y familias.
-
-**NO recopilamos intencionalmente información personal identificable de niños menores de 13 años.**
-
-Si descubrimos que hemos recopilado información personal de un niño menor de 13 años sin el consentimiento de los padres, eliminaremos esa información de nuestros servidores inmediatamente.
-
-Si usted es padre/madre y cree que su hijo nos ha proporcionado información personal, contáctenos en [tu-email@ejemplo.com].
-
----
-
-## Sus Derechos
-
-Según el RGPD (Reglamento General de Protección de Datos) y otras leyes de privacidad, usted tiene derecho a:
-
-1. **Acceso**: Solicitar una copia de sus datos
-2. **Rectificación**: Corregir datos inexactos (puede hacerlo en Perfil)
-3. **Eliminación**: Eliminar su cuenta y todos sus datos
-4. **Portabilidad**: Obtener sus datos en formato estructurado
-5. **Oposición**: Oponerse al procesamiento de sus datos
-
-Para ejercer estos derechos, contáctenos en [tu-email@ejemplo.com].
-
----
-
-## Cambios en esta Política
-
-Podemos actualizar nuestra Política de Privacidad periódicamente. Le notificaremos de cualquier cambio publicando la nueva Política de Privacidad en esta página y actualizando la fecha de "Última actualización".
-
-Los cambios son efectivos inmediatamente después de su publicación en esta página.
-
-**Le recomendamos revisar esta Política de Privacidad periódicamente.**
-
----
-
-## Consentimiento
-
-Al usar la Aplicación, usted acepta esta Política de Privacidad y consiente la recopilación y uso de información según se describe aquí.
-
----
+Si la política cambia, se publicará aquí con una nueva fecha de actualización.
 
 ## Contacto
 
-Si tiene preguntas o inquietudes sobre esta Política de Privacidad, contáctenos:
-
-- **Email**: [tu-email@ejemplo.com]
-- **Desarrollador**: Carlos Serrano
-- **Aplicación**: Cuéntame un Cuento
-- **Versión**: 2.0
-
----
-
-## Información Legal
-
-**Responsable del tratamiento de datos:**
-- Nombre: Carlos Serrano
-- Ubicación: [Tu ciudad/país]
-- Email: [tu-email@ejemplo.com]
-
-**Base legal para el procesamiento:**
-- Consentimiento del usuario
-- Ejecución del servicio contratado
-- Interés legítimo en mejorar la aplicación
-
----
-
-## Resumen para Padres
-
-Para facilitar la comprensión, aquí un resumen simple:
-
-✅ **SÍ guardamos**: Nombre opcional, idioma preferido, cuento favorito
-❌ **NO guardamos**: Email, contraseña, ubicación, contactos
-🔒 **Seguridad**: Cifrado local + Firebase de Google
-🗑️ **Borrar datos**: Desde Perfil → Eliminar Cuenta
-👶 **Niños**: No recopilamos datos personales de menores de 13 años
-
----
-
-*Esta Política de Privacidad fue generada para cumplir con los requisitos de Google Play Store y el RGPD.*
-
-*Última actualización: Enero 2026*
+- **Email:** [tu-email@ejemplo.com]
+- **Desarrollador:** Carlos Serrano
+- **Aplicación:** Cuéntame un Cuento

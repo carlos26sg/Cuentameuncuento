@@ -11,6 +11,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.Modo
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -29,14 +30,13 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 @Singleton
 class PreferenciasStore @Inject constructor(
     @ApplicationContext private val context: Context
-) {
+) : PreferenciasRepository {
 
     private val datos: Flow<Preferences> = context.dataStore.data
         .catch { e -> if (e is IOException) emit(emptyPreferences()) else throw e }
 
-    val preferencias: Flow<Preferencias> = datos.map { p ->
+    override val preferencias: Flow<Preferencias> = datos.map { p ->
         Preferencias(
-            nombre = p[NOMBRE].orEmpty(),
             idioma = Idioma.desdeCodigo(p[IDIOMA]),
             favorito = p[FAVORITO].orEmpty(),
             modoFavorito = Modo.desdeCodigo(p[MODO_FAV])
@@ -45,9 +45,8 @@ class PreferenciasStore @Inject constructor(
 
     val musicaActiva: Flow<Boolean> = datos.map { it[MUSICA] ?: true }
 
-    suspend fun guardar(preferencias: Preferencias) {
+    override suspend fun guardar(preferencias: Preferencias) {
         context.dataStore.edit { p ->
-            p[NOMBRE] = preferencias.nombre
             p[IDIOMA] = preferencias.idioma.codigo
             p[FAVORITO] = preferencias.favorito
             p[MODO_FAV] = preferencias.modoFavorito?.codigo.orEmpty()
@@ -58,13 +57,9 @@ class PreferenciasStore @Inject constructor(
         context.dataStore.edit { it[MUSICA] = activa }
     }
 
-    suspend fun borrar() {
-        context.dataStore.edit { it.clear() }
-    }
-
     /**
      * Borra el fichero de EncryptedSharedPreferences de versiones anteriores (≤ 2.0).
-     * Sus datos se recuperan de Firestore al arrancar.
+     * Las preferencias antiguas (idioma y favorito) se pierden: hay que volver a elegirlas.
      */
     fun borrarPreferenciasAntiguas() {
         context.deleteSharedPreferences(PREFS_ANTIGUAS)
@@ -72,7 +67,6 @@ class PreferenciasStore @Inject constructor(
 
     private companion object {
         const val PREFS_ANTIGUAS = "secure_user_prefs"
-        val NOMBRE = stringPreferencesKey("nombre")
         val IDIOMA = stringPreferencesKey("idioma")
         val FAVORITO = stringPreferencesKey("favorito")
         val MODO_FAV = stringPreferencesKey("modo_fav")

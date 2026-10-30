@@ -3,7 +3,6 @@
     <string name="app_name" translatable="false">Cuéntame un cuento</string>
     <string name="url_privacidad" translatable="false">https://carlos26sg.github.io/Cuentameuncuento/privacy-policy.html</string>
     <string name="bienvenido">Bienvenido</string>
-    <string name="bienvenido_nombre">Bienvenido, %1$s</string>
     <string name="leer">Leer</string>
     <string name="escuchar">Escuchar</string>
     <string name="favorito">Favorito</string>
@@ -43,12 +42,6 @@
     <string name="guardar">Guardar</string>
     <string name="ajustes_guardados">Ajustes guardados</string>
     <string name="error_guardar">No se han podido guardar los ajustes</string>
-    <string name="borrar_datos">Borrar datos</string>
-    <string name="borrar_datos_explicacion">Se borrarán tus preferencias de este dispositivo y de nuestros servidores. Esta acción no se puede deshacer.</string>
-    <string name="borrar">Borrar</string>
-    <string name="cancelar">Cancelar</string>
-    <string name="datos_borrados">Tus datos se han borrado</string>
-    <string name="error_borrar_datos">No se han podido borrar los datos. Necesitas conexión a Internet.</string>
     <string name="privacidad">Privacidad</string>
     <string name="sin_navegador">No hay ningún navegador instalado</string>
     <string name="version">Versión %1$s</string>

@@ -10,16 +10,13 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.carlossega.cuentameuncuento.BuildConfig
 import com.carlossega.cuentameuncuento.R
-import com.carlossega.cuentameuncuento.SplashActivity
 import com.carlossega.cuentameuncuento.data.model.Cuento
 import com.carlossega.cuentameuncuento.data.model.Modo
 import com.carlossega.cuentameuncuento.databinding.ActivityAjustesBinding
@@ -48,7 +45,6 @@ class AjustesActivity : AppCompatActivity() {
         binding.txtVersion.text = getString(R.string.version, BuildConfig.VERSION_NAME)
         binding.btnAtras.setOnClickListener { finish() }
         binding.btnGuardar.setOnClickListener { viewModel.guardar() }
-        binding.btnBorrar.setOnClickListener { confirmarBorrado() }
         binding.btnPrivacidad.setOnClickListener { abrirPoliticaPrivacidad() }
 
         binding.spIdioma.adapter = banderas
@@ -59,16 +55,16 @@ class AjustesActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch { viewModel.uiState.collect(::mostrar) }
-                launch { viewModel.eventos.collect(::alRecibirEvento) }
+                launch {
+                    viewModel.mensajes.collect {
+                        Toast.makeText(this@AjustesActivity, it, Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
     }
 
     private fun mostrar(estado: AjustesUiState) {
-        binding.progreso.isVisible = estado.ocupado
-        binding.btnGuardar.isEnabled = !estado.ocupado
-        binding.btnBorrar.isEnabled = !estado.ocupado
-
         if (!valoresIniciales && !estado.cargando) {
             valoresIniciales = true
             binding.spIdioma.setSelection(banderas.posicionDe(estado.idioma), false)
@@ -89,29 +85,6 @@ class AjustesActivity : AppCompatActivity() {
                 viewModel.cambiarFavorito(estado.cuentos.getOrNull(pos - 1)?.id.orEmpty())
             }
         }
-    }
-
-    private fun alRecibirEvento(evento: AjustesEvento) {
-        when (evento) {
-            is AjustesEvento.Mensaje -> Toast.makeText(this, evento.texto, Toast.LENGTH_SHORT).show()
-            AjustesEvento.DatosBorrados -> {
-                Toast.makeText(this, R.string.datos_borrados, Toast.LENGTH_LONG).show()
-                // Se vuelve a empezar con un usuario anónimo nuevo
-                startActivity(
-                    Intent(this, SplashActivity::class.java)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                )
-            }
-        }
-    }
-
-    private fun confirmarBorrado() {
-        AlertDialog.Builder(this)
-            .setTitle(R.string.borrar_datos)
-            .setMessage(R.string.borrar_datos_explicacion)
-            .setPositiveButton(R.string.borrar) { _, _ -> viewModel.borrarDatos() }
-            .setNegativeButton(R.string.cancelar, null)
-            .show()
     }
 
     private fun abrirPoliticaPrivacidad() {

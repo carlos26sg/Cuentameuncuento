@@ -13,7 +13,7 @@ e ilustraciones a pantalla completa.
 | SDK | minSdk 26 · targetSdk 37 · compileSdk 37 |
 | UI | Views + ViewBinding, ViewModel + StateFlow |
 | DI | Hilt |
-| Datos | Firebase Auth (anónimo), Firestore, DataStore |
+| Datos | Firestore y Storage (solo lectura de cuentos), DataStore (preferencias locales) |
 | Red / imágenes | OkHttp + Coil 3 (caché en disco) |
 | Calidad | Crashlytics, Analytics (configurado para apps infantiles), lint, tests unitarios |
 
@@ -26,8 +26,8 @@ com.carlossega.cuentameuncuento
 ├── audio/                  ← música de fondo (foco de audio) y narrador (TextToSpeech)
 ├── data/
 │   ├── model/              ← Cuento, LineaCuento, Idioma, Modo, Preferencias
-│   ├── prefs/              ← DataStore
-│   └── repository/         ← interfaces + implementaciones Firebase
+│   ├── prefs/              ← DataStore (preferencias, solo en el dispositivo)
+│   └── repository/         ← interfaces + implementación Firestore
 ├── di/                     ← módulos Hilt
 └── ui/
     ├── common/             ← pantalla completa, botón de música, adapter de banderas
@@ -38,7 +38,6 @@ com.carlossega.cuentameuncuento
 
 - `cuentos/{id}`: `id`, `imagen` (portada), `titulo_esp|cat|eng`, `desc_…`, `txt_…` (URL del texto)
 - `imagenes/{id}`: `img_1`, `img_2`… (URL de cada ilustración)
-- `usuarios/{uid}`: `idioma`, `favorito`, `modo_fav`, `nombre`, `last_updated`
 
 Cada línea del fichero de texto es `texto/númeroDeImagen`; la última es `FIN`, `FI` o `THE END`.
 
@@ -57,10 +56,11 @@ El AAB se genera en `app/build/outputs/bundle/release/`. Para firmarlo usa
 
 ## Antes de publicar
 
-- Firebase Console ▸ Authentication ▸ *Anónimo* debe estar **activado**.
-- Reglas de Firestore: cada usuario solo puede leer/escribir/borrar `usuarios/{su uid}`.
-- Play Console: público objetivo con menores de 13 años → política de Familias y formulario
-  de Seguridad de los datos coherente con Analytics, Crashlytics y Firestore.
+- La app no tiene usuarios: no guarda nada de los niños en servidores. Las reglas de Firestore
+  solo necesitan permitir **lectura** de `cuentos` e `imagenes` (y ninguna escritura).
+- Play Console: público objetivo con menores de 13 años → política de Familias. En Seguridad
+  de los datos solo hay que declarar Analytics y Crashlytics (datos de uso y diagnóstico).
+- Política de privacidad: `privacy-policy.html` (publicada en GitHub Pages) y `PRIVACY_POLICY.md`.
 - Subir `versionCode` en `app/build.gradle.kts`.
 
 La documentación de sesiones anteriores está en `docs/historial/`.
