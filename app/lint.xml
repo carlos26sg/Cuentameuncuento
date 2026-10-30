@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- Las imágenes del diseño original están en drawable/ sin densidad; moverlas
+         cambiaría su tamaño en pantalla. -->
+    <issue id="IconLocation" severity="ignore" />
+    <!-- Las versiones de dependencias las vigila Dependabot -->
+    <issue id="GradleDependency" severity="ignore" />
+    <issue id="NewerVersionAvailable" severity="ignore" />
+    <issue id="AndroidGradlePluginVersion" severity="ignore" />
+</lint>

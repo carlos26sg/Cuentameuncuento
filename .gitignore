@@ -1,12 +1,30 @@
-# Archivos de scripts y backups
+# Gradle y builds
+.gradle/
+.kotlin/
+build/
+*.apk
+*.aab
+app/release/
+build_output.log
+
+# Android Studio
+.idea/
+*.iml
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Firmas (nunca subir el keystore ni sus contraseñas)
+*.jks
+*.keystore
+keystore.properties
+
+# Lint
+app/lint-baseline.xml
+
+# Scripts de migración de Firestore
 scripts/serviceAccountKey.json
 scripts/backup_usuarios.json
 scripts/reporte_migracion.json
 scripts/node_modules/
-
-# Archivos de configuración local
-local.properties
-.idea/
-
-# Archivos de lint
-app/lint-baseline.xml

@@ -1,17 +1,18 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
-//Desactivado para que funcione Firebase
-/*dependencyResolutionManagement {
+
+dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
-}*/
+}
+
 rootProject.name = "Cuentame un cuento"
-include ':app'
+include(":app")
