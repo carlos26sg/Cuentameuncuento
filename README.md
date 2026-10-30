@@ -9,7 +9,7 @@ e ilustraciones a pantalla completa.
 | | |
 |---|---|
 | Lenguaje | Kotlin 2.3 (Kotlin integrado de AGP 9) |
-| Build | AGP 9.4.1 · Gradle 9.7.1 · JDK 17 · catálogo de versiones en `gradle/libs.versions.toml` |
+| Build | AGP 9.3.3 · Gradle 9.7.1 · JDK 17 · catálogo de versiones en `gradle/libs.versions.toml` |
 | SDK | minSdk 26 · targetSdk 37 · compileSdk 37 |
 | UI | Views + ViewBinding, ViewModel + StateFlow |
 | DI | Hilt |
