@@ -19,6 +19,18 @@ updates:
       firebase:
         patterns:
           - "com.google.firebase*"
+    ignore:
+      # Android Studio 2026.1 solo admite hasta AGP 9.3. Quitar al actualizar Android Studio.
+      - dependency-name: "com.android.application"
+        versions: [">= 9.4"]
+      - dependency-name: "com.android.tools.build:gradle"
+        versions: [">= 9.4"]
+      # Coil 3.5+ exige Kotlin 2.4 y el proyecto usa 2.3. Quitar al subir Kotlin.
+      - dependency-name: "io.coil-kt.coil3:*"
+        versions: [">= 3.5"]
+      # Las versiones nuevas del wrapper van ligadas a la subida de AGP: solo parches.
+      - dependency-name: "gradle-wrapper"
+        update-types: ["version-update:semver-minor", "version-update:semver-major"]
 
   # GitHub Actions
   - package-ecosystem: "github-actions"
