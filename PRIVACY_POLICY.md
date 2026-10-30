@@ -76,6 +76,6 @@ Si la política cambia, se publicará aquí con una nueva fecha de actualizació
 
 ## Contacto
 
-- **Email:** [tu-email@ejemplo.com]
+- **Email:** carlos26sg@gmail.com
 - **Desarrollador:** Carlos Serrano
 - **Aplicación:** Cuéntame un Cuento
