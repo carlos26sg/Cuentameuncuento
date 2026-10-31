@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tarjeta de papel pulsable: la onda de pulsación queda dentro de las esquinas redondeadas -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/papel_pulsado">
+    <item android:drawable="@drawable/fondo_papel" />
+</ripple>

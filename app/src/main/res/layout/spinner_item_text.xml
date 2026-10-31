@@ -10,5 +10,5 @@
     android:maxLines="1"
     android:paddingStart="8dp"
     android:paddingEnd="8dp"
-    android:textColor="@color/white"
+    android:textColor="@color/tinta"
     android:textSize="@dimen/texto_normal" />

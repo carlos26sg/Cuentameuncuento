@@ -27,7 +27,10 @@
     <dimen name="alto_traduccion">56dp</dimen>
 
     <!-- Lista de cuentos -->
-    <dimen name="portada">90dp</dimen>
+    <dimen name="portada">110dp</dimen>
+    <dimen name="esquina_tarjeta">20dp</dimen>
+    <dimen name="esquina_portada">14dp</dimen>
+    <dimen name="alto_degradado">200dp</dimen>
     <dimen name="item_titulo">24sp</dimen>
     <dimen name="item_descripcion">15sp</dimen>
 </resources>

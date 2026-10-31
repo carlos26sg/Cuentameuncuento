@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Tarjeta de papel con la portada grande: muchos niños eligen el cuento por el dibujo -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    android:background="@color/fondo_item"
-    android:foreground="?attr/selectableItemBackground"
+    android:layout_margin="8dp"
+    android:background="@drawable/fondo_tarjeta"
+    android:elevation="4dp"
     android:gravity="center_vertical"
     android:minHeight="@dimen/portada"
     android:orientation="horizontal"
-    android:padding="10dp"
-    tools:ignore="Overdraw">
+    android:padding="12dp"
+    android:stateListAnimator="@animator/pulsar">
 
     <ImageView
         android:id="@+id/img_portada"
-        android:importantForAccessibility="no"
         android:layout_width="@dimen/portada"
         android:layout_height="@dimen/portada"
+        android:background="@drawable/fondo_portada"
+        android:importantForAccessibility="no"
         android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -30,7 +31,9 @@
             android:id="@+id/txt_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/tinta"
             android:textSize="@dimen/item_titulo"
             android:textStyle="bold" />
 
@@ -38,10 +41,10 @@
             android:id="@+id/txt_descripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:textColor="@color/white"
+            android:textColor="@color/tinta_suave"
             android:textSize="@dimen/item_descripcion" />
     </LinearLayout>
 </LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/raiz"
     android:layout_width="match_parent"
@@ -13,180 +14,194 @@
         android:scaleType="centerCrop"
         android:src="@drawable/fondo_menu" />
 
-    <!-- ScrollView: en un móvil en horizontal no cabe todo -->
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contenido"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:fillViewport="true"
         android:padding="@dimen/margen_pantalla">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/cabecera"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_atras"
+                style="@style/BotonIcono"
+                android:contentDescription="@string/atras"
+                android:src="@drawable/atras" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margen_pantalla"
+                android:layout_weight="1"
+                android:text="@string/ajustes"
+                android:textColor="@color/black"
+                android:textSize="@dimen/texto_titulo"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Dos columnas: las opciones a la izquierda y los botones siempre a la vista a la derecha -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margen_pantalla"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cabecera">
+
+            <!-- ScrollView: en un móvil pequeño puede no caber todo el panel -->
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fillViewport="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/fondo_papel"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margen_pantalla">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/EtiquetaAjustes"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:labelFor="@id/sp_idioma"
+                            android:text="@string/idioma_cuentos" />
+
+                        <Spinner
+                            android:id="@+id/sp_idioma"
+                            style="@style/SpinnerBanderas" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/EtiquetaAjustes"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:labelFor="@id/sp_velocidad"
+                            android:text="@string/velocidad_voz" />
+
+                        <Spinner
+                            android:id="@+id/sp_velocidad"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:popupBackground="@drawable/fondo_desplegable" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/EtiquetaAjustes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margen_pantalla"
+                        android:gravity="center_horizontal"
+                        android:text="@string/favoritos" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/EtiquetaAjustes"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:labelFor="@id/sp_favorito"
+                            android:text="@string/cuento_fav" />
+
+                        <Spinner
+                            android:id="@+id/sp_favorito"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:popupBackground="@drawable/fondo_desplegable" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/EtiquetaAjustes"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:labelFor="@id/sp_modo"
+                            android:text="@string/modo" />
+
+                        <Spinner
+                            android:id="@+id/sp_modo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:popupBackground="@drawable/fondo_desplegable" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/btn_atras"
-                    style="@style/BotonIcono"
-                    android:contentDescription="@string/atras"
-                    android:src="@drawable/atras" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margen_pantalla"
-                    android:layout_weight="1"
-                    android:text="@string/ajustes"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texto_titulo"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- Panel de preferencias -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margen_pantalla"
-                android:background="@color/fondo_panel"
-                android:orientation="vertical"
-                android:padding="@dimen/margen_pantalla">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/EtiquetaAjustes"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:labelFor="@id/sp_idioma"
-                        android:text="@string/idioma_cuentos" />
-
-                    <Spinner
-                        android:id="@+id/sp_idioma"
-                        style="@style/SpinnerBanderas" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/EtiquetaAjustes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margen_pantalla"
-                    android:gravity="center_horizontal"
-                    android:text="@string/favoritos" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/EtiquetaAjustes"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:labelFor="@id/sp_favorito"
-                        android:text="@string/cuento_fav" />
-
-                    <Spinner
-                        android:id="@+id/sp_favorito"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:popupBackground="@color/fondo_panel" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/EtiquetaAjustes"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:labelFor="@id/sp_modo"
-                        android:text="@string/modo" />
-
-                    <Spinner
-                        android:id="@+id/sp_modo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:popupBackground="@color/fondo_panel" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margen_pantalla"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/EtiquetaAjustes"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:labelFor="@id/sp_velocidad"
-                        android:text="@string/velocidad_voz" />
-
-                    <Spinner
-                        android:id="@+id/sp_velocidad"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:popupBackground="@color/fondo_panel" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Botones: se reparten el ancho para caber en cualquier pantalla -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margen_pantalla"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_privacidad"
-                    style="@style/BotonPergamino"
-                    android:layout_width="0dp"
-                    android:layout_marginEnd="@dimen/margen_pantalla"
-                    android:layout_weight="1"
-                    android:text="@string/privacidad" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margen_pantalla"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btn_guardar"
                     style="@style/BotonPergamino"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:text="@string/guardar" />
-            </LinearLayout>
 
-            <TextView
-                android:id="@+id/txt_version"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="end"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <Button
+                    android:id="@+id/btn_privacidad"
+                    style="@style/BotonPergamino"
+                    android:layout_marginTop="@dimen/margen_pantalla"
+                    android:text="@string/privacidad" />
+
+                <TextView
+                    android:id="@+id/txt_version"
+                    android:layout_marginTop="@dimen/margen_pantalla"
+                    android:background="@drawable/fondo_pastilla"
+                    android:paddingStart="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

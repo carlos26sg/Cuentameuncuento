@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Las tarjetas de la lista aparecen una detrás de otra -->
+<layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:animation="@anim/entrada_tarjeta"
+    android:animationOrder="normal"
+    android:delay="15%" />

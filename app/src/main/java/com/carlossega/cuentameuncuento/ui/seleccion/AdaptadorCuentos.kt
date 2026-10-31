@@ -32,6 +32,11 @@ class AdaptadorCuentos(
         private val binding: ItemCuentoBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            // Recorta la portada con las esquinas redondeadas de su fondo
+            binding.imgPortada.clipToOutline = true
+        }
+
         fun mostrar(cuento: Cuento) {
             binding.txtTitulo.text = cuento.titulo
             binding.txtDescripcion.text = cuento.descripcion

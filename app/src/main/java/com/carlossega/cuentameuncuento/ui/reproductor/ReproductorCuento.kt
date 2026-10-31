@@ -22,6 +22,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import coil3.load
+import coil3.request.ImageResult
+import coil3.request.transitionFactory
+import coil3.transition.CrossfadeTransition
+import coil3.transition.Transition
+import coil3.transition.TransitionTarget
 import com.carlossega.cuentameuncuento.R
 import com.carlossega.cuentameuncuento.audio.MusicaFondo
 import com.carlossega.cuentameuncuento.data.model.Idioma
@@ -110,6 +115,7 @@ class ReproductorCuento : AppCompatActivity() {
         binding.progreso.isVisible = estado.cargando
         binding.grupoError.isVisible = estado.error
         binding.grupoCuento.isVisible = !estado.cargando && !estado.error
+        binding.degradado.isVisible = binding.grupoCuento.isVisible
 
         binding.txtCuento.text = textoConPalabraResaltada(estado.lineaActual?.texto.orEmpty(), estado.palabra)
         binding.txtTraducido.text = estado.textoTraducido
@@ -143,7 +149,10 @@ class ReproductorCuento : AppCompatActivity() {
     private fun mostrarImagen(url: String?) {
         if (url == null || url == imagenMostrada) return
         imagenMostrada = url
-        binding.imgFondo.load(url)
+        // Fundido también cuando la ilustración ya está en memoria, como al pasar la página
+        binding.imgFondo.load(url) {
+            transitionFactory(FundidoSiempre)
+        }
     }
 
     private fun ofrecerInstalarVoz() {
@@ -177,6 +186,13 @@ class ReproductorCuento : AppCompatActivity() {
         const val EXTRA_IDIOMA = "idioma"
         const val EXTRA_MODO = "modo"
         private const val ALFA_DESACTIVADO = 0.35f
+        private const val DURACION_FUNDIDO_MS = 450
+
+        /** El fundido de Coil se salta las imágenes que ya están en memoria; este no */
+        private object FundidoSiempre : Transition.Factory {
+            override fun create(target: TransitionTarget, result: ImageResult): Transition =
+                CrossfadeTransition(target, result, DURACION_FUNDIDO_MS)
+        }
 
         fun intent(context: Context, cuentoId: String, idioma: Idioma, modo: Modo): Intent =
             Intent(context, ReproductorCuento::class.java)

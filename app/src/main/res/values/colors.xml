@@ -5,9 +5,16 @@
     <color name="teal_500">#009688</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="fondo_panel">#CC2735B1</color>
-    <color name="fondo_item">#99001EB3</color>
     <color name="texto_traduccion">#DCF812</color>
+
+    <!-- Paneles y tarjetas de papel, a juego con los botones de pergamino -->
+    <color name="papel">#F8EFD9</color>
+    <color name="papel_translucido">#E6F8EFD9</color>
+    <color name="papel_oscuro">#EADFC6</color>
+    <color name="papel_borde">#C9A46A</color>
+    <color name="papel_pulsado">#40C9A46A</color>
+    <color name="tinta">#4A2C12</color>
+    <color name="tinta_suave">#6B5440</color>
     <color name="fondo_splash">#299A5A</color>
     <color name="palabra_narrada">#FFB300</color>
 </resources>

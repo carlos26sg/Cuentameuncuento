@@ -23,7 +23,10 @@
     <dimen name="alto_texto_cuento">140dp</dimen>
     <dimen name="alto_traduccion">84dp</dimen>
 
-    <dimen name="portada">130dp</dimen>
+    <dimen name="portada">160dp</dimen>
+    <dimen name="esquina_tarjeta">28dp</dimen>
+    <dimen name="esquina_portada">20dp</dimen>
+    <dimen name="alto_degradado">280dp</dimen>
     <dimen name="item_titulo">30sp</dimen>
     <dimen name="item_descripcion">19sp</dimen>
 </resources>

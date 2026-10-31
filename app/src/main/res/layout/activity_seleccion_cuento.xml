@@ -57,6 +57,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:clipToPadding="false"
+            android:layoutAnimation="@anim/entrada_lista"
+            android:paddingBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +77,7 @@
             android:id="@+id/grupo_mensaje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/fondo_panel"
+            android:background="@drawable/fondo_papel"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="@dimen/margen_pantalla"
@@ -90,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/white"
+                android:textColor="@color/tinta"
                 android:textSize="@dimen/texto_normal" />
 
             <Button

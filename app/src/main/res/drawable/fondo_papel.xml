@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Panel color papel, a juego con los botones de pergamino -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/papel" />
+    <corners android:radius="@dimen/esquina_tarjeta" />
+    <stroke
+        android:width="2dp"
+        android:color="@color/papel_borde" />
+</shape>

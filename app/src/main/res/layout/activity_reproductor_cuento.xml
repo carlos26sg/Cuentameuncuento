@@ -16,6 +16,15 @@
         android:scaleType="centerCrop"
         android:src="@drawable/fondo_principal" />
 
+    <!-- Oscurece un poco la parte de abajo de la ilustración para que el texto se lea siempre -->
+    <View
+        android:id="@+id/degradado"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/alto_degradado"
+        android:layout_gravity="bottom"
+        android:background="@drawable/degradado_texto"
+        android:visibility="gone" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contenido"
         android:layout_width="match_parent"
@@ -42,12 +51,37 @@
             app:layout_constraintStart_toEndOf="@id/btn_salir"
             app:layout_constraintTop_toTopOf="@id/btn_salir" />
 
-        <Spinner
-            android:id="@+id/sp_traduccion"
-            style="@style/SpinnerBanderas"
-            android:contentDescription="@string/traduccion"
+        <!-- Etiqueta "Traducción" con la bandera: sin ella, el icono de "sin traducción"
+             parecía un segundo botón de cerrar -->
+        <LinearLayout
+            android:id="@+id/grupo_traduccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fondo_pastilla"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="4dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_salir"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/btn_salir">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                android:text="@string/traduccion"
+                android:textColor="@color/tinta"
+                android:textSize="@dimen/texto_normal" />
+
+            <!-- Ancho fijo: con wrap_content el Spinner mide los dibujos a su tamaño original
+                 y deja un hueco vacío dentro de la etiqueta -->
+            <Spinner
+                android:id="@+id/sp_traduccion"
+                style="@style/SpinnerBanderas"
+                android:layout_width="@dimen/ancho_popup_banderas"
+                android:contentDescription="@string/traduccion" />
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progreso"
@@ -63,7 +97,7 @@
             android:id="@+id/grupo_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/fondo_panel"
+            android:background="@drawable/fondo_papel"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="@dimen/margen_pantalla"
@@ -78,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/error_cargar_cuento"
-                android:textColor="@color/white"
+                android:textColor="@color/tinta"
                 android:textSize="@dimen/texto_normal" />
 
             <Button
