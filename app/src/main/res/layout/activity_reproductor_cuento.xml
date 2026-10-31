@@ -51,37 +51,12 @@
             app:layout_constraintStart_toEndOf="@id/btn_salir"
             app:layout_constraintTop_toTopOf="@id/btn_salir" />
 
-        <!-- Etiqueta "Traducción" con la bandera: sin ella, el icono de "sin traducción"
-             parecía un segundo botón de cerrar -->
-        <LinearLayout
-            android:id="@+id/grupo_traduccion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/fondo_pastilla"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="4dp"
-            app:layout_constraintBottom_toBottomOf="@id/btn_salir"
+        <Spinner
+            android:id="@+id/sp_traduccion"
+            style="@style/SpinnerBanderas"
+            android:contentDescription="@string/traduccion"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btn_salir">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
-                android:text="@string/traduccion"
-                android:textColor="@color/tinta"
-                android:textSize="@dimen/texto_normal" />
-
-            <!-- Ancho fijo: con wrap_content el Spinner mide los dibujos a su tamaño original
-                 y deja un hueco vacío dentro de la etiqueta -->
-            <Spinner
-                android:id="@+id/sp_traduccion"
-                style="@style/SpinnerBanderas"
-                android:layout_width="@dimen/ancho_popup_banderas"
-                android:contentDescription="@string/traduccion" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
             android:id="@+id/progreso"
