@@ -11,6 +11,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.Modo
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -39,7 +40,8 @@ class PreferenciasStore @Inject constructor(
         Preferencias(
             idioma = Idioma.desdeCodigo(p[IDIOMA]),
             favorito = p[FAVORITO].orEmpty(),
-            modoFavorito = Modo.desdeCodigo(p[MODO_FAV])
+            modoFavorito = Modo.desdeCodigo(p[MODO_FAV]),
+            velocidadVoz = VelocidadVoz.desdeCodigo(p[VELOCIDAD_VOZ])
         )
     }
 
@@ -50,6 +52,7 @@ class PreferenciasStore @Inject constructor(
             p[IDIOMA] = preferencias.idioma.codigo
             p[FAVORITO] = preferencias.favorito
             p[MODO_FAV] = preferencias.modoFavorito?.codigo.orEmpty()
+            p[VELOCIDAD_VOZ] = preferencias.velocidadVoz.codigo
         }
     }
 
@@ -71,5 +74,6 @@ class PreferenciasStore @Inject constructor(
         val FAVORITO = stringPreferencesKey("favorito")
         val MODO_FAV = stringPreferencesKey("modo_fav")
         val MUSICA = booleanPreferencesKey("musica")
+        val VELOCIDAD_VOZ = stringPreferencesKey("velocidad_voz")
     }
 }

@@ -9,4 +9,5 @@
     <color name="fondo_item">#99001EB3</color>
     <color name="texto_traduccion">#DCF812</color>
     <color name="fondo_splash">#299A5A</color>
+    <color name="palabra_narrada">#FFB300</color>
 </resources>

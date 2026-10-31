@@ -1,15 +1,19 @@
 package com.carlossega.cuentameuncuento
 
 import com.carlossega.cuentameuncuento.audio.FalloNarrador
+import com.carlossega.cuentameuncuento.audio.Locucion
 import com.carlossega.cuentameuncuento.audio.Narrador
 import com.carlossega.cuentameuncuento.data.model.Cuento
 import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.LineaCuento
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.precarga.PrecargaImagenes
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -33,11 +37,16 @@ class FakeCuentoRepository : CuentoRepository {
     val lineas = mutableMapOf<Pair<String, Idioma>, List<LineaCuento>>()
     var imagenes: Map<String, String> = emptyMap()
     var fallar = false
-    var llamadasGetCuentos = 0
+    var llamadasCuentos = 0
 
-    override suspend fun getCuentos(idioma: Idioma): Result<List<Cuento>> {
-        llamadasGetCuentos++
-        return if (fallar) Result.failure(Exception("sin red")) else Result.success(cuentos[idioma].orEmpty())
+    /** Si no es null, se emite antes que la lista "del servidor", como la copia guardada */
+    var guardados: List<Cuento>? = null
+
+    override fun cuentos(idioma: Idioma): Flow<List<Cuento>> = flow {
+        llamadasCuentos++
+        guardados?.let { emit(it) }
+        if (fallar) throw Exception("sin red")
+        emit(cuentos[idioma].orEmpty())
     }
 
     override suspend fun getLineas(cuentoId: String, idioma: Idioma): Result<List<LineaCuento>> {
@@ -60,17 +69,27 @@ class FakePreferenciasRepository(inicial: Preferencias = Preferencias()) : Prefe
     }
 }
 
+class FakePrecargaImagenes : PrecargaImagenes {
+    val precargadas = mutableListOf<String>()
+
+    override fun precargar(urls: Collection<String>) {
+        precargadas += urls
+    }
+}
+
 /** Narrador que termina cada línea cuando el test llama a [terminarLinea] */
 class FakeNarrador : Narrador {
-    val textosLeidos = mutableListOf<String>()
+    val locuciones = mutableListOf<Locucion>()
+    val textosLeidos: List<String> get() = locuciones.map { it.texto }
     var falloSiguiente: FalloNarrador? = null
     var liberado = false
     var detenido = false
+    private var alPalabra: ((Int, Int) -> Unit)? = null
     private var alTerminar: (() -> Unit)? = null
 
     override fun hablar(
-        texto: String,
-        idioma: Idioma,
+        locucion: Locucion,
+        alPalabra: (inicio: Int, fin: Int) -> Unit,
         alTerminar: () -> Unit,
         alFallar: (FalloNarrador) -> Unit
     ) {
@@ -79,8 +98,13 @@ class FakeNarrador : Narrador {
             alFallar(it)
             return
         }
-        textosLeidos += texto
+        locuciones += locucion
+        this.alPalabra = alPalabra
         this.alTerminar = alTerminar
+    }
+
+    fun decirPalabra(inicio: Int, fin: Int) {
+        alPalabra?.invoke(inicio, fin)
     }
 
     fun terminarLinea() {

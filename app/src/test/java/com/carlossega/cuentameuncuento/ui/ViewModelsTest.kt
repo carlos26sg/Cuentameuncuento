@@ -3,6 +3,7 @@ package com.carlossega.cuentameuncuento.ui
 import androidx.lifecycle.SavedStateHandle
 import com.carlossega.cuentameuncuento.FakeCuentoRepository
 import com.carlossega.cuentameuncuento.FakeNarrador
+import com.carlossega.cuentameuncuento.FakePrecargaImagenes
 import com.carlossega.cuentameuncuento.FakePreferenciasRepository
 import com.carlossega.cuentameuncuento.MainDispatcherRule
 import com.carlossega.cuentameuncuento.R
@@ -12,6 +13,7 @@ import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.LineaCuento
 import com.carlossega.cuentameuncuento.data.model.Modo
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.ui.ajustes.AjustesViewModel
 import com.carlossega.cuentameuncuento.ui.reproductor.ReproductorCuento
 import com.carlossega.cuentameuncuento.ui.reproductor.ReproductorViewModel
@@ -54,7 +56,28 @@ class SeleccionViewModelTest {
         vm.cambiarIdioma(Idioma.ESPANOL)
 
         assertThat((vm.uiState.value as CuentosUiState.Listo).cuentos).hasSize(1)
-        assertThat(repo.llamadasGetCuentos).isEqualTo(3)
+        assertThat(repo.llamadasCuentos).isEqualTo(3)
+    }
+
+    @Test
+    fun muestraLosGuardados_yLosMantieneSiFallaElServidor() {
+        repo.guardados = listOf(Cuento("c1", "Guardado", "", ""))
+        repo.fallar = true
+
+        val vm = crear()
+
+        val estado = vm.uiState.value as CuentosUiState.Listo
+        assertThat(estado.cuentos.map { it.titulo }).containsExactly("Guardado")
+    }
+
+    @Test
+    fun losDelServidorSustituyenALosGuardados() {
+        repo.guardados = listOf(Cuento("c1", "Guardado", "", ""))
+
+        val vm = crear()
+
+        val estado = vm.uiState.value as CuentosUiState.Listo
+        assertThat(estado.cuentos.map { it.titulo }).containsExactly("El dragón")
     }
 
     @Test
@@ -78,6 +101,8 @@ class ReproductorViewModelTest {
     val mainRule = MainDispatcherRule()
 
     private val narrador = FakeNarrador()
+    private val precarga = FakePrecargaImagenes()
+    private var preferencias = FakePreferenciasRepository()
     private val repo = FakeCuentoRepository().apply {
         lineas["c1" to Idioma.ESPANOL] = LineaCuento.desdeFichero("Uno/1\nDos\nTres/2\nFIN/")
         lineas["c1" to Idioma.INGLES] = LineaCuento.desdeFichero("One/1\nTwo\nThree/2\nTHE END/")
@@ -86,6 +111,8 @@ class ReproductorViewModelTest {
 
     private fun crear(modo: Modo = Modo.LEER, estado: Map<String, Any> = emptyMap()) = ReproductorViewModel(
         repo,
+        preferencias,
+        precarga,
         narrador,
         SavedStateHandle(
             mapOf(
@@ -162,14 +189,67 @@ class ReproductorViewModelTest {
     }
 
     @Test
-    fun narracion_avisaSiNoHayVozParaElIdioma() = runTest {
+    fun narracion_ofreceInstalarLaVozSiFalta() = runTest {
         val vm = crear(Modo.ESCUCHAR)
         narrador.falloSiguiente = FalloNarrador.IDIOMA_NO_DISPONIBLE
 
         vm.alternarNarracion()
 
         assertThat(vm.uiState.value.narrando).isFalse()
-        assertThat(vm.mensajes.first()).isEqualTo(R.string.voz_idioma_no_disponible)
+        assertThat(vm.faltaVoz.first()).isEqualTo(Idioma.ESPANOL)
+    }
+
+    @Test
+    fun narracion_otrosFallosMuestranMensaje() = runTest {
+        val vm = crear(Modo.ESCUCHAR)
+        narrador.falloSiguiente = FalloNarrador.MOTOR_NO_DISPONIBLE
+
+        vm.alternarNarracion()
+
+        assertThat(vm.mensajes.first()).isEqualTo(R.string.voz_no_disponible)
+    }
+
+    @Test
+    fun narracion_usaLaVelocidadGuardada() {
+        preferencias = FakePreferenciasRepository(Preferencias(velocidadVoz = VelocidadVoz.LENTA))
+        val vm = crear(Modo.ESCUCHAR)
+
+        vm.alternarNarracion()
+
+        assertThat(narrador.locuciones.single().velocidad).isEqualTo(VelocidadVoz.LENTA)
+    }
+
+    @Test
+    fun narracion_pausasEntreFrases_masLargasAlCambiarDeIlustracion() {
+        val vm = crear(Modo.ESCUCHAR)
+
+        vm.alternarNarracion()
+        repeat(3) { narrador.terminarLinea() }
+
+        // Uno (empieza al momento), Dos (misma ilustración), Tres (ilustración nueva), FIN
+        val pausas = narrador.locuciones.map { it.pausaPreviaMs }
+        assertThat(pausas[0]).isEqualTo(0)
+        assertThat(pausas[2]).isGreaterThan(pausas[1])
+        assertThat(pausas[1]).isGreaterThan(0)
+    }
+
+    @Test
+    fun narracion_resaltaLaPalabraYLaBorraAlCambiarDeLinea() {
+        val vm = crear(Modo.ESCUCHAR)
+        vm.alternarNarracion()
+
+        narrador.decirPalabra(0, 3)
+        assertThat(vm.uiState.value.palabra).isEqualTo(0 until 3)
+
+        narrador.terminarLinea()
+        assertThat(vm.uiState.value.palabra).isNull()
+    }
+
+    @Test
+    fun precargaTodasLasIlustracionesDelCuento() {
+        crear()
+
+        assertThat(precarga.precargadas).containsExactly("https://img/1", "https://img/2")
     }
 
     @Test
@@ -213,11 +293,13 @@ class AjustesViewModelTest {
 
         vm.cambiarFavorito("c2")
         vm.cambiarModo(Modo.ESCUCHAR)
+        vm.cambiarVelocidad(VelocidadVoz.RAPIDA)
         vm.guardar()
 
         val guardadas = preferencias.preferencias.value
         assertThat(guardadas.favorito).isEqualTo("c2")
         assertThat(guardadas.modoFavorito).isEqualTo(Modo.ESCUCHAR)
+        assertThat(guardadas.velocidadVoz).isEqualTo(VelocidadVoz.RAPIDA)
         assertThat(guardadas.tieneFavorito).isTrue()
         assertThat(vm.mensajes.first()).isEqualTo(R.string.ajustes_guardados)
     }

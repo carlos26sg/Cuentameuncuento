@@ -11,6 +11,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -61,10 +62,12 @@ class SeleccionViewModel @Inject constructor(
         carga?.cancel()
         _uiState.value = CuentosUiState.Cargando
         carga = viewModelScope.launch {
-            _uiState.value = cuentoRepository.getCuentos(_idioma.value).fold(
-                onSuccess = { if (it.isEmpty()) CuentosUiState.Vacio else CuentosUiState.Listo(it) },
-                onFailure = { CuentosUiState.Error }
-            )
+            // Primero llegan los cuentos guardados y después, si cambian, los del servidor
+            cuentoRepository.cuentos(_idioma.value)
+                .catch { if (_uiState.value !is CuentosUiState.Listo) _uiState.value = CuentosUiState.Error }
+                .collect { cuentos ->
+                    _uiState.value = if (cuentos.isEmpty()) CuentosUiState.Vacio else CuentosUiState.Listo(cuentos)
+                }
         }
     }
 }

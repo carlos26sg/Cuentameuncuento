@@ -31,12 +31,28 @@ enum class Modo(val codigo: String) {
 }
 
 /**
+ * Velocidad del narrador. `factor` es el que recibe TextToSpeech (1.0 = velocidad del sistema);
+ * la normal es algo más lenta que la del sistema para que los niños la sigan bien.
+ */
+enum class VelocidadVoz(val codigo: String, val factor: Float) {
+    LENTA("lenta", 0.75f),
+    NORMAL("normal", 0.9f),
+    RAPIDA("rapida", 1.05f);
+
+    companion object {
+        fun desdeCodigo(codigo: String?): VelocidadVoz =
+            entries.firstOrNull { it.codigo == codigo } ?: NORMAL
+    }
+}
+
+/**
  * Preferencias de la app, guardadas solo en el dispositivo (DataStore)
  */
 data class Preferencias(
     val idioma: Idioma = Idioma.ESPANOL,
     val favorito: String = "",
-    val modoFavorito: Modo? = null
+    val modoFavorito: Modo? = null,
+    val velocidadVoz: VelocidadVoz = VelocidadVoz.NORMAL
 ) {
     val tieneFavorito: Boolean
         get() = favorito.isNotEmpty() && modoFavorito != null

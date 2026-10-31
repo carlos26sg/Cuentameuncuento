@@ -1,8 +1,13 @@
 package com.carlossega.cuentameuncuento.ui.reproductor
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
@@ -11,13 +16,12 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import coil3.SingletonImageLoader
 import coil3.load
-import coil3.request.ImageRequest
 import com.carlossega.cuentameuncuento.R
 import com.carlossega.cuentameuncuento.audio.MusicaFondo
 import com.carlossega.cuentameuncuento.data.model.Idioma
@@ -83,6 +87,7 @@ class ReproductorCuento : AppCompatActivity() {
                         Toast.makeText(this@ReproductorCuento, it, Toast.LENGTH_LONG).show()
                     }
                 }
+                launch { viewModel.faltaVoz.collect { ofrecerInstalarVoz() } }
             }
         }
     }
@@ -106,7 +111,7 @@ class ReproductorCuento : AppCompatActivity() {
         binding.grupoError.isVisible = estado.error
         binding.grupoCuento.isVisible = !estado.cargando && !estado.error
 
-        binding.txtCuento.text = estado.lineaActual?.texto.orEmpty()
+        binding.txtCuento.text = textoConPalabraResaltada(estado.lineaActual?.texto.orEmpty(), estado.palabra)
         binding.txtTraducido.text = estado.textoTraducido
         binding.txtTraducido.isVisible = estado.idiomaTraduccion != null
 
@@ -120,7 +125,19 @@ class ReproductorCuento : AppCompatActivity() {
             getString(if (estado.narrando) R.string.pausar else R.string.escuchar)
 
         mostrarImagen(estado.imagenActual)
-        precargarSiguienteImagen(estado)
+    }
+
+    /** Mientras narra, la palabra que suena se colorea para que el niño siga la lectura */
+    private fun textoConPalabraResaltada(texto: String, palabra: IntRange?): CharSequence {
+        if (palabra == null || palabra.first < 0 || palabra.last >= texto.length) return texto
+        return SpannableString(texto).apply {
+            setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this@ReproductorCuento, R.color.palabra_narrada)),
+                palabra.first,
+                palabra.last + 1,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
     }
 
     private fun mostrarImagen(url: String?) {
@@ -129,11 +146,21 @@ class ReproductorCuento : AppCompatActivity() {
         binding.imgFondo.load(url)
     }
 
-    /** Descarga por adelantado la ilustración de la línea siguiente para que no haya parpadeo */
-    private fun precargarSiguienteImagen(estado: ReproductorUiState) {
-        val numero = estado.lineas.getOrNull(estado.indice + 1)?.imagen ?: return
-        val url = estado.imagenes[numero] ?: return
-        SingletonImageLoader.get(this).enqueue(ImageRequest.Builder(this).data(url).build())
+    private fun ofrecerInstalarVoz() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.falta_voz)
+            .setMessage(R.string.voz_idioma_no_disponible)
+            .setPositiveButton(R.string.instalar) { _, _ -> abrirInstaladorVoz() }
+            .setNegativeButton(R.string.ahora_no, null)
+            .show()
+    }
+
+    private fun abrirInstaladorVoz() {
+        try {
+            startActivity(Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA))
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(this, R.string.sin_instalador_voz, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun confirmarSalida() {

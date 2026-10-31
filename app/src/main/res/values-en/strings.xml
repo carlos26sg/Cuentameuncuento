@@ -25,7 +25,7 @@
     <string name="error_cargar_cuento">The tale could not be opened. Check your Internet connection.</string>
     <string name="reintentar">Try again</string>
     <string name="error_traduccion">The translation could not be loaded</string>
-    <string name="voz_idioma_no_disponible">This device has no voice for this language. You can install one in System settings &gt; Text-to-speech.</string>
+    <string name="voz_idioma_no_disponible">This device does not have the voice for this language. Do you want to install it now?</string>
     <string name="voz_no_disponible">Reading aloud is not available on this device</string>
     <string name="voz_error">Error while reading the tale aloud</string>
     <string name="pausar">Pause</string>
@@ -43,4 +43,12 @@
     <string name="privacidad">Privacy</string>
     <string name="sin_navegador">No web browser is installed</string>
     <string name="version">Version %1$s</string>
+    <string name="falta_voz">Voice missing</string>
+    <string name="instalar">Install</string>
+    <string name="ahora_no">Not now</string>
+    <string name="velocidad_voz">Voice speed</string>
+    <string name="velocidad_lenta">Slow</string>
+    <string name="velocidad_normal">Normal</string>
+    <string name="velocidad_rapida">Fast</string>
+    <string name="sin_instalador_voz">Install the voice from System settings &gt; Text-to-speech</string>
 </resources>

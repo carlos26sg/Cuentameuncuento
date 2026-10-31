@@ -27,7 +27,7 @@
     <string name="error_cargar_cuento">No se ha podido abrir el cuento. Revisa la conexión a Internet.</string>
     <string name="reintentar">Reintentar</string>
     <string name="error_traduccion">No se ha podido cargar la traducción</string>
-    <string name="voz_idioma_no_disponible">Este dispositivo no tiene voz para este idioma. Puedes instalarla en Ajustes del sistema &gt; Texto a voz.</string>
+    <string name="voz_idioma_no_disponible">Este dispositivo no tiene la voz de este idioma. ¿Quieres instalarla ahora?</string>
     <string name="voz_no_disponible">La lectura en voz alta no está disponible en este dispositivo</string>
     <string name="voz_error">Error al leer el cuento en voz alta</string>
     <string name="pausar">Pausar</string>
@@ -45,4 +45,12 @@
     <string name="privacidad">Privacidad</string>
     <string name="sin_navegador">No hay ningún navegador instalado</string>
     <string name="version">Versión %1$s</string>
+    <string name="falta_voz">Falta la voz</string>
+    <string name="instalar">Instalar</string>
+    <string name="ahora_no">Ahora no</string>
+    <string name="velocidad_voz">Velocidad de la voz</string>
+    <string name="velocidad_lenta">Lenta</string>
+    <string name="velocidad_normal">Normal</string>
+    <string name="velocidad_rapida">Rápida</string>
+    <string name="sin_instalador_voz">Instala la voz desde Ajustes del sistema &gt; Texto a voz</string>
 </resources>

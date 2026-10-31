@@ -8,6 +8,7 @@ import com.carlossega.cuentameuncuento.data.model.Cuento
 import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.Modo
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
@@ -29,6 +31,7 @@ data class AjustesUiState(
     val idioma: Idioma = Idioma.ESPANOL,
     val modoFavorito: Modo? = null,
     val favorito: String = "",
+    val velocidadVoz: VelocidadVoz = VelocidadVoz.NORMAL,
     val cuentos: List<Cuento> = emptyList()
 )
 
@@ -57,7 +60,8 @@ class AjustesViewModel @Inject constructor(
                 it.copy(
                     idioma = preferencias.idioma,
                     modoFavorito = preferencias.modoFavorito,
-                    favorito = preferencias.favorito
+                    favorito = preferencias.favorito,
+                    velocidadVoz = preferencias.velocidadVoz
                 )
             }
             cargarCuentos(preferencias.idioma)
@@ -75,6 +79,8 @@ class AjustesViewModel @Inject constructor(
 
     fun cambiarFavorito(cuentoId: String) = _uiState.update { it.copy(favorito = cuentoId) }
 
+    fun cambiarVelocidad(velocidad: VelocidadVoz) = _uiState.update { it.copy(velocidadVoz = velocidad) }
+
     fun guardar() {
         val estado = _uiState.value
         viewModelScope.launch {
@@ -83,7 +89,8 @@ class AjustesViewModel @Inject constructor(
                     Preferencias(
                         idioma = estado.idioma,
                         favorito = estado.favorito,
-                        modoFavorito = estado.modoFavorito
+                        modoFavorito = estado.modoFavorito,
+                        velocidadVoz = estado.velocidadVoz
                     )
                 )
                 R.string.ajustes_guardados
@@ -104,8 +111,9 @@ class AjustesViewModel @Inject constructor(
         cargaCuentos?.cancel()
         _uiState.update { it.copy(cargando = true) }
         cargaCuentos = viewModelScope.launch {
-            val cuentos = cuentoRepository.getCuentos(idioma).getOrDefault(emptyList())
-            _uiState.update { it.copy(cargando = false, cuentos = cuentos) }
+            cuentoRepository.cuentos(idioma)
+                .catch { _uiState.update { it.copy(cargando = false) } }
+                .collect { cuentos -> _uiState.update { it.copy(cargando = false, cuentos = cuentos) } }
         }
     }
 }

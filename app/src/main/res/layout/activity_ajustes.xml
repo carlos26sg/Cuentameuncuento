@@ -131,6 +131,29 @@
                         android:layout_weight="2"
                         android:popupBackground="@color/fondo_panel" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margen_pantalla"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/EtiquetaAjustes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:labelFor="@id/sp_velocidad"
+                        android:text="@string/velocidad_voz" />
+
+                    <Spinner
+                        android:id="@+id/sp_velocidad"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:popupBackground="@color/fondo_panel" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- Botones: se reparten el ancho para caber en cualquier pantalla -->

@@ -25,7 +25,7 @@
     <string name="error_cargar_cuento">No s\'ha pogut obrir el conte. Revisa la connexió a Internet.</string>
     <string name="reintentar">Torna-ho a provar</string>
     <string name="error_traduccion">No s\'ha pogut carregar la traducció</string>
-    <string name="voz_idioma_no_disponible">Aquest dispositiu no té veu per a aquest idioma. La pots instal·lar a Configuració del sistema &gt; Text a veu.</string>
+    <string name="voz_idioma_no_disponible">Aquest dispositiu no té la veu d\'aquest idioma. Vols instal·lar-la ara?</string>
     <string name="voz_no_disponible">La lectura en veu alta no està disponible en aquest dispositiu</string>
     <string name="voz_error">Error en llegir el conte en veu alta</string>
     <string name="pausar">Pausa</string>
@@ -43,4 +43,12 @@
     <string name="privacidad">Privacitat</string>
     <string name="sin_navegador">No hi ha cap navegador instal·lat</string>
     <string name="version">Versió %1$s</string>
+    <string name="falta_voz">Falta la veu</string>
+    <string name="instalar">Instal·lar</string>
+    <string name="ahora_no">Ara no</string>
+    <string name="velocidad_voz">Velocitat de la veu</string>
+    <string name="velocidad_lenta">Lenta</string>
+    <string name="velocidad_normal">Normal</string>
+    <string name="velocidad_rapida">Ràpida</string>
+    <string name="sin_instalador_voz">Instal·la la veu des de Configuració del sistema &gt; Text a veu</string>
 </resources>

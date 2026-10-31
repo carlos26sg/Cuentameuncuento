@@ -6,11 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlossega.cuentameuncuento.R
 import com.carlossega.cuentameuncuento.audio.FalloNarrador
+import com.carlossega.cuentameuncuento.audio.Locucion
 import com.carlossega.cuentameuncuento.audio.Narrador
 import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.LineaCuento
 import com.carlossega.cuentameuncuento.data.model.Modo
+import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
+import com.carlossega.cuentameuncuento.data.precarga.PrecargaImagenes
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
+import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
@@ -19,6 +23,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -32,7 +37,9 @@ data class ReproductorUiState(
     val idiomaTraduccion: Idioma? = null,
     val traduccion: List<LineaCuento> = emptyList(),
     val imagenes: Map<String, String> = emptyMap(),
-    val narrando: Boolean = false
+    val narrando: Boolean = false,
+    /** Posición en el texto de la palabra que está sonando, para resaltarla */
+    val palabra: IntRange? = null
 ) {
     val lineaActual: LineaCuento? get() = lineas.getOrNull(indice)
 
@@ -58,6 +65,8 @@ data class ReproductorUiState(
 @HiltViewModel
 class ReproductorViewModel @Inject constructor(
     private val cuentoRepository: CuentoRepository,
+    private val preferenciasRepository: PreferenciasRepository,
+    private val precargaImagenes: PrecargaImagenes,
     private val narrador: Narrador,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -74,7 +83,12 @@ class ReproductorViewModel @Inject constructor(
     private val _mensajes = Channel<Int>(Channel.BUFFERED)
     val mensajes: Flow<Int> = _mensajes.receiveAsFlow()
 
+    /** Emite cuando falta la voz del idioma, para ofrecer instalarla */
+    private val _faltaVoz = Channel<Idioma>(Channel.CONFLATED)
+    val faltaVoz: Flow<Idioma> = _faltaVoz.receiveAsFlow()
+
     private var cargaTraduccion: Job? = null
+    private var velocidad = VelocidadVoz.NORMAL
 
     init {
         cargar()
@@ -108,26 +122,30 @@ class ReproductorViewModel @Inject constructor(
 
     fun pausar() {
         if (!_uiState.value.narrando) return
-        _uiState.update { it.copy(narrando = false) }
+        _uiState.update { it.copy(narrando = false, palabra = null) }
         narrador.detener()
     }
 
     private fun narrar() {
         if (_uiState.value.lineas.isEmpty()) return
         _uiState.update { it.copy(narrando = true) }
-        narrarLineaActual()
+        narrarLineaActual(pausaPreviaMs = 0)
     }
 
-    private fun narrarLineaActual() {
+    private fun narrarLineaActual(pausaPreviaMs: Long) {
         val linea = _uiState.value.lineaActual ?: return pausar()
         narrador.hablar(
-            texto = linea.texto,
-            idioma = idioma,
+            locucion = Locucion(linea.texto, idioma, velocidad, pausaPreviaMs),
+            alPalabra = { inicio, fin ->
+                if (_uiState.value.narrando) _uiState.update { it.copy(palabra = inicio until fin) }
+            },
             alTerminar = {
                 if (_uiState.value.narrando) {
                     if (_uiState.value.haySiguiente) {
                         irA(_uiState.value.indice + 1)
-                        narrarLineaActual()
+                        // Pausa más larga cuando cambia la ilustración, como al pasar de página
+                        val cambiaEscena = _uiState.value.lineaActual?.imagen != null
+                        narrarLineaActual(if (cambiaEscena) PAUSA_ESCENA_MS else PAUSA_FRASE_MS)
                     } else {
                         // Fin del cuento: se vuelve al principio, como en la versión anterior
                         _uiState.update { it.copy(narrando = false) }
@@ -136,14 +154,12 @@ class ReproductorViewModel @Inject constructor(
                 }
             },
             alFallar = { fallo ->
-                _uiState.update { it.copy(narrando = false) }
-                mostrarMensaje(
-                    when (fallo) {
-                        FalloNarrador.IDIOMA_NO_DISPONIBLE -> R.string.voz_idioma_no_disponible
-                        FalloNarrador.MOTOR_NO_DISPONIBLE -> R.string.voz_no_disponible
-                        FalloNarrador.ERROR_REPRODUCCION -> R.string.voz_error
-                    }
-                )
+                _uiState.update { it.copy(narrando = false, palabra = null) }
+                when (fallo) {
+                    FalloNarrador.IDIOMA_NO_DISPONIBLE -> _faltaVoz.trySend(idioma)
+                    FalloNarrador.MOTOR_NO_DISPONIBLE -> mostrarMensaje(R.string.voz_no_disponible)
+                    FalloNarrador.ERROR_REPRODUCCION -> mostrarMensaje(R.string.voz_error)
+                }
             }
         )
     }
@@ -153,6 +169,7 @@ class ReproductorViewModel @Inject constructor(
         viewModelScope.launch {
             val imagenes = async { cuentoRepository.getImagenes(cuentoId).getOrDefault(emptyMap()) }
             val lineas = cuentoRepository.getLineas(cuentoId, idioma).getOrNull().orEmpty()
+            velocidad = preferenciasRepository.preferencias.first().velocidadVoz
             _uiState.update {
                 it.copy(
                     cargando = false,
@@ -162,12 +179,14 @@ class ReproductorViewModel @Inject constructor(
                     imagenes = imagenes.await()
                 )
             }
+            // Todas las ilustraciones del cuento, para que pasar de página sea inmediato
+            precargaImagenes.precargar(_uiState.value.imagenes.values)
         }
     }
 
     private fun irA(indice: Int) {
         savedStateHandle[CLAVE_INDICE] = indice
-        _uiState.update { it.copy(indice = indice) }
+        _uiState.update { it.copy(indice = indice, palabra = null) }
     }
 
     private fun mostrarMensaje(@StringRes mensaje: Int) {
@@ -180,5 +199,7 @@ class ReproductorViewModel @Inject constructor(
 
     private companion object {
         const val CLAVE_INDICE = "indice"
+        const val PAUSA_FRASE_MS = 400L
+        const val PAUSA_ESCENA_MS = 900L
     }
 }

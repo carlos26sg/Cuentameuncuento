@@ -19,6 +19,7 @@ import com.carlossega.cuentameuncuento.BuildConfig
 import com.carlossega.cuentameuncuento.R
 import com.carlossega.cuentameuncuento.data.model.Cuento
 import com.carlossega.cuentameuncuento.data.model.Modo
+import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.databinding.ActivityAjustesBinding
 import com.carlossega.cuentameuncuento.ui.common.BanderaAdapter
 import com.carlossega.cuentameuncuento.ui.common.pantallaCompleta
@@ -33,6 +34,7 @@ class AjustesActivity : AppCompatActivity() {
 
     private val banderas = BanderaAdapter()
     private val modos: List<Modo?> = listOf(null, Modo.LEER, Modo.ESCUCHAR)
+    private val velocidades = VelocidadVoz.entries
     private var cuentosMostrados: List<Cuento>? = null
     private var valoresIniciales = false
 
@@ -50,6 +52,17 @@ class AjustesActivity : AppCompatActivity() {
         binding.spIdioma.adapter = banderas
         binding.spModo.adapter = adaptadorTextos(
             listOf(getString(R.string.sin_seleccion), getString(R.string.leer), getString(R.string.escuchar))
+        )
+        binding.spVelocidad.adapter = adaptadorTextos(
+            velocidades.map {
+                getString(
+                    when (it) {
+                        VelocidadVoz.LENTA -> R.string.velocidad_lenta
+                        VelocidadVoz.NORMAL -> R.string.velocidad_normal
+                        VelocidadVoz.RAPIDA -> R.string.velocidad_rapida
+                    }
+                )
+            }
         )
 
         lifecycleScope.launch {
@@ -69,8 +82,10 @@ class AjustesActivity : AppCompatActivity() {
             valoresIniciales = true
             binding.spIdioma.setSelection(banderas.posicionDe(estado.idioma), false)
             binding.spModo.setSelection(modos.indexOf(estado.modoFavorito).coerceAtLeast(0), false)
+            binding.spVelocidad.setSelection(velocidades.indexOf(estado.velocidadVoz), false)
             binding.spIdioma.alSeleccionar { banderas.getItem(it)?.let(viewModel::cambiarIdioma) }
             binding.spModo.alSeleccionar { viewModel.cambiarModo(modos[it]) }
+            binding.spVelocidad.alSeleccionar { viewModel.cambiarVelocidad(velocidades[it]) }
         }
 
         if (!estado.cargando && estado.cuentos !== cuentosMostrados) {
