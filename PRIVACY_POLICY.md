@@ -1,6 +1,6 @@
 # Política de Privacidad - Cuéntame un Cuento
 
-**Última actualización:** octubre de 2026 (versión 2.1 de la app)
+**Última actualización:** noviembre de 2026 (versión 2.2 de la app)
 
 > Esta es la fuente en Markdown. La versión publicada es `privacy-policy.html`
 > (https://carlos26sg.github.io/Cuentameuncuento/privacy-policy.html). Si cambias una, cambia la otra.
@@ -10,7 +10,8 @@
 - ✅ **No hay cuentas ni usuarios.** No se pide nombre, email, contraseña ni ningún dato personal.
 - ✅ **Las preferencias se quedan en el dispositivo** (idioma, cuento favorito, música activada o no).
 - ✅ **Sin publicidad** y sin identificador de publicidad.
-- ℹ️ **Estadísticas de uso y errores anónimas** con Firebase (Google), para mejorar la app.
+- ✅ **Sin estadísticas de uso.**
+- ℹ️ **Informes de errores anónimos** con Firebase Crashlytics (Google), para corregir fallos.
 - 🗑️ **Borrar todo:** desinstalar la app o borrar sus datos desde los ajustes de Android.
 
 ## 1. Introducción
@@ -25,27 +26,26 @@ La app guarda únicamente en el propio dispositivo:
 - Idioma de los cuentos (español, catalán o inglés).
 - Cuento favorito y modo favorito (leer o escuchar).
 - Si la música de fondo está activada.
-- Copia de los textos e ilustraciones de los cuentos ya abiertos, para poder leerlos sin conexión.
+- Si se han publicado cuentos nuevos, su texto e ilustraciones, para poder leerlos sin conexión.
 
 Esta información **no se envía a ningún servidor**. Se borra al desinstalar la app o al borrar
 sus datos desde Ajustes de Android ▸ Aplicaciones ▸ Cuéntame un Cuento ▸ Almacenamiento.
 
-## 3. Información técnica que se envía a Firebase (Google)
+## 3. Información técnica que sale del dispositivo
 
-Para que la app funcione y para mejorarla usamos estos servicios de Firebase:
+Los cuentos vienen dentro de la app. Además:
 
-- **Cloud Firestore y Cloud Storage:** de ahí se descargan los cuentos y sus ilustraciones.
-  No se envía ningún dato del niño.
-- **Firebase Crashlytics:** si la app se cierra por un error, se envía un informe técnico
-  (modelo de dispositivo, versión de Android, versión de la app y el error). Se conserva
-  90 días.
-- **Google Analytics para Firebase:** estadísticas de uso agregadas (por ejemplo, pantallas
-  abiertas, duración de la sesión, país aproximado y tipo de dispositivo), asociadas a un
-  identificador aleatorio de instalación. **No** se recoge el identificador de publicidad,
-  la personalización de anuncios está desactivada y los datos no se usan para publicidad.
+- **Comprobación de cuentos nuevos:** una vez por sesión la app descarga la lista de cuentos
+  publicada en GitHub Pages (GitHub, Inc.). Es una descarga como la de cualquier página web:
+  no se envía ningún dato del niño, aunque GitHub registra la dirección IP por motivos de
+  seguridad. Más información: https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement
+- **Firebase Crashlytics (Google):** si la app se cierra por un error, se envía un informe
+  técnico (modelo de dispositivo, versión de Android, versión de la app y el error),
+  asociado a un identificador aleatorio de instalación. Se conserva 90 días.
+  Más información: https://firebase.google.com/support/privacy
 
-Ninguno de estos datos permite identificar a una persona. Más información:
-https://firebase.google.com/support/privacy
+La app **no** usa estadísticas de uso, identificador de publicidad ni ningún otro servicio de
+análisis. Ninguno de estos datos permite identificar a una persona.
 
 ## 4. Lo que NO hacemos
 
@@ -62,7 +62,7 @@ personal de un menor, contáctenos y lo eliminaremos.
 
 ## 6. Seguridad
 
-Todas las comunicaciones con Firebase usan conexiones cifradas (HTTPS/TLS).
+Todas las comunicaciones con GitHub y Firebase usan conexiones cifradas (HTTPS/TLS).
 
 ## 7. Sus derechos
 

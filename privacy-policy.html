@@ -25,7 +25,7 @@
 </head>
 <body>
     <h1>🎭 Política de Privacidad - Cuéntame un Cuento</h1>
-    <p><strong>Última actualización:</strong> octubre de 2026 (versión 2.1 de la app)</p>
+    <p><strong>Última actualización:</strong> noviembre de 2026 (versión 2.2 de la app)</p>
 
     <div class="summary">
         <h3>📋 Resumen para padres</h3>
@@ -33,7 +33,8 @@
             <li>✅ <strong>No hay cuentas ni usuarios.</strong> No se pide nombre, email, contraseña ni ningún dato personal.</li>
             <li>✅ <strong>Las preferencias se quedan en el dispositivo</strong> (idioma, cuento favorito, música).</li>
             <li>✅ <strong>Sin publicidad</strong> y sin identificador de publicidad.</li>
-            <li>ℹ️ <strong>Estadísticas de uso y errores anónimas</strong> con Firebase (Google), para mejorar la app.</li>
+            <li>✅ <strong>Sin estadísticas de uso.</strong></li>
+            <li>ℹ️ <strong>Informes de errores anónimos</strong> con Firebase Crashlytics (Google), para corregir fallos.</li>
             <li>🗑️ <strong>Borrar todo:</strong> desinstalar la app o borrar sus datos desde los ajustes de Android.</li>
         </ul>
     </div>
@@ -47,17 +48,17 @@
         <li>Idioma de los cuentos (español, catalán o inglés).</li>
         <li>Cuento favorito y modo favorito (leer o escuchar).</li>
         <li>Si la música de fondo está activada.</li>
-        <li>Copia de los textos e ilustraciones de los cuentos ya abiertos, para poder leerlos sin conexión.</li>
+        <li>Si se han publicado cuentos nuevos, su texto e ilustraciones, para poder leerlos sin conexión.</li>
     </ul>
     <p>Esta información <strong>no se envía a ningún servidor</strong>. Se borra al desinstalar la app o al borrar sus datos desde Ajustes de Android ▸ Aplicaciones ▸ Cuéntame un Cuento ▸ Almacenamiento.</p>
 
-    <h2>3. Información técnica que se envía a Firebase (Google)</h2>
+    <h2>3. Información técnica que sale del dispositivo</h2>
+    <p>Los cuentos vienen dentro de la app. Además:</p>
     <ul>
-        <li><strong>Cloud Firestore y Cloud Storage:</strong> de ahí se descargan los cuentos y sus ilustraciones. No se envía ningún dato del niño.</li>
-        <li><strong>Firebase Crashlytics:</strong> si la app se cierra por un error, se envía un informe técnico (modelo de dispositivo, versión de Android, versión de la app y el error). Se conserva 90 días.</li>
-        <li><strong>Google Analytics para Firebase:</strong> estadísticas de uso agregadas (pantallas abiertas, duración de la sesión, país aproximado y tipo de dispositivo), asociadas a un identificador aleatorio de instalación. <strong>No</strong> se recoge el identificador de publicidad, la personalización de anuncios está desactivada y los datos no se usan para publicidad.</li>
+        <li><strong>Comprobación de cuentos nuevos:</strong> una vez por sesión la app descarga la lista de cuentos publicada en GitHub Pages (GitHub, Inc.). Es una descarga como la de cualquier página web: no se envía ningún dato del niño, aunque GitHub registra la dirección IP por motivos de seguridad. <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Privacidad de GitHub →</a></li>
+        <li><strong>Firebase Crashlytics (Google):</strong> si la app se cierra por un error, se envía un informe técnico (modelo de dispositivo, versión de Android, versión de la app y el error), asociado a un identificador aleatorio de instalación. Se conserva 90 días. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacidad de Firebase →</a></li>
     </ul>
-    <p>Ninguno de estos datos permite identificar a una persona. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Política de privacidad de Firebase →</a></p>
+    <p>La app <strong>no</strong> usa estadísticas de uso, identificador de publicidad ni ningún otro servicio de análisis. Ninguno de estos datos permite identificar a una persona.</p>
 
     <h2>4. Lo que NO hacemos</h2>
     <ul>
@@ -71,7 +72,7 @@
     <p>La aplicación está pensada para niños. No recogemos intencionadamente información personal de menores y cumplimos la política de Familias de Google Play. Si cree que se ha recogido algún dato personal de un menor, contáctenos y lo eliminaremos.</p>
 
     <h2>6. Seguridad</h2>
-    <p>Todas las comunicaciones con Firebase usan conexiones cifradas (HTTPS/TLS).</p>
+    <p>Todas las comunicaciones con GitHub y Firebase usan conexiones cifradas (HTTPS/TLS).</p>
 
     <h2>7. Sus derechos</h2>
     <p>De acuerdo con el RGPD puede solicitar información sobre el tratamiento de datos, oponerse a él o pedir su eliminación escribiendo a la dirección de contacto. Como la app no guarda datos personales en servidores, normalmente basta con desinstalarla.</p>
