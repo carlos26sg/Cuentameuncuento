@@ -1,0 +1,298 @@
+{
+  "id": "los_tres_cerditos",
+  "edad": 3,
+  "titulo": {
+    "esp": "Los tres cerditos",
+    "cat": "Els tres porquets",
+    "eng": "The three little pigs"
+  },
+  "descripcion": {
+    "esp": "Narra la historia de tres hermanos cerditos y el lobo que intentará comerselos.",
+    "cat": "Narra la història de tres germans porquets i el llop que intentarà menjar-se'ls.",
+    "eng": "It tells the story of three little pig brothers and the wolf that will try to eat them."
+  },
+  "lineas": [
+    {
+      "imagen": "1",
+      "esp": "Había una vez tres hermanos cerditos que vivían en el bosque.",
+      "cat": "Hi havia una vegada tres germans porquets que vivien al bosc.",
+      "eng": "There were once three piggy brothers living in the woods."
+    },
+    {
+      "imagen": "1",
+      "esp": "En el bosque también vivía un lobo, que quería comerse a los cerditos.",
+      "cat": "Al bosc també vivia un llop, que volia menjar-se els porquets.",
+      "eng": "In the forest there was also a wolf, who wanted to eat the little pigs."
+    },
+    {
+      "imagen": "1",
+      "esp": "El hermano mayor viendo lo peligroso que era el lobo dijo:",
+      "cat": "El germà gran veient el perillós que era el llop va dir:",
+      "eng": "The older brother seeing how dangerous the wolf was said:"
+    },
+    {
+      "imagen": "1",
+      "esp": "Hagamos cada uno una casa para protegernos del lobo.",
+      "cat": "Fem cadascun una casa per a protegir-nos del llop.",
+      "eng": "We each make a house to protect ourselves from the wolf."
+    },
+    {
+      "imagen": "1",
+      "esp": "Así que cada cerdito empezó a fabricar su propia casa.",
+      "cat": "Així que cada porquet va començar a fabricar la seva pròpia casa.",
+      "eng": "So every little piggy started making his own house."
+    },
+    {
+      "imagen": "2",
+      "esp": "El hermano pequeño, que era muy perezoso, construyó su casa de paja.",
+      "cat": "El germà petit, que era molt mandrós, va construir la seva casa de palla.",
+      "eng": "The lazy little brother built his straw house."
+    },
+    {
+      "imagen": "2",
+      "esp": "La fabricó muy rápido y se fue a jugar.",
+      "cat": "La va fabricar molt ràpid i es va anar a jugar.",
+      "eng": "He made it very quickly and went to play."
+    },
+    {
+      "imagen": "2",
+      "esp": "El hermano mediano, también perezoso, construyó su casa de madera.",
+      "cat": "El germà mitjà, també mandrós, va construir la seva casa de fusta.",
+      "eng": "The lazy middle brother built his wooden house."
+    },
+    {
+      "imagen": "2",
+      "esp": "Le costó más tiempo que a su hermano menor, pero acabó rápido.",
+      "cat": "Li va costar mes temps que al seu germà menor, però va acabar ràpid.",
+      "eng": "It took him more time than his younger brother, but he ended quickly."
+    },
+    {
+      "imagen": "2",
+      "esp": "El hermano mayor era el más listo y trabajador.",
+      "cat": "El germà gran era el mes llest i treballador.",
+      "eng": "The older brother was the smartest and hardest man."
+    },
+    {
+      "imagen": "2",
+      "esp": "Mientras él trabajaba, sus hermanos jugaban y reían viéndole trabajar.",
+      "cat": "Mentre el treballava, els seus germans jugaven i reien veient-lo treballar.",
+      "eng": "While working, his brothers played and laughed watching him work."
+    },
+    {
+      "imagen": "2",
+      "esp": "El solo trabajó mucho tiempo para hacer una casa de ladrillos.",
+      "cat": "El sol va treballar molt de temps per a fer una casa de maons.",
+      "eng": "He worked alone for a long to make a brick house."
+    },
+    {
+      "imagen": "2",
+      "esp": "Era una casa muy fuerte que ningún huracán podría destruirla.",
+      "cat": "Era una casa molt forta que cap huracà podria destruir-la.",
+      "eng": "It was a very strong house that no hurricane could destroy."
+    },
+    {
+      "imagen": "2",
+      "esp": "Vivieron tranquilos unas semanas en sus casas nuevas sin ningún temor.",
+      "cat": "Van viure tranquils unes setmanes a les seves cases noves sense cap temor.",
+      "eng": "They lived quietly for a few weeks in their new homes without any fear."
+    },
+    {
+      "imagen": "3",
+      "esp": "Hasta que un día, el cerdito más pequeño vio al lobo escondido.",
+      "cat": "Fins que un dia, el porquet mes petit va veure el llop amagat.",
+      "eng": "Until one day, the little piggy saw the wolf hidden."
+    },
+    {
+      "imagen": "3",
+      "esp": "Corrió a esconderse en su casa de paja y cerró la puerta.",
+      "cat": "Va córrer a amagar-se a la seva casa de palla i va tancar la porta.",
+      "eng": "He ran to hide in his straw house and closed the door."
+    },
+    {
+      "imagen": "3",
+      "esp": "El lobo fue tras él y le picó a la puerta pidiéndole que le dejara entrar.",
+      "cat": "El llop va anar enrere d'ell i li va picar a la porta demanant-li que li deixés entrar.",
+      "eng": "The wolf went back from him and knocked him at the door asking him to let him in."
+    },
+    {
+      "imagen": "3",
+      "esp": "El cerdito asustado le dijo que no y le pidió que se fuera.",
+      "cat": "El porquet espantat li va dir que no i li va demanar que s'anés.",
+      "eng": "The frightened little pig said no and asked him to leave."
+    },
+    {
+      "imagen": "3",
+      "esp": "El lobo que quería comerse al cerdito, pensó en destruir la casa y dijo:",
+      "cat": "El llop que volia menjar-se al porquet, va pensar a destruir la casa i va dir:",
+      "eng": "The wolf who wanted to eat himself in the piggyback thought of destroying the house and said:"
+    },
+    {
+      "imagen": "3",
+      "esp": "Soplaré y soplaré y tu casa derribaré!",
+      "cat": "Bufaré i bufaré i la teva casa derrocaré!",
+      "eng": "I will blow and blow and your house will tear down!"
+    },
+    {
+      "imagen": "4",
+      "esp": "De un soplido destruyó la casa de paja dejando al descubierto al cerdito.",
+      "cat": "D'una bufada va destruir la casa de palla deixant al descobert al porquet.",
+      "eng": "From a blow he destroyed the straw house, exposing the pig."
+    },
+    {
+      "imagen": "4",
+      "esp": "El cerdito pequeño, rápidamente corrió a esconderse.",
+      "cat": "El porquet petit, ràpidament va córrer a amagar-se.",
+      "eng": "The little piggy quickly ran into hiding."
+    },
+    {
+      "imagen": "4",
+      "esp": "Consiguió llegar a la casa de su hermano mediano, el de la casa de madera.",
+      "cat": "Va aconseguir arribar a la casa del seu germà mitjà, el de la casa de fusta.",
+      "eng": "He managed to get to his middle brother's house, the wooden house."
+    },
+    {
+      "imagen": "5",
+      "esp": "El lobo salió tras el cerdito y vio donde se escondió.",
+      "cat": "El llop va sortir després del porquet i va veure on es va amagar.",
+      "eng": "The wolf came out after the piglet and saw where he hid."
+    },
+    {
+      "imagen": "5",
+      "esp": "El lobo volvió a pedir que le dejasen entrar a la casa.",
+      "cat": "El llop va tornar a demanar que li deixessin entrar a la casa.",
+      "eng": "The wolf again asked to be let into the house."
+    },
+    {
+      "imagen": "5",
+      "esp": "Cuando los cerditos le dijeron que no, el lobo dijo:",
+      "cat": "Quan els porquets li van dir que no, el llop va dir:",
+      "eng": "When the little pigs told him no, the wolf said:"
+    },
+    {
+      "imagen": "5",
+      "esp": "Soplaré y soplaré y vuestra casa derribaré!",
+      "cat": "Bufaré i bufaré i la vostra casa derrocaré!",
+      "eng": "I will blow and blow and your house will tear down!"
+    },
+    {
+      "imagen": "5",
+      "esp": "Esta vez el lobo no consiguió destruir la casa de madera. Continuó.",
+      "cat": "Aquesta vegada el llop no va aconseguir destruir la casa de fusta. Va continuar.",
+      "eng": "This time the wolf failed to destroy the wooden house. He continued."
+    },
+    {
+      "imagen": "6",
+      "esp": "Soplaré y soplaré aún más fuerte y vuestra casa derribaré!",
+      "cat": "Bufaré i bufaré encara mes fort i la vostra casa derrocaré!",
+      "eng": "I will blow and blow even stronger and your house will tear down!"
+    },
+    {
+      "imagen": "6",
+      "esp": "De un soplido más fuerte consiguió derrumbar la casa de madera.",
+      "cat": "D'una bufada mes forta va aconseguir destruir la casa de fusta.",
+      "eng": "From a stronger blow he managed to collapse the wooden house."
+    },
+    {
+      "imagen": "6",
+      "esp": "Los cerditos cuando se vieron sin casa salieron corriendo a esconderse.",
+      "cat": "Els porquets quan es van veure sense casa van sortir corrent a amagar-se.",
+      "eng": "The little pigs ran into hiding when they saw themselves homeless."
+    },
+    {
+      "imagen": "6",
+      "esp": "Fueron directamente a la casa de ladrillos de su hermano mayor.",
+      "cat": "Van anar directament a la casa de maons del seu germà gran.",
+      "eng": "They went directly to his older brother's brick house."
+    },
+    {
+      "imagen": "7",
+      "esp": "El lobo salió tras los cerditos y fue a la casa de ladrillos.",
+      "cat": "El llop va sortir després dels porquets i va anar a la casa de maons.",
+      "eng": "The wolf came out after the piglets and went to the brick house."
+    },
+    {
+      "imagen": "7",
+      "esp": "Volvió a pedir que le dejasen entrar a la casa.",
+      "cat": "Va tornar a demanar que li deixessin entrar a la casa.",
+      "eng": "He again asked to be let into the house."
+    },
+    {
+      "imagen": "7",
+      "esp": "Cuando los cerditos le dijeron que no, el lobo dijo:",
+      "cat": "Quan els porquets li van dir que no, el llop va dir:",
+      "eng": "When the piglets told him no, the wolf said:"
+    },
+    {
+      "imagen": "7",
+      "esp": "Soplaré y soplaré y vuestra casa derribaré!",
+      "cat": "Bufaré i bufaré i la vostra casa derrocaré!",
+      "eng": "I will blow and blow and your house will tear down!"
+    },
+    {
+      "imagen": "7",
+      "esp": "La casa de ladrillos no se movió nada. Continuó.",
+      "cat": "La casa de maons no es va moure res. Va continuar.",
+      "eng": "The brick house moved nothing. He continued."
+    },
+    {
+      "imagen": "7",
+      "esp": "Soplaré y soplaré aún más fuerte y vuestra casa derribaré!",
+      "cat": "Bufaré i bufaré encara mes fort i la vostra casa derrocaré!",
+      "eng": "I will blow and blow even stronger and your house will tear down!"
+    },
+    {
+      "imagen": "7",
+      "esp": "La casa no se movía nada y el lobo comenzaba a cansarse.",
+      "cat": "La casa no es movia res i el llop començava a cansar-se.",
+      "eng": "The house was not moving and the wolf was beginning to get tired."
+    },
+    {
+      "imagen": "8",
+      "esp": "Al estar tan cansado de soplar buscó otro plan para entrar en la casa.",
+      "cat": "En estar tan cansat de bufar va buscar un altre pla per a entrar a la casa.",
+      "eng": "Being so tired of blowing, he sought another plan to enter the house."
+    },
+    {
+      "imagen": "8",
+      "esp": "Vio la chimenea de la casa y decidió entrar por ahí.",
+      "cat": "Va veure la xemeneia de la casa i va decidir entrar per aquí.",
+      "eng": "He saw the house chimney and decided to come in here."
+    },
+    {
+      "imagen": "9",
+      "esp": "Los cerditos escucharon al lobo trepar por la casa y vieron su plan,",
+      "cat": "Els porquets van escoltar el llop grimpar per la casa i van veure el seu pla,",
+      "eng": "The little pigs listened to the wolf climbing through the house and they saw his plan,"
+    },
+    {
+      "imagen": "9",
+      "esp": "por lo que encendieron la chimenea y pusieron un gran caldero con agua.",
+      "cat": "per la qual cosa van encendre la xemeneia i van posar un gran calder amb aigua.",
+      "eng": "So they lit the fireplace and put a large boiler in water."
+    },
+    {
+      "imagen": "9",
+      "esp": "Cuando el lobo cayó por la chimenea se quemó con el agua,",
+      "cat": "Quan el llop va caure per la xemeneia es va cremar amb l'aigua,",
+      "eng": "When the wolf fell through the fireplace it burned with the water,"
+    },
+    {
+      "imagen": "10",
+      "esp": "salió corriendo de la casa, y no volvió a molestar a los cerditos.",
+      "cat": "va sortir corrent de la casa, i no va tornar a molestar als porquets.",
+      "eng": "He ran out of the house, and did not disturb the little pigs again."
+    },
+    {
+      "imagen": "10",
+      "esp": "Los cerditos celebraron la huida del lobo.",
+      "cat": "Els porquets van celebrar la fugida del llop.",
+      "eng": "The piglets celebrated the wolf's escape."
+    },
+    {
+      "imagen": "10",
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}

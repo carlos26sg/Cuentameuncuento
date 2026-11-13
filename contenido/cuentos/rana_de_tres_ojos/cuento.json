@@ -1,0 +1,316 @@
+{
+  "id": "rana_de_tres_ojos",
+  "edad": 7,
+  "titulo": {
+    "esp": "Rana de tres ojos",
+    "cat": "Granota de tres ulls",
+    "eng": "Three-eyed frog"
+  },
+  "descripcion": {
+    "esp": "Rana de Tres Ojos crece en un lugar contaminado. Salta muy alto para entender lo que sucede. Pronto descubre que quiere cambiar las COSAS... ¿Conseguirá hacerlo sola?",
+    "cat": "Granota de Tres Ulls creix en un lloc contaminat. Salta molt alt per entendre què passa. Aviat descobreix que vol canviar les COSES... Aconseguirà fer-ho sola?",
+    "eng": "Three-Eyed Frog grows in a contaminated place. Jump very high to understand what is happening. She soon discovers that she wants to change THINGS... Will she be able to do it alone?"
+  },
+  "lineas": [
+    {
+      "imagen": "1",
+      "esp": "Desde que nació renacuajo ya sabía nadar.",
+      "cat": "Des que va néixer capgròs ja sabia nedar.",
+      "eng": "Since he was born tadpole knew how to swim."
+    },
+    {
+      "imagen": "1",
+      "esp": "Creció y se convirtió en la primera Rana de Tres Ojos.",
+      "cat": "Va créixer i es va convertir en la primera Granota de Tres Ulls.",
+      "eng": "He grew up and became the first Three-eyed Frog."
+    },
+    {
+      "imagen": "1",
+      "esp": "Como todos los anfibios, tenía una piel muy sensible.",
+      "cat": "Com tots els amfibis, tenia una pell molt sensible.",
+      "eng": "Like all amphibians, he had a very sensitive skin."
+    },
+    {
+      "imagen": "1",
+      "esp": "El agua en la que vivía estaba muy sucia",
+      "cat": "L'aigua en la qual vivia estava molt bruta",
+      "eng": "The water I lived in was very dirty"
+    },
+    {
+      "imagen": "1",
+      "esp": "y tuvo que ponerse un traje de rayas para poder bañarse.",
+      "cat": "i va haver de posar-se un vestit de ratlles per a poder banyar-se.",
+      "eng": "And she had to wear a striped dress to bathe."
+    },
+    {
+      "imagen": "2",
+      "esp": "Rana de Tres Ojos siguió creciendo y aprendió a saltar.",
+      "cat": "Granota de Tres Ulls va continuar creixent i va aprendre a saltar.",
+      "eng": "Three-eyed frog continued to grow and learned to jump."
+    },
+    {
+      "imagen": "2",
+      "esp": "Una vez en tierra descubrió,",
+      "cat": "Una vegada en terra va descobrir,",
+      "eng": "Once on land he discovered,"
+    },
+    {
+      "imagen": "2",
+      "esp": "que el cielo siempre estaba tapado por una gran NUBE gris.",
+      "cat": "que el cel sempre estava tapat per un gran NÚVOL gris.",
+      "eng": "that the sky was always covered by a large grey cloud."
+    },
+    {
+      "imagen": "2",
+      "esp": "También vio que en ese lugar había COSAS.",
+      "cat": "També va veure que en aquest lloc hi havia COSES.",
+      "eng": "He also saw that there were THINGS in this place."
+    },
+    {
+      "imagen": "2",
+      "esp": "Y se preguntaba qué hacían esas COSAS allí.",
+      "cat": "I es preguntava què feien aquestes COSES allí.",
+      "eng": "And he wondered what they were doing there."
+    },
+    {
+      "imagen": "2",
+      "esp": "A Rana de Tres Ojos le encantaba estar con su abuela.",
+      "cat": "A Granota de Tres Ulls li encantava estar amb la seva àvia.",
+      "eng": "Three-eyed frog loved to be with his grandmother."
+    },
+    {
+      "imagen": "2",
+      "esp": "-Antes este lugar era muy diferente –contaba su abuela–.",
+      "cat": "-Abans aquest lloc era molt diferent –comptava la seva àvia–.",
+      "eng": "- Before this place was very different — I counted your grandmother."
+    },
+    {
+      "imagen": "2",
+      "esp": "Estas COSAS no existían y aquí vivíamos mucha gente.",
+      "cat": "Aquestes COSES no existien i aquí vivíem molta gent.",
+      "eng": "These THINGS didn't exist, and there were a lot of people here."
+    },
+    {
+      "imagen": "2",
+      "esp": "Ahora nadie se quedaba allí a vivir...",
+      "cat": "Ara ningú es quedava allí a viure...",
+      "eng": "Now no one stayed there to live..."
+    },
+    {
+      "imagen": "2",
+      "esp": "porque cada día aparecían más y más COSAS.",
+      "cat": "perquè cada dia apareixien més i més COSES.",
+      "eng": "Because more and more things appeared every day."
+    },
+    {
+      "imagen": "2",
+      "esp": "Eran COSAS nuevas que nadie quería ya.",
+      "cat": "Eren COSES noves que ningú volia ja.",
+      "eng": "These were new things that no one wanted anymore."
+    },
+    {
+      "imagen": "2",
+      "esp": "Rana de Tres Ojos siguió creciendo.",
+      "cat": "Granota de Tres Ulls va continuar creixent.",
+      "eng": "Three-eyed frog continued to grow."
+    },
+    {
+      "imagen": "3",
+      "esp": "Aprendió a saltar y a mirar cada vez más lejos.",
+      "cat": "Va aprendre a saltar i a mirar cada vegada més lluny.",
+      "eng": "He learned to jump and look ever further."
+    },
+    {
+      "imagen": "3",
+      "esp": "Así fue como descubrió que aquello no era una nube gris.",
+      "cat": "Així va ser com va descobrir que allò no era un núvol gris.",
+      "eng": "That's how he found out that wasn't a gray cloud."
+    },
+    {
+      "imagen": "3",
+      "esp": "En realidad era humo.",
+      "cat": "En realitat era fum.",
+      "eng": "It was actually smoke."
+    },
+    {
+      "imagen": "3",
+      "esp": "Rana de Tres Ojos decidió entonces ir a investigar qué estaba pasando.",
+      "cat": "Granota de Tres Ulls va decidir llavors anar a investigar què estava passant.",
+      "eng": "Three-eyed frog then decided to go and investigate what was happening."
+    },
+    {
+      "imagen": "4",
+      "esp": "Y de repente llegó a una gran fábrica: LA FÁBRICA DE COSAS NUEVAS.",
+      "cat": "I de sobte va arribar a una gran fàbrica: LA FÀBRICA DE COSES NOVES.",
+      "eng": "And suddenly it came to a big factory: THE NEW STUFF FACTORY."
+    },
+    {
+      "imagen": "4",
+      "esp": "Esa Fábrica producía COSAS nuevas sin parar.",
+      "cat": "Aquesta Fàbrica produïa COSES noves sense parar.",
+      "eng": "This Factory produced new things all the time."
+    },
+    {
+      "imagen": "4",
+      "esp": "¡Tantas COSAS no nos dejan vivir felices!",
+      "cat": "Tantes COSES no ens deixen viure felices!",
+      "eng": "So many things don't let us live happily!"
+    },
+    {
+      "imagen": "4",
+      "esp": "Rana de Tres Ojos quería decirle a la fábrica que parara de producir COSAS,",
+      "cat": "Granota de Tres Ulls volia dir-li la fàbrica que parés de produir COSES,",
+      "eng": "Three-eyed frog wanted to tell the factory to stop producing THINGS,"
+    },
+    {
+      "imagen": "4",
+      "esp": "pero no sabía Cómo hacerlo...",
+      "cat": "però no sabia Com fer-ho...",
+      "eng": "But I didn't know how to do it..."
+    },
+    {
+      "imagen": "5",
+      "esp": "Así que Rana de Tres Ojos decidió Gritar, gritar y gritar...",
+      "cat": "Així que Granota de Tres Ulls va decidir Cridar, cridar i cridar...",
+      "eng": "So, Three-eyed Frog decided to scream, scream and scream..."
+    },
+    {
+      "imagen": "5",
+      "esp": "para que la fábrica parara.",
+      "cat": "perquè la fàbrica parés.",
+      "eng": "For the factory to stop."
+    },
+    {
+      "imagen": "5",
+      "esp": "Fue el grito más grande que una rana había dado jamás.",
+      "cat": "Va ser el crit més gran que una granota havia donat mai.",
+      "eng": "It was the biggest cry a frog had ever given."
+    },
+    {
+      "imagen": "5",
+      "esp": "Pero su grito era demasiado pequeño",
+      "cat": "Però el seu crit era massa petit",
+      "eng": "But his cry was too small"
+    },
+    {
+      "imagen": "5",
+      "esp": "en comparación con el ruido de esa enorme fábrica.",
+      "cat": "en comparació amb el soroll d'aquesta enorme fàbrica.",
+      "eng": "compared to the noise of this huge factory."
+    },
+    {
+      "imagen": "5",
+      "esp": "No sirvió para nada.",
+      "cat": "No va servir per a res.",
+      "eng": "It did not help."
+    },
+    {
+      "imagen": "5",
+      "esp": "Rana de Tres Ojos decidió volver a casa.",
+      "cat": "Granota de Tres Ulls va decidir tornar a casa.",
+      "eng": "Three-eyed frog decided to return home."
+    },
+    {
+      "imagen": "5",
+      "esp": "Quería cambiar las COSAS, pero se sentía muy pequeña para conseguirlo.",
+      "cat": "Volia canviar les COSES, però se sentia molt petita per a aconseguir-ho.",
+      "eng": "I wanted to change THINGS, but I felt very small to achieve it."
+    },
+    {
+      "imagen": "5",
+      "esp": "¿Sería imposible?",
+      "cat": "Seria impossible?",
+      "eng": "Would that be impossible?"
+    },
+    {
+      "imagen": "5",
+      "esp": "Al llegar le contó a su abuela lo que había descubierto.",
+      "cat": "En arribar li va comptar a la seva àvia el que havia descobert.",
+      "eng": "On arrival he told his grandmother what he had discovered."
+    },
+    {
+      "imagen": "6",
+      "esp": "Como no sabían qué hacer, pensaron que lo mejor sería contárselo a más gente.",
+      "cat": "Com no sabien què fer, van pensar que el millor seria explicar-li-ho a més gent.",
+      "eng": "As they did not know what to do, they thought it would be best to explain it to more people."
+    },
+    {
+      "imagen": "6",
+      "esp": "Rana de Tres Ojos se lo contó a quienes pasaban por allí.",
+      "cat": "Granota de Tres Ulls li ho va explicar als qui passaven per allí.",
+      "eng": "Three-eyed frog told those who passed through."
+    },
+    {
+      "imagen": "6",
+      "esp": "Y Decidieron que había que cambiar las COSAS.",
+      "cat": "I Van decidir que calia canviar les COSES.",
+      "eng": "And they decided that things had to be changed."
+    },
+    {
+      "imagen": "6",
+      "esp": "Llegaron a un acuerdo para trabajar en equipo.",
+      "cat": "Van arribar a un acord per a treballar en equip.",
+      "eng": "They agreed to work as a team."
+    },
+    {
+      "imagen": "6",
+      "esp": "Una a una llevaron todas las COSAS que encontraban hasta las puertas de la fábrica.",
+      "cat": "Una a una van portar totes les COSES que trobaven fins a les portes de la fàbrica.",
+      "eng": "One by one they brought all the things they found to the gates of the factory."
+    },
+    {
+      "imagen": "7",
+      "esp": "Juntaron tantas COSAS que la montaña que se formó,",
+      "cat": "Van ajuntar tantes COSES que la muntanya que es va formar,",
+      "eng": "They put together so many THINGS that the mountain that formed,"
+    },
+    {
+      "imagen": "7",
+      "esp": "era mucho MÁS GRANDE QUE LA FÁBRICA DE COSAS NUEVAS.",
+      "cat": "era molt més GRAN QUE LA FÀBRICA DE COSES NOVES.",
+      "eng": "IT WAS MUCH BIGGER THAN THE NEW STUFF FACTORY."
+    },
+    {
+      "imagen": "7",
+      "esp": "Cuando la Fábrica vio todas esas COSAS",
+      "cat": "Quan la Fàbrica va veure totes aquestes COSES",
+      "eng": "When the Factory saw all these THINGS"
+    },
+    {
+      "imagen": "7",
+      "esp": "se preguntó si de verdad era necesario fabricar tantas COSAS nuevas.",
+      "cat": "es va preguntar si de veritat era necessari fabricar tantes COSES noves.",
+      "eng": "The question was raised as to whether it was really necessary to make so many new THINGS."
+    },
+    {
+      "imagen": "8",
+      "esp": "A partir de entonces la Fábrica empezó a reutilizar las COSAS que ya existían",
+      "cat": "A partir de llavors la Fàbrica va començar a reutilitzar les COSES que ja existien",
+      "eng": "From then on, the Factory began to reuse things that already existed"
+    },
+    {
+      "imagen": "8",
+      "esp": "y poco a poco aquel lugar fue mejorando.",
+      "cat": "i a poc a poc aquell lloc va anar millorant.",
+      "eng": "And slowly that place got better."
+    },
+    {
+      "imagen": "8",
+      "esp": "Y la Fábrica también estaba mejor.",
+      "cat": "I la Fàbrica també estava millor.",
+      "eng": "And the Factory was also better."
+    },
+    {
+      "imagen": "8",
+      "esp": "Rana de Tres Ojos pudo quitarse su traje de rayas y bañarse como más le gustaba.",
+      "cat": "Granota de Tres Ulls va poder llevar-se el seu vestit de ratlles i banyar-se com més li agradava.",
+      "eng": "Three-eyed frog was able to remove her striped dress and bathe as she liked."
+    },
+    {
+      "imagen": "8",
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}

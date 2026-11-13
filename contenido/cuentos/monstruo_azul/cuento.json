@@ -1,0 +1,280 @@
+{
+  "id": "monstruo_azul",
+  "edad": 7,
+  "titulo": {
+    "esp": "Monstruo Azul",
+    "cat": "Monstre Blau",
+    "eng": "Blue Monster"
+  },
+  "descripcion": {
+    "esp": "Esta es la historia de un grupo que creció creyendo que podía jugar sin importar las consecuencias de sus actos. ¿Aprenderán a divertirse sin hacer daño a su entorno?",
+    "cat": "Aquesta és l'història d'un grup que va créixer creient que podia jugar sense importar les conseqüències dels seus actes. Aprendran a divertir-se sense fer mal al teu entorn?",
+    "eng": "This is the story of a group that grew up believing that they could play regardless of the consequences of their actions. Will they learn to have fun without harming their environment?"
+  },
+  "lineas": [
+    {
+      "imagen": "1",
+      "esp": "Érase una vez un lugar maravilloso",
+      "cat": "Hi havia una vegada un lloc meravellós",
+      "eng": "There was once a wonderful place"
+    },
+    {
+      "imagen": "1",
+      "esp": "donde las aves volaban y cantaban de alegría,",
+      "cat": "on els ocells volaven i cantaven d'alegria,",
+      "eng": "where the birds flew and sang with joy,"
+    },
+    {
+      "imagen": "1",
+      "esp": "las nubes cambiaban de color y hasta las piedras sonreían.",
+      "cat": "els núvols canviaven de color i fins a les pedres somreien.",
+      "eng": "The clouds changed color and even the stones smiled."
+    },
+    {
+      "imagen": "1",
+      "esp": "En ese lugar nacieron y crecieron...",
+      "cat": "En aquest lloc van néixer i van créixer...",
+      "eng": "In this place they were born and grew up..."
+    },
+    {
+      "imagen": "2",
+      "esp": "Monstruo Azul, Bocas, Monstruo Naranja y Harri.",
+      "cat": "Monstre Blau, Boques, Monstre Taronja i Harri.",
+      "eng": "Blue monster, Mouths, Orange monster and Harri."
+    },
+    {
+      "imagen": "2",
+      "esp": "A Bocas se le oía su voz durante todo el día.",
+      "cat": "A Boques se li sentia la seva veu durant tot el dia.",
+      "eng": "Mouths was heard throughout the day."
+    },
+    {
+      "imagen": "2",
+      "esp": "Monstruo Naranja con sus enormes piernas saltaba,",
+      "cat": "Monstre Taronja amb les seves enormes cames saltava,",
+      "eng": "Monster Orange with his huge legs jumped,"
+    },
+    {
+      "imagen": "2",
+      "esp": "saltaba y saltaba y hasta el cielo alcanzaba.",
+      "cat": "saltava i saltava i fins al cel aconseguia.",
+      "eng": "He jumped and jumped and he got to the sky."
+    },
+    {
+      "imagen": "2",
+      "esp": "Harri con su gran fuerza levantaba todas las piedras.",
+      "cat": "Harri amb la seva gran força aixecava totes les pedres.",
+      "eng": "Harri with his great strength raised all the stones."
+    },
+    {
+      "imagen": "3",
+      "esp": "Desde muy pronto sintieron que ellos eran LOS MEJORES.",
+      "cat": "Des de molt aviat van sentir que ells eren ELS MILLORS.",
+      "eng": "They soon felt that they were the best."
+    },
+    {
+      "imagen": "3",
+      "esp": "Monstruo azul, aunque tenía los brazos más largos,",
+      "cat": "Monstre blau, tot hi que tenia els braços més llargs,",
+      "eng": "Blue monster, everything that had the longest arms,"
+    },
+    {
+      "imagen": "3",
+      "esp": "todavía no sabía cómo usarlos para ser de LOS MEJORES.",
+      "cat": "encara no sabia com usar-los per a ser dels MILLORS.",
+      "eng": "I still didn't know how to use them to be part of the BESTS."
+    },
+    {
+      "imagen": "3",
+      "esp": "A monstruo Azul le gustaba subir al bosque, desde allí,",
+      "cat": "A monstre Blau li agradava pujar al bosc, des d'allí,",
+      "eng": "Monster Blue liked to get up into the woods, from there,"
+    },
+    {
+      "imagen": "3",
+      "esp": "disfrutaba observando el maravilloso LUGAR donde vivían.",
+      "cat": "gaudia observant el meravellós LLOC on vivien.",
+      "eng": "I enjoyed watching the wonderful place where they lived."
+    },
+    {
+      "imagen": "4",
+      "esp": "Cuando estaban juntos pasaban el tiempo riendo",
+      "cat": "Quan estaven junts passaven el temps rient",
+      "eng": "When they were together they spent time laughing"
+    },
+    {
+      "imagen": "4",
+      "esp": "y jugando a ser Los MEJORES.",
+      "cat": "i jugant a ser Els MILLORS.",
+      "eng": "And playing to be the best."
+    },
+    {
+      "imagen": "4",
+      "esp": "Por la mañana cantaban, Bocas lo hacía más alto que cualquiera.",
+      "cat": "Al matí cantaven, Boques ho feia més alt que qualsevol.",
+      "eng": "In the morning they sang, mouths made it taller than anyone."
+    },
+    {
+      "imagen": "4",
+      "esp": "Por la tarde saltaban, Monstruo Naranja hasta las nubes llegaba.",
+      "cat": "A la tarda saltaven, Monstre Taronja fins als núvols arribava.",
+      "eng": "In the afternoon they jumped, Monster Orange was coming to the clouds."
+    },
+    {
+      "imagen": "4",
+      "esp": "Y por la noche jugaban con piedras, Harri era quien lanzaba más lejos.",
+      "cat": "I a la nit jugaven amb pedres, Harri era qui llançava més lluny.",
+      "eng": "And at night they played with stones, Harri throwing farther."
+    },
+    {
+      "imagen": "4",
+      "esp": "Monstruo Azul seguía sin saber qué hacer con sus largos brazos para ser de LOS MEJORES.",
+      "cat": "Monstre Blau seguia sense saber què fer amb els seus llargs braços per a ser dels MILLORS.",
+      "eng": "Blue Monster still did not know what to do with his long arms to be part of the BESTS."
+    },
+    {
+      "imagen": "4",
+      "esp": "Los demás no se preocupaban de las acciones de sus actos,",
+      "cat": "Els altres no es preocupaven de les accions dels seus actes,",
+      "eng": "The others were not concerned about the actions of their acts,"
+    },
+    {
+      "imagen": "4",
+      "esp": "y le daban ideas que a él no le gustaban.",
+      "cat": "i li donaven idees que a ell no li agradaven.",
+      "eng": "And they gave him ideas he didn't like."
+    },
+    {
+      "imagen": "5",
+      "esp": "Pasaron muchos días y muchas noches.",
+      "cat": "Van passar molts dies i moltes nits.",
+      "eng": "Many days and many nights passed."
+    },
+    {
+      "imagen": "5",
+      "esp": "Monstruo Azul observó que el lugar estaba distinto.",
+      "cat": "Monstre Blau va observar que el lloc estava diferent.",
+      "eng": "Monster Blue observed that the place was different."
+    },
+    {
+      "imagen": "5",
+      "esp": "Las nubes ya no cambiaban de color,",
+      "cat": "Els núvols ja no canviaven de color,",
+      "eng": "Clouds no longer changed color,"
+    },
+    {
+      "imagen": "5",
+      "esp": "las aves nunca cantaban",
+      "cat": "els ocells mai cantaven",
+      "eng": "birds never sang"
+    },
+    {
+      "imagen": "5",
+      "esp": "y hasta las piedras habían dejado de sonreír.",
+      "cat": "i fins a les pedres havien deixat de somriure.",
+      "eng": "And even the stones had stopped smiling."
+    },
+    {
+      "imagen": "5",
+      "esp": "-¿Por qué ya no queréis jugar con nosotros, si somos LOS MEJORES?",
+      "cat": "-Per què ja no voleu jugar amb nosaltres, si som ELS MILLORS?",
+      "eng": "- Why don't you want to play with us anymore if we're the best?"
+    },
+    {
+      "imagen": "5",
+      "esp": "- preguntó Monstruo Azul, pero nadie respondió.",
+      "cat": "- va preguntar Monstre Blau, però ningú va respondre.",
+      "eng": "- asked Monster Blue, but no one answered."
+    },
+    {
+      "imagen": "6",
+      "esp": "Monstruo Azul con uno de sus brazos abrazó el árbol.",
+      "cat": "Monstre Blau amb un dels seus braços va abraçar l'arbre.",
+      "eng": "Blue monster with one of his arms hugged the tree."
+    },
+    {
+      "imagen": "6",
+      "esp": "El árbol decidió devolver el abrazo...",
+      "cat": "L'arbre va decidir retornar l'abraçada...",
+      "eng": "The tree decided to return the hug..."
+    },
+    {
+      "imagen": "6",
+      "esp": "Y conversaron. Así Monstruo Azul aprendió a escuchar.",
+      "cat": "I van conversar. Així Monstre Blau va aprendre a escoltar.",
+      "eng": "And they talked. So Monster Blue learned to listen."
+    },
+    {
+      "imagen": "6",
+      "esp": "Entonces, con sus largos brazos, Monstruo Azul abrazó el bosque.",
+      "cat": "Llavors, amb els seus llargs braços, Monstre Blau va abraçar el bosc.",
+      "eng": "Then, with his long arms, Monster Blue hugged the forest."
+    },
+    {
+      "imagen": "6",
+      "esp": "Escuchando y conversando Monstruo Azul pudo entender lo que sentían.",
+      "cat": "Escoltant i conversant Monstre Blau va poder entendre el que sentien.",
+      "eng": "Listening and talking, Monster Blue could understand what they felt."
+    },
+    {
+      "imagen": "7",
+      "esp": "Monstruo Azul contó a los demás lo vivido en el bosque,",
+      "cat": "Monstre Blau va comptar als altres el viscut en el bosc,",
+      "eng": "Monster Blue told others what lived in the forest,"
+    },
+    {
+      "imagen": "7",
+      "esp": "y así les propuso que conversaran.",
+      "cat": "i així els va proposar que conversessin.",
+      "eng": "And so he proposed to them to talk."
+    },
+    {
+      "imagen": "7",
+      "esp": "Y escuchando fue como aprendieron...",
+      "cat": "I escoltant va ser com van aprendre...",
+      "eng": "And listening was how they learned..."
+    },
+    {
+      "imagen": "7",
+      "esp": "Aprendieron a cantar con las aves,",
+      "cat": "Van aprendre a cantar amb els ocells,",
+      "eng": "They learned to sing with the birds,"
+    },
+    {
+      "imagen": "7",
+      "esp": "a saltar sobre los nenúfares",
+      "cat": "a saltar sobre els nenúfars",
+      "eng": "to jump on the babysitters"
+    },
+    {
+      "imagen": "7",
+      "esp": "y a construir con las piedras.",
+      "cat": "i a construir amb les pedres.",
+      "eng": "and to build with the stones."
+    },
+    {
+      "imagen": "8",
+      "esp": "De esa manera consiguieron que aquel LUGAR maravilloso...",
+      "cat": "D'aquesta manera van aconseguir que aquell LLOC meravellós...",
+      "eng": "So, they got that wonderful place..."
+    },
+    {
+      "imagen": "8",
+      "esp": "Se convirtiera en un LUGAR MEJOR.",
+      "cat": "Es convertís en un LLOC MILLOR.",
+      "eng": "It became a better place."
+    },
+    {
+      "imagen": "8",
+      "esp": "Ahora todo el mundo sabe que Monstruo Azul da los mejores abrazos.",
+      "cat": "Ara tothom sap que Monstre Blau fa les millors abraçades.",
+      "eng": "Now everyone knows Monster Blue makes the best hugs."
+    },
+    {
+      "imagen": "8",
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}

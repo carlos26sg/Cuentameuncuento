@@ -1,0 +1,214 @@
+{
+  "id": "el_pirata_gatopata",
+  "edad": 3,
+  "titulo": {
+    "esp": "El pirata Gatopata",
+    "cat": "El pirata Gatpata",
+    "eng": "Gatopata Pirate"
+  },
+  "descripcion": {
+    "esp": "La historia de un pirata con pata de palo y su inseparable felino.",
+    "cat": "La història d'un pirata amb pota de pal i el seu felí inseparable.",
+    "eng": "The story of a wooden-legged pirate and his inseparable feline."
+  },
+  "lineas": [
+    {
+      "imagen": "1",
+      "esp": "Había una vez un pirata con pata de palo,",
+      "cat": "Hi havia una vegada un pirata amb cama de fusta,",
+      "eng": "There was once a pirate with a wooden leg,"
+    },
+    {
+      "imagen": "1",
+      "esp": "que llevaba enredado en ella a su inseparable amigo felino.",
+      "cat": "que portava embullat en ella al seu inseparable amic felí.",
+      "eng": "that he wore entangled in her inseparable feline friend."
+    },
+    {
+      "imagen": "1",
+      "esp": "Por eso, todos le llamaba el pirata Gatopata.",
+      "cat": "Per això, tots li deien el pirata Gatpata.",
+      "eng": "That's why everyone called him the pirate Gatopata."
+    },
+    {
+      "imagen": "1",
+      "esp": "El pirata Gatopata no perdió la pierna en ninguna lucha encarnizada,",
+      "cat": "El pirata Gatpata no va perdre la cama en cap lluita acarnissada,",
+      "eng": "Pirate Gatopata didn't lose his leg in a fierce fight,"
+    },
+    {
+      "imagen": "1",
+      "esp": "ni en ninguna pelea por defender su barco.",
+      "cat": "ni en cap baralla per defensar el seu vaixell.",
+      "eng": "Not in any fight to defend his ship."
+    },
+    {
+      "imagen": "1",
+      "esp": "No, el pirata Gatopata perdió la pierna por salvar a su gato.",
+      "cat": "No, el pirata Gatpata va perdre la cama per salvar al seu gat.",
+      "eng": "No, the pirate Gatopata lost his leg to save his cat."
+    },
+    {
+      "imagen": "1",
+      "esp": "Esta es su historia.",
+      "cat": "Aquesta es l'historia.",
+      "eng": "This is the story."
+    },
+    {
+      "imagen": "1",
+      "esp": "El día que el pirata Gatopata se subió al barco con su gato",
+      "cat": "El dia que el pirata Gatpata es va pujar al vaixell amb el seu gat",
+      "eng": "The day the pirate Gatopata boarded the boat with his cat"
+    },
+    {
+      "imagen": "1",
+      "esp": "se convirtió en el centro de todas las miradas y también de todas las burlas.",
+      "cat": "es va convertir en el centre de totes les mirades i també de totes les burles.",
+      "eng": "it became the center of all sights and also of all derisions."
+    },
+    {
+      "imagen": "1",
+      "esp": "—Los piratas no tienen gatos, tienen loros o monos,",
+      "cat": "—Els pirates no tenen gats, tenen lloros o micos,",
+      "eng": "- Pirates don't have cats, they have parrots or monkeys,"
+    },
+    {
+      "imagen": "1",
+      "esp": "pero no gatos —le decían los demás piratas.",
+      "cat": "però no gats —li deien els altres pirates.",
+      "eng": "But not cats — the other pirates called him."
+    },
+    {
+      "imagen": "1",
+      "esp": "Pero aquel pirata no estaba dispuesto a renunciar a su gato,",
+      "cat": "Però aquell pirata no estava disposat a renunciar al seu gat,",
+      "eng": "But that pirate wasn't willing to give up his cat,"
+    },
+    {
+      "imagen": "1",
+      "esp": "le había acompañado siempre y le había salvado de más de un peligro,",
+      "cat": "li havia acompanyat sempre i li havia salvat de més d'un perill,",
+      "eng": "I had always accompanied him and saved him from more than one danger,"
+    },
+    {
+      "imagen": "1",
+      "esp": "dicho sea de paso. Aunque eso es otra historia.",
+      "cat": "dit sigui de pas. Encara que això és una altra història.",
+      "eng": "incidentally. But that's another story."
+    },
+    {
+      "imagen": "1",
+      "esp": "Ese mismo día el barco zarpó. No habían perdido el puerto de vista aún",
+      "cat": "Aquest mateix dia el vaixell va salpar. No havien perdut el port de vista encara",
+      "eng": "That same day the ship set sail. They had not lost their sight port yet"
+    },
+    {
+      "imagen": "1",
+      "esp": "cuando un gran galeón le salió al paso para robarles todo lo que llevaban a bordo:",
+      "cat": "quan un gran galió els va sortir al pas per intentar robar tot el que portaven a bord:",
+      "eng": "When a great galleon came to them to steal everything they had on board:"
+    },
+    {
+      "imagen": "1",
+      "esp": "provisiones, mercancías y, un gran tesoro que iban a esconder en alguna isla desierta.",
+      "cat": "provisions, mercaderies, i un gran tresor que anaven a amagar en alguna illa deserta.",
+      "eng": "provisions, goods and, a great treasure that were going to hide on some deserted island."
+    },
+    {
+      "imagen": "1",
+      "esp": "—Entregad lo que tenéis o ateneos a las consecuencias",
+      "cat": "—Lliureu el que teniu o us atendreu a les conseqüències",
+      "eng": "—Submit what you have or attenuate to the consequences"
+    },
+    {
+      "imagen": "1",
+      "esp": "—amenazaron los piratas del gran galeón.",
+      "cat": "—van amenaçar els pirates del gran galió.",
+      "eng": "- They threatened the pirates of the great galleon."
+    },
+    {
+      "imagen": "1",
+      "esp": "Por toda respuesta, los otros sacaron son espadas.",
+      "cat": "Per tota resposta, els altres van treure les seves espases.",
+      "eng": "For all the answers, the others pulled out are swords."
+    },
+    {
+      "imagen": "1",
+      "esp": "El gato se subió al hombro de su amigo y se puso a la defensiva.",
+      "cat": "El gat es va pujar a l'espatlla del seu amic i es va posar a la defensiva.",
+      "eng": "The cat rose to his friend's shoulder and stood on the defensive."
+    },
+    {
+      "imagen": "1",
+      "esp": "Esto arrancó una gran carcajada por parte de todos",
+      "cat": "Això va arrencar una gran riallada per part de tots",
+      "eng": "This sparked a great laugh on all sides"
+    },
+    {
+      "imagen": "1",
+      "esp": "e hizo que los piratas del gran galeón cambiasen de opinión, a cambio de llevarse al gato.",
+      "cat": "i va fer que els pirates del gran galió canviessin d'opinió, a canvi d'emportar-se al gat.",
+      "eng": "And he made the pirates of the great galleon change their minds in exchange for taking the cat."
+    },
+    {
+      "imagen": "1",
+      "esp": "El forcejo por el gato fue tremendo, hasta que el gato cayó al agua.",
+      "cat": "El forcejament pel gat va ser intens, fins que el gat va caure a l'aigua.",
+      "eng": "The cat-force was tremendous, until the cat fell into the water."
+    },
+    {
+      "imagen": "1",
+      "esp": "El pirata se tiró a por él, con la mala suerte de que se enganchó la pierna",
+      "cat": "El pirata es va tirar per ell, amb la mala sort que es va enganxar la cama",
+      "eng": "The pirate threw himself, with bad luck pasting his leg"
+    },
+    {
+      "imagen": "1",
+      "esp": "y se hizo una herida muy grave, tan grave que hubo que amputar la pierna.",
+      "cat": "i es va fer una ferida molt greu, tan greu que va caldre amputar la cama.",
+      "eng": "And there was a very serious wound, so severe that the leg had to be amputated."
+    },
+    {
+      "imagen": "1",
+      "esp": "El gato no se movió del lado de su amigo y, desde entonces, va siempre con él.",
+      "cat": "El gat no es va moure del costat del seu amic i, des de llavors, va sempre amb ell.",
+      "eng": "The cat did not move from his friend's side and has since always been with him."
+    },
+    {
+      "imagen": "1",
+      "esp": "Incluso hicieron una pata de palo especial con un soporte para el gato.",
+      "cat": "Fins i tot van fer una cama de fusta especial amb un suport per al gat.",
+      "eng": "They even made a special wooden leg with cat support."
+    },
+    {
+      "imagen": "1",
+      "esp": "Fue entonces cuando el pirata se ganó el apodo de pirata Gatopata.",
+      "cat": "Va ser llavors quan el pirata es va guanyar el sobrenom de pirata Gatpata.",
+      "eng": "It was then that the pirate earned the nickname \"Pirate Gatopata\"."
+    },
+    {
+      "imagen": "1",
+      "esp": "La valentía y la fiereza del pirata y de su gato se vieron recompensadas,",
+      "cat": "La valentia i la feresa del pirata i del seu gat es van veure recompensades,",
+      "eng": "The pirate and his cat were rewarded,"
+    },
+    {
+      "imagen": "1",
+      "esp": "desde entonces, ya nadie se atreve a meterse con ellos.",
+      "cat": "des de llavors, ja ningú s'atreveix a ficar-se amb ells.",
+      "eng": "Since then, no one dares to get in with them."
+    },
+    {
+      "imagen": "1",
+      "esp": "Y son temidos en el mundo entero.",
+      "cat": "I són temuts en el món sencer.",
+      "eng": "And they are feared throughout the world."
+    },
+    {
+      "imagen": "1",
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}

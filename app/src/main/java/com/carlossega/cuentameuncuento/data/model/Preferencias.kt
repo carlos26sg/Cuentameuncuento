@@ -4,8 +4,8 @@ import androidx.annotation.DrawableRes
 import com.carlossega.cuentameuncuento.R
 
 /**
- * Idiomas en los que hay cuentos. `codigo` es el sufijo que usan los campos de Firestore
- * (titulo_esp, txt_cat...), así que no se puede cambiar sin migrar los datos.
+ * Idiomas en los que hay cuentos. `codigo` es la clave del idioma en catalogo.json y en
+ * las preferencias guardadas, así que no se puede cambiar sin migrar los datos.
  */
 enum class Idioma(val codigo: String, val etiquetaLocale: String, @DrawableRes val bandera: Int) {
     ESPANOL("esp", "es-ES", R.drawable.espanol),

@@ -25,7 +25,8 @@ class CoilPrecargaImagenes @Inject constructor(
 
     override fun precargar(urls: Collection<String>) {
         val cargador = SingletonImageLoader.get(context)
-        urls.filter { it.isNotEmpty() }.distinct().forEach { url ->
+        // Las imágenes incluidas en la app (file:///android_asset/...) ya están en el móvil
+        urls.filter { it.startsWith("http") }.distinct().forEach { url ->
             cargador.enqueue(
                 ImageRequest.Builder(context)
                     .data(url)

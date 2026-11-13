@@ -2,13 +2,14 @@ package com.carlossega.cuentameuncuento.di
 
 import com.carlossega.cuentameuncuento.audio.Narrador
 import com.carlossega.cuentameuncuento.audio.TtsNarrador
+import com.carlossega.cuentameuncuento.data.catalogo.CatalogoCuentoRepository
+import com.carlossega.cuentameuncuento.data.catalogo.FuentesCatalogo
+import com.carlossega.cuentameuncuento.data.catalogo.FuentesCatalogoAndroid
 import com.carlossega.cuentameuncuento.data.precarga.CoilPrecargaImagenes
 import com.carlossega.cuentameuncuento.data.precarga.PrecargaImagenes
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
-import com.carlossega.cuentameuncuento.data.repository.FirestoreCuentoRepository
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import com.carlossega.cuentameuncuento.data.prefs.PreferenciasStore
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -42,10 +43,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
-
-    @Provides
-    @Singleton
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
@@ -66,7 +63,10 @@ object AppModule {
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun bindCuentoRepository(impl: FirestoreCuentoRepository): CuentoRepository
+    abstract fun bindCuentoRepository(impl: CatalogoCuentoRepository): CuentoRepository
+
+    @Binds
+    abstract fun bindFuentesCatalogo(impl: FuentesCatalogoAndroid): FuentesCatalogo
 
     @Binds
     abstract fun bindPreferenciasRepository(impl: PreferenciasStore): PreferenciasRepository

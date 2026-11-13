@@ -13,35 +13,11 @@ import org.junit.Test
 class ModelosTest {
 
     @Test
-    fun lineaCuento_separaTextoEImagen() {
-        val linea = LineaCuento.desdeTexto("Había una vez un dragón/3")
-
-        assertThat(linea.texto).isEqualTo("Había una vez un dragón")
-        assertThat(linea.imagen).isEqualTo("3")
-    }
-
-    @Test
-    fun lineaCuento_sinImagen() {
-        assertThat(LineaCuento.desdeTexto("Texto sin imagen").imagen).isNull()
-        assertThat(LineaCuento.desdeTexto("Texto con barra vacía/").imagen).isNull()
-    }
-
-    @Test
     fun lineaCuento_detectaFinalEnTodosLosIdiomas() {
-        assertThat(LineaCuento.desdeTexto("FIN/").esFinal).isTrue()
-        assertThat(LineaCuento.desdeTexto("FI/").esFinal).isTrue()
-        assertThat(LineaCuento.desdeTexto("THE END/").esFinal).isTrue()
-        assertThat(LineaCuento.desdeTexto("Fin de la primera parte/").esFinal).isFalse()
-    }
-
-    @Test
-    fun lineaCuento_desdeFichero_quitaBomYLineasVacias() {
-        val contenido = Char(0xFEFF) + "Primera/1\r\n\r\nSegunda\nFIN/\n\n"
-
-        val lineas = LineaCuento.desdeFichero(contenido)
-
-        assertThat(lineas.map { it.texto }).containsExactly("Primera", "Segunda", "FIN").inOrder()
-        assertThat(lineas[0].imagen).isEqualTo("1")
+        assertThat(LineaCuento("FIN", null).esFinal).isTrue()
+        assertThat(LineaCuento("FI", null).esFinal).isTrue()
+        assertThat(LineaCuento(" The End ", null).esFinal).isTrue()
+        assertThat(LineaCuento("Fin de la primera parte", null).esFinal).isFalse()
     }
 
     @Test
@@ -53,7 +29,7 @@ class ModelosTest {
     }
 
     @Test
-    fun modo_desdeCodigo_mantieneLosValoresDeFirestore() {
+    fun modo_desdeCodigo_mantieneLosValoresGuardados() {
         assertThat(Modo.desdeCodigo("leer")).isEqualTo(Modo.LEER)
         assertThat(Modo.desdeCodigo("reproducir")).isEqualTo(Modo.ESCUCHAR)
         assertThat(Modo.desdeCodigo("")).isNull()

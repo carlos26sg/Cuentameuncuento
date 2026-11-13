@@ -10,7 +10,7 @@ import com.carlossega.cuentameuncuento.R
 import com.carlossega.cuentameuncuento.audio.FalloNarrador
 import com.carlossega.cuentameuncuento.data.model.Cuento
 import com.carlossega.cuentameuncuento.data.model.Idioma
-import com.carlossega.cuentameuncuento.data.model.LineaCuento
+import com.carlossega.cuentameuncuento.lineasDePrueba
 import com.carlossega.cuentameuncuento.data.model.Modo
 import com.carlossega.cuentameuncuento.data.model.Preferencias
 import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
@@ -104,8 +104,8 @@ class ReproductorViewModelTest {
     private val precarga = FakePrecargaImagenes()
     private var preferencias = FakePreferenciasRepository()
     private val repo = FakeCuentoRepository().apply {
-        lineas["c1" to Idioma.ESPANOL] = LineaCuento.desdeFichero("Uno/1\nDos\nTres/2\nFIN/")
-        lineas["c1" to Idioma.INGLES] = LineaCuento.desdeFichero("One/1\nTwo\nThree/2\nTHE END/")
+        lineas["c1" to Idioma.ESPANOL] = lineasDePrueba("Uno/1\nDos\nTres/2\nFIN/")
+        lineas["c1" to Idioma.INGLES] = lineasDePrueba("One/1\nTwo\nThree/2\nTHE END/")
         imagenes = mapOf("1" to "https://img/1", "2" to "https://img/2")
     }
 

@@ -12,6 +12,7 @@ import com.carlossega.cuentameuncuento.audio.MusicaFondo
 import com.carlossega.cuentameuncuento.data.prefs.PreferenciasStore
 import dagger.hilt.android.HiltAndroidApp
 import okhttp3.OkHttpClient
+import java.io.File
 import javax.inject.Inject
 
 /**
@@ -32,7 +33,17 @@ class CuentoApplication : Application(), SingletonImageLoader.Factory {
     override fun onCreate() {
         super.onCreate()
         preferenciasStore.borrarPreferenciasAntiguas()
+        borrarCachesDeFirestore()
         ProcessLifecycleOwner.get().lifecycle.addObserver(musicaFondo)
+    }
+
+    /**
+     * Hasta la versión 2.1 los cuentos se leían de Firestore: borra su caché local y la
+     * carpeta donde se guardaban los textos, que ya no se usan.
+     */
+    private fun borrarCachesDeFirestore() {
+        File(noBackupFilesDir, "cuentos").takeIf { it.exists() }?.deleteRecursively()
+        databaseList().filter { it.startsWith("firestore.") }.forEach { deleteDatabase(it) }
     }
 
     // Coil comparte el cliente HTTP con el resto de la app y guarda las imágenes

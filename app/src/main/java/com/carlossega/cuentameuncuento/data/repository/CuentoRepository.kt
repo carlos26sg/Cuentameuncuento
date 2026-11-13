@@ -6,18 +6,15 @@ import com.carlossega.cuentameuncuento.data.model.LineaCuento
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Acceso a los cuentos. La implementación real es [FirestoreCuentoRepository];
+ * Acceso a los cuentos. La implementación real es
+ * [com.carlossega.cuentameuncuento.data.catalogo.CatalogoCuentoRepository];
  * los tests usan una versión falsa.
- *
- * Todo lo ya descargado se devuelve al momento desde el dispositivo y se actualiza
- * después en segundo plano, para no hacer esperar al niño cada vez que abre la app.
  */
 interface CuentoRepository {
 
     /**
      * Cuentos que tienen título en [idioma], ordenados por título.
-     * Emite primero los guardados (si los hay) y después los del servidor si cambian.
-     * Solo falla si no hay ni copia guardada ni conexión.
+     * Emite al momento y otra vez cada vez que llega un catálogo más nuevo.
      */
     fun cuentos(idioma: Idioma): Flow<List<Cuento>>
 

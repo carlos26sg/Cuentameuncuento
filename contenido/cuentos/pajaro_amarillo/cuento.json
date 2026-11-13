@@ -1,0 +1,274 @@
+{
+  "id": "pajaro_amarillo",
+  "edad": 3,
+  "titulo": {
+    "esp": "Pájaro amarillo",
+    "cat": "Ocell groc",
+    "eng": "Yellow bird"
+  },
+  "descripcion": {
+    "esp": "Un cuento sobre el valor de compartir. Nos invita a cuidar el planeta en el que vivimos y a liberar nuestras ideas por el bien común.",
+    "cat": "Un conte sobre el valor de compartir. Ens convida a cuidar el planeta on vivim ia alliberar les nostres idees pel bé comú.",
+    "eng": "A story about the value of sharing. It invites us to take care of the planet we live on and to free our ideas for the common good."
+  },
+  "lineas": [
+    {
+      "imagen": "1",
+      "esp": "Antes de nacer ya eran diferentes.",
+      "cat": "Abans de néixer ja eren diferents.",
+      "eng": "They were different before birth."
+    },
+    {
+      "imagen": "1",
+      "esp": "También tenían algo en común.",
+      "cat": "També tenien alguna cosa en comú.",
+      "eng": "They also had something in common."
+    },
+    {
+      "imagen": "1",
+      "esp": "Buitre, Tucán, Pájaro Amarillo, Cacatúa, Picapinos, Pato Mandarín y Albatros.",
+      "cat": "Voltor, Tucà, Ocell Groc, Cacatua, Picapins, Ànec Mandarí i Albatros.",
+      "eng": "Vulture, Toucan, Yellow Bird, Cockatoo, Woodpecker, Mandarin Duck and Albatross."
+    },
+    {
+      "imagen": "2",
+      "esp": "Pájaro Amarillo era muy habilidoso.",
+      "cat": "Ocell Groc era molt hàbil.",
+      "eng": "Yellow bird was very skilled."
+    },
+    {
+      "imagen": "2",
+      "esp": "Con sus pequeñas alas conseguía arreglar cualquier cosa...",
+      "cat": "Amb les seves petites ales aconseguia arreglar qualsevol cosa...",
+      "eng": "With his little wings he managed to fix anything..."
+    },
+    {
+      "imagen": "2",
+      "esp": "También creaba nuevos inventos. Lo que más le gustaba era compartir sus inventos.",
+      "cat": "També creava nous invents. El que més li agradava era compartir els seus invents.",
+      "eng": "It also created new inventions. He liked sharing his inventions the most."
+    },
+    {
+      "imagen": "2",
+      "esp": "Quienes podían volar, poco a poco, se fueron marchando a otros lugares.",
+      "cat": "Els qui podien volar, a poc a poc, es van anar marxant a altres llocs.",
+      "eng": "Those who could fly gradually moved elsewhere."
+    },
+    {
+      "imagen": "3",
+      "esp": "Todas las semanas Teo el cartero le traía el correo.",
+      "cat": "Totes les setmanes Teo el carter li portava el correu.",
+      "eng": "Every week Teo the mailman brought him the mail."
+    },
+    {
+      "imagen": "3",
+      "esp": "Pájaro Amarillo recibía postales desde lugares muy lejanos.",
+      "cat": "Ocell Groc rebia postals des de llocs molt llunyans.",
+      "eng": "Yellow bird received postcards from far away."
+    },
+    {
+      "imagen": "3",
+      "esp": "Así descubrió que en el mundo había otros pájaros que tampoco podían volar.",
+      "cat": "Així va descobrir que en el món hi havia altres ocells que tampoc podien volar.",
+      "eng": "He discovered that there were other birds in the world that could not fly either."
+    },
+    {
+      "imagen": "3",
+      "esp": "Un día Pájaro Amarillo se puso triste.",
+      "cat": "Un dia Ocell Groc es va posar trist.",
+      "eng": "One day, Yellow bird became sad."
+    },
+    {
+      "imagen": "3",
+      "esp": "-¿Qué te pasa? -le preguntó Teo.",
+      "cat": "-Què et passa? -li va preguntar Teo.",
+      "eng": "He asked Teo."
+    },
+    {
+      "imagen": "3",
+      "esp": "-Me gustaría poder volar para conocer estos lugares -dijo Pájaro Amarillo.",
+      "cat": "-M'agradaria poder volar per a conèixer aquests llocs -va dir Ocell Groc.",
+      "eng": "- I wish I could fly to meet these places - called Yellow Bird."
+    },
+    {
+      "imagen": "3",
+      "esp": "Teo tuvo una idea...",
+      "cat": "Teo va tenir una idea...",
+      "eng": "Teo had an idea..."
+    },
+    {
+      "imagen": "3",
+      "esp": "-¿Por qué no inventas algo para poder volar? yo te ayudo -dijo Teo.",
+      "cat": "-Per què no inventes alguna cosa per a poder volar? jo t'ajudo -va dir Teo.",
+      "eng": "- Why don't you invent something to fly?"
+    },
+    {
+      "imagen": "3",
+      "esp": "Pasaron todo el día... y toda la noche trabajando.",
+      "cat": "Van passar tot el dia... i tota la nit treballant.",
+      "eng": "They spent all day... and all night working."
+    },
+    {
+      "imagen": "4",
+      "esp": "Y a la mañana siguiente...",
+      "cat": "I al matí següent...",
+      "eng": "And the next morning..."
+    },
+    {
+      "imagen": "4",
+      "esp": "-Buen viaje! -dijo Teo.",
+      "cat": "-Bon viatge! -va dir Teo.",
+      "eng": "- Good trip!"
+    },
+    {
+      "imagen": "4",
+      "esp": "-Te mandaré una postal. - contestó Pájaro Amarillo.",
+      "cat": "-T'enviaré una postal. - va contestar Ocell Groc.",
+      "eng": "- I'll send you a postcard. - he replied Yellow bird."
+    },
+    {
+      "imagen": "4",
+      "esp": "Pájaro Amarillo atravesó un mar.",
+      "cat": "Ocell Groc va travessar una mar.",
+      "eng": "Yellow bird crossed a sea."
+    },
+    {
+      "imagen": "5",
+      "esp": "Llegó a un desierto donde conoció a dos avestruces.",
+      "cat": "Va arribar a un desert on va conèixer a dos estruços.",
+      "eng": "He reached a desert where he met two ostriches."
+    },
+    {
+      "imagen": "5",
+      "esp": "Una de ellas quería volar.",
+      "cat": "Una d'elles volia volar.",
+      "eng": "One of them wanted to fly."
+    },
+    {
+      "imagen": "5",
+      "esp": "Colaborando adaptaron el invento para poder volar.",
+      "cat": "Col·laborant van adaptar l'invent per a poder volar.",
+      "eng": "Collaborating they adapted the invention to fly."
+    },
+    {
+      "imagen": "6",
+      "esp": "AVESTRUZ voló y el invento con GALLINA compartió.",
+      "cat": "ESTRUÇ va volar i l'invent amb GALLINA va compartir.",
+      "eng": "OSTRICH flew and the invention with CHICKEN shared."
+    },
+    {
+      "imagen": "6",
+      "esp": "GALLINA voló y el invento con KIWI compartió.",
+      "cat": "GALLINA va volar i l'invent amb KIWI va compartir.",
+      "eng": "CHICKEN flew and the invention with KIWI shared."
+    },
+    {
+      "imagen": "6",
+      "esp": "Kiwi voló y el invento con Pingüino compartió.",
+      "cat": "Kiwi va volar i l'invent amb Pingüí va compartir.",
+      "eng": "Kiwi flew, and the invention with Penguin shared."
+    },
+    {
+      "imagen": "6",
+      "esp": "Hasta el otro Polo Pingüino voló y el invento con OSA POLAR compartió.",
+      "cat": "Fins a l'altre Pol Pingüí va volar i l'invent amb OSSA POLAR va compartir.",
+      "eng": "To the other Pole Penguin flew, and the invention with the POLAR BEAR shared."
+    },
+    {
+      "imagen": "6",
+      "esp": "Así FUE COMO OSA POLAR se mudó al Polo Sur.",
+      "cat": "Així VA SER COM A OSSA POLAR es va mudar al Pol Sud.",
+      "eng": "That it was as POLAR BEAR moved to the South Pole."
+    },
+    {
+      "imagen": "6",
+      "esp": "Para entonces PÁJARO AMARILLO había dado una vuelta al mundo.",
+      "cat": "Per a llavors OCELL GROC havia fet un volt al món.",
+      "eng": "By then, the yellow bird had turned around the world."
+    },
+    {
+      "imagen": "7",
+      "esp": "De todos los lugares que visitó hubo uno que fue el que más le gustó.",
+      "cat": "De tots els llocs que va visitar va haver-hi un que va ser el que més li va agradar.",
+      "eng": "Of all the places he visited there was one he liked the most."
+    },
+    {
+      "imagen": "7",
+      "esp": "En este lugar Pájaro Amarillo se quedó a vivir.",
+      "cat": "En aquest lloc Ocell Groc es va quedar a viure.",
+      "eng": "On this site Yellow Bird stayed alive."
+    },
+    {
+      "imagen": "7",
+      "esp": "Y una POSTAL a su amigo Teo se puso a escribir...",
+      "cat": "I una POSTAL al seu amic Teo es va posar a escriure...",
+      "eng": "And a postcard to his friend Teo set out to write..."
+    },
+    {
+      "imagen": "7",
+      "esp": "Querido Teo:",
+      "cat": "Volgut Teo:",
+      "eng": "Dear Teo:"
+    },
+    {
+      "imagen": "7",
+      "esp": "Gracias a nuestro invento he podido viajar por todo el mundo.",
+      "cat": "Gràcies al nostre invent he pogut viatjar per tot el món.",
+      "eng": "Thanks to our invention, I've been able to travel around the world."
+    },
+    {
+      "imagen": "7",
+      "esp": "Ahora vivo en un lugar muy bonito,",
+      "cat": "Ara viu en un lloc molt bonic,",
+      "eng": "Now he lives in a very beautiful place,"
+    },
+    {
+      "imagen": "7",
+      "esp": "donde disfruto mucho con mis nuevas amigas y amigos.",
+      "cat": "on gaudeixo molt amb les meves noves amigues i amics.",
+      "eng": "where I enjoy my new friends and friends a lot."
+    },
+    {
+      "imagen": "7",
+      "esp": "Compartir nuestro invento ha sido muy útil.",
+      "cat": "Compartir el nostre invent ha estat molt útil.",
+      "eng": "Sharing our invention has been very useful."
+    },
+    {
+      "imagen": "7",
+      "esp": "Tras adaptarlo Avestruz pudo cumplir su sueño,",
+      "cat": "Després d'adaptar-ho Estruç va poder complir el seu somni,",
+      "eng": "After adapting, ostrich was able to fulfill his dream,"
+    },
+    {
+      "imagen": "7",
+      "esp": "Gallina se liberó y Kiwi descubrió lugares diferentes.",
+      "cat": "Gallina es va alliberar i Kiwi va descobrir llocs diferents.",
+      "eng": "CHICKEN was released and Kiwi discovered different sites."
+    },
+    {
+      "imagen": "7",
+      "esp": "Pingüino lo compartió con Osa Polar para ayudarla a encontrar un nuevo hogar.",
+      "cat": "Pingüí ho va compartir amb Ossa Polar per a ajudar-la a trobar una nova llar.",
+      "eng": "Penguin shared it with Polar BEAR to help her find a new home."
+    },
+    {
+      "imagen": "7",
+      "esp": "Espero que vengas pronto a visitarnos.",
+      "cat": "Espero que vinguis aviat a visitar-nos.",
+      "eng": "I hope you'll come to visit us soon."
+    },
+    {
+      "imagen": "7",
+      "esp": "Te quiere. Tu amigo Pájaro Amarillo.",
+      "cat": "T'estima, El teu amic Ocell Groc.",
+      "eng": "Loves you, your friend Yellow bird."
+    },
+    {
+      "imagen": "7",
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}

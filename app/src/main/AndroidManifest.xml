@@ -30,18 +30,6 @@
         android:theme="@style/Theme.CuentameUnCuento"
         tools:targetApi="33">
 
-        <!-- Analytics configurado para apps infantiles: sin personalización de anuncios
-             ni identificadores publicitarios -->
-        <meta-data
-            android:name="google_analytics_adid_collection_enabled"
-            android:value="false" />
-        <meta-data
-            android:name="google_analytics_default_allow_ad_personalization_signals"
-            android:value="false" />
-        <meta-data
-            android:name="google_analytics_ssaid_collection_enabled"
-            android:value="false" />
-
         <!-- En móviles se mantiene el diseño en horizontal. En tablets Android 16+ ignora
              la orientación, por eso todos los layouts funcionan también en vertical.
              SplashActivity usa la API SplashScreen (no es una pantalla de inicio propia). -->

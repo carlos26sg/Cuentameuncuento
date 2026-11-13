@@ -4,14 +4,14 @@ import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.lastOrNull
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * Prepara los cuentos mientras el niño está en el menú: la lista, las portadas, los textos
- * y la primera ilustración de cada uno. Así, al pulsar Leer o Escuchar ya está todo
- * descargado, incluso la primera vez que se abre la app.
+ * Prepara los cuentos mientras el niño está en el menú: las portadas y la primera
+ * ilustración de cada uno. Las que vienen dentro de la app no hace falta descargarlas;
+ * sirve para los cuentos nuevos que lleguen con un catálogo actualizado.
  */
 class PrecargaCuentos @Inject constructor(
     private val cuentoRepository: CuentoRepository,
@@ -19,7 +19,7 @@ class PrecargaCuentos @Inject constructor(
 ) {
 
     suspend fun precargar(idioma: Idioma) {
-        val cuentos = cuentoRepository.cuentos(idioma).catch { }.lastOrNull() ?: return
+        val cuentos = cuentoRepository.cuentos(idioma).catch { }.firstOrNull() ?: return
         precargaImagenes.precargar(cuentos.map { it.imagen })
         coroutineScope {
             cuentos.forEach { cuento ->

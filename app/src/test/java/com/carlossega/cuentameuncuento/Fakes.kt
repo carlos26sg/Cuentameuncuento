@@ -23,6 +23,12 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
+/** Líneas de cuento escritas de forma compacta: "texto/numeroImagen", una por línea */
+fun lineasDePrueba(texto: String): List<LineaCuento> =
+    texto.lines().filter { it.isNotBlank() }.map {
+        LineaCuento(it.substringBefore("/"), it.substringAfter("/", "").ifEmpty { null })
+    }
+
 /** Sustituye Dispatchers.Main en los tests de ViewModel */
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainDispatcherRule(

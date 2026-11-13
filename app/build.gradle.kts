@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.hilt)
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics)
@@ -14,8 +15,8 @@ android {
         applicationId = "com.carlossega.cuentameuncuento"
         minSdk = 26
         targetSdk = 37
-        versionCode = 7
-        versionName = "2.1"
+        versionCode = 8
+        versionName = "2.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -81,12 +82,10 @@ dependencies {
 
     // Corrutinas
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.kotlinx.serialization.json)
 
-    // Firebase
+    // Firebase: solo Crashlytics (los cuentos ya no se leen de Firestore y no hay Analytics)
     implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.firestore)
     implementation(libs.firebase.crashlytics)
 
     // Inyección de dependencias
