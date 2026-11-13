@@ -3,7 +3,7 @@ agp = "9.3.3"
 kotlin = "2.3.21"
 ksp = "2.3.12"
 hilt = "2.60.1"
-googleServices = "4.4.4"
+googleServices = "4.5.0"
 crashlyticsPlugin = "3.0.8"
 
 firebaseBom = "34.19.0"
