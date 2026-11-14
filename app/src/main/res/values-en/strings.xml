@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Menú -->
     <string name="bienvenido">Welcome</string>
-    <string name="leer">Read</string>
-    <string name="escuchar">Listen</string>
-    <string name="favorito">Favourite</string>
-    <string name="favoritos">Favourites</string>
+    <string name="cuentos">Tales</string>
+    <string name="seguir_leyendo">Keep reading</string>
+    <string name="seguir_con">Continue “%1$s”</string>
     <string name="ajustes">Settings</string>
-    <string name="salir">Exit</string>
     <string name="atras">Back</string>
+
+    <!-- Lista de cuentos -->
     <string name="selecciona">Choose a tale</string>
-    <string name="idioma">Language</string>
     <string name="idioma_cuentos">Language of the tales</string>
     <string name="idioma_espanol">Spanish</string>
     <string name="idioma_catalan">Catalan</string>
     <string name="idioma_ingles">English</string>
+    <string name="anadir_favorito">Add to favourites</string>
+    <string name="quitar_favorito">Remove from favourites</string>
+    <string name="sin_cuentos">There are no tales in this language yet</string>
+    <string name="error_cargar_cuentos">The tales could not be loaded</string>
+    <string name="reintentar">Try again</string>
+
+    <!-- Portada y lector -->
+    <string name="leer">Read</string>
+    <string name="escuchar">Listen</string>
+    <string name="pausar">Pause</string>
+    <string name="seguir_donde_lo_deje">Continue where I left off</string>
+    <string name="anterior">Previous page</string>
+    <string name="siguiente">Next page</string>
+    <string name="progreso">Page %1$d of %2$d</string>
+    <string name="cerrar_cuento">Close the tale</string>
+    <string name="empezar_de_nuevo">Start again</string>
+    <string name="otro_cuento">Choose another tale</string>
     <string name="traduccion">Translation</string>
     <string name="sin_traduccion">No translation</string>
-    <string name="sin_seleccion">None</string>
-    <string name="modo">Mode</string>
-    <string name="cuento_fav">Tale</string>
-    <string name="config_favorito">Choose your favourite tale in Settings</string>
-    <string name="sin_cuentos">There are no tales in this language yet</string>
-    <string name="error_cargar_cuentos">The tales could not be loaded. Check your Internet connection.</string>
-    <string name="error_cargar_cuento">The tale could not be opened. Check your Internet connection.</string>
-    <string name="reintentar">Try again</string>
+    <string name="error_cargar_cuento">The tale could not be opened</string>
     <string name="error_traduccion">The translation could not be loaded</string>
+
+    <!-- Voz -->
+    <string name="falta_voz">Voice missing</string>
     <string name="voz_idioma_no_disponible">This device does not have the voice for this language. Do you want to install it now?</string>
     <string name="voz_no_disponible">Reading aloud is not available on this device</string>
     <string name="voz_error">Error while reading the tale aloud</string>
-    <string name="pausar">Pause</string>
-    <string name="anterior">Previous</string>
-    <string name="siguiente">Next</string>
-    <string name="silenciar_musica">Mute music</string>
-    <string name="activar_musica">Turn music on</string>
-    <string name="volver_seleccion">You are leaving the tale</string>
-    <string name="seguro">Are you sure?</string>
-    <string name="si">Yes</string>
-    <string name="no">No</string>
-    <string name="guardar">Save</string>
-    <string name="ajustes_guardados">Settings saved</string>
-    <string name="error_guardar">Settings could not be saved</string>
-    <string name="privacidad">Privacy</string>
-    <string name="sin_navegador">No web browser is installed</string>
-    <string name="version">Version %1$s</string>
-    <string name="falta_voz">Voice missing</string>
+    <string name="sin_instalador_voz">Install the voice from System settings &gt; Text-to-speech</string>
     <string name="instalar">Install</string>
     <string name="ahora_no">Not now</string>
+
+    <!-- Música -->
+    <string name="musica">Music</string>
+    <string name="silenciar_musica">Mute the music</string>
+    <string name="activar_musica">Turn the music on</string>
+
+    <!-- Ajustes -->
     <string name="velocidad_voz">Voice speed</string>
     <string name="velocidad_lenta">Slow</string>
     <string name="velocidad_normal">Normal</string>
     <string name="velocidad_rapida">Fast</string>
-    <string name="sin_instalador_voz">Install the voice from System settings &gt; Text-to-speech</string>
+    <string name="letra_cuento">Font of the tales</string>
+    <string name="ejemplo_letra">Once upon a time…</string>
+    <string name="privacidad">Privacy</string>
+    <string name="sin_navegador">There is no browser installed</string>
+    <string name="version">Version %1$s</string>
 </resources>

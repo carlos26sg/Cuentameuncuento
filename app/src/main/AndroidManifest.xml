@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Firebase y descarga de los textos e ilustraciones de los cuentos -->
+    <!-- Crashlytics y comprobación de cuentos nuevos en GitHub Pages -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- App para niños (política de Familias): sin identificador de publicidad -->
@@ -30,39 +30,24 @@
         android:theme="@style/Theme.CuentameUnCuento"
         tools:targetApi="33">
 
-        <!-- En móviles se mantiene el diseño en horizontal. En tablets Android 16+ ignora
-             la orientación, por eso todos los layouts funcionan también en vertical.
-             SplashActivity usa la API SplashScreen (no es una pantalla de inicio propia). -->
+        <!-- Una sola Activity con Compose. Funciona en vertical y en horizontal: el giro
+             no la reinicia (Compose recoloca la pantalla y la narración sigue sonando). -->
         <activity
+            android:name=".ui.MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.CuentameUnCuento.Splash" />
+
+        <!-- El icono del launcher apuntaba a SplashActivity: el alias conserva ese nombre
+             para que los accesos directos que ya tenga la gente sigan funcionando -->
+        <activity-alias
             android:name=".SplashActivity"
             android:exported="true"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.CuentameUnCuento.Splash"
-            tools:ignore="CustomSplashScreen,DiscouragedApi">
+            android:targetActivity=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.menu.MenuPrincipal"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            tools:ignore="DiscouragedApi" />
-        <activity
-            android:name=".ui.seleccion.SeleccionCuento"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            tools:ignore="DiscouragedApi" />
-        <activity
-            android:name=".ui.reproductor.ReproductorCuento"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            tools:ignore="DiscouragedApi" />
-        <activity
-            android:name=".ui.ajustes.AjustesActivity"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            tools:ignore="DiscouragedApi" />
+        </activity-alias>
     </application>
 </manifest>

@@ -1,119 +1,40 @@
 package com.carlossega.cuentameuncuento.ui.ajustes
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carlossega.cuentameuncuento.R
-import com.carlossega.cuentameuncuento.data.model.Cuento
 import com.carlossega.cuentameuncuento.data.model.Idioma
-import com.carlossega.cuentameuncuento.data.model.Modo
+import com.carlossega.cuentameuncuento.data.model.LetraCuento
 import com.carlossega.cuentameuncuento.data.model.Preferencias
 import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
-import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.cancellation.CancellationException
-
-data class AjustesUiState(
-    val cargando: Boolean = true,
-    val idioma: Idioma = Idioma.ESPANOL,
-    val modoFavorito: Modo? = null,
-    val favorito: String = "",
-    val velocidadVoz: VelocidadVoz = VelocidadVoz.NORMAL,
-    val cuentos: List<Cuento> = emptyList()
-)
 
 /**
- * ViewModel de la pantalla de Ajustes. El favorito se guarda por id del cuento;
- * antes se guardaba el título y el botón Favorito no encontraba el cuento.
+ * Ajustes: cada cambio se guarda al momento (ya no hay botón "Guardar").
+ * Los favoritos se marcan con el corazón de cada cuento, no aquí.
  */
 @HiltViewModel
 class AjustesViewModel @Inject constructor(
-    private val preferenciasRepository: PreferenciasRepository,
-    private val cuentoRepository: CuentoRepository
+    private val preferenciasRepository: PreferenciasRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(AjustesUiState())
-    val uiState: StateFlow<AjustesUiState> = _uiState.asStateFlow()
+    val preferencias: StateFlow<Preferencias?> = preferenciasRepository.preferencias
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
-    private val _mensajes = Channel<Int>(Channel.BUFFERED)
-    val mensajes: Flow<Int> = _mensajes.receiveAsFlow()
-
-    private var cargaCuentos: Job? = null
-
-    init {
-        viewModelScope.launch {
-            val preferencias = preferenciasRepository.preferencias.first()
-            _uiState.update {
-                it.copy(
-                    idioma = preferencias.idioma,
-                    modoFavorito = preferencias.modoFavorito,
-                    favorito = preferencias.favorito,
-                    velocidadVoz = preferencias.velocidadVoz
-                )
-            }
-            cargarCuentos(preferencias.idioma)
-        }
-    }
-
-    /** Los títulos del selector de favorito se muestran en el idioma elegido */
     fun cambiarIdioma(idioma: Idioma) {
-        if (idioma == _uiState.value.idioma) return
-        _uiState.update { it.copy(idioma = idioma) }
-        cargarCuentos(idioma)
+        viewModelScope.launch { preferenciasRepository.cambiarIdioma(idioma) }
     }
 
-    fun cambiarModo(modo: Modo?) = _uiState.update { it.copy(modoFavorito = modo) }
-
-    fun cambiarFavorito(cuentoId: String) = _uiState.update { it.copy(favorito = cuentoId) }
-
-    fun cambiarVelocidad(velocidad: VelocidadVoz) = _uiState.update { it.copy(velocidadVoz = velocidad) }
-
-    fun guardar() {
-        val estado = _uiState.value
-        viewModelScope.launch {
-            val mensaje = try {
-                preferenciasRepository.guardar(
-                    Preferencias(
-                        idioma = estado.idioma,
-                        favorito = estado.favorito,
-                        modoFavorito = estado.modoFavorito,
-                        velocidadVoz = estado.velocidadVoz
-                    )
-                )
-                R.string.ajustes_guardados
-            } catch (e: CancellationException) {
-                throw e
-            } catch (e: Exception) {
-                R.string.error_guardar
-            }
-            mostrarMensaje(mensaje)
-        }
+    fun cambiarVelocidad(velocidad: VelocidadVoz) {
+        viewModelScope.launch { preferenciasRepository.cambiarVelocidad(velocidad) }
     }
 
-    private fun mostrarMensaje(@StringRes mensaje: Int) {
-        _mensajes.trySend(mensaje)
-    }
-
-    private fun cargarCuentos(idioma: Idioma) {
-        cargaCuentos?.cancel()
-        _uiState.update { it.copy(cargando = true) }
-        cargaCuentos = viewModelScope.launch {
-            cuentoRepository.cuentos(idioma)
-                .catch { _uiState.update { it.copy(cargando = false) } }
-                .collect { cuentos -> _uiState.update { it.copy(cargando = false, cuentos = cuentos) } }
-        }
+    fun cambiarLetra(letra: LetraCuento) {
+        viewModelScope.launch { preferenciasRepository.cambiarLetra(letra) }
     }
 }

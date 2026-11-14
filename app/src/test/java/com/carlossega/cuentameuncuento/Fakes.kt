@@ -6,13 +6,16 @@ import com.carlossega.cuentameuncuento.audio.Narrador
 import com.carlossega.cuentameuncuento.data.model.Cuento
 import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.LineaCuento
+import com.carlossega.cuentameuncuento.data.model.Lectura
+import com.carlossega.cuentameuncuento.data.model.LetraCuento
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.data.precarga.PrecargaImagenes
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -64,14 +67,25 @@ class FakeCuentoRepository : CuentoRepository {
         if (fallar) Result.failure(Exception("sin red")) else Result.success(imagenes)
 }
 
-class FakePreferenciasRepository(inicial: Preferencias = Preferencias()) : PreferenciasRepository {
-    private val _preferencias = MutableStateFlow(inicial)
-    override val preferencias: StateFlow<Preferencias> = _preferencias
-    var fallar = false
+class FakePreferenciasRepository(
+    inicial: Preferencias = Preferencias(),
+    lecturaInicial: Lectura? = null
+) : PreferenciasRepository {
+    override val preferencias = MutableStateFlow(inicial)
+    override val lectura = MutableStateFlow(lecturaInicial)
 
-    override suspend fun guardar(preferencias: Preferencias) {
-        if (fallar) throw java.io.IOException("disco lleno")
-        _preferencias.value = preferencias
+    override suspend fun cambiarIdioma(idioma: Idioma) = preferencias.update { it.copy(idioma = idioma) }
+
+    override suspend fun cambiarVelocidad(velocidad: VelocidadVoz) = preferencias.update { it.copy(velocidadVoz = velocidad) }
+
+    override suspend fun cambiarLetra(letra: LetraCuento) = preferencias.update { it.copy(letra = letra) }
+
+    override suspend fun alternarFavorito(cuentoId: String) = preferencias.update {
+        it.copy(favoritos = if (cuentoId in it.favoritos) it.favoritos - cuentoId else it.favoritos + cuentoId)
+    }
+
+    override suspend fun guardarLectura(lectura: Lectura?) {
+        this.lectura.value = lectura
     }
 }
 

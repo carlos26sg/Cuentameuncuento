@@ -1,6 +1,7 @@
 package com.carlossega.cuentameuncuento.data.model
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.FontRes
 import com.carlossega.cuentameuncuento.R
 
 /**
@@ -15,18 +16,6 @@ enum class Idioma(val codigo: String, val etiquetaLocale: String, @DrawableRes v
     companion object {
         fun desdeCodigo(codigo: String?): Idioma =
             entries.firstOrNull { it.codigo == codigo } ?: ESPANOL
-    }
-}
-
-/**
- * Modo de uso de un cuento. `codigo` es el valor que se guarda en las preferencias.
- */
-enum class Modo(val codigo: String) {
-    LEER("leer"),
-    ESCUCHAR("reproducir");
-
-    companion object {
-        fun desdeCodigo(codigo: String?): Modo? = entries.firstOrNull { it.codigo == codigo }
     }
 }
 
@@ -46,14 +35,33 @@ enum class VelocidadVoz(val codigo: String, val factor: Float) {
 }
 
 /**
+ * Letra del texto de los cuentos. Andika está pensada para niños que aprenden a leer;
+ * Anna es la letra manuscrita de los títulos y botones de la app.
+ */
+enum class LetraCuento(val codigo: String, @FontRes val fuente: Int, val nombre: String) {
+    ANDIKA("andika", R.font.andika, "Andika"),
+    ATKINSON("atkinson", R.font.atkinson, "Atkinson Hyperlegible"),
+    ANNA("anna", R.font.anna, "Anna");
+
+    companion object {
+        fun desdeCodigo(codigo: String?): LetraCuento =
+            entries.firstOrNull { it.codigo == codigo } ?: ANDIKA
+    }
+}
+
+/**
  * Preferencias de la app, guardadas solo en el dispositivo (DataStore)
  */
 data class Preferencias(
     val idioma: Idioma = Idioma.ESPANOL,
-    val favorito: String = "",
-    val modoFavorito: Modo? = null,
-    val velocidadVoz: VelocidadVoz = VelocidadVoz.NORMAL
-) {
-    val tieneFavorito: Boolean
-        get() = favorito.isNotEmpty() && modoFavorito != null
-}
+    val favoritos: Set<String> = emptySet(),
+    val velocidadVoz: VelocidadVoz = VelocidadVoz.NORMAL,
+    val letra: LetraCuento = LetraCuento.ANDIKA
+)
+
+/** Cuento que se ha dejado a medias, para ofrecer "Seguir leyendo" */
+data class Lectura(
+    val cuentoId: String,
+    val idioma: Idioma,
+    val linea: Int
+)

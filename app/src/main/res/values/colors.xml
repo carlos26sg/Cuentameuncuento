@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="green_500">#4CAF50</color>
-    <color name="green_700">#388E3C</color>
-    <color name="teal_500">#009688</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="texto_traduccion">#DCF812</color>
-
-    <!-- Paneles y tarjetas de papel, a juego con los botones de pergamino -->
+    <!-- Solo para el tema de la ventana y el splash; la interfaz usa ui/tema/Tema.kt -->
     <color name="papel">#F8EFD9</color>
-    <color name="papel_translucido">#E6F8EFD9</color>
-    <color name="papel_oscuro">#EADFC6</color>
-    <color name="papel_borde">#C9A46A</color>
-    <color name="papel_pulsado">#40C9A46A</color>
-    <color name="tinta">#4A2C12</color>
-    <color name="tinta_suave">#6B5440</color>
     <color name="fondo_splash">#299A5A</color>
-    <color name="palabra_narrada">#FFB300</color>
 </resources>
