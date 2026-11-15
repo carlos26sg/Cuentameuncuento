@@ -72,11 +72,18 @@ class CatalogoCuentoRepository @Inject constructor(
         catalogo.cuentos
             .mapNotNull { cuento ->
                 val titulo = cuento.titulo[idioma.codigo]?.takeIf { it.isNotBlank() } ?: return@mapNotNull null
+                val palabras = cuento.lineas.sumOf { linea ->
+                    linea.texto[idioma.codigo].orEmpty().split(' ').count { it.isNotBlank() }
+                }
                 Cuento(
                     id = cuento.id,
                     titulo = titulo,
                     descripcion = cuento.descripcion[idioma.codigo].orEmpty(),
-                    imagen = url(cuento.portada)
+                    imagen = url(cuento.portada),
+                    edad = cuento.edad,
+                    paginas = cuento.lineas.size,
+                    // Narrado despacio, con pausas entre frases: unas 90 palabras por minuto
+                    minutos = ((palabras + PALABRAS_POR_MINUTO - 1) / PALABRAS_POR_MINUTO).coerceAtLeast(1)
                 )
             }
             // Orden alfabético del idioma: "Árbol" va antes que "Zorro"
@@ -142,5 +149,6 @@ class CatalogoCuentoRepository @Inject constructor(
 
     private companion object {
         const val TAG = "CuentoRepository"
+        const val PALABRAS_POR_MINUTO = 90
     }
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.LetraCuento
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.model.TamanoTexto
 import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -36,5 +37,9 @@ class AjustesViewModel @Inject constructor(
 
     fun cambiarLetra(letra: LetraCuento) {
         viewModelScope.launch { preferenciasRepository.cambiarLetra(letra) }
+    }
+
+    fun cambiarTamanoTexto(tamano: TamanoTexto) {
+        viewModelScope.launch { preferenciasRepository.cambiarTamanoTexto(tamano) }
     }
 }

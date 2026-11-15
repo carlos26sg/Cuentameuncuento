@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Menú -->
-    <string name="bienvenido">Welcome</string>
-    <string name="cuentos">Tales</string>
-    <string name="seguir_leyendo">Keep reading</string>
-    <string name="seguir_con">Continue “%1$s”</string>
+    <!-- Comunes -->
     <string name="ajustes">Settings</string>
     <string name="atras">Back</string>
-
-    <!-- Lista de cuentos -->
-    <string name="selecciona">Choose a tale</string>
-    <string name="idioma_cuentos">Language of the tales</string>
-    <string name="idioma_espanol">Spanish</string>
-    <string name="idioma_catalan">Catalan</string>
-    <string name="idioma_ingles">English</string>
-    <string name="anadir_favorito">Add to favourites</string>
-    <string name="quitar_favorito">Remove from favourites</string>
-    <string name="sin_cuentos">There are no tales in this language yet</string>
-    <string name="error_cargar_cuentos">The tales could not be loaded</string>
+    <string name="cerrar">Close</string>
     <string name="reintentar">Try again</string>
 
-    <!-- Portada y lector -->
+    <!-- Biblioteca -->
+    <string name="idioma_cuentos">Language of the tales</string>
+    <string name="todos_los_cuentos">All tales</string>
+    <plurals name="n_cuentos">
+        <item quantity="one">%d tale</item>
+        <item quantity="other">%d tales</item>
+    </plurals>
+    <string name="seguir_leyendo">Keep reading</string>
+    <string name="seguir_con">Continue “%1$s”</string>
+    <string name="sin_cuentos">There are no tales in this language yet</string>
+    <string name="error_cargar_cuentos">The tales could not be loaded</string>
+    <string name="anadir_favorito">Add to favourites</string>
+    <string name="quitar_favorito">Remove from favourites</string>
+    <string name="edad">Ages %d+</string>
+    <string name="minutos">≈ %d min</string>
+
+    <!-- Ficha del cuento -->
+    <plurals name="paginas">
+        <item quantity="one">%d page</item>
+        <item quantity="other">%d pages</item>
+    </plurals>
+    <string name="un_vistazo">A sneak peek</string>
     <string name="leer">Read</string>
     <string name="escuchar">Listen</string>
+    <string name="seguir_por_pagina">Continue from page %d</string>
+
+    <!-- Lector -->
     <string name="pausar">Pause</string>
-    <string name="seguir_donde_lo_deje">Continue where I left off</string>
     <string name="anterior">Previous page</string>
     <string name="siguiente">Next page</string>
     <string name="progreso">Page %1$d of %2$d</string>
     <string name="cerrar_cuento">Close the tale</string>
     <string name="empezar_de_nuevo">Start again</string>
-    <string name="otro_cuento">Choose another tale</string>
+    <string name="otro_cuento">Another tale</string>
     <string name="traduccion">Translation</string>
     <string name="sin_traduccion">No translation</string>
+    <string name="tamano_texto">Text size</string>
     <string name="error_cargar_cuento">The tale could not be opened</string>
     <string name="error_traduccion">The translation could not be loaded</string>
 
@@ -45,19 +55,20 @@
     <string name="instalar">Install</string>
     <string name="ahora_no">Not now</string>
 
-    <!-- Música -->
-    <string name="musica">Music</string>
-    <string name="silenciar_musica">Mute the music</string>
-    <string name="activar_musica">Turn the music on</string>
-
     <!-- Ajustes -->
+    <string name="para_mayores">For grown-ups</string>
     <string name="velocidad_voz">Voice speed</string>
     <string name="velocidad_lenta">Slow</string>
     <string name="velocidad_normal">Normal</string>
     <string name="velocidad_rapida">Fast</string>
     <string name="letra_cuento">Font of the tales</string>
     <string name="ejemplo_letra">Once upon a time…</string>
-    <string name="privacidad">Privacy</string>
+    <string name="letra_recomendada">%s · recommended</string>
+    <string name="tamano_normal">Normal</string>
+    <string name="tamano_grande">Large</string>
+    <string name="tamano_muy_grande">Extra large</string>
+    <string name="musica_fondo">Background music</string>
+    <string name="privacidad">Privacy policy</string>
     <string name="sin_navegador">There is no browser installed</string>
     <string name="version">Version %1$s</string>
 </resources>

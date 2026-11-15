@@ -1,8 +1,9 @@
-package com.carlossega.cuentameuncuento.ui.portada
+package com.carlossega.cuentameuncuento.ui.ficha
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.carlossega.cuentameuncuento.data.model.Cuento
 import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
@@ -17,20 +18,21 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-data class PortadaUiState(
-    val titulo: String = "",
-    val descripcion: String = "",
-    /** Primera ilustración del cuento (fondo de la portada); la miniatura mientras tanto */
-    val imagen: String? = null,
+data class FichaUiState(
+    val cuento: Cuento? = null,
+    /** Primera ilustración: fondo desenfocado de la ficha */
+    val fondo: String? = null,
+    /** Unas pocas ilustraciones repartidas por el cuento, para "Un vistazo" */
+    val vistazo: List<String> = emptyList(),
     val error: Boolean = false
 )
 
 /**
- * Portada de un cuento: título, descripción y primera ilustración, además de si es
- * favorito y si se dejó a medias.
+ * Ficha de un cuento: portada, datos, descripción y un vistazo a sus ilustraciones,
+ * además de si es favorito y si se dejó a medias.
  */
 @HiltViewModel
-class PortadaViewModel @Inject constructor(
+class FichaViewModel @Inject constructor(
     private val cuentoRepository: CuentoRepository,
     private val preferenciasRepository: PreferenciasRepository,
     savedStateHandle: SavedStateHandle
@@ -39,8 +41,8 @@ class PortadaViewModel @Inject constructor(
     val cuentoId: String = savedStateHandle.get<String>(CLAVE_CUENTO).orEmpty()
     val idioma: Idioma = Idioma.desdeCodigo(savedStateHandle.get<String>(CLAVE_IDIOMA))
 
-    private val _uiState = MutableStateFlow(PortadaUiState())
-    val uiState: StateFlow<PortadaUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(FichaUiState())
+    val uiState: StateFlow<FichaUiState> = _uiState.asStateFlow()
 
     val favorito: StateFlow<Boolean> = preferenciasRepository.preferencias
         .map { cuentoId in it.favoritos }
@@ -57,14 +59,21 @@ class PortadaViewModel @Inject constructor(
                 .getOrNull()
                 ?.firstOrNull { it.id == cuentoId }
             if (cuento == null) {
-                _uiState.value = PortadaUiState(error = true)
+                _uiState.value = FichaUiState(error = true)
                 return@launch
             }
-            _uiState.value = PortadaUiState(cuento.titulo, cuento.descripcion, cuento.imagen)
+            _uiState.value = FichaUiState(cuento = cuento, fondo = cuento.imagen)
 
-            val primera = cuentoRepository.getLineas(cuentoId, idioma).getOrNull()?.firstNotNullOfOrNull { it.imagen }
-            val ilustracion = primera?.let { cuentoRepository.getImagenes(cuentoId).getOrNull()?.get(it) }
-            if (ilustracion != null) _uiState.value = _uiState.value.copy(imagen = ilustracion)
+            // Las ilustraciones en el orden en que aparecen en el cuento
+            val orden = cuentoRepository.getLineas(cuentoId, idioma).getOrNull().orEmpty()
+                .mapNotNull { it.imagen }
+                .distinct()
+            val urls = cuentoRepository.getImagenes(cuentoId).getOrNull().orEmpty()
+            val ilustraciones = orden.mapNotNull(urls::get)
+            _uiState.value = _uiState.value.copy(
+                fondo = ilustraciones.firstOrNull() ?: cuento.imagen,
+                vistazo = repartidas(ilustraciones.drop(1).ifEmpty { ilustraciones }, VISTAZO)
+            )
         }
     }
 
@@ -75,5 +84,13 @@ class PortadaViewModel @Inject constructor(
     private companion object {
         const val CLAVE_CUENTO = "cuento"
         const val CLAVE_IDIOMA = "idioma"
+        const val VISTAZO = 3
+
+        /** [cuantas] elementos repartidos a lo largo de la lista, sin destripar el final */
+        fun <T> repartidas(lista: List<T>, cuantas: Int): List<T> {
+            if (lista.size <= cuantas) return lista
+            val paso = lista.size.toFloat() / cuantas
+            return List(cuantas) { lista[(it * paso).toInt()] }
+        }
     }
 }

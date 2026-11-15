@@ -1,13 +1,18 @@
 package com.carlossega.cuentameuncuento.data.model
 
 /**
- * Cuento tal y como aparece en el listado (título y descripción ya en el idioma pedido)
+ * Cuento tal y como aparece en la biblioteca (título y descripción ya en el idioma pedido)
  */
 data class Cuento(
     val id: String,
     val titulo: String,
     val descripcion: String,
-    val imagen: String
+    val imagen: String,
+    /** Edad recomendada, "a partir de" */
+    val edad: Int? = null,
+    val paginas: Int = 0,
+    /** Tiempo aproximado contándolo en voz alta */
+    val minutos: Int = 0
 )
 
 /**

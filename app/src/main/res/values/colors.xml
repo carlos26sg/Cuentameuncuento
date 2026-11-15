@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Solo para el tema de la ventana y el splash; la interfaz usa ui/tema/Tema.kt -->
-    <color name="papel">#F8EFD9</color>
+    <color name="fondo">#FFF6E9</color>
     <color name="fondo_splash">#299A5A</color>
 </resources>

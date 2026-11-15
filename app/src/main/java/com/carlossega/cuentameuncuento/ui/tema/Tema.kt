@@ -13,78 +13,100 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontVariation
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.carlossega.cuentameuncuento.R
 import com.carlossega.cuentameuncuento.data.model.LetraCuento
+import com.carlossega.cuentameuncuento.data.model.TamanoTexto
 
-/** Colores de papel y tinta, a juego con los botones de pergamino dibujados a mano */
+/** Paleta: fondo crema, tinta morada oscura y coral para las acciones */
 object Colores {
-    val papel = Color(0xFFF8EFD9)
-    val papelTranslucido = Color(0xE6F8EFD9)
-    val papelOscuro = Color(0xFFEADFC6)
-    val borde = Color(0xFFC9A46A)
-    val tinta = Color(0xFF4A2C12)
-    val tintaSuave = Color(0xFF6B5440)
-    val corazon = Color(0xFFD7263D)
+    val fondo = Color(0xFFFFF6E9)
+    val superficie = Color(0xFFFFFFFF)
+    val cremaOscuro = Color(0xFFEFE4D2)
+    val borde = Color(0xFFE3D5C0)
+    val tinta = Color(0xFF2A2240)
+    val tintaSuave = Color(0xFF6B6178)
+    val coral = Color(0xFFEE6A4A)
+    val corazon = Color(0xFFE0465E)
+    val resaltado = Color(0xFFFFE08A)
+    val capsula = Color(0xC71E1A2E)
 
-    /** Palabra que suena mientras narra: sobre la ilustración (texto blanco) y sobre papel */
-    val palabraSobreIlustracion = Color(0xFFFFC94D)
-    val palabraSobrePapel = Color(0xFFFFE08A)
-    val traduccion = Color(0xFFDCF812)
+    // Paisaje de la biblioteca
+    val cielo = Color(0xFFCBEAF5)
+    val sol = Color(0xFFFFD36B)
+    val colinaLejana = Color(0xFF9ED39B)
+    val colinaCercana = Color(0xFF6DBB7A)
 }
 
-/** Letra manuscrita de la app: títulos y botones */
-val Anna = FontFamily(Font(R.font.anna))
+/** Fredoka: títulos y botones (redondeada y amable; fuente variable) */
+val Fredoka = FontFamily(
+    Font(R.font.fredoka, FontWeight.Medium, variationSettings = FontVariation.Settings(FontVariation.weight(500))),
+    Font(R.font.fredoka, FontWeight.SemiBold, variationSettings = FontVariation.Settings(FontVariation.weight(600)))
+)
+
+/** Andika: textos de la interfaz, pensada para niños que aprenden a leer */
+val Andika = FontFamily(Font(R.font.andika))
 
 fun LetraCuento.familia(): FontFamily = FontFamily(Font(fuente))
 
-/** Letra que ha elegido el usuario para el texto de los cuentos (Ajustes) */
-val LocalLetraCuento = staticCompositionLocalOf { FontFamily(Font(R.font.andika)) }
+/** Letra y tamaño que ha elegido el usuario para el texto de los cuentos */
+val LocalLetraCuento = staticCompositionLocalOf { Andika }
+val LocalTamanoTexto = staticCompositionLocalOf { TamanoTexto.NORMAL }
 
 private val tipografia = Typography().let { base ->
     base.copy(
-        displayMedium = base.displayMedium.copy(fontFamily = Anna),
-        headlineLarge = base.headlineLarge.copy(fontFamily = Anna),
-        headlineMedium = base.headlineMedium.copy(fontFamily = Anna),
-        headlineSmall = base.headlineSmall.copy(fontFamily = Anna),
-        titleLarge = base.titleLarge.copy(fontFamily = Anna, fontSize = 26.sp),
-        titleMedium = base.titleMedium.copy(fontFamily = Anna, fontSize = 20.sp),
-        labelLarge = base.labelLarge.copy(fontFamily = Anna, fontSize = 22.sp),
-        bodyLarge = base.bodyLarge.copy(fontSize = 18.sp),
-        bodyMedium = base.bodyMedium.copy(fontSize = 16.sp)
+        displaySmall = TextStyle(fontFamily = Fredoka, fontWeight = FontWeight.SemiBold, fontSize = 30.sp, lineHeight = 36.sp),
+        headlineSmall = TextStyle(fontFamily = Fredoka, fontWeight = FontWeight.SemiBold, fontSize = 25.sp, lineHeight = 30.sp),
+        titleLarge = TextStyle(fontFamily = Fredoka, fontWeight = FontWeight.SemiBold, fontSize = 21.sp, lineHeight = 26.sp),
+        titleMedium = TextStyle(fontFamily = Fredoka, fontWeight = FontWeight.SemiBold, fontSize = 17.sp, lineHeight = 22.sp),
+        titleSmall = TextStyle(fontFamily = Fredoka, fontWeight = FontWeight.SemiBold, fontSize = 16.sp, lineHeight = 19.sp),
+        labelLarge = TextStyle(fontFamily = Fredoka, fontWeight = FontWeight.SemiBold, fontSize = 19.sp),
+        labelMedium = TextStyle(fontFamily = Fredoka, fontWeight = FontWeight.SemiBold, fontSize = 15.sp),
+        bodyLarge = TextStyle(fontFamily = Andika, fontSize = 16.sp, lineHeight = 24.sp),
+        bodyMedium = TextStyle(fontFamily = Andika, fontSize = 14.sp, lineHeight = 20.sp),
+        bodySmall = TextStyle(fontFamily = Andika, fontSize = 12.sp, lineHeight = 16.sp)
     )
 }
 
 @Composable
-fun CuentameTheme(letra: LetraCuento, content: @Composable () -> Unit) {
+fun CuentameTheme(letra: LetraCuento, tamano: TamanoTexto, content: @Composable () -> Unit) {
     val familia = remember(letra) { letra.familia() }
     MaterialTheme(
         colorScheme = lightColorScheme(
-            primary = Colores.tinta,
-            onPrimary = Colores.papel,
-            secondary = Colores.borde,
-            background = Colores.papel,
+            primary = Colores.coral,
+            onPrimary = Color.White,
+            secondary = Colores.tinta,
+            background = Colores.fondo,
             onBackground = Colores.tinta,
-            surface = Colores.papel,
+            surface = Colores.fondo,
             onSurface = Colores.tinta,
-            surfaceVariant = Colores.papelOscuro,
+            surfaceContainerLow = Colores.fondo,
+            surfaceVariant = Colores.cremaOscuro,
             onSurfaceVariant = Colores.tintaSuave,
             outline = Colores.borde
         ),
         typography = tipografia
     ) {
-        CompositionLocalProvider(LocalLetraCuento provides familia, content = content)
+        CompositionLocalProvider(
+            LocalLetraCuento provides familia,
+            LocalTamanoTexto provides tamano,
+            content = content
+        )
     }
 }
 
-/** Estilo del texto de los cuentos, con la letra elegida en Ajustes */
+/** Estilo del texto de los cuentos: letra y tamaño elegidos en Ajustes */
 @Composable
-fun estiloCuento(tamano: Int = 24): TextStyle =
-    MaterialTheme.typography.bodyLarge.copy(
+fun estiloCuento(tamanoBase: Int): TextStyle {
+    val tamano = tamanoBase * LocalTamanoTexto.current.factor
+    return TextStyle(
         fontFamily = LocalLetraCuento.current,
         fontSize = tamano.sp,
-        lineHeight = (tamano * 1.4f).sp
+        lineHeight = (tamano * 1.42f).sp
     )
+}
 
 /** true si el usuario ha desactivado las animaciones en los ajustes de accesibilidad del sistema */
 @Composable

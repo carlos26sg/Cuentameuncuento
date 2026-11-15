@@ -55,6 +55,9 @@ class CatalogoCuentoRepositoryTest {
 
         assertThat(cuentos.map { it.titulo }).containsExactly("Árbol", "Zorro").inOrder()
         assertThat(cuentos.first().imagen).isEqualTo("app:cuentos/a/portada-a.webp")
+        // 3 líneas y 4 palabras: 1 minuto como mínimo
+        assertThat(cuentos.first().paginas).isEqualTo(3)
+        assertThat(cuentos.first().minutos).isEqualTo(1)
     }
 
     @Test

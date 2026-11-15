@@ -9,6 +9,7 @@ import com.carlossega.cuentameuncuento.data.model.LineaCuento
 import com.carlossega.cuentameuncuento.data.model.Lectura
 import com.carlossega.cuentameuncuento.data.model.LetraCuento
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.model.TamanoTexto
 import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.data.precarga.PrecargaImagenes
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
@@ -79,6 +80,8 @@ class FakePreferenciasRepository(
     override suspend fun cambiarVelocidad(velocidad: VelocidadVoz) = preferencias.update { it.copy(velocidadVoz = velocidad) }
 
     override suspend fun cambiarLetra(letra: LetraCuento) = preferencias.update { it.copy(letra = letra) }
+
+    override suspend fun cambiarTamanoTexto(tamano: TamanoTexto) = preferencias.update { it.copy(tamanoTexto = tamano) }
 
     override suspend fun alternarFavorito(cuentoId: String) = preferencias.update {
         it.copy(favoritos = if (cuentoId in it.favoritos) it.favoritos - cuentoId else it.favoritos + cuentoId)

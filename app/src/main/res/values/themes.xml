@@ -1,7 +1,7 @@
 <resources>
     <!-- Tema de la ventana. Colores y letras de la interfaz están en ui/tema/Tema.kt (Compose) -->
     <style name="Theme.CuentameUnCuento" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowBackground">@color/papel</item>
+        <item name="android:windowBackground">@color/fondo</item>
     </style>
 
     <!-- Splash de Android 12+ (y compatible con versiones anteriores gracias a core-splashscreen) -->

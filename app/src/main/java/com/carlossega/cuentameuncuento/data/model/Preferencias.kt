@@ -1,6 +1,5 @@
 package com.carlossega.cuentameuncuento.data.model
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 import com.carlossega.cuentameuncuento.R
 
@@ -8,10 +7,10 @@ import com.carlossega.cuentameuncuento.R
  * Idiomas en los que hay cuentos. `codigo` es la clave del idioma en catalogo.json y en
  * las preferencias guardadas, así que no se puede cambiar sin migrar los datos.
  */
-enum class Idioma(val codigo: String, val etiquetaLocale: String, @DrawableRes val bandera: Int) {
-    ESPANOL("esp", "es-ES", R.drawable.espanol),
-    CATALAN("cat", "ca-ES", R.drawable.catalan),
-    INGLES("eng", "en-GB", R.drawable.ingles);
+enum class Idioma(val codigo: String, val etiquetaLocale: String) {
+    ESPANOL("esp", "es-ES"),
+    CATALAN("cat", "ca-ES"),
+    INGLES("eng", "en-GB");
 
     companion object {
         fun desdeCodigo(codigo: String?): Idioma =
@@ -49,6 +48,21 @@ enum class LetraCuento(val codigo: String, @FontRes val fuente: Int, val nombre:
     }
 }
 
+/** Tamaño del texto de los cuentos (botón "Aa" del lector y Ajustes) */
+enum class TamanoTexto(val codigo: String, val factor: Float) {
+    NORMAL("normal", 1f),
+    GRANDE("grande", 1.2f),
+    MUY_GRANDE("muy_grande", 1.4f);
+
+    /** El botón "Aa" va pasando por los tamaños y vuelve al primero */
+    val siguiente: TamanoTexto get() = entries[(ordinal + 1) % entries.size]
+
+    companion object {
+        fun desdeCodigo(codigo: String?): TamanoTexto =
+            entries.firstOrNull { it.codigo == codigo } ?: NORMAL
+    }
+}
+
 /**
  * Preferencias de la app, guardadas solo en el dispositivo (DataStore)
  */
@@ -56,7 +70,8 @@ data class Preferencias(
     val idioma: Idioma = Idioma.ESPANOL,
     val favoritos: Set<String> = emptySet(),
     val velocidadVoz: VelocidadVoz = VelocidadVoz.NORMAL,
-    val letra: LetraCuento = LetraCuento.ANDIKA
+    val letra: LetraCuento = LetraCuento.ANDIKA,
+    val tamanoTexto: TamanoTexto = TamanoTexto.NORMAL
 )
 
 /** Cuento que se ha dejado a medias, para ofrecer "Seguir leyendo" */

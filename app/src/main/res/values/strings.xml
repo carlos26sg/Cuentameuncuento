@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Cuéntame un cuento</string>
+    <string name="app_name_dos_lineas" translatable="false">Cuéntame\nun cuento</string>
     <string name="url_privacidad" translatable="false">https://carlos26sg.github.io/Cuentameuncuento/privacy-policy.html</string>
 
-    <!-- Menú -->
-    <string name="bienvenido">Bienvenido</string>
-    <string name="cuentos">Cuentos</string>
-    <string name="seguir_leyendo">Seguir leyendo</string>
-    <string name="seguir_con">Seguir con «%1$s»</string>
+    <!-- Comunes -->
     <string name="ajustes">Ajustes</string>
     <string name="atras">Atrás</string>
-
-    <!-- Lista de cuentos -->
-    <string name="selecciona">Elige un cuento</string>
-    <string name="idioma_cuentos">Idioma de los cuentos</string>
-    <string name="idioma_espanol">Español</string>
-    <string name="idioma_catalan">Catalán</string>
-    <string name="idioma_ingles">Inglés</string>
-    <string name="anadir_favorito">Añadir a favoritos</string>
-    <string name="quitar_favorito">Quitar de favoritos</string>
-    <string name="sin_cuentos">Todavía no hay cuentos en este idioma</string>
-    <string name="error_cargar_cuentos">No se han podido cargar los cuentos</string>
+    <string name="cerrar">Cerrar</string>
     <string name="reintentar">Reintentar</string>
 
-    <!-- Portada y lector -->
+    <!-- Biblioteca -->
+    <string name="idioma_cuentos">Idioma de los cuentos</string>
+    <string name="todos_los_cuentos">Todos los cuentos</string>
+    <plurals name="n_cuentos">
+        <item quantity="one">%d cuento</item>
+        <item quantity="other">%d cuentos</item>
+    </plurals>
+    <string name="seguir_leyendo">Seguir leyendo</string>
+    <string name="seguir_con">Seguir con «%1$s»</string>
+    <string name="sin_cuentos">Todavía no hay cuentos en este idioma</string>
+    <string name="error_cargar_cuentos">No se han podido cargar los cuentos</string>
+    <string name="anadir_favorito">Añadir a favoritos</string>
+    <string name="quitar_favorito">Quitar de favoritos</string>
+    <string name="edad">%d+ años</string>
+    <string name="minutos">≈ %d min</string>
+
+    <!-- Ficha del cuento -->
+    <plurals name="paginas">
+        <item quantity="one">%d página</item>
+        <item quantity="other">%d páginas</item>
+    </plurals>
+    <string name="un_vistazo">Un vistazo</string>
     <string name="leer">Leer</string>
     <string name="escuchar">Escuchar</string>
+    <string name="seguir_por_pagina">Seguir por la página %d</string>
+
+    <!-- Lector -->
     <string name="pausar">Pausar</string>
-    <string name="seguir_donde_lo_deje">Seguir donde lo dejé</string>
     <string name="anterior">Página anterior</string>
     <string name="siguiente">Página siguiente</string>
     <string name="progreso">Página %1$d de %2$d</string>
     <string name="cerrar_cuento">Cerrar el cuento</string>
     <string name="empezar_de_nuevo">Empezar de nuevo</string>
-    <string name="otro_cuento">Elegir otro cuento</string>
+    <string name="otro_cuento">Otro cuento</string>
     <string name="traduccion">Traducción</string>
     <string name="sin_traduccion">Sin traducción</string>
+    <string name="tamano_texto">Tamaño del texto</string>
     <string name="error_cargar_cuento">No se ha podido abrir el cuento</string>
     <string name="error_traduccion">No se ha podido cargar la traducción</string>
 
@@ -48,19 +59,20 @@
     <string name="instalar">Instalar</string>
     <string name="ahora_no">Ahora no</string>
 
-    <!-- Música -->
-    <string name="musica">Música</string>
-    <string name="silenciar_musica">Silenciar la música</string>
-    <string name="activar_musica">Activar la música</string>
-
     <!-- Ajustes -->
+    <string name="para_mayores">Para mayores</string>
     <string name="velocidad_voz">Velocidad de la voz</string>
     <string name="velocidad_lenta">Lenta</string>
     <string name="velocidad_normal">Normal</string>
     <string name="velocidad_rapida">Rápida</string>
     <string name="letra_cuento">Letra de los cuentos</string>
     <string name="ejemplo_letra">Había una vez…</string>
-    <string name="privacidad">Privacidad</string>
+    <string name="letra_recomendada">%s · recomendada</string>
+    <string name="tamano_normal">Normal</string>
+    <string name="tamano_grande">Grande</string>
+    <string name="tamano_muy_grande">Muy grande</string>
+    <string name="musica_fondo">Música de fondo</string>
+    <string name="privacidad">Política de privacidad</string>
     <string name="sin_navegador">No hay ningún navegador instalado</string>
     <string name="version">Versión %1$s</string>
 </resources>

@@ -4,6 +4,7 @@ import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.LetraCuento
 import com.carlossega.cuentameuncuento.data.model.Lectura
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.model.TamanoTexto
 import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import kotlinx.coroutines.flow.Flow
 
@@ -26,6 +27,8 @@ interface PreferenciasRepository {
     suspend fun cambiarVelocidad(velocidad: VelocidadVoz)
 
     suspend fun cambiarLetra(letra: LetraCuento)
+
+    suspend fun cambiarTamanoTexto(tamano: TamanoTexto)
 
     suspend fun alternarFavorito(cuentoId: String)
 

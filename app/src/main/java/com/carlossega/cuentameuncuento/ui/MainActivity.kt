@@ -15,7 +15,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import androidx.activity.viewModels
 import com.carlossega.cuentameuncuento.audio.MusicaFondo
-import com.carlossega.cuentameuncuento.data.model.LetraCuento
+import com.carlossega.cuentameuncuento.data.model.Preferencias
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import com.carlossega.cuentameuncuento.ui.comun.LocalMusica
 import com.carlossega.cuentameuncuento.ui.tema.CuentameTheme
@@ -23,16 +23,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
-/** Letra elegida para los cuentos: el tema la necesita en todas las pantallas */
+/** Letra y tamaño elegidos para los cuentos: el tema los necesita en todas las pantallas */
 @HiltViewModel
 class MainViewModel @Inject constructor(preferencias: PreferenciasRepository) : ViewModel() {
-    val letra: StateFlow<LetraCuento> = preferencias.preferencias
-        .map { it.letra }
-        .stateIn(viewModelScope, SharingStarted.Eagerly, LetraCuento.ANDIKA)
+    val preferencias: StateFlow<Preferencias> = preferencias.preferencias
+        .stateIn(viewModelScope, SharingStarted.Eagerly, Preferencias())
 }
 
 /**
@@ -57,8 +55,8 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            val letra by viewModel.letra.collectAsStateWithLifecycle()
-            CuentameTheme(letra) {
+            val preferencias by viewModel.preferencias.collectAsStateWithLifecycle()
+            CuentameTheme(preferencias.letra, preferencias.tamanoTexto) {
                 CompositionLocalProvider(LocalMusica provides musicaFondo) {
                     Navegacion()
                 }

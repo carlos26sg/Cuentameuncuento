@@ -7,29 +7,23 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.carlossega.cuentameuncuento.ui.ajustes.AjustesPantalla
+import com.carlossega.cuentameuncuento.ui.biblioteca.BibliotecaPantalla
+import com.carlossega.cuentameuncuento.ui.ficha.FichaPantalla
 import com.carlossega.cuentameuncuento.ui.lector.LectorPantalla
-import com.carlossega.cuentameuncuento.ui.lista.ListaPantalla
-import com.carlossega.cuentameuncuento.ui.menu.MenuPantalla
-import com.carlossega.cuentameuncuento.ui.portada.PortadaPantalla
 import kotlinx.serialization.Serializable
 
 /*
  * Pantallas de la app. Los nombres de las propiedades son las claves que leen los
  * ViewModels en su SavedStateHandle.
  */
-@Serializable
-object Menu
 
+/** Inicio: todos los cuentos. Los ajustes se abren en un panel encima */
 @Serializable
-object Lista
+object Biblioteca
 
+/** Ficha de un cuento: portada, datos, un vistazo y "Leer" / "Escuchar" */
 @Serializable
-object Ajustes
-
-/** Portada animada de un cuento, antes de empezar a leerlo */
-@Serializable
-data class Portada(val cuento: String, val idioma: String)
+data class Ficha(val cuento: String, val idioma: String)
 
 /** [linea] < 0: empieza por el principio. [escuchar]: empieza a narrar al abrirse */
 @Serializable
@@ -40,50 +34,33 @@ fun Navegacion() {
     val nav = rememberNavController()
     NavHost(
         navController = nav,
-        startDestination = Menu,
+        startDestination = Biblioteca,
         enterTransition = { fadeIn() + scaleIn(initialScale = 0.96f) },
         exitTransition = { fadeOut() },
         popEnterTransition = { fadeIn() },
         popExitTransition = { fadeOut() }
     ) {
-        composable<Menu> {
-            MenuPantalla(
-                alAbrirCuentos = { nav.navigate(Lista) },
+        composable<Biblioteca> {
+            BibliotecaPantalla(
+                alElegir = { cuento, idioma -> nav.navigate(Ficha(cuento, idioma.codigo)) },
                 alSeguirLeyendo = { lectura ->
                     nav.navigate(Lector(lectura.cuentoId, lectura.idioma.codigo, linea = lectura.linea))
-                },
-                alAbrirAjustes = { nav.navigate(Ajustes) }
+                }
             )
         }
-        composable<Lista> {
-            ListaPantalla(
-                alVolver = { nav.popBackStack() },
-                alElegir = { cuento, idioma -> nav.navigate(Portada(cuento, idioma.codigo)) }
-            )
-        }
-        composable<Portada> {
-            PortadaPantalla(
+        composable<Ficha> {
+            FichaPantalla(
                 alVolver = { nav.popBackStack() },
                 alEmpezar = { cuento, idioma, escuchar, linea ->
-                    nav.navigate(Lector(cuento, idioma.codigo, escuchar, linea)) {
-                        // Al cerrar el cuento se vuelve a la lista, no a la portada
-                        popUpTo<Portada> { inclusive = true }
-                    }
+                    nav.navigate(Lector(cuento, idioma.codigo, escuchar, linea))
                 }
             )
         }
         composable<Lector> {
             LectorPantalla(
                 alCerrar = { nav.popBackStack() },
-                alElegirOtro = {
-                    if (!nav.popBackStack(Lista, inclusive = false)) {
-                        nav.navigate(Lista) { popUpTo(Menu) }
-                    }
-                }
+                alElegirOtro = { nav.popBackStack(Biblioteca, inclusive = false) }
             )
-        }
-        composable<Ajustes> {
-            AjustesPantalla(alVolver = { nav.popBackStack() })
         }
     }
 }

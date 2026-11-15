@@ -1,38 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Menú -->
-    <string name="bienvenido">Benvingut</string>
-    <string name="cuentos">Contes</string>
-    <string name="seguir_leyendo">Continuar llegint</string>
-    <string name="seguir_con">Continuar amb «%1$s»</string>
+    <!-- Comunes -->
     <string name="ajustes">Configuració</string>
     <string name="atras">Enrere</string>
-
-    <!-- Lista de cuentos -->
-    <string name="selecciona">Tria un conte</string>
-    <string name="idioma_cuentos">Idioma dels contes</string>
-    <string name="idioma_espanol">Castellà</string>
-    <string name="idioma_catalan">Català</string>
-    <string name="idioma_ingles">Anglès</string>
-    <string name="anadir_favorito">Afegir als preferits</string>
-    <string name="quitar_favorito">Treure dels preferits</string>
-    <string name="sin_cuentos">Encara no hi ha contes en aquest idioma</string>
-    <string name="error_cargar_cuentos">No s\'han pogut carregar els contes</string>
+    <string name="cerrar">Tancar</string>
     <string name="reintentar">Tornar-ho a provar</string>
 
-    <!-- Portada y lector -->
+    <!-- Biblioteca -->
+    <string name="idioma_cuentos">Idioma dels contes</string>
+    <string name="todos_los_cuentos">Tots els contes</string>
+    <plurals name="n_cuentos">
+        <item quantity="one">%d conte</item>
+        <item quantity="many">%d contes</item>
+        <item quantity="other">%d contes</item>
+    </plurals>
+    <string name="seguir_leyendo">Continuar llegint</string>
+    <string name="seguir_con">Continuar amb «%1$s»</string>
+    <string name="sin_cuentos">Encara no hi ha contes en aquest idioma</string>
+    <string name="error_cargar_cuentos">No s\'han pogut carregar els contes</string>
+    <string name="anadir_favorito">Afegir als preferits</string>
+    <string name="quitar_favorito">Treure dels preferits</string>
+    <string name="edad">%d+ anys</string>
+    <string name="minutos">≈ %d min</string>
+
+    <!-- Ficha del cuento -->
+    <plurals name="paginas">
+        <item quantity="one">%d pàgina</item>
+        <item quantity="many">%d pàgines</item>
+        <item quantity="other">%d pàgines</item>
+    </plurals>
+    <string name="un_vistazo">Una ullada</string>
     <string name="leer">Llegir</string>
     <string name="escuchar">Escoltar</string>
+    <string name="seguir_por_pagina">Continuar per la pàgina %d</string>
+
+    <!-- Lector -->
     <string name="pausar">Pausar</string>
-    <string name="seguir_donde_lo_deje">Continuar on ho vaig deixar</string>
     <string name="anterior">Pàgina anterior</string>
     <string name="siguiente">Pàgina següent</string>
     <string name="progreso">Pàgina %1$d de %2$d</string>
     <string name="cerrar_cuento">Tancar el conte</string>
     <string name="empezar_de_nuevo">Tornar a començar</string>
-    <string name="otro_cuento">Triar un altre conte</string>
+    <string name="otro_cuento">Un altre conte</string>
     <string name="traduccion">Traducció</string>
     <string name="sin_traduccion">Sense traducció</string>
+    <string name="tamano_texto">Mida del text</string>
     <string name="error_cargar_cuento">No s\'ha pogut obrir el conte</string>
     <string name="error_traduccion">No s\'ha pogut carregar la traducció</string>
 
@@ -45,19 +57,20 @@
     <string name="instalar">Instal·lar</string>
     <string name="ahora_no">Ara no</string>
 
-    <!-- Música -->
-    <string name="musica">Música</string>
-    <string name="silenciar_musica">Silenciar la música</string>
-    <string name="activar_musica">Activar la música</string>
-
     <!-- Ajustes -->
+    <string name="para_mayores">Per a adults</string>
     <string name="velocidad_voz">Velocitat de la veu</string>
     <string name="velocidad_lenta">Lenta</string>
     <string name="velocidad_normal">Normal</string>
     <string name="velocidad_rapida">Ràpida</string>
     <string name="letra_cuento">Lletra dels contes</string>
     <string name="ejemplo_letra">Hi havia una vegada…</string>
-    <string name="privacidad">Privacitat</string>
+    <string name="letra_recomendada">%s · recomanada</string>
+    <string name="tamano_normal">Normal</string>
+    <string name="tamano_grande">Gran</string>
+    <string name="tamano_muy_grande">Molt gran</string>
+    <string name="musica_fondo">Música de fons</string>
+    <string name="privacidad">Política de privacitat</string>
     <string name="sin_navegador">No hi ha cap navegador instal·lat</string>
     <string name="version">Versió %1$s</string>
 </resources>

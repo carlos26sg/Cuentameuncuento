@@ -11,6 +11,7 @@ import com.carlossega.cuentameuncuento.audio.Narrador
 import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.Lectura
 import com.carlossega.cuentameuncuento.data.model.LineaCuento
+import com.carlossega.cuentameuncuento.data.model.TamanoTexto
 import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.data.precarga.PrecargaImagenes
 import com.carlossega.cuentameuncuento.data.repository.CuentoRepository
@@ -110,6 +111,11 @@ class LectorViewModel @Inject constructor(
 
     fun anterior() {
         if (_uiState.value.hayAnterior) irA(_uiState.value.indice - 1)
+    }
+
+    /** Botón "Aa": pasa al siguiente tamaño de texto (se guarda para todos los cuentos) */
+    fun cambiarTamanoTexto(actual: TamanoTexto) {
+        viewModelScope.launch { preferenciasRepository.cambiarTamanoTexto(actual.siguiente) }
     }
 
     fun empezarDeNuevo() {

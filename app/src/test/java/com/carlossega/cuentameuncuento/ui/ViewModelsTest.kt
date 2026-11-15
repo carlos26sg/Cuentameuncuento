@@ -13,15 +13,15 @@ import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.Lectura
 import com.carlossega.cuentameuncuento.data.model.LetraCuento
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.model.TamanoTexto
 import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.data.precarga.PrecargaCuentos
 import com.carlossega.cuentameuncuento.lineasDePrueba
 import com.carlossega.cuentameuncuento.ui.ajustes.AjustesViewModel
 import com.carlossega.cuentameuncuento.ui.lector.LectorViewModel
-import com.carlossega.cuentameuncuento.ui.lista.ListaUiState
-import com.carlossega.cuentameuncuento.ui.lista.ListaViewModel
-import com.carlossega.cuentameuncuento.ui.menu.MenuViewModel
-import com.carlossega.cuentameuncuento.ui.portada.PortadaViewModel
+import com.carlossega.cuentameuncuento.ui.biblioteca.BibliotecaUiState
+import com.carlossega.cuentameuncuento.ui.biblioteca.BibliotecaViewModel
+import com.carlossega.cuentameuncuento.ui.ficha.FichaViewModel
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -29,7 +29,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 
-class ListaViewModelTest {
+class BibliotecaViewModelTest {
 
     @get:Rule
     val mainRule = MainDispatcherRule()
@@ -40,17 +40,21 @@ class ListaViewModelTest {
     }
     private val preferencias = FakePreferenciasRepository()
 
-    /** stateIn(WhileSubscribed) solo trabaja si alguien lo escucha */
-    private fun ListaViewModel.escuchar() = kotlinx.coroutines.CoroutineScope(mainRule.dispatcher).launch { uiState.collect {} }
+    private fun crear(preferencias: FakePreferenciasRepository = this.preferencias) =
+        BibliotecaViewModel(repo, preferencias, PrecargaCuentos(repo, FakePrecargaImagenes())).also { vm ->
+            // stateIn(WhileSubscribed) solo trabaja si alguien lo escucha
+            kotlinx.coroutines.CoroutineScope(mainRule.dispatcher).launch { vm.uiState.collect {} }
+            kotlinx.coroutines.CoroutineScope(mainRule.dispatcher).launch { vm.seguirLeyendo.collect {} }
+        }
 
     @Test
     fun cargaLosCuentosDelIdiomaGuardado_yLoCambiaEnAjustes() {
-        val vm = ListaViewModel(repo, preferencias).apply { escuchar() }
-        assertThat((vm.uiState.value as ListaUiState.Lista).cuentos).hasSize(2)
+        val vm = crear()
+        assertThat((vm.uiState.value as BibliotecaUiState.Lista).cuentos).hasSize(2)
 
         vm.cambiarIdioma(Idioma.INGLES)
 
-        val estado = vm.uiState.value as ListaUiState.Lista
+        val estado = vm.uiState.value as BibliotecaUiState.Lista
         assertThat(estado.idioma).isEqualTo(Idioma.INGLES)
         assertThat(estado.cuentos.map { it.cuento.titulo }).containsExactly("The dragon")
         assertThat(preferencias.preferencias.value.idioma).isEqualTo(Idioma.INGLES)
@@ -58,53 +62,42 @@ class ListaViewModelTest {
 
     @Test
     fun losFavoritosSalenPrimero_peroNoSaltanAlMarcarlos() {
-        val vm = ListaViewModel(repo, preferencias).apply { escuchar() }
+        val vm = crear()
 
         vm.alternarFavorito("c2")
 
-        // Se marca sin moverse, para que la tarjeta no desaparezca de la vista
-        val ahora = (vm.uiState.value as ListaUiState.Lista).cuentos
+        // Se marca sin moverse, para que la portada no desaparezca de la vista
+        val ahora = (vm.uiState.value as BibliotecaUiState.Lista).cuentos
         assertThat(ahora.map { it.cuento.id }).containsExactly("c1", "c2").inOrder()
         assertThat(ahora.last().favorito).isTrue()
 
-        // La próxima vez que se abre la lista, el favorito sale primero
-        val otraVez = ListaViewModel(repo, preferencias).apply { escuchar() }
-        assertThat((otraVez.uiState.value as ListaUiState.Lista).cuentos.map { it.cuento.id })
+        // La próxima vez que se abre la biblioteca, el favorito sale primero
+        val otraVez = crear()
+        assertThat((otraVez.uiState.value as BibliotecaUiState.Lista).cuentos.map { it.cuento.id })
             .containsExactly("c2", "c1").inOrder()
     }
 
     @Test
     fun sinCuentos_vacia_yErrorConReintento() {
-        val vm = ListaViewModel(repo, preferencias).apply { escuchar() }
+        val vm = crear()
         vm.cambiarIdioma(Idioma.CATALAN)
-        assertThat(vm.uiState.value).isInstanceOf(ListaUiState.Vacia::class.java)
+        assertThat(vm.uiState.value).isInstanceOf(BibliotecaUiState.Vacia::class.java)
 
         repo.fallar = true
         vm.reintentar()
-        assertThat(vm.uiState.value).isInstanceOf(ListaUiState.Error::class.java)
+        assertThat(vm.uiState.value).isInstanceOf(BibliotecaUiState.Error::class.java)
 
         repo.fallar = false
         vm.cambiarIdioma(Idioma.ESPANOL)
-        assertThat(vm.uiState.value).isInstanceOf(ListaUiState.Lista::class.java)
-    }
-}
-
-class MenuViewModelTest {
-
-    @get:Rule
-    val mainRule = MainDispatcherRule()
-
-    private val repo = FakeCuentoRepository().apply {
-        cuentos[Idioma.ESPANOL] = listOf(Cuento("c1", "El dragón", "", ""))
+        assertThat(vm.uiState.value).isInstanceOf(BibliotecaUiState.Lista::class.java)
     }
 
     @Test
     fun ofreceSeguirElCuentoAMedias() {
         val preferencias = FakePreferenciasRepository(lecturaInicial = Lectura("c1", Idioma.ESPANOL, 5))
-        val vm = MenuViewModel(preferencias, repo, PrecargaCuentos(repo, FakePrecargaImagenes()))
-        kotlinx.coroutines.CoroutineScope(mainRule.dispatcher).launch { vm.seguirLeyendo.collect {} }
+        val vm = crear(preferencias)
 
-        assertThat(vm.seguirLeyendo.value?.titulo).isEqualTo("El dragón")
+        assertThat(vm.seguirLeyendo.value?.cuento?.titulo).isEqualTo("El dragón")
         assertThat(vm.seguirLeyendo.value?.lectura?.linea).isEqualTo(5)
 
         preferencias.lectura.value = null
@@ -112,18 +105,18 @@ class MenuViewModelTest {
     }
 }
 
-class PortadaViewModelTest {
+class FichaViewModelTest {
 
     @get:Rule
     val mainRule = MainDispatcherRule()
 
     private val repo = FakeCuentoRepository().apply {
-        cuentos[Idioma.ESPANOL] = listOf(Cuento("c1", "El dragón", "Un dragón simpático", "portada"))
-        lineas["c1" to Idioma.ESPANOL] = lineasDePrueba("Uno/2\nFIN/")
-        imagenes = mapOf("2" to "https://img/2")
+        cuentos[Idioma.ESPANOL] = listOf(Cuento("c1", "El dragón", "Un dragón simpático", "portada", edad = 3, paginas = 6, minutos = 2))
+        lineas["c1" to Idioma.ESPANOL] = lineasDePrueba("Uno/2\nDos/5\nTres/7\nCuatro/9\nCinco/11\nFIN/")
+        imagenes = mapOf("2" to "img2", "5" to "img5", "7" to "img7", "9" to "img9", "11" to "img11")
     }
 
-    private fun crear(preferencias: FakePreferenciasRepository) = PortadaViewModel(
+    private fun crear(preferencias: FakePreferenciasRepository) = FichaViewModel(
         repo,
         preferencias,
         SavedStateHandle(mapOf("cuento" to "c1", "idioma" to "esp"))
@@ -133,11 +126,14 @@ class PortadaViewModelTest {
     }
 
     @Test
-    fun muestraTituloYPrimeraIlustracion() {
+    fun muestraElCuento_fondoYUnVistazoRepartido() {
         val vm = crear(FakePreferenciasRepository())
 
-        assertThat(vm.uiState.value.titulo).isEqualTo("El dragón")
-        assertThat(vm.uiState.value.imagen).isEqualTo("https://img/2")
+        assertThat(vm.uiState.value.cuento?.titulo).isEqualTo("El dragón")
+        assertThat(vm.uiState.value.cuento?.edad).isEqualTo(3)
+        assertThat(vm.uiState.value.fondo).isEqualTo("img2")
+        // Tres ilustraciones repartidas, sin la del fondo
+        assertThat(vm.uiState.value.vistazo).containsExactly("img5", "img7", "img9").inOrder()
     }
 
     @Test
@@ -344,6 +340,17 @@ class LectorViewModelTest {
     }
 
     @Test
+    fun botonAa_pasaAlSiguienteTamanoYVuelveAlPrimero() {
+        val vm = crear()
+
+        vm.cambiarTamanoTexto(TamanoTexto.NORMAL)
+        assertThat(preferencias.preferencias.value.tamanoTexto).isEqualTo(TamanoTexto.GRANDE)
+
+        vm.cambiarTamanoTexto(TamanoTexto.MUY_GRANDE)
+        assertThat(preferencias.preferencias.value.tamanoTexto).isEqualTo(TamanoTexto.NORMAL)
+    }
+
+    @Test
     fun errorDeCarga_yReintento() {
         repo.fallar = true
         val vm = crear()
@@ -369,9 +376,15 @@ class AjustesViewModelTest {
         vm.cambiarIdioma(Idioma.CATALAN)
         vm.cambiarVelocidad(VelocidadVoz.RAPIDA)
         vm.cambiarLetra(LetraCuento.ATKINSON)
+        vm.cambiarTamanoTexto(TamanoTexto.MUY_GRANDE)
 
         assertThat(preferencias.preferencias.value).isEqualTo(
-            Preferencias(idioma = Idioma.CATALAN, velocidadVoz = VelocidadVoz.RAPIDA, letra = LetraCuento.ATKINSON)
+            Preferencias(
+                idioma = Idioma.CATALAN,
+                velocidadVoz = VelocidadVoz.RAPIDA,
+                letra = LetraCuento.ATKINSON,
+                tamanoTexto = TamanoTexto.MUY_GRANDE
+            )
         )
     }
 }

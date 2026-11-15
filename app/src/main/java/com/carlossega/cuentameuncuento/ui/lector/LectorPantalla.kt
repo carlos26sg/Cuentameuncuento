@@ -9,6 +9,7 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -19,18 +20,28 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.automirrored.rounded.ArrowForward
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.Pause
+import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material.icons.rounded.Refresh
+import androidx.compose.material.icons.rounded.Translate
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -44,7 +55,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
@@ -55,6 +68,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -63,6 +77,8 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.intl.LocaleList
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
@@ -71,14 +87,16 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.carlossega.cuentameuncuento.R
 import com.carlossega.cuentameuncuento.data.model.Idioma
-import com.carlossega.cuentameuncuento.ui.comun.BotonDibujo
-import com.carlossega.cuentameuncuento.ui.comun.BotonMusica
-import com.carlossega.cuentameuncuento.ui.comun.BotonPergamino
-import com.carlossega.cuentameuncuento.ui.comun.PanelPapel
-import com.carlossega.cuentameuncuento.ui.comun.SelectorIdioma
+import com.carlossega.cuentameuncuento.ui.comun.BotonPrincipal
+import com.carlossega.cuentameuncuento.ui.comun.BotonRedondo
+import com.carlossega.cuentameuncuento.ui.comun.BotonSecundario
+import com.carlossega.cuentameuncuento.ui.comun.BotonTexto
+import com.carlossega.cuentameuncuento.ui.comun.MenuIdiomas
+import com.carlossega.cuentameuncuento.ui.comun.endonimo
 import com.carlossega.cuentameuncuento.ui.comun.margenSeguro
-import com.carlossega.cuentameuncuento.ui.comun.sombraTexto
+import com.carlossega.cuentameuncuento.ui.comun.sigla
 import com.carlossega.cuentameuncuento.ui.tema.Colores
+import com.carlossega.cuentameuncuento.ui.tema.LocalTamanoTexto
 import com.carlossega.cuentameuncuento.ui.tema.estiloCuento
 import kotlin.math.abs
 
@@ -111,14 +129,17 @@ fun LectorPantalla(
     BoxWithConstraints(
         Modifier
             .fillMaxSize()
-            .background(Colores.papel)
+            .background(Colores.fondo)
     ) {
         when {
-            estado.cargando -> CircularProgressIndicator(color = Colores.tinta, modifier = Modifier.align(Alignment.Center))
-            estado.error -> PanelPapel(Modifier.align(Alignment.Center)) {
+            estado.cargando -> CircularProgressIndicator(color = Colores.coral, modifier = Modifier.align(Alignment.Center))
+            estado.error -> Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier.align(Alignment.Center)
+            ) {
                 Text(stringResource(R.string.error_cargar_cuento), style = MaterialTheme.typography.titleMedium)
-                Spacer(Modifier.height(16.dp))
-                BotonPergamino(stringResource(R.string.reintentar), viewModel::reintentar)
+                BotonPrincipal(stringResource(R.string.reintentar), Icons.Rounded.Refresh, viewModel::reintentar)
             }
             maxHeight > maxWidth -> LectorVertical(estado, viewModel, alCerrar, alElegirOtro)
             else -> LectorHorizontal(estado, viewModel, alCerrar, alElegirOtro)
@@ -128,8 +149,8 @@ fun LectorPantalla(
     if (faltaVoz) {
         AlertDialog(
             onDismissRequest = { faltaVoz = false },
-            title = { Text(stringResource(R.string.falta_voz)) },
-            text = { Text(stringResource(R.string.voz_idioma_no_disponible)) },
+            title = { Text(stringResource(R.string.falta_voz), style = MaterialTheme.typography.titleLarge) },
+            text = { Text(stringResource(R.string.voz_idioma_no_disponible), style = MaterialTheme.typography.bodyLarge) },
             confirmButton = {
                 TextButton(onClick = {
                     faltaVoz = false
@@ -138,71 +159,19 @@ fun LectorPantalla(
                     } catch (e: ActivityNotFoundException) {
                         Toast.makeText(contexto, R.string.sin_instalador_voz, Toast.LENGTH_LONG).show()
                     }
-                }) { Text(stringResource(R.string.instalar)) }
+                }) { Text(stringResource(R.string.instalar), style = MaterialTheme.typography.labelMedium, color = Colores.coral) }
             },
-            dismissButton = { TextButton(onClick = { faltaVoz = false }) { Text(stringResource(R.string.ahora_no)) } },
-            containerColor = Colores.papel
+            dismissButton = {
+                TextButton(onClick = { faltaVoz = false }) {
+                    Text(stringResource(R.string.ahora_no), style = MaterialTheme.typography.labelMedium, color = Colores.tinta)
+                }
+            },
+            containerColor = Colores.fondo
         )
     }
 }
 
-/** Horizontal: la ilustración ocupa toda la pantalla y el texto va abajo, sobre un degradado */
-@Composable
-private fun LectorHorizontal(
-    estado: LectorUiState,
-    viewModel: LectorViewModel,
-    alCerrar: () -> Unit,
-    alElegirOtro: () -> Unit
-) {
-    Box(Modifier.fillMaxSize()) {
-        Ilustracion(estado.imagenActual, ContentScale.Crop, viewModel, Modifier.fillMaxSize())
-        Box(
-            Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.5f)
-                .align(Alignment.BottomCenter)
-                .background(Brush.verticalGradient(listOf(Color.Transparent, Color(0x99000000), Color(0xCC000000))))
-        )
-        Column(
-            Modifier
-                .fillMaxSize()
-                .margenSeguro()
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-        ) {
-            BarraSuperior(estado, viewModel, alCerrar)
-            Spacer(Modifier.weight(1f))
-            if (estado.idiomaTraduccion != null) {
-                Text(
-                    text = estado.textoTraducido,
-                    style = estiloCuento(18).copy(shadow = sombraTexto),
-                    color = Colores.traduccion,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                BotonDibujo(R.drawable.back, stringResource(R.string.anterior), viewModel::anterior, tamano = 64.dp, activo = estado.hayAnterior)
-                BotonNarrar(estado.narrando, viewModel::alternarNarracion, tamano = 64)
-                TextoCuento(
-                    estado = estado,
-                    viewModel = viewModel,
-                    colorTexto = Color.White,
-                    colorPalabra = Colores.palabraSobreIlustracion,
-                    fondoPalabra = Color.Transparent,
-                    conSombra = true,
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(horizontal = 12.dp)
-                )
-                BotonDibujo(R.drawable.next, stringResource(R.string.siguiente), viewModel::siguiente, tamano = 64.dp, activo = estado.haySiguiente)
-            }
-            Progreso(estado, Modifier.padding(top = 8.dp))
-        }
-        FinDelCuento(estado, viewModel, alElegirOtro, Modifier.align(Alignment.Center))
-    }
-}
-
-/** Vertical: la ilustración arriba y el texto debajo, sobre papel */
+/** Vertical: barra arriba, ilustración enmarcada, texto grande y los botones abajo */
 @Composable
 private fun LectorVertical(
     estado: LectorUiState,
@@ -215,83 +184,171 @@ private fun LectorVertical(
             .fillMaxSize()
             .margenSeguro()
     ) {
-        Box(Modifier.padding(horizontal = 12.dp)) { BarraSuperior(estado, viewModel, alCerrar) }
+        BarraSuperior(estado, viewModel, alCerrar, conTitulo = true, sobreIlustracion = false)
         Box(
             Modifier
                 .fillMaxWidth()
-                .weight(1f)
+                .weight(0.9f)
+                .padding(horizontal = 16.dp, vertical = 6.dp)
+                .clip(RoundedCornerShape(24.dp))
+                .background(Colores.cremaOscuro)
         ) {
-            Ilustracion(estado.imagenActual, ContentScale.Fit, viewModel, Modifier.fillMaxSize())
+            Ilustracion(estado.imagenActual, viewModel, Modifier.fillMaxSize())
             FinDelCuento(estado, viewModel, alElegirOtro, Modifier.align(Alignment.Center))
         }
         Column(
-            Modifier
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .padding(16.dp)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 28.dp, vertical = 12.dp)
         ) {
-            Column(
-                Modifier
-                    .weight(1f)
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.Center
-            ) {
-                TextoCuento(
-                    estado = estado,
-                    viewModel = viewModel,
-                    colorTexto = Colores.tinta,
-                    colorPalabra = Colores.tinta,
-                    fondoPalabra = Colores.palabraSobrePapel,
-                    conSombra = false,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                if (estado.idiomaTraduccion != null) {
-                    Text(
-                        text = estado.textoTraducido,
-                        style = estiloCuento(18),
-                        color = Colores.tintaSuave,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 12.dp)
-                    )
-                }
-            }
+            TextoCuento(estado, viewModel, Colores.tinta, tamano = 27, modifier = Modifier.fillMaxWidth())
+            Traduccion(estado, Colores.tintaSuave, Modifier.padding(top = 12.dp))
+        }
+        Column(
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+            modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 20.dp)
+        ) {
+            Progreso(estado, conNumero = true)
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                BotonDibujo(R.drawable.back, stringResource(R.string.anterior), viewModel::anterior, tamano = 72.dp, activo = estado.hayAnterior)
-                BotonNarrar(estado.narrando, viewModel::alternarNarracion, tamano = 80)
-                BotonDibujo(R.drawable.next, stringResource(R.string.siguiente), viewModel::siguiente, tamano = 72.dp, activo = estado.haySiguiente)
+                BotonPagina(adelante = false, estado.hayAnterior, viewModel::anterior, 64.dp)
+                BotonNarrar(estado.narrando, viewModel::alternarNarracion, 84.dp)
+                BotonPagina(adelante = true, estado.haySiguiente, viewModel::siguiente, 64.dp)
             }
-            Progreso(estado, Modifier.padding(top = 8.dp))
         }
     }
 }
 
+/** Horizontal: la ilustración ocupa la pantalla y el texto va en una cápsula, como un subtítulo */
 @Composable
-private fun BarraSuperior(estado: LectorUiState, viewModel: LectorViewModel, alCerrar: () -> Unit) {
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-        BotonDibujo(R.drawable.equis, stringResource(R.string.cerrar_cuento), alCerrar)
-        BotonMusica(Modifier.padding(start = 8.dp))
-        Spacer(Modifier.weight(1f))
-        SelectorIdioma(
-            seleccionado = estado.idiomaTraduccion,
-            descripcion = stringResource(R.string.traduccion),
-            onSeleccion = viewModel::seleccionarTraduccion,
-            conNinguno = true
+private fun LectorHorizontal(
+    estado: LectorUiState,
+    viewModel: LectorViewModel,
+    alCerrar: () -> Unit,
+    alElegirOtro: () -> Unit
+) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(Color(0xFF1E1A2E))
+    ) {
+        Ilustracion(estado.imagenActual, viewModel, Modifier.fillMaxSize())
+        Box(
+            Modifier
+                .fillMaxSize()
+                .margenSeguro()
+        ) {
+            BarraSuperior(estado, viewModel, alCerrar, conTitulo = false, sobreIlustracion = true)
+            BotonPagina(
+                adelante = false, estado.hayAnterior, viewModel::anterior, 52.dp,
+                Modifier
+                    .align(Alignment.CenterStart)
+                    .padding(start = 16.dp),
+                translucido = true
+            )
+            BotonPagina(
+                adelante = true, estado.haySiguiente, viewModel::siguiente, 52.dp,
+                Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = 16.dp),
+                translucido = true
+            )
+            Surface(
+                shape = RoundedCornerShape(26.dp),
+                color = Colores.capsula,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 22.dp, start = 84.dp, end = 84.dp)
+                    .widthIn(max = 720.dp)
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(start = 12.dp, end = 22.dp, top = 12.dp, bottom = 12.dp)
+                ) {
+                    BotonNarrar(estado.narrando, viewModel::alternarNarracion, 60.dp)
+                    Column(Modifier.padding(start = 16.dp)) {
+                        TextoCuento(estado, viewModel, Color.White, tamano = 22, maxLineas = 3)
+                        Traduccion(estado, Color.White.copy(alpha = 0.8f), Modifier.padding(top = 6.dp), alineacion = TextAlign.Start)
+                    }
+                }
+            }
+            FinDelCuento(estado, viewModel, alElegirOtro, Modifier.align(Alignment.Center))
+        }
+        Progreso(
+            estado, conNumero = false,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
         )
     }
 }
 
+@Composable
+private fun BarraSuperior(
+    estado: LectorUiState,
+    viewModel: LectorViewModel,
+    alCerrar: () -> Unit,
+    conTitulo: Boolean,
+    sobreIlustracion: Boolean
+) {
+    var menuTraduccion by rememberSaveable { mutableStateOf(false) }
+    val tamano = LocalTamanoTexto.current
+    val fondo = if (sobreIlustracion) Colores.superficie.copy(alpha = 0.92f) else Colores.superficie
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        BotonRedondo(Icons.Rounded.Close, stringResource(R.string.cerrar_cuento), alCerrar, fondo = fondo)
+        Text(
+            text = if (conTitulo) estado.titulo else "",
+            style = MaterialTheme.typography.titleMedium,
+            textAlign = TextAlign.Center,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier
+                .weight(1f)
+                .semantics { heading() }
+        )
+        Box {
+            val actual = estado.idiomaTraduccion
+            BotonRedondo(
+                Icons.Rounded.Translate,
+                stringResource(R.string.traduccion) + ": " + (actual?.endonimo ?: stringResource(R.string.sin_traduccion)),
+                { menuTraduccion = true },
+                fondo = if (actual != null) Colores.resaltado else fondo
+            )
+            MenuIdiomas(
+                abierto = menuTraduccion,
+                alCerrar = { menuTraduccion = false },
+                seleccionado = actual,
+                opciones = Idioma.entries.filter { it != viewModel.idioma },
+                alElegir = {
+                    menuTraduccion = false
+                    viewModel.seleccionarTraduccion(it)
+                },
+                conNinguno = true
+            )
+        }
+        BotonTexto("Aa", stringResource(R.string.tamano_texto), { viewModel.cambiarTamanoTexto(tamano) })
+    }
+}
+
 /**
- * Ilustración de la línea actual. Funde con la anterior al cambiar (también si ya estaba en
- * memoria) y deja pasar página tocando los lados o deslizando.
+ * Ilustración de la línea actual: nítida y entera, sobre una copia desenfocada de sí misma
+ * que rellena el hueco (así las imágenes pequeñas no se ven borrosas al estirarlas).
+ * Funde con la anterior al cambiar y deja pasar página tocando los lados o deslizando.
  */
 @Composable
-private fun Ilustracion(url: String?, escala: ContentScale, viewModel: LectorViewModel, modifier: Modifier) {
+private fun Ilustracion(url: String?, viewModel: LectorViewModel, modifier: Modifier) {
     val umbral = with(LocalDensity.current) { 60.dp.toPx() }
     Crossfade(
         targetState = url,
@@ -318,12 +375,23 @@ private fun Ilustracion(url: String?, escala: ContentScale, viewModel: LectorVie
                 ) { _, delta -> arrastre += delta }
             }
     ) { actual ->
-        AsyncImage(
-            model = actual,
-            contentDescription = null,
-            contentScale = escala,
-            modifier = Modifier.fillMaxSize()
-        )
+        Box(Modifier.fillMaxSize()) {
+            AsyncImage(
+                model = actual,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .blur(24.dp)
+                    .alpha(0.75f)
+            )
+            AsyncImage(
+                model = actual,
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
     }
 }
 
@@ -336,17 +404,14 @@ private fun Ilustracion(url: String?, escala: ContentScale, viewModel: LectorVie
 private fun TextoCuento(
     estado: LectorUiState,
     viewModel: LectorViewModel,
-    colorTexto: Color,
-    colorPalabra: Color,
-    fondoPalabra: Color,
-    conSombra: Boolean,
-    modifier: Modifier
+    color: Color,
+    tamano: Int,
+    modifier: Modifier = Modifier,
+    maxLineas: Int = Int.MAX_VALUE
 ) {
     val texto = estado.lineaActual?.texto.orEmpty()
     val idioma = viewModel.idioma
-    val anotado = remember(texto, estado.palabra, idioma) {
-        textoAnotado(texto, idioma, estado.palabra, colorPalabra, fondoPalabra)
-    }
+    val anotado = remember(texto, estado.palabra, idioma) { textoAnotado(texto, idioma, estado.palabra) }
     val siguiente = stringResource(R.string.siguiente)
     val anterior = stringResource(R.string.anterior)
     val progreso = stringResource(R.string.progreso, estado.indice + 1, estado.lineas.size)
@@ -355,9 +420,11 @@ private fun TextoCuento(
 
     Text(
         text = anotado,
-        style = estiloCuento(if (conSombra) 26 else 28).let { if (conSombra) it.copy(shadow = sombraTexto) else it },
-        color = colorTexto,
-        textAlign = TextAlign.Center,
+        style = estiloCuento(tamano),
+        color = color,
+        textAlign = if (maxLineas == Int.MAX_VALUE) TextAlign.Center else TextAlign.Start,
+        maxLines = maxLineas,
+        overflow = TextOverflow.Ellipsis,
         modifier = modifier.semantics {
             stateDescription = progreso
             if (!estado.narrando) liveRegion = LiveRegionMode.Polite
@@ -369,43 +436,96 @@ private fun TextoCuento(
     )
 }
 
-private fun textoAnotado(
-    texto: String,
-    idioma: Idioma,
-    palabra: IntRange?,
-    colorPalabra: Color,
-    fondoPalabra: Color
-): AnnotatedString = buildAnnotatedString {
+private fun textoAnotado(texto: String, idioma: Idioma, palabra: IntRange?): AnnotatedString = buildAnnotatedString {
     append(texto)
     addStyle(SpanStyle(localeList = LocaleList(idioma.etiquetaLocale)), 0, texto.length)
     if (palabra != null && palabra.first >= 0 && palabra.last < texto.length) {
-        addStyle(SpanStyle(color = colorPalabra, background = fondoPalabra), palabra.first, palabra.last + 1)
+        addStyle(SpanStyle(color = Colores.tinta, background = Colores.resaltado), palabra.first, palabra.last + 1)
     }
 }
 
+/** La misma línea en el idioma de la traducción, con su sigla delante */
 @Composable
-private fun BotonNarrar(narrando: Boolean, alPulsar: () -> Unit, tamano: Int) {
-    BotonDibujo(
-        dibujo = if (narrando) R.drawable.pause else R.drawable.play,
+private fun Traduccion(estado: LectorUiState, color: Color, modifier: Modifier, alineacion: TextAlign = TextAlign.Center) {
+    val idioma = estado.idiomaTraduccion ?: return
+    val texto = buildAnnotatedString {
+        append(idioma.sigla + "  ")
+        addStyle(SpanStyle(color = color.copy(alpha = 0.7f)), 0, idioma.sigla.length)
+        val inicio = length
+        append(estado.textoTraducido)
+        addStyle(SpanStyle(localeList = LocaleList(idioma.etiquetaLocale)), inicio, length)
+    }
+    Text(
+        texto,
+        style = estiloCuento(16),
+        color = color,
+        textAlign = alineacion,
+        modifier = modifier.fillMaxWidth()
+    )
+}
+
+@Composable
+private fun BotonNarrar(narrando: Boolean, alPulsar: () -> Unit, tamano: Dp) {
+    BotonRedondo(
+        icono = if (narrando) Icons.Rounded.Pause else Icons.Rounded.PlayArrow,
         descripcion = stringResource(if (narrando) R.string.pausar else R.string.escuchar),
         onClick = alPulsar,
-        tamano = tamano.dp
+        tamano = tamano,
+        tamanoIcono = tamano * 0.45f,
+        fondo = Colores.coral,
+        colorIcono = Color.White,
+        sombra = 6.dp
+    )
+}
+
+@Composable
+private fun BotonPagina(
+    adelante: Boolean,
+    activo: Boolean,
+    alPulsar: () -> Unit,
+    tamano: Dp,
+    modifier: Modifier = Modifier,
+    translucido: Boolean = false
+) {
+    BotonRedondo(
+        icono = if (adelante) Icons.AutoMirrored.Rounded.ArrowForward else Icons.AutoMirrored.Rounded.ArrowBack,
+        descripcion = stringResource(if (adelante) R.string.siguiente else R.string.anterior),
+        onClick = alPulsar,
+        tamano = tamano,
+        tamanoIcono = tamano * 0.42f,
+        fondo = if (translucido) Colores.superficie.copy(alpha = 0.78f) else Colores.superficie,
+        borde = if (translucido) null else BorderStroke(2.dp, if (activo) Colores.tinta else Colores.borde),
+        activo = activo,
+        sombra = 0.dp,
+        modifier = modifier
     )
 }
 
 /** Barra de progreso: el niño ve cuánto queda del cuento */
 @Composable
-private fun Progreso(estado: LectorUiState, modifier: Modifier) {
+private fun Progreso(estado: LectorUiState, conNumero: Boolean, modifier: Modifier = Modifier) {
     if (estado.lineas.isEmpty()) return
-    LinearProgressIndicator(
-        progress = { (estado.indice + 1f) / estado.lineas.size },
-        color = Colores.palabraSobreIlustracion,
-        trackColor = Colores.papelOscuro.copy(alpha = 0.6f),
-        drawStopIndicator = {},
-        modifier = modifier
-            .fillMaxWidth()
-            .height(6.dp)
-    )
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
+        LinearProgressIndicator(
+            progress = { (estado.indice + 1f) / estado.lineas.size },
+            color = Colores.coral,
+            trackColor = if (conNumero) Colores.cremaOscuro else Color.White.copy(alpha = 0.3f),
+            drawStopIndicator = {},
+            gapSize = 0.dp,
+            modifier = Modifier
+                .weight(1f)
+                .height(if (conNumero) 6.dp else 5.dp)
+                .clip(RoundedCornerShape(3.dp))
+        )
+        if (conNumero) {
+            Spacer(Modifier.width(10.dp))
+            Text(
+                "${estado.indice + 1} / ${estado.lineas.size}",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Colores.tintaSuave
+            )
+        }
+    }
 }
 
 /** Al llegar a "FIN": empezar de nuevo o elegir otro cuento */
@@ -417,22 +537,32 @@ private fun FinDelCuento(estado: LectorUiState, viewModel: LectorViewModel, alEl
         exit = fadeOut(),
         modifier = modifier
     ) {
-        PanelPapel(Modifier.widthIn(max = 520.dp), color = Colores.papelTranslucido) {
-            Text(
-                text = estado.titulo,
-                style = MaterialTheme.typography.headlineSmall,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
-            FlowRow(
-                horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 12.dp)
+        Surface(
+            shape = RoundedCornerShape(24.dp),
+            color = Colores.fondo,
+            shadowElevation = 12.dp,
+            modifier = Modifier
+                .padding(20.dp)
+                .widthIn(max = 460.dp)
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+                modifier = Modifier.padding(20.dp)
             ) {
-                BotonPergamino(stringResource(R.string.empezar_de_nuevo), viewModel::empezarDeNuevo, ancho = 200.dp)
-                BotonPergamino(stringResource(R.string.otro_cuento), alElegirOtro, ancho = 200.dp)
+                Text(
+                    estado.titulo,
+                    style = MaterialTheme.typography.titleLarge,
+                    textAlign = TextAlign.Center,
+                    color = Colores.tinta
+                )
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    BotonSecundario(stringResource(R.string.empezar_de_nuevo), Icons.Rounded.Refresh, viewModel::empezarDeNuevo)
+                    BotonPrincipal(stringResource(R.string.otro_cuento), Icons.AutoMirrored.Rounded.ArrowForward, alElegirOtro)
+                }
             }
         }
     }

@@ -14,6 +14,7 @@ import com.carlossega.cuentameuncuento.data.model.Idioma
 import com.carlossega.cuentameuncuento.data.model.LetraCuento
 import com.carlossega.cuentameuncuento.data.model.Lectura
 import com.carlossega.cuentameuncuento.data.model.Preferencias
+import com.carlossega.cuentameuncuento.data.model.TamanoTexto
 import com.carlossega.cuentameuncuento.data.model.VelocidadVoz
 import com.carlossega.cuentameuncuento.data.repository.PreferenciasRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -46,7 +47,8 @@ class PreferenciasStore @Inject constructor(
                 idioma = Idioma.desdeCodigo(p[IDIOMA]),
                 favoritos = p.favoritos(),
                 velocidadVoz = VelocidadVoz.desdeCodigo(p[VELOCIDAD_VOZ]),
-                letra = LetraCuento.desdeCodigo(p[LETRA])
+                letra = LetraCuento.desdeCodigo(p[LETRA]),
+                tamanoTexto = TamanoTexto.desdeCodigo(p[TAMANO_TEXTO])
             )
         }
         .distinctUntilChanged()
@@ -70,6 +72,10 @@ class PreferenciasStore @Inject constructor(
 
     override suspend fun cambiarLetra(letra: LetraCuento) {
         context.dataStore.edit { it[LETRA] = letra.codigo }
+    }
+
+    override suspend fun cambiarTamanoTexto(tamano: TamanoTexto) {
+        context.dataStore.edit { it[TAMANO_TEXTO] = tamano.codigo }
     }
 
     override suspend fun alternarFavorito(cuentoId: String) {
@@ -121,6 +127,7 @@ class PreferenciasStore @Inject constructor(
         val MUSICA = booleanPreferencesKey("musica")
         val VELOCIDAD_VOZ = stringPreferencesKey("velocidad_voz")
         val LETRA = stringPreferencesKey("letra")
+        val TAMANO_TEXTO = stringPreferencesKey("tamano_texto")
         val LECTURA_CUENTO = stringPreferencesKey("lectura_cuento")
         val LECTURA_IDIOMA = stringPreferencesKey("lectura_idioma")
         val LECTURA_LINEA = intPreferencesKey("lectura_linea")
