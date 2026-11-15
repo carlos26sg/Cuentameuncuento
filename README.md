@@ -1,8 +1,9 @@
 # Cuéntame un cuento
 
-App Android de cuentos infantiles en español, catalán e inglés. Se pueden **leer** línea a línea
-o **escuchar** con la voz del sistema (texto a voz), con traducción opcional debajo de cada línea
-e ilustraciones a pantalla completa.
+App Android de cuentos infantiles en español, catalán e inglés. Cada cuento tiene una portada
+animada y se puede **leer** pasando páginas o **escuchar** con la voz del sistema (texto a voz),
+con la palabra que suena resaltada, traducción opcional e ilustraciones a pantalla completa.
+Funciona en vertical y en horizontal, recuerda el cuento a medias y permite marcar favoritos.
 
 ## Stack
 
@@ -11,7 +12,8 @@ e ilustraciones a pantalla completa.
 | Lenguaje | Kotlin 2.3 (Kotlin integrado de AGP 9) |
 | Build | AGP 9.3.3 · Gradle 9.7.1 · JDK 17 · catálogo de versiones en `gradle/libs.versions.toml` |
 | SDK | minSdk 26 · targetSdk 37 · compileSdk 37 |
-| UI | Views + ViewBinding, ViewModel + StateFlow |
+| UI | Jetpack Compose + Material 3, Navigation Compose (una sola Activity), ViewModel + StateFlow |
+| Letras | Anna (títulos y botones); Andika (por defecto), Atkinson Hyperlegible o Anna para el texto de los cuentos. Licencias OFL en `docs/licencias/` |
 | DI | Hilt |
 | Datos | Catálogo JSON incluido en la app y actualizable desde GitHub Pages; DataStore (preferencias locales) |
 | Red / imágenes | OkHttp + Coil 3 (caché en disco) · kotlinx.serialization |
@@ -21,20 +23,25 @@ e ilustraciones a pantalla completa.
 
 ```
 com.carlossega.cuentameuncuento
-├── SplashActivity          ← icono del launcher (no mover de paquete)
 ├── CuentoApplication
 ├── audio/                  ← música de fondo (foco de audio) y narrador (TextToSpeech)
 ├── data/
 │   ├── catalogo/           ← catálogo de cuentos: modelo, fuentes (app / guardado / web) y repositorio
-│   ├── model/              ← Cuento, LineaCuento, Idioma, Modo, Preferencias
+│   ├── model/              ← Cuento, LineaCuento, Idioma, Preferencias, Lectura (cuento a medias)
 │   ├── precarga/           ← descarga anticipada de imágenes nuevas
 │   ├── prefs/              ← DataStore (preferencias, solo en el dispositivo)
 │   └── repository/         ← interfaces
 ├── di/                     ← módulos Hilt
 └── ui/
-    ├── common/             ← pantalla completa, botón de música, adapter de banderas
-    ├── menu/  seleccion/  reproductor/  ajustes/
+    ├── MainActivity        ← única Activity (el alias .SplashActivity del manifest es el icono del launcher)
+    ├── Navegacion          ← rutas: Menu → Lista → Portada → Lector, y Ajustes
+    ├── tema/               ← colores de papel, letras y tamaños
+    ├── comun/              ← botón de pergamino, botones con los dibujos, música, selector de idioma
+    └── menu/  lista/  portada/  lector/  ajustes/   ← cada pantalla con su ViewModel
 ```
+
+Los dibujos de la app (botones, banderas, fondos) están en `res/drawable-nodpi/` como PNG o WebP
+normales: Compose no carga imágenes nine-patch (`.9.png`).
 
 ## Contenido de los cuentos
 
