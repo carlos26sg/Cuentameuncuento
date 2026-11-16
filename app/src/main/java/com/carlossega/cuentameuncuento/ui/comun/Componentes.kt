@@ -86,12 +86,13 @@ fun FondoPaisaje(modifier: Modifier = Modifier) {
         val w = size.width
         val h = size.height
         drawRect(Colores.cielo)
-        drawCircle(Colores.sol, radius = w * 0.087f, center = Offset(w * 0.815f, h * 0.28f))
+        // Sol y nubes a escala de un móvil en vertical: en horizontal o en tablet no crecen sin límite
+        val e = minOf(w, h * 1.56f) / 390f
+        drawCircle(Colores.sol, radius = 34 * e, center = Offset(w * 0.815f, h * 0.28f))
         fun nube(x: Float, y: Float, escala: Float) {
             drawOval(Color.White, Offset(x - 34 * escala, y - 14 * escala), Size(68 * escala, 28 * escala))
             drawOval(Color.White, Offset(x - 2 * escala, y - 24 * escala), Size(48 * escala, 32 * escala))
         }
-        val e = w / 390f
         nube(w * 0.18f, h * 0.37f, e)
         nube(w * 0.58f, h * 0.49f, e * 0.75f)
         val lejana = Path().apply {

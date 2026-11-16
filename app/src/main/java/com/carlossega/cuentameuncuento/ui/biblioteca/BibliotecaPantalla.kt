@@ -42,6 +42,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -90,6 +91,8 @@ fun BibliotecaPantalla(
         BibliotecaUiState.Cargando -> null
     }
 
+    // En horizontal la pantalla es baja: la cabecera se hace más corta para que se vean los cuentos
+    val baja = LocalWindowInfo.current.containerDpSize.height < 500.dp
     LazyVerticalGrid(
         // Dos columnas en un móvil en vertical; más en horizontal y en tablets
         columns = GridCells.Adaptive(minSize = 156.dp),
@@ -102,6 +105,7 @@ fun BibliotecaPantalla(
     ) {
         item(span = { GridItemSpan(maxLineSpan) }, key = "cabecera") {
             Cabecera(
+                baja = baja,
                 idioma = idioma,
                 seguir = seguir,
                 alCambiarIdioma = viewModel::cambiarIdioma,
@@ -159,6 +163,7 @@ fun BibliotecaPantalla(
 
 @Composable
 private fun Cabecera(
+    baja: Boolean,
     idioma: Idioma?,
     seguir: SeguirLeyendo?,
     alCambiarIdioma: (Idioma) -> Unit,
@@ -171,7 +176,7 @@ private fun Cabecera(
         FondoPaisaje(
             Modifier
                 .fillMaxWidth()
-                .height(250.dp)
+                .height(if (baja) 170.dp else 250.dp)
         )
         Column(
             Modifier
@@ -208,8 +213,17 @@ private fun Cabecera(
                 }
                 BotonRedondo(Icons.Rounded.Settings, stringResource(R.string.ajustes), alAbrirAjustes)
             }
-            // Sin cuento a medias, el paisaje (250 dp) ya marca la altura de la cabecera
-            Spacer(Modifier.height(if (seguir != null) 70.dp else 120.dp))
+            // Sin cuento a medias, el paisaje ya marca la altura de la cabecera
+            Spacer(
+                Modifier.height(
+                    when {
+                        baja && seguir != null -> 16.dp
+                        baja -> 50.dp
+                        seguir != null -> 70.dp
+                        else -> 120.dp
+                    }
+                )
+            )
             if (seguir != null) {
                 TarjetaSeguir(seguir, alSeguirLeyendo)
                 Spacer(Modifier.height(4.dp))
@@ -230,9 +244,10 @@ private fun TarjetaSeguir(seguir: SeguirLeyendo, alSeguirLeyendo: (Lectura) -> U
         shape = RoundedCornerShape(22.dp),
         color = Colores.superficie,
         shadowElevation = 6.dp,
+        // El ancho máximo antes que fillMaxWidth: al revés, en horizontal se estiraba a toda la pantalla
         modifier = Modifier
-            .fillMaxWidth()
             .widthIn(max = 560.dp)
+            .fillMaxWidth()
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(12.dp)) {
             AsyncImage(

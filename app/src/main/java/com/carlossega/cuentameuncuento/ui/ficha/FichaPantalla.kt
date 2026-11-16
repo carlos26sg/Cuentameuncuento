@@ -17,7 +17,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -62,7 +66,6 @@ import com.carlossega.cuentameuncuento.ui.comun.BotonPrincipal
 import com.carlossega.cuentameuncuento.ui.comun.BotonRedondo
 import com.carlossega.cuentameuncuento.ui.comun.BotonSecundario
 import com.carlossega.cuentameuncuento.ui.comun.Etiqueta
-import com.carlossega.cuentameuncuento.ui.comun.margenSeguro
 import com.carlossega.cuentameuncuento.ui.comun.sigla
 import com.carlossega.cuentameuncuento.ui.tema.Colores
 import com.carlossega.cuentameuncuento.ui.tema.movimientoReducido
@@ -116,15 +119,18 @@ fun FichaPantalla(
             )
         }
 
+        // Solo el margen de arriba aquí: la franja de botones de abajo llega a los bordes y
+        // cada parte aplica el margen lateral del notch por su cuenta
         Column(
             Modifier
                 .fillMaxSize()
-                .margenSeguro()
+                .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top))
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal))
                     .padding(horizontal = 20.dp, vertical = 8.dp)
             ) {
                 BotonRedondo(Icons.AutoMirrored.Rounded.ArrowBack, stringResource(R.string.atras), alVolver)
@@ -136,7 +142,9 @@ fun FichaPantalla(
                 AnimatedVisibility(
                     visible = mostrada,
                     enter = fadeIn(tween(450)) + slideInVertically(tween(450)) { it / 12 },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier
+                        .weight(1f)
+                        .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal))
                 ) {
                     if (horizontal) {
                         // Horizontal: portada a la izquierda, datos a la derecha
@@ -268,7 +276,7 @@ private fun Acciones(lineaGuardada: Int?, alLeer: (Int) -> Unit, alEscuchar: () 
         Column(
             Modifier
                 .fillMaxWidth()
-                .navigationBarsPadding()
+                .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))
                 .padding(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
