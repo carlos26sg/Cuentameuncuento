@@ -13,7 +13,7 @@ Funciona en vertical y en horizontal, recuerda el cuento a medias y permite marc
 | Build | AGP 9.3.3 · Gradle 9.7.1 · JDK 17 · catálogo de versiones en `gradle/libs.versions.toml` |
 | SDK | minSdk 26 · targetSdk 37 · compileSdk 37 |
 | UI | Jetpack Compose + Material 3, Navigation Compose (una sola Activity), ViewModel + StateFlow |
-| Letras | Anna (títulos y botones); Andika (por defecto), Atkinson Hyperlegible o Anna para el texto de los cuentos. Licencias OFL en `docs/licencias/` |
+| Letras | Fredoka (títulos y botones); Andika (por defecto), Atkinson Hyperlegible o Anna para el texto de los cuentos. Licencias OFL en `docs/licencias/` |
 | DI | Hilt |
 | Datos | Catálogo JSON incluido en la app y actualizable desde GitHub Pages; DataStore (preferencias locales) |
 | Red / imágenes | OkHttp + Coil 3 (caché en disco) · kotlinx.serialization |
@@ -34,14 +34,14 @@ com.carlossega.cuentameuncuento
 ├── di/                     ← módulos Hilt
 └── ui/
     ├── MainActivity        ← única Activity (el alias .SplashActivity del manifest es el icono del launcher)
-    ├── Navegacion          ← rutas: Menu → Lista → Portada → Lector, y Ajustes
-    ├── tema/               ← colores de papel, letras y tamaños
-    ├── comun/              ← botón de pergamino, botones con los dibujos, música, selector de idioma
-    └── menu/  lista/  portada/  lector/  ajustes/   ← cada pantalla con su ViewModel
+    ├── Navegacion          ← rutas: Biblioteca → Ficha → Lector (Ajustes es un panel de la Biblioteca)
+    ├── tema/               ← colores, letras (Fredoka, Andika) y tamaño del texto
+    ├── comun/              ← paisaje vectorial, botones redondos, corazón, menú de idiomas
+    └── biblioteca/  ficha/  lector/  ajustes/   ← cada pantalla con su ViewModel
 ```
 
-Los dibujos de la app (botones, banderas, fondos) están en `res/drawable-nodpi/` como PNG o WebP
-normales: Compose no carga imágenes nine-patch (`.9.png`).
+La interfaz no usa imágenes propias: el paisaje se dibuja en código y los iconos son los de
+Material. Las únicas imágenes son las de los cuentos (`contenido/`).
 
 ## Contenido de los cuentos
 
