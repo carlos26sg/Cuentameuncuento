@@ -115,13 +115,13 @@ fun AjustesHoja(alCerrar: () -> Unit, viewModel: AjustesViewModel = hiltViewMode
                                 .fillMaxWidth()
                                 .selectable(selected = elegida, role = Role.RadioButton) { viewModel.cambiarLetra(letra) }
                         ) {
-                            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
-                                Text(stringResource(R.string.ejemplo_letra), fontFamily = familia, fontSize = 20.sp, modifier = Modifier.weight(1f))
+                            // La muestra arriba y el nombre debajo: en una fila no cabían en móviles estrechos
+                            Column(Modifier.padding(horizontal = 16.dp, vertical = 10.dp)) {
+                                Text(stringResource(R.string.ejemplo_letra), fontFamily = familia, fontSize = 20.sp)
                                 Text(
                                     if (letra == LetraCuento.ANDIKA) stringResource(R.string.letra_recomendada, letra.nombre) else letra.nombre,
                                     style = MaterialTheme.typography.bodySmall,
-                                    color = Colores.tintaSuave,
-                                    textAlign = TextAlign.End
+                                    color = Colores.tintaSuave
                                 )
                             }
                         }

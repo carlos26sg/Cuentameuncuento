@@ -225,11 +225,13 @@ fun Etiqueta(texto: String, modifier: Modifier = Modifier) {
 @Composable
 fun BotonCorazon(favorito: Boolean, alAlternar: () -> Unit, modifier: Modifier = Modifier, tamano: Dp = 44.dp) {
     val escala by animateFloatAsState(if (favorito) 1.15f else 1f, label = "corazon")
+    // Círculo blanco opaco con sombra propia: con fondo translúcido la sombra se veía como un halo
     IconToggleButton(
         checked = favorito,
         onCheckedChange = { alAlternar() },
+        shape = CircleShape,
         colors = IconToggleButtonColors(
-            containerColor = Colores.superficie.copy(alpha = 0.92f),
+            containerColor = Colores.superficie,
             contentColor = Colores.corazon,
             disabledContainerColor = Colores.superficie,
             disabledContentColor = Colores.corazon,
@@ -238,7 +240,7 @@ fun BotonCorazon(favorito: Boolean, alAlternar: () -> Unit, modifier: Modifier =
         ),
         modifier = modifier
             .size(tamano)
-            .shadow(2.dp, CircleShape)
+            .shadow(3.dp, CircleShape, clip = true)
     ) {
         Icon(
             imageVector = if (favorito) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,

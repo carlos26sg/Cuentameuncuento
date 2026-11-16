@@ -208,7 +208,8 @@ private fun Cabecera(
                 }
                 BotonRedondo(Icons.Rounded.Settings, stringResource(R.string.ajustes), alAbrirAjustes)
             }
-            Spacer(Modifier.height(if (seguir != null) 70.dp else 150.dp))
+            // Sin cuento a medias, el paisaje (250 dp) ya marca la altura de la cabecera
+            Spacer(Modifier.height(if (seguir != null) 70.dp else 120.dp))
             if (seguir != null) {
                 TarjetaSeguir(seguir, alSeguirLeyendo)
                 Spacer(Modifier.height(4.dp))
