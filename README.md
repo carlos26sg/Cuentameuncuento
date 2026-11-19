@@ -68,6 +68,10 @@ Los cuentos están en el propio repositorio, en `contenido/cuentos/<id>/`:
 `imagen` es la ilustración que empieza en esa línea (`null` = sigue la anterior). La primera
 línea debe tener ilustración y la última es `FIN` / `FI` / `THE END`.
 
+`creditos` (opcional, en los tres idiomas) aparece en la ficha del cuento. Es obligatorio en los
+cuentos de [StoryWeaver](https://storyweaver.org.in) (licencia CC BY 4.0): autoría, ilustración,
+traducción, editorial, licencia y qué se ha cambiado.
+
 ### Añadir o cambiar un cuento
 
 ```bash

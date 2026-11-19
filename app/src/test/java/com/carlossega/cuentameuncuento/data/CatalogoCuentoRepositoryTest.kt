@@ -61,6 +61,20 @@ class CatalogoCuentoRepositoryTest {
     }
 
     @Test
+    fun creditosEnElIdiomaPedido_yNingunoSiElCuentoNoLosTrae() = runTest {
+        val conCreditos = cuento("a", "Árbol").replaceFirst(
+            "\"portada\"",
+            "\"creditos\":{\"esp\":\"Texto: Ana\",\"eng\":\"Text: Ana\"},\"portada\""
+        )
+        val repo = repositorio(FuentesFalsas(catalogo(1, conCreditos, cuento("b", "Barco"))))
+
+        val esp = repo.cuentos(Idioma.ESPANOL).first()
+        assertThat(esp.first { it.id == "a" }.creditos).isEqualTo("Texto: Ana")
+        assertThat(esp.first { it.id == "b" }.creditos).isNull()
+        assertThat(repo.cuentos(Idioma.INGLES).first().first { it.id == "a" }.creditos).isEqualTo("Text: Ana")
+    }
+
+    @Test
     fun soloListaLosCuentosConTituloEnElIdioma() = runTest {
         val repo = repositorio(FuentesFalsas(catalogo(1, cuento("a", "Árbol"))))
 

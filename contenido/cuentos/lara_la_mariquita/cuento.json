@@ -1,0 +1,147 @@
+{
+  "id": "lara_la_mariquita",
+  "edad": 3,
+  "titulo": {
+    "esp": "Lara, la mariquita amarilla",
+    "cat": "La Lara, la marieta groga",
+    "eng": "Lara the yellow ladybird"
+  },
+  "descripcion": {
+    "esp": "Una mariquita amarilla en un mundo de mariquitas rojas. Lara solo quiere ser como las demás… ¿o no?",
+    "cat": "Una marieta groga en un món de marietes vermelles. La Lara només vol ser com les altres… o potser no?",
+    "eng": "A yellow bug in a world of red, Lara the Ladybird just wants to fit in."
+  },
+  "creditos": {
+    "esp": "Texto: Catherine Holtzhausen, Martha Evans y Nadene Kriel. Ilustraciones: Catherine Holtzhausen. Traducción al español: Keaton Partch. Original: «Lara the Yellow Ladybird», publicado por Book Dash en StoryWeaver con licencia CC BY 4.0. Texto en español revisado y traducción al catalán hechos para esta app.",
+    "cat": "Text: Catherine Holtzhausen, Martha Evans i Nadene Kriel. Il·lustracions: Catherine Holtzhausen. Traducció al castellà: Keaton Partch. Original: «Lara the Yellow Ladybird», publicat per Book Dash a StoryWeaver amb llicència CC BY 4.0. Text en castellà revisat i traducció al català fets per a aquesta app.",
+    "eng": "Text: Catherine Holtzhausen, Martha Evans and Nadene Kriel. Illustrations: Catherine Holtzhausen. Spanish translation: Keaton Partch. Original: “Lara the Yellow Ladybird”, published by Book Dash on StoryWeaver under a CC BY 4.0 licence. Spanish text revised and Catalan translation made for this app."
+  },
+  "lineas": [
+    {
+      "imagen": "2",
+      "esp": "Lara, la mariquita, era un bichito especial.",
+      "cat": "La Lara, la marieta, era un bitxet especial.",
+      "eng": "Lara the ladybird was a special bug."
+    },
+    {
+      "imagen": "3",
+      "esp": "A diferencia de todas sus amigas, tenía unas alas amarillas y brillantes.",
+      "cat": "A diferència de totes les seves amigues, tenia unes ales grogues i brillants.",
+      "eng": "Unlike all her friends, she had bright yellow wings."
+    },
+    {
+      "imagen": "4",
+      "esp": "A todo el mundo le encantaban sus alas amarillas.",
+      "cat": "A tothom li encantaven les seves ales grogues.",
+      "eng": "Everyone loved her yellow wings."
+    },
+    {
+      "imagen": "5",
+      "esp": "Cada mañana, Bibi la mariposa le decía hola, y Manto la mantis siempre la saludaba con la mano.",
+      "cat": "Cada matí, la Bibi, la papallona, li deia hola, i en Manto, el pregadéu, sempre la saludava amb la mà.",
+      "eng": "Each morning, Bibi Butterfly said hello. And Manto Mantis always waved."
+    },
+    {
+      "imagen": "6",
+      "esp": "Incluso Sesa, la araña gruñona, se alegraba de verla.",
+      "cat": "Fins i tot la Sesa, l'aranya rondinaire, s'alegrava de veure-la.",
+      "eng": "Even Sesa, the sulky spider, was happy to see her."
+    },
+    {
+      "imagen": "7",
+      "esp": "En la escuela jugaba con muchos amigos.",
+      "cat": "A l'escola jugava amb molts amics.",
+      "eng": "At school, she played with lots of friends."
+    },
+    {
+      "imagen": "8",
+      "esp": "Pero Lara quería ser como las demás mariquitas.",
+      "cat": "Però la Lara volia ser com les altres marietes.",
+      "eng": "But Lara wanted to be like the other ladybirds."
+    },
+    {
+      "imagen": null,
+      "esp": "—¡Ojalá tuviera las alas rojas como tú, mamá! —lloraba.",
+      "cat": "—Tant de bo tingués les ales vermelles com tu, mama! —plorava.",
+      "eng": "“I wish I had red wings like you, Mama,” she cried."
+    },
+    {
+      "imagen": "9",
+      "esp": "Así que un día, para animarla, su madre le pintó las alas de rojo brillante.",
+      "cat": "Així que un dia, per animar-la, la seva mare li va pintar les ales de vermell brillant.",
+      "eng": "So one day, to cheer her up, Lara's mother painted her wings bright red."
+    },
+    {
+      "imagen": "10",
+      "esp": "A la mañana siguiente, nadie saludó a Lara de camino a la escuela.",
+      "cat": "L'endemà al matí, ningú no va saludar la Lara de camí a l'escola.",
+      "eng": "The next morning, nobody greeted Lara on her way to school."
+    },
+    {
+      "imagen": "11",
+      "esp": "Y cuando llegó, ninguno de sus amigos le dijo hola.",
+      "cat": "I quan hi va arribar, cap dels seus amics no li va dir hola.",
+      "eng": "And when she got there, none of her friends said hello."
+    },
+    {
+      "imagen": "12",
+      "esp": "Lara se sentó solita. Nadie se fijó en sus nuevas alas rojas.",
+      "cat": "La Lara es va asseure tota sola. Ningú no es va fixar en les seves ales vermelles noves.",
+      "eng": "Lara sat all alone. No one noticed her new red wings."
+    },
+    {
+      "imagen": "13",
+      "esp": "Hasta que la señorita Miya la vio y le dijo: —¡Te has pintado tus preciosas alas amarillas!",
+      "cat": "Fins que la senyoreta Miya la va veure i li va dir: —T'has pintat les teves ales grogues tan boniques!",
+      "eng": "Until Miss Miya spotted her and said: “You've painted your lovely yellow wings!”"
+    },
+    {
+      "imagen": "14",
+      "esp": "Sus compañeros se quedaron con la boca abierta.",
+      "cat": "Els seus companys es van quedar bocabadats.",
+      "eng": "Lara's classmates were shocked."
+    },
+    {
+      "imagen": null,
+      "esp": "—¡Tus alas son especiales! —¡Son únicas! —¡No hay otras iguales!",
+      "cat": "—Les teves ales són especials! —Són úniques! —No n'hi ha d'altres iguals!",
+      "eng": "“Your wings are special!” “So unique!” “So rare!”"
+    },
+    {
+      "imagen": "15",
+      "esp": "—Lara —dijo la señorita Miya—, tus alas amarillas son lo que te hace ser tú. Como la mancha de Sipho… y las patas de Sally.",
+      "cat": "—Lara —va dir la senyoreta Miya—, les teves ales grogues són el que et fa ser tu. Com la taca d'en Sipho… i les potes de la Sally.",
+      "eng": "“Lara,” Miss Miya said, “your yellow wings are what make you you. Like Sipho's spot… and Sally's legs.”"
+    },
+    {
+      "imagen": "16",
+      "esp": "Al volver a casa, Lara se dio un baño muy largo y se frotó hasta que sus alas doradas brillaron.",
+      "cat": "En tornar a casa, la Lara es va fer un bany molt llarg i es va fregar fins que les seves ales daurades van brillar.",
+      "eng": "Back home, Lara took a long bath and scrubbed until her golden wings gleamed."
+    },
+    {
+      "imagen": "17",
+      "esp": "«¡Nunca más volveré a pintarme las alas!», pensó. Bueno, quizá una o dos veces…",
+      "cat": "«No em tornaré a pintar mai més les ales!», va pensar. Bé, potser una o dues vegades…",
+      "eng": "“I'll never paint my wings again!” she thought. Except, maybe once or twice…"
+    },
+    {
+      "imagen": "18",
+      "esp": "Para probar un poco de morado… o algo bonito.",
+      "cat": "Per provar una mica de lila… o alguna cosa bonica.",
+      "eng": "To try a bit of purple… or something nice."
+    },
+    {
+      "imagen": "19",
+      "esp": "Pero no para siempre, solo para divertirse.",
+      "cat": "Però no per sempre, només per divertir-se.",
+      "eng": "But not for ever and just for fun."
+    },
+    {
+      "imagen": "20",
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}

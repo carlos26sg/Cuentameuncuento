@@ -30,6 +30,7 @@
         <item quantity="other">%d pàgines</item>
     </plurals>
     <string name="un_vistazo">Una ullada</string>
+    <string name="creditos">Crèdits</string>
     <string name="leer">Llegir</string>
     <string name="escuchar">Escoltar</string>
     <string name="seguir_por_pagina">Continuar per la pàgina %d</string>

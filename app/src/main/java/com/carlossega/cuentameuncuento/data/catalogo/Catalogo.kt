@@ -46,7 +46,9 @@ data class CuentoCatalogo(
     val portada: String,
     /** Número de ilustración → ruta */
     val ilustraciones: Map<String, String>,
-    val lineas: List<LineaCatalogo>
+    val lineas: List<LineaCatalogo>,
+    /** Autoría y licencia (obligatorio en los cuentos con licencia CC BY) */
+    val creditos: Map<String, String>? = null
 )
 
 /** Una línea en todos los idiomas a la vez: la traducción siempre va alineada */

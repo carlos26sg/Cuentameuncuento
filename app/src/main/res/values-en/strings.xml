@@ -28,6 +28,7 @@
         <item quantity="other">%d pages</item>
     </plurals>
     <string name="un_vistazo">A sneak peek</string>
+    <string name="creditos">Credits</string>
     <string name="leer">Read</string>
     <string name="escuchar">Listen</string>
     <string name="seguir_por_pagina">Continue from page %d</string>

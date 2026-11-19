@@ -73,6 +73,12 @@ def validar(carpeta: Path) -> dict:
             if not str(cuento.get(campo, {}).get(idioma, '')).strip():
                 raise ErrorContenido(f'{cid}: falta {campo} en {idioma}')
 
+    # Créditos (autoría y licencia): opcionales, pero si están, en los tres idiomas
+    if 'creditos' in cuento:
+        for idioma in IDIOMAS:
+            if not str(cuento['creditos'].get(idioma, '')).strip():
+                raise ErrorContenido(f'{cid}: faltan los créditos en {idioma}')
+
     lineas = cuento.get('lineas') or []
     if not lineas:
         raise ErrorContenido(f'{cid}: no tiene líneas')
@@ -125,7 +131,7 @@ def generar(cuentos: list, temporal: Path) -> dict:
         for numero in sorted({l['imagen'] for l in cuento['lineas'] if l.get('imagen')}, key=int):
             datos = a_webp(buscar_imagen(carpeta, f'img_{numero}'), ANCHO_MAX_ILUSTRACION, solo_ancho=True)
             ilustraciones[numero] = guardar_imagen(datos, cid, f'img_{numero}', temporal)
-        catalogo.append({
+        entrada = {
             'id': cid,
             'edad': cuento.get('edad'),
             'titulo': {i: cuento['titulo'][i].strip() for i in IDIOMAS},
@@ -136,7 +142,10 @@ def generar(cuentos: list, temporal: Path) -> dict:
                 {'imagen': l.get('imagen'), 'texto': {i: l[i].strip() for i in IDIOMAS}}
                 for l in cuento['lineas']
             ],
-        })
+        }
+        if 'creditos' in cuento:
+            entrada['creditos'] = {i: cuento['creditos'][i].strip() for i in IDIOMAS}
+        catalogo.append(entrada)
     contenido = json.dumps(catalogo, ensure_ascii=False, sort_keys=True)
     return {
         'formato': FORMATO,

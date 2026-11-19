@@ -266,6 +266,26 @@ private fun ColumnScope.Datos(estado: FichaUiState, horizontal: Boolean) {
             }
         }
     }
+    // Autoría y licencia: la licencia CC BY de los cuentos de StoryWeaver obliga a mostrarlas
+    cuento.creditos?.let { creditos ->
+        Spacer(Modifier.height(20.dp))
+        Text(
+            stringResource(R.string.creditos),
+            style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier
+                .align(Alignment.Start)
+                .semantics { heading() }
+        )
+        Spacer(Modifier.height(6.dp))
+        Text(
+            creditos,
+            style = MaterialTheme.typography.bodySmall,
+            color = Colores.tintaSuave,
+            modifier = Modifier
+                .widthIn(max = 560.dp)
+                .align(Alignment.Start)
+        )
+    }
     Spacer(Modifier.height(16.dp))
 }
 

@@ -1,0 +1,201 @@
+{
+  "id": "un_perro_llamado_shu",
+  "edad": 5,
+  "titulo": {
+    "esp": "Un perro llamado Shu",
+    "cat": "Un gos anomenat Xu",
+    "eng": "A dog called Shoo"
+  },
+  "descripcion": {
+    "esp": "«¡Shu!», le dice todo el mundo a la perrita marrón, y ella cree que es su nombre. Hasta que un niño decide compartir su almuerzo con ella…",
+    "cat": "«Xu!», li diu tothom a la gosseta marró, i ella es pensa que és el seu nom. Fins que un nen decideix compartir el dinar amb ella…",
+    "eng": "“Shoo!” everyone says to the little brown dog, so she thinks it is her name. Until a boy decides to share his lunch with her…"
+  },
+  "creditos": {
+    "esp": "Texto: Kavitha Punniyamurthi. Ilustraciones: Sarthak Sinha. Traducción al español: Susana Ramírez (CuenTale Cuentoteca digital). Original: «A Dog Called Shoo», publicado por Pratham Books en StoryWeaver con licencia CC BY 4.0. Texto en español revisado y traducciones al catalán y al inglés hechas para esta app a partir del español.",
+    "cat": "Text: Kavitha Punniyamurthi. Il·lustracions: Sarthak Sinha. Traducció al castellà: Susana Ramírez (CuenTale Cuentoteca digital). Original: «A Dog Called Shoo», publicat per Pratham Books a StoryWeaver amb llicència CC BY 4.0. Text en castellà revisat i traduccions al català i a l'anglès fetes per a aquesta app a partir del castellà.",
+    "eng": "Text: Kavitha Punniyamurthi. Illustrations: Sarthak Sinha. Spanish translation: Susana Ramírez (CuenTale Cuentoteca digital). Original: “A Dog Called Shoo”, published by Pratham Books on StoryWeaver under a CC BY 4.0 licence. Spanish text revised, and Catalan and English texts translated from the Spanish for this app."
+  },
+  "lineas": [
+    {
+      "imagen": "2",
+      "esp": "—¡Fuera! ¡Shuuu! —gritó un hombre en moto—. ¡Quítate de en medio!",
+      "cat": "—Fora! Xuuu! —va cridar un home amb moto—. Aparta't del mig!",
+      "eng": "“Shoo! Go away!” shouted a man on a scooter. “Get out of my way!”"
+    },
+    {
+      "imagen": null,
+      "esp": "—¡Shu! ¡Fuera! —chilló una madre—. Es un perro callejero, no lo toques.",
+      "cat": "—Xu! Fora! —va xisclar una mare—. És un gos del carrer, no el toquis.",
+      "eng": "“Shoo! Go away!” shrieked a mother. “It's a stray dog. Don't touch it.”"
+    },
+    {
+      "imagen": null,
+      "esp": "—¡Shu! ¡Shu! —exclamó el dueño de la cafetería—. No me asustes a los clientes.",
+      "cat": "—Xu! Xu! —va exclamar l'amo de la cafeteria—. No m'espantis els clients.",
+      "eng": "“Shoo! Shoo!” cried the café owner. “Don't scare my customers.”"
+    },
+    {
+      "imagen": "3",
+      "esp": "La perrita marrón se acurrucó en una esquina.",
+      "cat": "La gosseta marró es va arraulir en un racó.",
+      "eng": "The little brown dog curled up in a corner."
+    },
+    {
+      "imagen": null,
+      "esp": "Todos le decían siempre lo mismo: «¡Shu!». Así que empezó a pensar que ese era su nombre.",
+      "cat": "Tothom li deia sempre el mateix: «Xu!». Així que va començar a pensar que aquell era el seu nom.",
+      "eng": "Everyone always said the same thing: “Shoo!” So she began to think that was her name."
+    },
+    {
+      "imagen": "4",
+      "esp": "Shu no siempre había vivido en la calle. Antes vivía con una familia, y el niño de la casa siempre tenía rabietas.",
+      "cat": "La Xu no sempre havia viscut al carrer. Abans vivia amb una família, i el nen de la casa sempre feia rebequeries.",
+      "eng": "Shoo had not always lived on the street. Once, she lived with a family, and the boy threw tantrums all the time."
+    },
+    {
+      "imagen": "5",
+      "esp": "—¡Haz un truco! —¡Tráeme ese palo! —¡Dame la pata!",
+      "cat": "—Fes un truc! —Porta'm aquest pal! —Dona'm la pota!",
+      "eng": "“Do a trick!” “Fetch that stick!” “Give me your paw!”"
+    },
+    {
+      "imagen": null,
+      "esp": "Pero Shu no sabía hacer ningún truco. Tenía miedo.",
+      "cat": "Però la Xu no sabia fer cap truc. Tenia por.",
+      "eng": "But Shoo didn't know how to do any tricks. She was scared."
+    },
+    {
+      "imagen": "6",
+      "esp": "Muy pronto, el niño se cansó de Shu. Quería un juguete nuevo.",
+      "cat": "Ben aviat, el nen es va cansar de la Xu. Volia una joguina nova.",
+      "eng": "Soon the boy got tired of Shoo. He wanted a new toy."
+    },
+    {
+      "imagen": "7",
+      "esp": "Un día, el padre dejó a Shu en la parada del autobús y se fue en su coche.",
+      "cat": "Un dia, el pare va deixar la Xu a la parada de l'autobús i se'n va anar amb el cotxe.",
+      "eng": "One day, the father left Shoo at the bus stop and drove away in his car."
+    },
+    {
+      "imagen": null,
+      "esp": "Shu esperó y esperó, pero él nunca volvió.",
+      "cat": "La Xu va esperar i esperar, però ell no va tornar mai.",
+      "eng": "Shoo waited and waited, but he never came back."
+    },
+    {
+      "imagen": "8",
+      "esp": "La suciedad de la calle se le pegó al pelo y se lo enredó.",
+      "cat": "La brutícia del carrer se li va enganxar al pèl i l'hi va embullar.",
+      "eng": "The dirt of the streets stuck to Shoo's fur and tangled it."
+    },
+    {
+      "imagen": null,
+      "esp": "Poco a poco, Shu aprendió a buscar comida en los cubos de basura. Al principio hacía calor y todo estaba pegajoso.",
+      "cat": "A poc a poc, la Xu va aprendre a buscar menjar als contenidors. Al principi feia calor i tot era enganxós.",
+      "eng": "Little by little, Shoo learned to look for food in the rubbish bins. At first, it was hot and sticky."
+    },
+    {
+      "imagen": "9",
+      "esp": "Después llegaron la humedad y el frío. Hambrienta y helada, Shu se tumbó junto a un montón de basura.",
+      "cat": "Després van arribar la humitat i el fred. Afamada i glaçada, la Xu es va estirar al costat d'un munt d'escombraries.",
+      "eng": "Then it was wet and cold. Hungry and freezing, Shoo lay down next to a pile of rubbish."
+    },
+    {
+      "imagen": "10",
+      "esp": "Un día vio a Adit, que venía por la calle. Él se acercó y la miró.",
+      "cat": "Un dia va veure l'Adit, que venia pel carrer. Ell s'hi va acostar i la va mirar.",
+      "eng": "One day, she saw Adit walking down the street. He came closer and looked at Shoo."
+    },
+    {
+      "imagen": null,
+      "esp": "Sacó la fiambrera de su mochila del colegio. Todavía le quedaban unos idlis, unos panecillos de arroz.",
+      "cat": "Va treure la carmanyola de la motxilla de l'escola. Encara li quedaven uns idlis, uns panets d'arròs.",
+      "eng": "He took a lunch box out of his school bag. There were still a few idlis left, little rice cakes."
+    },
+    {
+      "imagen": "11",
+      "esp": "Desde entonces, Adit compartía cada día su comida con Shu.",
+      "cat": "Des d'aleshores, l'Adit compartia cada dia el seu menjar amb la Xu.",
+      "eng": "From then on, Adit shared his food with Shoo every day."
+    },
+    {
+      "imagen": null,
+      "esp": "Al principio, Shu era tímida: esperaba a que Adit se fuera para comer.",
+      "cat": "Al principi, la Xu era tímida: esperava que l'Adit se n'anés per menjar.",
+      "eng": "At first, Shoo was shy. She waited for Adit to leave before she ate."
+    },
+    {
+      "imagen": null,
+      "esp": "Pero pronto empezó a dar saltos de alegría y ladriditos en cuanto oía los zapatos de Adit. Tap, tap, tap.",
+      "cat": "Però aviat va començar a fer salts d'alegria i petits lladrucs tan bon punt sentia les sabates de l'Adit. Tap, tap, tap.",
+      "eng": "But soon she began to jump for joy and give little barks as soon as she heard Adit's shoes. Tap, tap, tap."
+    },
+    {
+      "imagen": "12",
+      "esp": "Un día, cuando Adit volvía a casa, Shu lo siguió.",
+      "cat": "Un dia, quan l'Adit tornava a casa, la Xu el va seguir.",
+      "eng": "One day, as Adit walked home, Shoo followed him."
+    },
+    {
+      "imagen": null,
+      "esp": "Cada vez que él miraba atrás, Shu se escondía detrás de una carretilla, de un árbol, de una moto…",
+      "cat": "Cada vegada que ell mirava enrere, la Xu s'amagava darrere d'un carretó, d'un arbre, d'una moto…",
+      "eng": "Every time he looked back, Shoo hid behind a cart, a tree, a scooter…"
+    },
+    {
+      "imagen": null,
+      "esp": "Adit se metió las manos en los bolsillos y siguió andando mientras silbaba.",
+      "cat": "L'Adit es va ficar les mans a les butxaques i va continuar caminant mentre xiulava.",
+      "eng": "Adit put his hands in his pockets and whistled as he walked."
+    },
+    {
+      "imagen": "13",
+      "esp": "Al llegar a casa, Adit dijo: —¡Papá, mira, tenemos una invitada! ¿Se puede quedar con nosotros?",
+      "cat": "En arribar a casa, l'Adit va dir: —Papa, mira, tenim una convidada! Es pot quedar amb nosaltres?",
+      "eng": "When he got home, Adit said: “Papa, look, we have a guest! Can she stay with us?”"
+    },
+    {
+      "imagen": "14",
+      "esp": "Shu seguía a Adit a todas partes. Se sentaba junto al baño mientras Adit cantaba en la ducha.",
+      "cat": "La Xu seguia l'Adit a tot arreu. S'asseia a la porta del bany mentre l'Adit cantava a la dutxa.",
+      "eng": "Shoo followed Adit everywhere. She sat outside the bathroom while Adit sang in the shower."
+    },
+    {
+      "imagen": null,
+      "esp": "Cuando Adit se iba al colegio, ella se tumbaba en la puerta de casa a esperarlo.",
+      "cat": "Quan l'Adit se n'anava a l'escola, ella s'estirava a la porta de casa a esperar-lo.",
+      "eng": "When Adit went to school, she lay by the front door, waiting for him."
+    },
+    {
+      "imagen": null,
+      "esp": "Shu estaba preocupada. ¿Y si Adit se marchaba? ¿Y si no volvía nunca?",
+      "cat": "La Xu estava preocupada. I si l'Adit marxava? I si no tornava mai més?",
+      "eng": "Shoo was worried. What if Adit went away? What if he never came back?"
+    },
+    {
+      "imagen": "15",
+      "esp": "Pasó un año volando. Shu y Adit se hicieron los mejores amigos, y Shu entendió que, aunque Adit se fuera, siempre volvería.",
+      "cat": "Va passar un any volant. La Xu i l'Adit es van fer els millors amics, i la Xu va entendre que, encara que l'Adit se n'anés, sempre tornaria.",
+      "eng": "A year flew by. Shoo and Adit became best friends, and Shoo understood that even if Adit went away, he would always come back."
+    },
+    {
+      "imagen": null,
+      "esp": "Ahora, Shu tiene un nombre de verdad.",
+      "cat": "Ara, la Xu té un nom de veritat.",
+      "eng": "Now, Shoo has a real name."
+    },
+    {
+      "imagen": "16",
+      "esp": "—¡Tofe, devuélveme el libro!",
+      "cat": "—Tofe, torna'm el llibre!",
+      "eng": "“Toffee, give me back my book!”"
+    },
+    {
+      "imagen": null,
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}

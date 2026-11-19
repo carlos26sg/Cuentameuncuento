@@ -1,0 +1,105 @@
+{
+  "id": "algo_debajo_de_mi_cama",
+  "edad": 3,
+  "titulo": {
+    "esp": "¡Hay algo debajo de mi cama!",
+    "cat": "Hi ha alguna cosa sota el meu llit!",
+    "eng": "Under my bed"
+  },
+  "descripcion": {
+    "esp": "Algunas noches pasan cosas raras debajo de la cama. ¿Quieres saber qué encontré la otra noche?",
+    "cat": "Algunes nits passen coses estranyes sota el llit. Vols saber què vaig trobar l'altra nit?",
+    "eng": "Sometimes strange things happen under my bed. Would you like to know what I found the other night?"
+  },
+  "creditos": {
+    "esp": "Texto: Anupa Lal. Ilustraciones: Suvidha Mistry. Traducción al español: Aboli Chowdhary. Original: «Under My Bed», publicado por Pratham Books en StoryWeaver con licencia CC BY 4.0. Texto en español revisado y traducción al catalán hechos para esta app.",
+    "cat": "Text: Anupa Lal. Il·lustracions: Suvidha Mistry. Traducció al castellà: Aboli Chowdhary. Original: «Under My Bed», publicat per Pratham Books a StoryWeaver amb llicència CC BY 4.0. Text en castellà revisat i traducció al català fets per a aquesta app.",
+    "eng": "Text: Anupa Lal. Illustrations: Suvidha Mistry. Spanish translation: Aboli Chowdhary. Original: “Under My Bed”, published by Pratham Books on StoryWeaver under a CC BY 4.0 licence. Spanish text revised and Catalan translation made for this app."
+  },
+  "lineas": [
+    {
+      "imagen": "2",
+      "esp": "Me despierto por la noche con mucha sed. Quiero beber un poco de agua.",
+      "cat": "Em desperto a la nit amb molta set. Vull beure una mica d'aigua.",
+      "eng": "I wake up at night feeling thirsty. I want to get some water."
+    },
+    {
+      "imagen": null,
+      "esp": "Empiezo a buscar mis zapatillas debajo de la cama y…",
+      "cat": "Començo a buscar les sabatilles sota el llit i…",
+      "eng": "I start looking for my slippers under the bed."
+    },
+    {
+      "imagen": "3",
+      "esp": "¡Madre mía! ¡Hay un tigre debajo de mi cama!",
+      "cat": "Mare meva! Hi ha un tigre sota el meu llit!",
+      "eng": "Oh my! There is a tiger under my bed."
+    },
+    {
+      "imagen": "4",
+      "esp": "Y ahora, ¿qué hago?",
+      "cat": "I ara, què faig?",
+      "eng": "Now what should I do?"
+    },
+    {
+      "imagen": "5",
+      "esp": "¿Llamo a mamá? ¿Y si el tigre ruge?",
+      "cat": "Crido la mama? I si el tigre rugeix?",
+      "eng": "Should I call Ma? What if the tiger roars?"
+    },
+    {
+      "imagen": "6",
+      "esp": "¿Me vuelvo a dormir? Pero ya no tengo sueño.",
+      "cat": "Torno a dormir? Però ja no tinc son.",
+      "eng": "Should I just go back to sleep? But I am not sleepy any more."
+    },
+    {
+      "imagen": "7",
+      "esp": "Justo entonces, alguien enciende la luz. Mamá está en la puerta.",
+      "cat": "Just aleshores, algú encén el llum. La mama és a la porta.",
+      "eng": "Then someone turns on the light. Ma is standing at the door."
+    },
+    {
+      "imagen": "8",
+      "esp": "—¿Qué pasa, cariño? ¿Me has llamado? —pregunta mamá.",
+      "cat": "—Què passa, carinyo? M'has cridat? —pregunta la mama.",
+      "eng": "“What happened, dear? Did you call me?” asks Ma."
+    },
+    {
+      "imagen": "9",
+      "esp": "Señalo al tigre. Mamá se agacha y… ¡saca al tigre de debajo de la cama!",
+      "cat": "Assenyalo el tigre. La mama s'ajup i… treu el tigre de sota el llit!",
+      "eng": "I point towards the tiger. Ma bends and pulls the tiger out from under the bed!"
+    },
+    {
+      "imagen": "10",
+      "esp": "¡Anda! Esto no es un tigre. Es mi abrigo gordo, amarillo y negro.",
+      "cat": "Vaja! Això no és un tigre. És el meu abric gruixut, groc i negre.",
+      "eng": "Hey, this is no tiger. This is my thick yellow and black sweater."
+    },
+    {
+      "imagen": null,
+      "esp": "Sus botones brillan como los ojos de un tigre.",
+      "cat": "Els botons brillen com els ulls d'un tigre.",
+      "eng": "Its buttons shine like a tiger's eyes."
+    },
+    {
+      "imagen": "11",
+      "esp": "¡Me he asustado por nada! Mamá me trae un poco de agua.",
+      "cat": "M'he espantat per res! La mama em porta una mica d'aigua.",
+      "eng": "I got scared for nothing! Ma gets me some water."
+    },
+    {
+      "imagen": "12",
+      "esp": "Ahora voy a dormir. ¡Y soñaré con tigres de verdad en la selva!",
+      "cat": "Ara dormiré. I somiaré amb tigres de veritat a la selva!",
+      "eng": "Now I will sleep. And dream about real tigers in a jungle!"
+    },
+    {
+      "imagen": null,
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}

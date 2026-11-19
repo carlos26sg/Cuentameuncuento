@@ -12,7 +12,9 @@ data class Cuento(
     val edad: Int? = null,
     val paginas: Int = 0,
     /** Tiempo aproximado contándolo en voz alta */
-    val minutos: Int = 0
+    val minutos: Int = 0,
+    /** Autoría y licencia, si el cuento las necesita */
+    val creditos: String? = null
 )
 
 /**

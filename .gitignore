@@ -28,3 +28,6 @@ scripts/serviceAccountKey.json
 scripts/backup_usuarios.json
 scripts/reporte_migracion.json
 scripts/node_modules/
+
+# PDF descargados de StoryWeaver (material de partida, no se sube)
+descargas/

@@ -32,6 +32,7 @@
         <item quantity="other">%d páginas</item>
     </plurals>
     <string name="un_vistazo">Un vistazo</string>
+    <string name="creditos">Créditos</string>
     <string name="leer">Leer</string>
     <string name="escuchar">Escuchar</string>
     <string name="seguir_por_pagina">Seguir por la página %d</string>

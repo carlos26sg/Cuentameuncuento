@@ -83,7 +83,8 @@ class CatalogoCuentoRepository @Inject constructor(
                     edad = cuento.edad,
                     paginas = cuento.lineas.size,
                     // Narrado despacio, con pausas entre frases: unas 90 palabras por minuto
-                    minutos = ((palabras + PALABRAS_POR_MINUTO - 1) / PALABRAS_POR_MINUTO).coerceAtLeast(1)
+                    minutos = ((palabras + PALABRAS_POR_MINUTO - 1) / PALABRAS_POR_MINUTO).coerceAtLeast(1),
+                    creditos = cuento.creditos?.get(idioma.codigo)?.takeIf { it.isNotBlank() }
                 )
             }
             // Orden alfabético del idioma: "Árbol" va antes que "Zorro"

@@ -1,0 +1,105 @@
+{
+  "id": "todo_es_culpa_del_gato",
+  "edad": 4,
+  "titulo": {
+    "esp": "Todo es culpa del gato",
+    "cat": "Tot és culpa del gat",
+    "eng": "It's all the cat's fault!"
+  },
+  "descripcion": {
+    "esp": "Un niño no ha hecho los deberes y tiene una explicación: una cosa llevó a otra, y a otra, y a otra…",
+    "cat": "Un nen no ha fet els deures i té una explicació: una cosa va portar a una altra, i a una altra, i a una altra…",
+    "eng": "A boy hasn't done his homework, and he has an explanation: one thing led to another, and another, and another…"
+  },
+  "creditos": {
+    "esp": "Texto: Anushka Ravishankar. Ilustraciones: Priya Kuriyan. Traducción al español: Patricia Cassoni. Original: «It's All the Cat's Fault!», publicado por StoryWeaver (Pratham Books) con licencia CC BY 4.0. Texto en español revisado y traducción al catalán hechos para esta app.",
+    "cat": "Text: Anushka Ravishankar. Il·lustracions: Priya Kuriyan. Traducció al castellà: Patricia Cassoni. Original: «It's All the Cat's Fault!», publicat per StoryWeaver (Pratham Books) amb llicència CC BY 4.0. Text en castellà revisat i traducció al català fets per a aquesta app.",
+    "eng": "Text: Anushka Ravishankar. Illustrations: Priya Kuriyan. Spanish translation: Patricia Cassoni. Original: “It's All the Cat's Fault!”, published by StoryWeaver (Pratham Books) under a CC BY 4.0 licence. Spanish text revised and Catalan translation made for this app."
+  },
+  "lineas": [
+    {
+      "imagen": "2",
+      "esp": "—¿Por qué no has hecho los deberes?",
+      "cat": "—Per què no has fet els deures?",
+      "eng": "Why haven't you done your homework?"
+    },
+    {
+      "imagen": null,
+      "esp": "—Señorita, todo es culpa del gato.",
+      "cat": "—Senyoreta, tot és culpa del gat.",
+      "eng": "Miss, it's all the cat's fault."
+    },
+    {
+      "imagen": "3",
+      "esp": "Si no se hubiera quedado atrapado en lo alto del árbol, yo no habría cogido la escalera para subir.",
+      "cat": "Si no s'hagués quedat atrapat dalt de l'arbre, jo no hauria agafat l'escala per pujar-hi.",
+      "eng": "If she had not got stuck on the tree, I would not have taken the ladder to climb it."
+    },
+    {
+      "imagen": "4",
+      "esp": "Si no hubiera cogido la escalera, no habría tenido que arreglarla.",
+      "cat": "Si no hagués agafat l'escala, no l'hauria hagut d'arreglar.",
+      "eng": "If I had not taken the ladder to climb it, I would not have needed to fix it."
+    },
+    {
+      "imagen": null,
+      "esp": "Y si no hubiera tenido que arreglarla, no habría despertado al bebé.",
+      "cat": "I si no l'hagués hagut d'arreglar, no hauria despertat el nadó.",
+      "eng": "If I had not needed to fix it, I wouldn't have woken up the baby."
+    },
+    {
+      "imagen": "5",
+      "esp": "Si no hubiera despertado al bebé, mi madre no habría salido corriendo de la cocina.",
+      "cat": "Si no hagués despertat el nadó, la meva mare no hauria sortit corrents de la cuina.",
+      "eng": "If I had not woken up the baby, my mother would not have rushed out of the kitchen."
+    },
+    {
+      "imagen": null,
+      "esp": "Y si mi madre no hubiera salido corriendo de la cocina, el mono no habría entrado.",
+      "cat": "I si la meva mare no hagués sortit corrents de la cuina, el mico no hauria entrat.",
+      "eng": "If my mother had not rushed out of the kitchen, the monkey would not have got in."
+    },
+    {
+      "imagen": "6",
+      "esp": "Si el mono no hubiera entrado, no se habría comido toda la comida.",
+      "cat": "Si el mico no hagués entrat, no s'hauria menjat tot el menjar.",
+      "eng": "If the monkey had not got in, he would not have eaten up all the food."
+    },
+    {
+      "imagen": null,
+      "esp": "Y si no se hubiera comido toda la comida, mi padre no habría ido a comprar pan y pollo al curry.",
+      "cat": "I si no s'hagués menjat tot el menjar, el meu pare no hauria anat a comprar pa i pollastre al curri.",
+      "eng": "If he had not eaten up all the food, my father would not have bought rotis and chicken curry at the tea-shop."
+    },
+    {
+      "imagen": "7",
+      "esp": "Si mi padre no hubiera comprado pan y pollo al curry, el perro no lo habría seguido hasta casa.",
+      "cat": "Si el meu pare no hagués comprat pa i pollastre al curri, el gos no l'hauria seguit fins a casa.",
+      "eng": "If my father had not bought rotis and chicken curry at the tea-shop, the dog would not have followed him home."
+    },
+    {
+      "imagen": "8",
+      "esp": "Si el perro no lo hubiera seguido hasta casa, no se habría comido mis deberes.",
+      "cat": "Si el gos no l'hagués seguit fins a casa, no s'hauria menjat els meus deures.",
+      "eng": "If the dog had not followed him home, he would not have eaten my homework."
+    },
+    {
+      "imagen": "9",
+      "esp": "—Entonces, ¿me estás diciendo que el perro se comió tus deberes?",
+      "cat": "—Aleshores, em dius que el gos es va menjar els teus deures?",
+      "eng": "So, you're saying the dog ate your homework?"
+    },
+    {
+      "imagen": "10",
+      "esp": "—¡Sí, señorita! ¡Todo es culpa del gato!",
+      "cat": "—Sí, senyoreta! Tot és culpa del gat!",
+      "eng": "Yes, Miss, it's all the cat's fault!"
+    },
+    {
+      "imagen": null,
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}
