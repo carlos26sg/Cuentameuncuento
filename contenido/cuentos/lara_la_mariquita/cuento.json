@@ -4,144 +4,240 @@
   "titulo": {
     "esp": "Lara, la mariquita amarilla",
     "cat": "La Lara, la marieta groga",
-    "eng": "Lara the yellow ladybird"
+    "eng": "Lara the yellow ladybird",
+    "fra": "Lara, la coccinelle jaune",
+    "deu": "Lara, der gelbe Marienkäfer",
+    "glg": "Lara, a xoaniña amarela",
+    "eus": "Lara, amona-mantangorri horia"
   },
   "descripcion": {
     "esp": "Una mariquita amarilla en un mundo de mariquitas rojas. Lara solo quiere ser como las demás… ¿o no?",
     "cat": "Una marieta groga en un món de marietes vermelles. La Lara només vol ser com les altres… o potser no?",
-    "eng": "A yellow bug in a world of red, Lara the Ladybird just wants to fit in."
+    "eng": "A yellow bug in a world of red, Lara the Ladybird just wants to fit in.",
+    "fra": "Une coccinelle jaune dans un monde de coccinelles rouges. Lara veut juste être comme les autres… ou pas ?",
+    "deu": "Ein gelber Käfer in einer roten Welt: Lara, der Marienkäfer, will einfach dazugehören.",
+    "glg": "Unha xoaniña amarela nun mundo de xoaniñas vermellas. Lara só quere ser coma as demais… ou non?",
+    "eus": "Amona-mantangorri hori bat, amona-mantangorri gorrien mundu batean. Lara besteak bezalakoa izan nahi du… edo ez?"
   },
   "creditos": {
     "esp": "Texto: Catherine Holtzhausen, Martha Evans y Nadene Kriel. Ilustraciones: Catherine Holtzhausen. Traducción al español: Keaton Partch. Original: «Lara the Yellow Ladybird», publicado por Book Dash en StoryWeaver con licencia CC BY 4.0. Texto en español revisado y traducción al catalán hechos para esta app.",
     "cat": "Text: Catherine Holtzhausen, Martha Evans i Nadene Kriel. Il·lustracions: Catherine Holtzhausen. Traducció al castellà: Keaton Partch. Original: «Lara the Yellow Ladybird», publicat per Book Dash a StoryWeaver amb llicència CC BY 4.0. Text en castellà revisat i traducció al català fets per a aquesta app.",
-    "eng": "Text: Catherine Holtzhausen, Martha Evans and Nadene Kriel. Illustrations: Catherine Holtzhausen. Spanish translation: Keaton Partch. Original: “Lara the Yellow Ladybird”, published by Book Dash on StoryWeaver under a CC BY 4.0 licence. Spanish text revised and Catalan translation made for this app."
+    "eng": "Text: Catherine Holtzhausen, Martha Evans and Nadene Kriel. Illustrations: Catherine Holtzhausen. Spanish translation: Keaton Partch. Original: “Lara the Yellow Ladybird”, published by Book Dash on StoryWeaver under a CC BY 4.0 licence. Spanish text revised and Catalan translation made for this app.",
+    "fra": "Texte : Catherine Holtzhausen, Martha Evans et Nadene Kriel. Illustrations : Catherine Holtzhausen. Original : « Lara the Yellow Ladybird », publié par Book Dash sur StoryWeaver sous licence CC BY 4.0. Traduction française réalisée pour cette app.",
+    "deu": "Text: Catherine Holtzhausen, Martha Evans und Nadene Kriel. Illustrationen: Catherine Holtzhausen. Original: „Lara the Yellow Ladybird“, veröffentlicht von Book Dash auf StoryWeaver unter der Lizenz CC BY 4.0. Deutsche Übersetzung für diese App.",
+    "glg": "Texto: Catherine Holtzhausen, Martha Evans e Nadene Kriel. Ilustracións: Catherine Holtzhausen. Orixinal: «Lara the Yellow Ladybird», publicado por Book Dash en StoryWeaver con licenza CC BY 4.0. Tradución ao galego feita para esta app.",
+    "eus": "Testua: Catherine Holtzhausen, Martha Evans eta Nadene Kriel. Irudiak: Catherine Holtzhausen. Jatorrizkoa: «Lara the Yellow Ladybird», Book Dashek StoryWeaverren argitaratua, CC BY 4.0 lizentziarekin. Euskarazko itzulpena aplikazio honetarako egina."
   },
   "lineas": [
     {
       "imagen": "2",
       "esp": "Lara, la mariquita, era un bichito especial.",
       "cat": "La Lara, la marieta, era un bitxet especial.",
-      "eng": "Lara the ladybird was a special bug."
+      "eng": "Lara the ladybird was a special bug.",
+      "fra": "Lara la coccinelle était une petite bête spéciale.",
+      "deu": "Lara, der Marienkäfer, war ein besonderer Käfer.",
+      "glg": "Lara, a xoaniña, era un bechiño especial.",
+      "eus": "Lara amona-mantangorria intsektu berezia zen."
     },
     {
       "imagen": "3",
       "esp": "A diferencia de todas sus amigas, tenía unas alas amarillas y brillantes.",
       "cat": "A diferència de totes les seves amigues, tenia unes ales grogues i brillants.",
-      "eng": "Unlike all her friends, she had bright yellow wings."
+      "eng": "Unlike all her friends, she had bright yellow wings.",
+      "fra": "Contrairement à toutes ses amies, elle avait des ailes jaunes et brillantes.",
+      "deu": "Anders als all ihre Freundinnen hatte sie leuchtend gelbe Flügel.",
+      "glg": "A diferenza de todas as súas amigas, tiña unhas ás amarelas e brillantes.",
+      "eus": "Bere lagun guztiek ez bezala, hego hori distiratsuak zituen."
     },
     {
       "imagen": "4",
       "esp": "A todo el mundo le encantaban sus alas amarillas.",
       "cat": "A tothom li encantaven les seves ales grogues.",
-      "eng": "Everyone loved her yellow wings."
+      "eng": "Everyone loved her yellow wings.",
+      "fra": "Tout le monde adorait ses ailes jaunes.",
+      "deu": "Alle liebten ihre gelben Flügel.",
+      "glg": "A todo o mundo lle encantaban as súas ás amarelas.",
+      "eus": "Mundu guztiari asko gustatzen zitzaizkion bere hego horiak."
     },
     {
       "imagen": "5",
       "esp": "Cada mañana, Bibi la mariposa le decía hola, y Manto la mantis siempre la saludaba con la mano.",
       "cat": "Cada matí, la Bibi, la papallona, li deia hola, i en Manto, el pregadéu, sempre la saludava amb la mà.",
-      "eng": "Each morning, Bibi Butterfly said hello. And Manto Mantis always waved."
+      "eng": "Each morning, Bibi Butterfly said hello. And Manto Mantis always waved.",
+      "fra": "Chaque matin, Bibi le papillon lui disait bonjour, et Manto la mante lui faisait toujours signe de la main.",
+      "deu": "Jeden Morgen sagte Bibi, der Schmetterling, Hallo, und Manto, die Gottesanbeterin, winkte immer.",
+      "glg": "Cada mañá, Bibi, a bolboreta, dicíalle ola, e Manto, a barbantesa, sempre a saudaba coa man.",
+      "eus": "Goizero, Bibi tximeletak kaixo esaten zion, eta Manto otoitzariak beti agurtzen zuen eskuarekin."
     },
     {
       "imagen": "6",
       "esp": "Incluso Sesa, la araña gruñona, se alegraba de verla.",
       "cat": "Fins i tot la Sesa, l'aranya rondinaire, s'alegrava de veure-la.",
-      "eng": "Even Sesa, the sulky spider, was happy to see her."
+      "eng": "Even Sesa, the sulky spider, was happy to see her.",
+      "fra": "Même Sesa, l'araignée grognon, était contente de la voir.",
+      "deu": "Sogar Sesa, die mürrische Spinne, freute sich, sie zu sehen.",
+      "glg": "Mesmo Sesa, a araña rosmona, se alegraba de vela.",
+      "eus": "Sesa armiarma muturtiak ere poza hartzen zuen ikusten zuenean."
     },
     {
       "imagen": "7",
       "esp": "En la escuela jugaba con muchos amigos.",
       "cat": "A l'escola jugava amb molts amics.",
-      "eng": "At school, she played with lots of friends."
+      "eng": "At school, she played with lots of friends.",
+      "fra": "À l'école, elle jouait avec plein d'amis.",
+      "deu": "In der Schule spielte sie mit vielen Freunden.",
+      "glg": "Na escola xogaba con moitos amigos.",
+      "eus": "Eskolan lagun askorekin jolasten zuen."
     },
     {
       "imagen": "8",
       "esp": "Pero Lara quería ser como las demás mariquitas.",
       "cat": "Però la Lara volia ser com les altres marietes.",
-      "eng": "But Lara wanted to be like the other ladybirds."
+      "eng": "But Lara wanted to be like the other ladybirds.",
+      "fra": "Mais Lara voulait être comme les autres coccinelles.",
+      "deu": "Aber Lara wollte so sein wie die anderen Marienkäfer.",
+      "glg": "Pero Lara quería ser coma as demais xoaniñas.",
+      "eus": "Baina Larak beste amona-mantangorriak bezalakoa izan nahi zuen."
     },
     {
       "imagen": null,
       "esp": "—¡Ojalá tuviera las alas rojas como tú, mamá! —lloraba.",
       "cat": "—Tant de bo tingués les ales vermelles com tu, mama! —plorava.",
-      "eng": "“I wish I had red wings like you, Mama,” she cried."
+      "eng": "“I wish I had red wings like you, Mama,” she cried.",
+      "fra": "— Si seulement j'avais des ailes rouges comme toi, maman ! pleurait-elle.",
+      "deu": "„Ich wünschte, ich hätte rote Flügel wie du, Mama!“, weinte sie.",
+      "glg": "—Oxalá tivese as ás vermellas coma ti, mamá! —choraba.",
+      "eus": "—Zuk bezala hego gorriak izango banitu, ama! —negar egiten zuen."
     },
     {
       "imagen": "9",
       "esp": "Así que un día, para animarla, su madre le pintó las alas de rojo brillante.",
       "cat": "Així que un dia, per animar-la, la seva mare li va pintar les ales de vermell brillant.",
-      "eng": "So one day, to cheer her up, Lara's mother painted her wings bright red."
+      "eng": "So one day, to cheer her up, Lara's mother painted her wings bright red.",
+      "fra": "Alors un jour, pour lui remonter le moral, sa maman peignit ses ailes en rouge vif.",
+      "deu": "Also malte ihre Mutter ihr eines Tages die Flügel leuchtend rot an, um sie aufzumuntern.",
+      "glg": "Así que un día, para animala, a súa nai pintoulle as ás de vermello brillante.",
+      "eus": "Beraz, egun batean, animatzeko, amak hegoak gorri distiratsuz margotu zizkion."
     },
     {
       "imagen": "10",
       "esp": "A la mañana siguiente, nadie saludó a Lara de camino a la escuela.",
       "cat": "L'endemà al matí, ningú no va saludar la Lara de camí a l'escola.",
-      "eng": "The next morning, nobody greeted Lara on her way to school."
+      "eng": "The next morning, nobody greeted Lara on her way to school.",
+      "fra": "Le lendemain matin, personne ne dit bonjour à Lara sur le chemin de l'école.",
+      "deu": "Am nächsten Morgen grüßte niemand Lara auf dem Weg zur Schule.",
+      "glg": "Á mañá seguinte, ninguén saudou a Lara de camiño á escola.",
+      "eus": "Hurrengo goizean, inork ez zion Larari agurrik egin eskolarako bidean."
     },
     {
       "imagen": "11",
       "esp": "Y cuando llegó, ninguno de sus amigos le dijo hola.",
       "cat": "I quan hi va arribar, cap dels seus amics no li va dir hola.",
-      "eng": "And when she got there, none of her friends said hello."
+      "eng": "And when she got there, none of her friends said hello.",
+      "fra": "Et quand elle arriva, aucun de ses amis ne lui dit bonjour.",
+      "deu": "Und als sie ankam, sagte keiner ihrer Freunde Hallo.",
+      "glg": "E cando chegou, ningún dos seus amigos lle dixo ola.",
+      "eus": "Eta iritsi zenean, bere lagunetako inork ez zion kaixo esan."
     },
     {
       "imagen": "12",
       "esp": "Lara se sentó solita. Nadie se fijó en sus nuevas alas rojas.",
       "cat": "La Lara es va asseure tota sola. Ningú no es va fixar en les seves ales vermelles noves.",
-      "eng": "Lara sat all alone. No one noticed her new red wings."
+      "eng": "Lara sat all alone. No one noticed her new red wings.",
+      "fra": "Lara s'assit toute seule. Personne ne remarqua ses nouvelles ailes rouges.",
+      "deu": "Lara saß ganz allein. Niemand bemerkte ihre neuen roten Flügel.",
+      "glg": "Lara sentou soíña. Ninguén se fixou nas súas novas ás vermellas.",
+      "eus": "Lara bakar-bakarrik eseri zen. Inor ez zen konturatu bere hego gorri berriez."
     },
     {
       "imagen": "13",
       "esp": "Hasta que la señorita Miya la vio y le dijo: —¡Te has pintado tus preciosas alas amarillas!",
       "cat": "Fins que la senyoreta Miya la va veure i li va dir: —T'has pintat les teves ales grogues tan boniques!",
-      "eng": "Until Miss Miya spotted her and said: “You've painted your lovely yellow wings!”"
+      "eng": "Until Miss Miya spotted her and said: “You've painted your lovely yellow wings!”",
+      "fra": "Jusqu'à ce que Mademoiselle Miya la voie et lui dise : — Tu as peint tes jolies ailes jaunes !",
+      "deu": "Bis Fräulein Miya sie entdeckte und sagte: „Du hast deine schönen gelben Flügel angemalt!“",
+      "glg": "Ata que a señorita Miya a viu e lle dixo: —Pintaches as túas preciosas ás amarelas!",
+      "eus": "Miya andereñoak ikusi eta esan zion arte: —Zure hego hori politak margotu dituzu!"
     },
     {
       "imagen": "14",
       "esp": "Sus compañeros se quedaron con la boca abierta.",
       "cat": "Els seus companys es van quedar bocabadats.",
-      "eng": "Lara's classmates were shocked."
+      "eng": "Lara's classmates were shocked.",
+      "fra": "Ses camarades restèrent bouche bée.",
+      "deu": "Ihre Mitschüler staunten.",
+      "glg": "Os seus compañeiros quedaron coa boca aberta.",
+      "eus": "Ikaskideak ahoa zabalik geratu ziren."
     },
     {
       "imagen": null,
       "esp": "—¡Tus alas son especiales! —¡Son únicas! —¡No hay otras iguales!",
       "cat": "—Les teves ales són especials! —Són úniques! —No n'hi ha d'altres iguals!",
-      "eng": "“Your wings are special!” “So unique!” “So rare!”"
+      "eng": "“Your wings are special!” “So unique!” “So rare!”",
+      "fra": "— Tes ailes sont spéciales ! — Elles sont uniques ! — Il n'y en a pas d'autres comme elles !",
+      "deu": "„Deine Flügel sind besonders!“ – „So einzigartig!“ – „So selten!“",
+      "glg": "—As túas ás son especiais! —Son únicas! —Non hai outras iguais!",
+      "eus": "—Zure hegoak bereziak dira! —Bakarrak dira! —Ez dago beste batzuk berdinik!"
     },
     {
       "imagen": "15",
       "esp": "—Lara —dijo la señorita Miya—, tus alas amarillas son lo que te hace ser tú. Como la mancha de Sipho… y las patas de Sally.",
       "cat": "—Lara —va dir la senyoreta Miya—, les teves ales grogues són el que et fa ser tu. Com la taca d'en Sipho… i les potes de la Sally.",
-      "eng": "“Lara,” Miss Miya said, “your yellow wings are what make you you. Like Sipho's spot… and Sally's legs.”"
+      "eng": "“Lara,” Miss Miya said, “your yellow wings are what make you you. Like Sipho's spot… and Sally's legs.”",
+      "fra": "— Lara, dit Mademoiselle Miya, tes ailes jaunes, c'est ce qui fait que tu es toi. Comme la tache de Sipho… et les pattes de Sally.",
+      "deu": "„Lara“, sagte Fräulein Miya, „deine gelben Flügel machen dich zu dem, was du bist. Wie Siphos Fleck… und Sallys Beine.“",
+      "glg": "—Lara —dixo a señorita Miya—, as túas ás amarelas son o que te fai ser ti. Coma a mancha de Sipho… e as patas de Sally.",
+      "eus": "—Lara —esan zuen Miya andereñoak—, zure hego horiek egiten zaituzte zu zaren bezalakoa. Siphoren orbana… eta Sallyren hankak bezala."
     },
     {
       "imagen": "16",
       "esp": "Al volver a casa, Lara se dio un baño muy largo y se frotó hasta que sus alas doradas brillaron.",
       "cat": "En tornar a casa, la Lara es va fer un bany molt llarg i es va fregar fins que les seves ales daurades van brillar.",
-      "eng": "Back home, Lara took a long bath and scrubbed until her golden wings gleamed."
+      "eng": "Back home, Lara took a long bath and scrubbed until her golden wings gleamed.",
+      "fra": "De retour à la maison, Lara prit un très long bain et frotta jusqu'à ce que ses ailes dorées brillent.",
+      "deu": "Zu Hause nahm Lara ein langes Bad und schrubbte, bis ihre goldenen Flügel glänzten.",
+      "glg": "Ao volver a casa, Lara deu un baño moi longo e fregou ata que as súas ás douradas brillaron.",
+      "eus": "Etxera itzultzean, Larak bainu luze-luzea hartu zuen, eta igurtzi egin zuen bere hego urrekoloreek distira egin zuten arte."
     },
     {
       "imagen": "17",
       "esp": "«¡Nunca más volveré a pintarme las alas!», pensó. Bueno, quizá una o dos veces…",
       "cat": "«No em tornaré a pintar mai més les ales!», va pensar. Bé, potser una o dues vegades…",
-      "eng": "“I'll never paint my wings again!” she thought. Except, maybe once or twice…"
+      "eng": "“I'll never paint my wings again!” she thought. Except, maybe once or twice…",
+      "fra": "« Je ne peindrai plus jamais mes ailes ! » pensa-t-elle. Enfin, peut-être une ou deux fois…",
+      "deu": "„Ich male meine Flügel nie wieder an!“, dachte sie. Na ja, vielleicht ein- oder zweimal…",
+      "glg": "«Nunca máis volverei pintar as ás!», pensou. Bo, quizais unha ou dúas veces…",
+      "eus": "«Ez ditut sekula berriro hegoak margotuko!», pentsatu zuen. Beno, agian behin edo birritan…"
     },
     {
       "imagen": "18",
       "esp": "Para probar un poco de morado… o algo bonito.",
       "cat": "Per provar una mica de lila… o alguna cosa bonica.",
-      "eng": "To try a bit of purple… or something nice."
+      "eng": "To try a bit of purple… or something nice.",
+      "fra": "Pour essayer un peu de violet… ou quelque chose de joli.",
+      "deu": "Um ein bisschen Lila auszuprobieren… oder etwas Schönes.",
+      "glg": "Para probar un pouco de morado… ou algo bonito.",
+      "eus": "Pixka bat morea probatzeko… edo zerbait polita."
     },
     {
       "imagen": "19",
       "esp": "Pero no para siempre, solo para divertirse.",
       "cat": "Però no per sempre, només per divertir-se.",
-      "eng": "But not for ever and just for fun."
+      "eng": "But not for ever and just for fun.",
+      "fra": "Mais pas pour toujours, juste pour s'amuser.",
+      "deu": "Aber nicht für immer, nur zum Spaß.",
+      "glg": "Pero non para sempre, só para divertirse.",
+      "eus": "Baina ez betiko, jolasteko bakarrik."
     },
     {
       "imagen": "20",
       "esp": "FIN",
       "cat": "FI",
-      "eng": "THE END"
+      "eng": "THE END",
+      "fra": "FIN",
+      "deu": "ENDE",
+      "glg": "FIN",
+      "eus": "AMAIERA"
     }
   ]
 }

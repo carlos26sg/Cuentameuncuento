@@ -25,11 +25,11 @@ data class LineaCuento(
     val texto: String,
     val imagen: String?
 ) {
-    /** La última línea de cada cuento es "FIN", "FI" o "THE END" según el idioma */
+    /** La última línea de cada cuento es "FIN", "FI", "THE END"… según el idioma */
     val esFinal: Boolean
         get() = texto.trim().uppercase() in MARCAS_FINAL
 
     private companion object {
-        val MARCAS_FINAL = setOf("FIN", "FI", "THE END")
+        val MARCAS_FINAL = setOf("FIN", "FI", "THE END", "ENDE", "AMAIERA")
     }
 }

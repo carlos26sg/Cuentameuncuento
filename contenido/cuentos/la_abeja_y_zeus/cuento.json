@@ -4,126 +4,210 @@
   "titulo": {
     "esp": "La abeja y Zeus",
     "cat": "L'abella i Zeus",
-    "eng": "The bee and Zeus"
+    "eng": "The bee and Zeus",
+    "fra": "L'abeille et Zeus",
+    "deu": "Die Biene und Zeus",
+    "glg": "A abella e Zeus",
+    "eus": "Erlea eta Zeus"
   },
   "descripcion": {
     "esp": "Una abeja reina sube al Olimpo con su mejor miel para la boda de Zeus. A cambio, le pide un deseo… ¿Por qué pican las abejas?",
     "cat": "Una abella reina puja a l'Olimp amb la seva millor mel per al casament de Zeus. A canvi, li demana un desig… Per què piquen les abelles?",
-    "eng": "A queen bee flies up to Mount Olympus with her best honey for Zeus's wedding. In return, she asks for a wish… Why do bees sting?"
+    "eng": "A queen bee flies up to Mount Olympus with her best honey for Zeus's wedding. In return, she asks for a wish… Why do bees sting?",
+    "fra": "Une reine des abeilles monte sur l'Olympe avec son meilleur miel pour le mariage de Zeus. En échange, elle lui demande un vœu… Pourquoi les abeilles piquent-elles ?",
+    "deu": "Eine Bienenkönigin fliegt mit ihrem besten Honig zur Hochzeit von Zeus auf den Olymp. Dafür bittet sie um einen Wunsch… Warum stechen Bienen?",
+    "glg": "Unha abella raíña sobe ao Olimpo co seu mellor mel para a voda de Zeus. A cambio, pídelle un desexo… Por que pican as abellas?",
+    "eus": "Erle erregina bat Olinpora igotzen da bere eztirik onenarekin, Zeusen ezkontzarako. Truke, desio bat eskatzen dio… Zergatik egiten dute ziztada erleek?"
   },
   "creditos": {
     "esp": "Basado en la fábula de Esopo «La abeja y Zeus», de dominio público. Texto e ilustraciones hechos para esta app.",
     "cat": "Basat en la faula d'Isop «L'abella i Zeus», de domini públic. Text i il·lustracions fets per a aquesta app.",
-    "eng": "Based on Aesop's fable “The Bee and Jupiter”, in the public domain. Text and illustrations made for this app."
+    "eng": "Based on Aesop's fable “The Bee and Jupiter”, in the public domain. Text and illustrations made for this app.",
+    "fra": "D'après la fable d'Ésope « L'Abeille et Jupiter », dans le domaine public. Texte et illustrations réalisés pour cette app.",
+    "deu": "Nach der Fabel „Die Biene und Jupiter“ von Äsop, gemeinfrei. Text und Illustrationen für diese App erstellt.",
+    "glg": "Baseado na fábula de Esopo «A abella e Xúpiter», de dominio público. Texto e ilustracións feitos para esta app.",
+    "eus": "Esoporen «Erlea eta Jupiter» alegian oinarritua, jabari publikokoa. Testua eta irudiak aplikazio honetarako eginak."
   },
   "lineas": [
     {
       "imagen": "1",
       "esp": "En lo alto del monte Himeto, entre tomillo y flores, vivía una abeja reina con su colmena.",
       "cat": "Dalt de la muntanya Himet, entre farigola i flors, vivia una abella reina amb el seu rusc.",
-      "eng": "High up on Mount Hymettus, among thyme and flowers, lived a queen bee and her hive."
+      "eng": "High up on Mount Hymettus, among thyme and flowers, lived a queen bee and her hive.",
+      "fra": "Tout en haut du mont Hymette, parmi le thym et les fleurs, vivait une reine des abeilles avec sa ruche.",
+      "deu": "Hoch oben auf dem Berg Hymettos, zwischen Thymian und Blumen, lebte eine Bienenkönigin mit ihrem Bienenstock.",
+      "glg": "No alto do monte Himeto, entre tomiño e flores, vivía unha abella raíña coa súa colmea.",
+      "eus": "Himeto mendiaren goialdean, ezkai eta loreen artean, erle erregina bat bizi zen bere erlauntzarekin."
     },
     {
       "imagen": null,
       "esp": "Sus abejas hacían la miel más dorada y más dulce de toda Grecia.",
       "cat": "Les seves abelles feien la mel més daurada i més dolça de tota Grècia.",
-      "eng": "Her bees made the most golden, sweetest honey in all of Greece."
+      "eng": "Her bees made the most golden, sweetest honey in all of Greece.",
+      "fra": "Ses abeilles faisaient le miel le plus doré et le plus doux de toute la Grèce.",
+      "deu": "Ihre Bienen machten den goldensten und süßesten Honig in ganz Griechenland.",
+      "glg": "As súas abellas facían o mel máis dourado e máis doce de toda Grecia.",
+      "eus": "Bere erleek Grezia osoko eztirik urrekoloreena eta gozoena egiten zuten."
     },
     {
       "imagen": "2",
       "esp": "Pero cada dos por tres alguien se llevaba su miel: un oso goloso, un pastor con su cuchara…",
       "cat": "Però cada dos per tres algú s'enduia la seva mel: un ós llaminer, un pastor amb la seva cullera…",
-      "eng": "But every so often someone took their honey: a greedy bear, a shepherd with his spoon…"
+      "eng": "But every so often someone took their honey: a greedy bear, a shepherd with his spoon…",
+      "fra": "Mais très souvent, quelqu'un venait voler leur miel : un ours gourmand, un berger avec sa cuillère…",
+      "deu": "Aber immer wieder nahm ihnen jemand den Honig weg: ein naschhafter Bär, ein Hirte mit seinem Löffel…",
+      "glg": "Pero cada dous por tres alguén lles levaba o mel: un oso lambón, un pastor coa súa culler…",
+      "eus": "Baina sarritan norbaitek eztia eramaten zien: hartz litxarreru batek, artzain batek bere koilararekin…"
     },
     {
       "imagen": null,
       "esp": "—¡Con lo que nos cuesta hacerla! —suspiraba la reina.",
       "cat": "—Amb el que ens costa fer-la! —sospirava la reina.",
-      "eng": "“And it takes us so long to make it!” sighed the queen."
+      "eng": "“And it takes us so long to make it!” sighed the queen.",
+      "fra": "— Avec tout le mal qu'on se donne pour le faire ! soupirait la reine.",
+      "deu": "„Dabei ist es so viel Arbeit, ihn zu machen!“, seufzte die Königin.",
+      "glg": "—Co que nos custa facelo! —suspiraba a raíña.",
+      "eus": "—Egiteak hainbeste kostatzen digunean! —egiten zuen hasperen erreginak."
     },
     {
       "imagen": "3",
       "esp": "Un día supo que Zeus, el rey de los dioses, celebraba su boda con Hera en el monte Olimpo.",
       "cat": "Un dia va saber que Zeus, el rei dels déus, celebrava el seu casament amb Hera a la muntanya de l'Olimp.",
-      "eng": "One day she heard that Zeus, the king of the gods, was celebrating his wedding to Hera on Mount Olympus."
+      "eng": "One day she heard that Zeus, the king of the gods, was celebrating his wedding to Hera on Mount Olympus.",
+      "fra": "Un jour, elle apprit que Zeus, le roi des dieux, fêtait son mariage avec Héra sur le mont Olympe.",
+      "deu": "Eines Tages hörte sie, dass Zeus, der König der Götter, auf dem Olymp Hochzeit mit Hera feierte.",
+      "glg": "Un día soubo que Zeus, o rei dos deuses, celebraba a súa voda con Hera no monte Olimpo.",
+      "eus": "Egun batean jakin zuen Zeus, jainkoen erregea, Herarekin ezkontzen ari zela Olinpo mendian."
     },
     {
       "imagen": null,
       "esp": "«Le llevaré mi mejor miel», pensó. «Quizá así me ayude.» Y voló y voló, más alto que las nubes.",
       "cat": "«Li portaré la meva millor mel», va pensar. «Potser així m'ajudarà.» I va volar i volar, més amunt que els núvols.",
-      "eng": "“I'll take him my best honey,” she thought. “Maybe then he'll help me.” And she flew and flew, higher than the clouds."
+      "eng": "“I'll take him my best honey,” she thought. “Maybe then he'll help me.” And she flew and flew, higher than the clouds.",
+      "fra": "« Je vais lui apporter mon meilleur miel, pensa-t-elle. Peut-être qu'il m'aidera. » Et elle vola, vola, plus haut que les nuages.",
+      "deu": "„Ich bringe ihm meinen besten Honig“, dachte sie. „Vielleicht hilft er mir dann.“ Und sie flog und flog, höher als die Wolken.",
+      "glg": "«Levareille o meu mellor mel», pensou. «Quizais así me axude.» E voou e voou, máis alto que as nubes.",
+      "eus": "«Nire eztirik onena eramango diot», pentsatu zuen. «Agian horrela lagunduko dit.» Eta hegan eta hegan egin zuen, hodeiak baino gorago."
     },
     {
       "imagen": "4",
       "esp": "En el banquete había uvas, higos y ánforas de néctar. Pero cuando los dioses probaron la miel…",
       "cat": "Al banquet hi havia raïm, figues i àmfores de nèctar. Però quan els déus van tastar la mel…",
-      "eng": "At the feast there were grapes, figs and jars of nectar. But when the gods tasted the honey…"
+      "eng": "At the feast there were grapes, figs and jars of nectar. But when the gods tasted the honey…",
+      "fra": "Au banquet, il y avait du raisin, des figues et des amphores de nectar. Mais quand les dieux goûtèrent le miel…",
+      "deu": "Beim Festmahl gab es Trauben, Feigen und Krüge voller Nektar. Aber als die Götter den Honig probierten…",
+      "glg": "No banquete había uvas, figos e ánforas de néctar. Pero cando os deuses probaron o mel…",
+      "eus": "Oturuntzan mahatsak, pikuak eta nektarrez betetako anforak zeuden. Baina jainkoek eztia dastatu zutenean…"
     },
     {
       "imagen": null,
       "esp": "—¡Qué maravilla! —dijo Zeus—. Es el mejor regalo de mi boda. Pídeme lo que quieras.",
       "cat": "—Quina meravella! —va dir Zeus—. És el millor regal del meu casament. Demana'm el que vulguis.",
-      "eng": "“How wonderful!” said Zeus. “It's the best wedding present of all. Ask me for anything you like.”"
+      "eng": "“How wonderful!” said Zeus. “It's the best wedding present of all. Ask me for anything you like.”",
+      "fra": "— Quelle merveille ! dit Zeus. C'est le plus beau cadeau de mon mariage. Demande-moi ce que tu veux.",
+      "deu": "„Wie wunderbar!“, sagte Zeus. „Das ist das schönste Hochzeitsgeschenk. Wünsch dir, was du willst.“",
+      "glg": "—Que marabilla! —dixo Zeus—. É o mellor regalo da miña voda. Pídeme o que queiras.",
+      "eus": "—Zer nolako zoragarritasuna! —esan zuen Zeusek—. Nire ezkontzako oparirik onena da. Eskatu nahi duzuna."
     },
     {
       "imagen": "5",
       "esp": "La reina zumbó muy seria:",
       "cat": "La reina va brunzir molt seriosa:",
-      "eng": "The queen buzzed very seriously:"
+      "eng": "The queen buzzed very seriously:",
+      "fra": "La reine bourdonna, très sérieuse :",
+      "deu": "Die Königin summte sehr ernst:",
+      "glg": "A raíña zumbou moi seria:",
+      "eus": "Erreginak oso serio egin zuen burrunba:"
     },
     {
       "imagen": null,
       "esp": "—Dame un aguijón que pique fuerte, para que nadie vuelva a llevarse nuestra miel.",
       "cat": "—Dona'm un fibló que piqui fort, perquè ningú no torni a endur-se la nostra mel.",
-      "eng": "“Give me a sting that hurts, so that nobody ever takes our honey again.”"
+      "eng": "“Give me a sting that hurts, so that nobody ever takes our honey again.”",
+      "fra": "— Donne-moi un dard qui pique fort, pour que plus personne ne vienne voler notre miel.",
+      "deu": "„Gib mir einen Stachel, der richtig wehtut, damit uns nie wieder jemand den Honig wegnimmt.“",
+      "glg": "—Dáme un aguillón que pique forte, para que ninguén volva levar o noso mel.",
+      "eus": "—Emadazu gogor ziztatzen duen eztena bat, inork gure eztia berriro eraman ez dezan."
     },
     {
       "imagen": "6",
       "esp": "A Zeus no le gustó nada aquel deseo: no quería que nadie hiciera daño a nadie.",
       "cat": "A Zeus no li va agradar gens aquell desig: no volia que ningú fes mal a ningú.",
-      "eng": "Zeus did not like that wish at all: he did not want anyone to hurt anyone."
+      "eng": "Zeus did not like that wish at all: he did not want anyone to hurt anyone.",
+      "fra": "Ce vœu ne plut pas du tout à Zeus : il ne voulait pas que l'on fasse du mal aux autres.",
+      "deu": "Dieser Wunsch gefiel Zeus gar nicht: Er wollte nicht, dass jemand anderen wehtut.",
+      "glg": "A Zeus non lle gustou nada aquel desexo: non quería que ninguén lle fixese dano a ninguén.",
+      "eus": "Zeusi ez zitzaion batere gustatu desio hura: ez zuen nahi inork inori minik egitea."
     },
     {
       "imagen": null,
       "esp": "Pero lo había prometido, y un rey cumple sus promesas.",
       "cat": "Però ho havia promès, i un rei compleix les seves promeses.",
-      "eng": "But he had promised, and a king keeps his promises."
+      "eng": "But he had promised, and a king keeps his promises.",
+      "fra": "Mais il l'avait promis, et un roi tient toujours ses promesses.",
+      "deu": "Aber er hatte es versprochen, und ein König hält seine Versprechen.",
+      "glg": "Pero prometérao, e un rei cumpre as súas promesas.",
+      "eus": "Baina agindua zuen, eta errege batek bere hitzak betetzen ditu."
     },
     {
       "imagen": null,
       "esp": "—Tendrás tu aguijón —dijo—, pero úsalo solo si no hay otro remedio: la abeja que pica pierde su aguijón y ya no vuelve a casa.",
       "cat": "—Tindràs el teu fibló —va dir—, però fes-lo servir només si no hi ha cap altre remei: l'abella que pica perd el fibló i ja no torna a casa.",
-      "eng": "“You shall have your sting,” he said, “but only use it if there is no other way: a bee that stings loses its sting and never comes home again.”"
+      "eng": "“You shall have your sting,” he said, “but only use it if there is no other way: a bee that stings loses its sting and never comes home again.”",
+      "fra": "— Tu auras ton dard, dit-il, mais ne t'en sers que s'il n'y a pas d'autre solution : l'abeille qui pique perd son dard et ne rentre plus jamais chez elle.",
+      "deu": "„Du sollst deinen Stachel bekommen“, sagte er, „aber benutze ihn nur, wenn es nicht anders geht: Eine Biene, die sticht, verliert ihren Stachel und kommt nie wieder nach Hause.“",
+      "glg": "—Terás o teu aguillón —dixo—, pero úsao só se non hai outro remedio: a abella que pica perde o aguillón e xa non volve á casa.",
+      "eus": "—Izango duzu zure eztena —esan zuen—, baina erabili beste erremediorik ez dagoenean bakarrik: ziztada egiten duen erleak eztena galtzen du, eta ez da inoiz etxera itzultzen."
     },
     {
       "imagen": "7",
       "esp": "La reina volvió al Himeto pensativa y les contó a sus abejas lo que había dicho Zeus.",
       "cat": "La reina va tornar a l'Himet pensativa i va explicar a les seves abelles el que havia dit Zeus.",
-      "eng": "The queen flew back to Hymettus, deep in thought, and told her bees what Zeus had said."
+      "eng": "The queen flew back to Hymettus, deep in thought, and told her bees what Zeus had said.",
+      "fra": "La reine retourna sur le mont Hymette, pensive, et raconta à ses abeilles ce que Zeus avait dit.",
+      "deu": "Nachdenklich flog die Königin zurück zum Hymettos und erzählte ihren Bienen, was Zeus gesagt hatte.",
+      "glg": "A raíña volveu ao Himeto pensativa e contoulles ás súas abellas o que dixera Zeus.",
+      "eus": "Erregina pentsakor itzuli zen Himetora, eta Zeusek esandakoa kontatu zien bere erleei."
     },
     {
       "imagen": null,
       "esp": "Desde entonces, las abejas solo pican cuando tienen mucho miedo.",
       "cat": "Des d'aleshores, les abelles només piquen quan tenen molta por.",
-      "eng": "Ever since then, bees only sting when they are very frightened."
+      "eng": "Ever since then, bees only sting when they are very frightened.",
+      "fra": "Depuis ce jour, les abeilles ne piquent que lorsqu'elles ont très peur.",
+      "deu": "Seitdem stechen Bienen nur, wenn sie große Angst haben.",
+      "glg": "Desde entón, as abellas só pican cando teñen moito medo.",
+      "eus": "Harrezkero, erleek beldur handia dutenean bakarrik egiten dute ziztada."
     },
     {
       "imagen": null,
       "esp": "Y si las dejas tranquilas, siguen haciendo la miel más dulce del mundo.",
       "cat": "I si les deixes tranquil·les, continuen fent la mel més dolça del món.",
-      "eng": "And if you leave them in peace, they keep on making the sweetest honey in the world."
+      "eng": "And if you leave them in peace, they keep on making the sweetest honey in the world.",
+      "fra": "Et si on les laisse tranquilles, elles continuent à faire le miel le plus doux du monde.",
+      "deu": "Und wenn man sie in Ruhe lässt, machen sie weiter den süßesten Honig der Welt.",
+      "glg": "E se as deixas tranquilas, seguen facendo o mel máis doce do mundo.",
+      "eus": "Eta lasai uzten badituzu, munduko eztirik gozoena egiten jarraitzen dute."
     },
     {
       "imagen": null,
       "esp": "Porque quien desea mal a los demás, muchas veces se lo hace a sí mismo.",
       "cat": "Perquè qui desitja mal als altres, moltes vegades se'l fa a si mateix.",
-      "eng": "Because those who wish harm on others often end up harming themselves."
+      "eng": "Because those who wish harm on others often end up harming themselves.",
+      "fra": "Car celui qui veut du mal aux autres finit souvent par s'en faire à lui-même.",
+      "deu": "Denn wer anderen Böses wünscht, schadet oft sich selbst.",
+      "glg": "Porque quen lles desexa mal aos demais, moitas veces faise mal a si mesmo.",
+      "eus": "Besteei kalte egin nahi dienak, askotan bere buruari egiten baitio kalte."
     },
     {
       "imagen": null,
       "esp": "FIN",
       "cat": "FI",
-      "eng": "THE END"
+      "eng": "THE END",
+      "fra": "FIN",
+      "deu": "ENDE",
+      "glg": "FIN",
+      "eus": "AMAIERA"
     }
   ]
 }

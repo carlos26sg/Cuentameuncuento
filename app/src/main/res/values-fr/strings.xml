@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Comunes -->
+    <string name="ajustes">Réglages</string>
+    <string name="atras">Retour</string>
+    <string name="cerrar">Fermer</string>
+    <string name="reintentar">Réessayer</string>
+
+    <!-- Biblioteca -->
+    <string name="idioma_cuentos">Langue des histoires</string>
+    <string name="todos_los_cuentos">Toutes les histoires</string>
+    <plurals name="n_cuentos">
+        <item quantity="one">%d histoire</item>
+        <item quantity="many">%d histoires</item>
+        <item quantity="other">%d histoires</item>
+    </plurals>
+    <string name="seguir_leyendo">Continuer la lecture</string>
+    <string name="seguir_con">Continuer « %1$s »</string>
+    <string name="sin_cuentos">Il n\'y a pas encore d\'histoires dans cette langue</string>
+    <string name="error_cargar_cuentos">Impossible de charger les histoires</string>
+    <string name="anadir_favorito">Ajouter aux favoris</string>
+    <string name="quitar_favorito">Retirer des favoris</string>
+    <string name="edad">%d ans et +</string>
+    <string name="minutos">≈ %d min</string>
+
+    <!-- Ficha del cuento -->
+    <plurals name="paginas">
+        <item quantity="one">%d page</item>
+        <item quantity="many">%d pages</item>
+        <item quantity="other">%d pages</item>
+    </plurals>
+    <string name="un_vistazo">Un aperçu</string>
+    <string name="creditos">Crédits</string>
+    <string name="leer">Lire</string>
+    <string name="escuchar">Écouter</string>
+    <string name="seguir_por_pagina">Reprendre à la page %d</string>
+
+    <!-- Lector -->
+    <string name="pausar">Pause</string>
+    <string name="anterior">Page précédente</string>
+    <string name="siguiente">Page suivante</string>
+    <string name="progreso">Page %1$d sur %2$d</string>
+    <string name="cerrar_cuento">Fermer l\'histoire</string>
+    <string name="empezar_de_nuevo">Recommencer</string>
+    <string name="otro_cuento">Une autre histoire</string>
+    <string name="traduccion">Traduction</string>
+    <string name="sin_traduccion">Sans traduction</string>
+    <string name="tamano_texto">Taille du texte</string>
+    <string name="error_cargar_cuento">Impossible d\'ouvrir l\'histoire</string>
+    <string name="error_traduccion">Impossible de charger la traduction</string>
+
+    <!-- Voz -->
+    <string name="falta_voz">Voix manquante</string>
+    <string name="voz_idioma_no_disponible">Cet appareil n\'a pas la voix de cette langue. Voulez-vous l\'installer maintenant ?</string>
+    <string name="voz_no_disponible">La lecture à voix haute n\'est pas disponible sur cet appareil</string>
+    <string name="voz_error">Erreur lors de la lecture à voix haute</string>
+    <string name="sin_instalador_voz">Installez la voix dans Paramètres du système &gt; Synthèse vocale</string>
+    <string name="instalar">Installer</string>
+    <string name="ahora_no">Pas maintenant</string>
+
+    <!-- Ajustes -->
+    <string name="para_mayores">Pour les adultes</string>
+    <string name="velocidad_voz">Vitesse de la voix</string>
+    <string name="velocidad_lenta">Lente</string>
+    <string name="velocidad_normal">Normale</string>
+    <string name="velocidad_rapida">Rapide</string>
+    <string name="letra_cuento">Police des histoires</string>
+    <string name="ejemplo_letra">Il était une fois…</string>
+    <string name="letra_recomendada">%s · recommandée</string>
+    <string name="tamano_normal">Normal</string>
+    <string name="tamano_grande">Grand</string>
+    <string name="tamano_muy_grande">Très grand</string>
+    <string name="musica_fondo">Musique de fond</string>
+    <string name="privacidad">Politique de confidentialité</string>
+    <string name="sin_navegador">Aucun navigateur n\'est installé</string>
+    <string name="version">Version %1$s</string>
+</resources>

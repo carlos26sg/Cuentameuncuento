@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -97,7 +98,7 @@ fun AjustesHoja(alCerrar: () -> Unit, viewModel: AjustesViewModel = hiltViewMode
             if (actuales == null) return@Column
 
             Seccion(stringResource(R.string.idioma_cuentos)) {
-                Segmentado(Idioma.entries, actuales.idioma, { it.endonimo }, viewModel::cambiarIdioma)
+                Segmentado(Idioma.entries, actuales.idioma, { it.endonimo }, viewModel::cambiarIdioma, porFila = 3)
             }
             Seccion(stringResource(R.string.velocidad_voz)) {
                 Segmentado(VelocidadVoz.entries, actuales.velocidadVoz, { stringResource(it.nombre) }, viewModel::cambiarVelocidad)
@@ -174,17 +175,42 @@ private fun Seccion(titulo: String, contenido: @Composable ColumnScope.() -> Uni
     }
 }
 
-/** Opciones en una fila, la elegida en blanco sobre un carril crema */
+/**
+ * Opciones en filas de [porFila], la elegida en blanco sobre un carril crema. Con muchas
+ * opciones (los idiomas) se reparten en varias filas del mismo ancho de columna.
+ */
 @Composable
-private fun <T> Segmentado(opciones: List<T>, elegida: T, etiqueta: @Composable (T) -> String, alElegir: (T) -> Unit) {
+private fun <T> Segmentado(
+    opciones: List<T>,
+    elegida: T,
+    etiqueta: @Composable (T) -> String,
+    alElegir: (T) -> Unit,
+    porFila: Int = opciones.size
+) {
     Surface(shape = RoundedCornerShape(18.dp), color = Colores.cremaOscuro) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
+        Column(
+            verticalArrangement = Arrangement.spacedBy(6.dp),
             modifier = Modifier
                 .padding(5.dp)
                 .selectableGroup()
         ) {
-            opciones.forEach { opcion ->
+            opciones.chunked(porFila).forEach { fila ->
+                FilaSegmentada(fila, porFila, elegida, etiqueta, alElegir)
+            }
+        }
+    }
+}
+
+@Composable
+private fun <T> FilaSegmentada(
+    fila: List<T>,
+    porFila: Int,
+    elegida: T,
+    etiqueta: @Composable (T) -> String,
+    alElegir: (T) -> Unit
+) {
+    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            fila.forEach { opcion ->
                 val activa = opcion == elegida
                 Surface(
                     shape = RoundedCornerShape(14.dp),
@@ -204,7 +230,8 @@ private fun <T> Segmentado(opciones: List<T>, elegida: T, etiqueta: @Composable 
                     )
                 }
             }
-        }
+        // La última fila, si va incompleta, mantiene el ancho de las columnas de arriba
+        repeat(porFila - fila.size) { Spacer(Modifier.weight(1f)) }
     }
 }
 

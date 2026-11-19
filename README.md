@@ -1,6 +1,6 @@
 # Cuéntame un cuento
 
-App Android de cuentos infantiles en español, catalán e inglés. Cada cuento tiene una portada
+App Android de cuentos infantiles en español, catalán, inglés, francés, alemán, gallego y euskera. Cada cuento tiene una portada
 animada y se puede **leer** pasando páginas o **escuchar** con la voz del sistema (texto a voz),
 con la palabra que suena resaltada, traducción opcional e ilustraciones a pantalla completa.
 Funciona en vertical y en horizontal, recuerda el cuento a medias y permite marcar favoritos.
@@ -47,7 +47,7 @@ Material. Las únicas imágenes son las de los cuentos (`contenido/`).
 
 Los cuentos están en el propio repositorio, en `contenido/cuentos/<id>/`:
 
-- `cuento.json`: título, descripción y líneas en los tres idiomas a la vez
+- `cuento.json`: título, descripción y líneas en los siete idiomas a la vez (`esp`, `cat`, `eng`, `fra`, `deu`, `glg`, `eus`)
   (así la traducción siempre va alineada).
 - `portada.jpg|png|webp` y `img_<N>.png|jpg|webp`: las ilustraciones originales.
 
@@ -66,9 +66,9 @@ Los cuentos están en el propio repositorio, en `contenido/cuentos/<id>/`:
 ```
 
 `imagen` es la ilustración que empieza en esa línea (`null` = sigue la anterior). La primera
-línea debe tener ilustración y la última es `FIN` / `FI` / `THE END`.
+línea debe tener ilustración y la última es `FIN` / `FI` / `THE END` / `ENDE` / `AMAIERA`.
 
-`creditos` (opcional, en los tres idiomas) aparece en la ficha del cuento. Es obligatorio en los
+`creditos` (opcional, en todos los idiomas) aparece en la ficha del cuento. Es obligatorio en los
 cuentos de [StoryWeaver](https://storyweaver.org.in) (licencia CC BY 4.0): autoría, ilustración,
 traducción, editorial, licencia y qué se ha cambiado.
 

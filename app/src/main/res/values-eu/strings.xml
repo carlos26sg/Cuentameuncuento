@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Comunes -->
+    <string name="ajustes">Ezarpenak</string>
+    <string name="atras">Atzera</string>
+    <string name="cerrar">Itxi</string>
+    <string name="reintentar">Saiatu berriro</string>
+
+    <!-- Biblioteca -->
+    <string name="idioma_cuentos">Ipuinen hizkuntza</string>
+    <string name="todos_los_cuentos">Ipuin guztiak</string>
+    <plurals name="n_cuentos">
+        <item quantity="one">%d ipuin</item>
+        <item quantity="other">%d ipuin</item>
+    </plurals>
+    <string name="seguir_leyendo">Jarraitu irakurtzen</string>
+    <string name="seguir_con">Jarraitu «%1$s» ipuinarekin</string>
+    <string name="sin_cuentos">Oraindik ez dago ipuinik hizkuntza honetan</string>
+    <string name="error_cargar_cuentos">Ezin izan dira ipuinak kargatu</string>
+    <string name="anadir_favorito">Gehitu gogokoetara</string>
+    <string name="quitar_favorito">Kendu gogokoetatik</string>
+    <string name="edad">%d+ urte</string>
+    <string name="minutos">≈ %d min</string>
+
+    <!-- Ficha del cuento -->
+    <plurals name="paginas">
+        <item quantity="one">%d orri</item>
+        <item quantity="other">%d orri</item>
+    </plurals>
+    <string name="un_vistazo">Begirada bat</string>
+    <string name="creditos">Kredituak</string>
+    <string name="leer">Irakurri</string>
+    <string name="escuchar">Entzun</string>
+    <string name="seguir_por_pagina">Jarraitu %d. orritik</string>
+
+    <!-- Lector -->
+    <string name="pausar">Pausatu</string>
+    <string name="anterior">Aurreko orria</string>
+    <string name="siguiente">Hurrengo orria</string>
+    <string name="progreso">%1$d. orria / %2$d</string>
+    <string name="cerrar_cuento">Itxi ipuina</string>
+    <string name="empezar_de_nuevo">Hasi berriro</string>
+    <string name="otro_cuento">Beste ipuin bat</string>
+    <string name="traduccion">Itzulpena</string>
+    <string name="sin_traduccion">Itzulpenik gabe</string>
+    <string name="tamano_texto">Testuaren tamaina</string>
+    <string name="error_cargar_cuento">Ezin izan da ipuina ireki</string>
+    <string name="error_traduccion">Ezin izan da itzulpena kargatu</string>
+
+    <!-- Voz -->
+    <string name="falta_voz">Ahotsa falta da</string>
+    <string name="voz_idioma_no_disponible">Gailu honek ez du hizkuntza honetako ahotsik. Orain instalatu nahi duzu?</string>
+    <string name="voz_no_disponible">Ozen irakurtzea ez dago erabilgarri gailu honetan</string>
+    <string name="voz_error">Errorea ipuina ozen irakurtzean</string>
+    <string name="sin_instalador_voz">Instalatu ahotsa Sistemaren ezarpenak &gt; Testua ahots bihurtzea atalean</string>
+    <string name="instalar">Instalatu</string>
+    <string name="ahora_no">Orain ez</string>
+
+    <!-- Ajustes -->
+    <string name="para_mayores">Helduentzat</string>
+    <string name="velocidad_voz">Ahotsaren abiadura</string>
+    <string name="velocidad_lenta">Motela</string>
+    <string name="velocidad_normal">Normala</string>
+    <string name="velocidad_rapida">Azkarra</string>
+    <string name="letra_cuento">Ipuinen letra</string>
+    <string name="ejemplo_letra">Bazen behin…</string>
+    <string name="letra_recomendada">%s · gomendatua</string>
+    <string name="tamano_normal">Normala</string>
+    <string name="tamano_grande">Handia</string>
+    <string name="tamano_muy_grande">Oso handia</string>
+    <string name="musica_fondo">Atzeko musika</string>
+    <string name="privacidad">Pribatutasun-politika</string>
+    <string name="sin_navegador">Ez dago nabigatzailerik instalatuta</string>
+    <string name="version">%1$s bertsioa</string>
+</resources>

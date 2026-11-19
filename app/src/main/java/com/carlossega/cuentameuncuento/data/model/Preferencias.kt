@@ -10,11 +10,19 @@ import com.carlossega.cuentameuncuento.R
 enum class Idioma(val codigo: String, val etiquetaLocale: String) {
     ESPANOL("esp", "es-ES"),
     CATALAN("cat", "ca-ES"),
-    INGLES("eng", "en-GB");
+    INGLES("eng", "en-GB"),
+    FRANCES("fra", "fr-FR"),
+    ALEMAN("deu", "de-DE"),
+    GALLEGO("glg", "gl-ES"),
+    EUSKERA("eus", "eu-ES");
 
     companion object {
         fun desdeCodigo(codigo: String?): Idioma =
             entries.firstOrNull { it.codigo == codigo } ?: ESPANOL
+
+        /** El idioma del móvil si hay cuentos en él; si no, español */
+        fun delSistema(idiomaSistema: String = java.util.Locale.getDefault().language): Idioma =
+            entries.firstOrNull { java.util.Locale.forLanguageTag(it.etiquetaLocale).language == idiomaSistema } ?: ESPANOL
     }
 }
 

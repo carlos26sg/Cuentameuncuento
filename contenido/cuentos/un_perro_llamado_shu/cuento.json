@@ -4,198 +4,330 @@
   "titulo": {
     "esp": "Un perro llamado Shu",
     "cat": "Un gos anomenat Xu",
-    "eng": "A dog called Shoo"
+    "eng": "A dog called Shoo",
+    "fra": "Un chien nommé Chou",
+    "deu": "Ein Hund namens Husch",
+    "glg": "Un can chamado Xu",
+    "eus": "Xu izeneko txakur bat"
   },
   "descripcion": {
     "esp": "«¡Shu!», le dice todo el mundo a la perrita marrón, y ella cree que es su nombre. Hasta que un niño decide compartir su almuerzo con ella…",
     "cat": "«Xu!», li diu tothom a la gosseta marró, i ella es pensa que és el seu nom. Fins que un nen decideix compartir el dinar amb ella…",
-    "eng": "“Shoo!” everyone says to the little brown dog, so she thinks it is her name. Until a boy decides to share his lunch with her…"
+    "eng": "“Shoo!” everyone says to the little brown dog, so she thinks it is her name. Until a boy decides to share his lunch with her…",
+    "fra": "« Chou ! », dit tout le monde à la petite chienne marron, et elle croit que c'est son nom. Jusqu'au jour où un garçon décide de partager son déjeuner avec elle…",
+    "deu": "„Husch!“, sagen alle zu der kleinen braunen Hündin, und sie glaubt, das sei ihr Name. Bis ein Junge beschließt, sein Pausenbrot mit ihr zu teilen…",
+    "glg": "«Xu!», dille todo o mundo á cadeliña marrón, e ela cre que é o seu nome. Ata que un neno decide compartir o xantar con ela…",
+    "eus": "«Xu!», esaten dio mundu guztiak txakurtxo marroiari, eta hark bere izena dela uste du. Mutiko batek bere bazkaria harekin partekatzea erabakitzen duen arte…"
   },
   "creditos": {
     "esp": "Texto: Kavitha Punniyamurthi. Ilustraciones: Sarthak Sinha. Traducción al español: Susana Ramírez (CuenTale Cuentoteca digital). Original: «A Dog Called Shoo», publicado por Pratham Books en StoryWeaver con licencia CC BY 4.0. Texto en español revisado y traducciones al catalán y al inglés hechas para esta app a partir del español.",
     "cat": "Text: Kavitha Punniyamurthi. Il·lustracions: Sarthak Sinha. Traducció al castellà: Susana Ramírez (CuenTale Cuentoteca digital). Original: «A Dog Called Shoo», publicat per Pratham Books a StoryWeaver amb llicència CC BY 4.0. Text en castellà revisat i traduccions al català i a l'anglès fetes per a aquesta app a partir del castellà.",
-    "eng": "Text: Kavitha Punniyamurthi. Illustrations: Sarthak Sinha. Spanish translation: Susana Ramírez (CuenTale Cuentoteca digital). Original: “A Dog Called Shoo”, published by Pratham Books on StoryWeaver under a CC BY 4.0 licence. Spanish text revised, and Catalan and English texts translated from the Spanish for this app."
+    "eng": "Text: Kavitha Punniyamurthi. Illustrations: Sarthak Sinha. Spanish translation: Susana Ramírez (CuenTale Cuentoteca digital). Original: “A Dog Called Shoo”, published by Pratham Books on StoryWeaver under a CC BY 4.0 licence. Spanish text revised, and Catalan and English texts translated from the Spanish for this app.",
+    "fra": "Texte : Kavitha Punniyamurthi. Illustrations : Sarthak Sinha. Traduction espagnole : Susana Ramírez (CuenTale Cuentoteca digital). Original : « A Dog Called Shoo », publié par Pratham Books sur StoryWeaver sous licence CC BY 4.0. Traduction française réalisée pour cette app à partir de l'espagnol.",
+    "deu": "Text: Kavitha Punniyamurthi. Illustrationen: Sarthak Sinha. Spanische Übersetzung: Susana Ramírez (CuenTale Cuentoteca digital). Original: „A Dog Called Shoo“, veröffentlicht von Pratham Books auf StoryWeaver unter der Lizenz CC BY 4.0. Deutsche Übersetzung für diese App, nach der spanischen Fassung.",
+    "glg": "Texto: Kavitha Punniyamurthi. Ilustracións: Sarthak Sinha. Tradución ao castelán: Susana Ramírez (CuenTale Cuentoteca digital). Orixinal: «A Dog Called Shoo», publicado por Pratham Books en StoryWeaver con licenza CC BY 4.0. Tradución ao galego feita para esta app a partir do castelán.",
+    "eus": "Testua: Kavitha Punniyamurthi. Irudiak: Sarthak Sinha. Gaztelaniarako itzulpena: Susana Ramírez (CuenTale Cuentoteca digital). Jatorrizkoa: «A Dog Called Shoo», Pratham Booksek StoryWeaverren argitaratua, CC BY 4.0 lizentziarekin. Euskarazko itzulpena aplikazio honetarako egina, gaztelaniatik."
   },
   "lineas": [
     {
       "imagen": "2",
       "esp": "—¡Fuera! ¡Shuuu! —gritó un hombre en moto—. ¡Quítate de en medio!",
       "cat": "—Fora! Xuuu! —va cridar un home amb moto—. Aparta't del mig!",
-      "eng": "“Shoo! Go away!” shouted a man on a scooter. “Get out of my way!”"
+      "eng": "“Shoo! Go away!” shouted a man on a scooter. “Get out of my way!”",
+      "fra": "— Allez, ouste ! Chouuu ! cria un homme à moto. Pousse-toi de là !",
+      "deu": "„Weg da! Huuusch!“, rief ein Mann auf einem Motorroller. „Geh mir aus dem Weg!“",
+      "glg": "—Fóra! Xuuu! —berrou un home nunha moto—. Quítate do medio!",
+      "eus": "—Kanpora! Xuuu! —oihu egin zuen motorrean zihoan gizon batek—. Kendu hortik!"
     },
     {
       "imagen": null,
       "esp": "—¡Shu! ¡Fuera! —chilló una madre—. Es un perro callejero, no lo toques.",
       "cat": "—Xu! Fora! —va xisclar una mare—. És un gos del carrer, no el toquis.",
-      "eng": "“Shoo! Go away!” shrieked a mother. “It's a stray dog. Don't touch it.”"
+      "eng": "“Shoo! Go away!” shrieked a mother. “It's a stray dog. Don't touch it.”",
+      "fra": "— Chou ! Ouste ! cria une maman. C'est un chien errant, ne le touche pas.",
+      "deu": "„Husch! Weg!“, schrie eine Mutter. „Das ist ein Straßenhund, fass ihn nicht an.“",
+      "glg": "—Xu! Fóra! —chiou unha nai—. É un can da rúa, non o toques.",
+      "eus": "—Xu! Kanpora! —garrasi egin zuen ama batek—. Kaleko txakurra da, ez ukitu."
     },
     {
       "imagen": null,
       "esp": "—¡Shu! ¡Shu! —exclamó el dueño de la cafetería—. No me asustes a los clientes.",
       "cat": "—Xu! Xu! —va exclamar l'amo de la cafeteria—. No m'espantis els clients.",
-      "eng": "“Shoo! Shoo!” cried the café owner. “Don't scare my customers.”"
+      "eng": "“Shoo! Shoo!” cried the café owner. “Don't scare my customers.”",
+      "fra": "— Chou ! Chou ! s'exclama le patron du café. Ne fais pas peur à mes clients.",
+      "deu": "„Husch! Husch!“, rief der Besitzer des Cafés. „Erschreck mir nicht die Gäste.“",
+      "glg": "—Xu! Xu! —exclamou o dono da cafetaría—. Non me asustes os clientes.",
+      "eus": "—Xu! Xu! —esan zuen kafetegiko jabeak—. Ez beldurtu nire bezeroak."
     },
     {
       "imagen": "3",
       "esp": "La perrita marrón se acurrucó en una esquina.",
       "cat": "La gosseta marró es va arraulir en un racó.",
-      "eng": "The little brown dog curled up in a corner."
+      "eng": "The little brown dog curled up in a corner.",
+      "fra": "La petite chienne marron se pelotonna dans un coin.",
+      "deu": "Die kleine braune Hündin rollte sich in einer Ecke zusammen.",
+      "glg": "A cadeliña marrón acurrunchouse nunha esquina.",
+      "eus": "Txakurtxo marroia izkina batean kuzkurtu zen."
     },
     {
       "imagen": null,
       "esp": "Todos le decían siempre lo mismo: «¡Shu!». Así que empezó a pensar que ese era su nombre.",
       "cat": "Tothom li deia sempre el mateix: «Xu!». Així que va començar a pensar que aquell era el seu nom.",
-      "eng": "Everyone always said the same thing: “Shoo!” So she began to think that was her name."
+      "eng": "Everyone always said the same thing: “Shoo!” So she began to think that was her name.",
+      "fra": "Tout le monde lui disait toujours la même chose : « Chou ! ». Alors elle finit par croire que c'était son nom.",
+      "deu": "Alle sagten immer dasselbe zu ihr: „Husch!“ Und so dachte sie irgendwann, das sei ihr Name.",
+      "glg": "Todos lle dicían sempre o mesmo: «Xu!». Así que empezou a pensar que ese era o seu nome.",
+      "eus": "Denek gauza bera esaten zioten beti: «Xu!». Beraz, hori zela bere izena pentsatzen hasi zen."
     },
     {
       "imagen": "4",
       "esp": "Shu no siempre había vivido en la calle. Antes vivía con una familia, y el niño de la casa siempre tenía rabietas.",
       "cat": "La Xu no sempre havia viscut al carrer. Abans vivia amb una família, i el nen de la casa sempre feia rebequeries.",
-      "eng": "Shoo had not always lived on the street. Once, she lived with a family, and the boy threw tantrums all the time."
+      "eng": "Shoo had not always lived on the street. Once, she lived with a family, and the boy threw tantrums all the time.",
+      "fra": "Chou n'avait pas toujours vécu dans la rue. Avant, elle vivait avec une famille, et le garçon de la maison faisait tout le temps des caprices.",
+      "deu": "Husch hatte nicht immer auf der Straße gelebt. Früher wohnte sie bei einer Familie, und der Junge dort hatte ständig Wutanfälle.",
+      "glg": "Xu non vivira sempre na rúa. Antes vivía cunha familia, e o neno da casa sempre tiña rabechas.",
+      "eus": "Xu ez zen beti kalean bizi izan. Lehen familia batekin bizi zen, eta etxeko mutikoak beti zituen haserre-aldiak."
     },
     {
       "imagen": "5",
       "esp": "—¡Haz un truco! —¡Tráeme ese palo! —¡Dame la pata!",
       "cat": "—Fes un truc! —Porta'm aquest pal! —Dona'm la pota!",
-      "eng": "“Do a trick!” “Fetch that stick!” “Give me your paw!”"
+      "eng": "“Do a trick!” “Fetch that stick!” “Give me your paw!”",
+      "fra": "— Fais un tour ! — Rapporte-moi ce bâton ! — Donne la patte !",
+      "deu": "„Mach ein Kunststück!“ – „Hol das Stöckchen!“ – „Gib Pfötchen!“",
+      "glg": "—Fai un truco! —Tráeme ese pau! —Dáme a pata!",
+      "eus": "—Egin trikimailu bat! —Ekarri makila hori! —Emadazu hanka!"
     },
     {
       "imagen": null,
       "esp": "Pero Shu no sabía hacer ningún truco. Tenía miedo.",
       "cat": "Però la Xu no sabia fer cap truc. Tenia por.",
-      "eng": "But Shoo didn't know how to do any tricks. She was scared."
+      "eng": "But Shoo didn't know how to do any tricks. She was scared.",
+      "fra": "Mais Chou ne savait faire aucun tour. Elle avait peur.",
+      "deu": "Aber Husch konnte keine Kunststücke. Sie hatte Angst.",
+      "glg": "Pero Xu non sabía facer ningún truco. Tiña medo.",
+      "eus": "Baina Xuk ez zekien trikimailurik egiten. Beldur zen."
     },
     {
       "imagen": "6",
       "esp": "Muy pronto, el niño se cansó de Shu. Quería un juguete nuevo.",
       "cat": "Ben aviat, el nen es va cansar de la Xu. Volia una joguina nova.",
-      "eng": "Soon the boy got tired of Shoo. He wanted a new toy."
+      "eng": "Soon the boy got tired of Shoo. He wanted a new toy.",
+      "fra": "Très vite, le garçon se lassa de Chou. Il voulait un nouveau jouet.",
+      "deu": "Bald hatte der Junge keine Lust mehr auf Husch. Er wollte ein neues Spielzeug.",
+      "glg": "Moi pronto, o neno cansou de Xu. Quería un xoguete novo.",
+      "eus": "Laster, mutikoa Xurekin aspertu zen. Jostailu berri bat nahi zuen."
     },
     {
       "imagen": "7",
       "esp": "Un día, el padre dejó a Shu en la parada del autobús y se fue en su coche.",
       "cat": "Un dia, el pare va deixar la Xu a la parada de l'autobús i se'n va anar amb el cotxe.",
-      "eng": "One day, the father left Shoo at the bus stop and drove away in his car."
+      "eng": "One day, the father left Shoo at the bus stop and drove away in his car.",
+      "fra": "Un jour, le père laissa Chou à l'arrêt de bus et repartit en voiture.",
+      "deu": "Eines Tages ließ der Vater Husch an der Bushaltestelle zurück und fuhr mit dem Auto davon.",
+      "glg": "Un día, o pai deixou a Xu na parada do autobús e marchou no seu coche.",
+      "eus": "Egun batean, aitak Xu autobus-geltokian utzi zuen, eta autoz alde egin zuen."
     },
     {
       "imagen": null,
       "esp": "Shu esperó y esperó, pero él nunca volvió.",
       "cat": "La Xu va esperar i esperar, però ell no va tornar mai.",
-      "eng": "Shoo waited and waited, but he never came back."
+      "eng": "Shoo waited and waited, but he never came back.",
+      "fra": "Chou attendit, attendit encore, mais il ne revint jamais.",
+      "deu": "Husch wartete und wartete, aber er kam nie zurück.",
+      "glg": "Xu agardou e agardou, pero el nunca volveu.",
+      "eus": "Xuk itxaron eta itxaron egin zuen, baina hura ez zen inoiz itzuli."
     },
     {
       "imagen": "8",
       "esp": "La suciedad de la calle se le pegó al pelo y se lo enredó.",
       "cat": "La brutícia del carrer se li va enganxar al pèl i l'hi va embullar.",
-      "eng": "The dirt of the streets stuck to Shoo's fur and tangled it."
+      "eng": "The dirt of the streets stuck to Shoo's fur and tangled it.",
+      "fra": "La saleté de la rue se colla à ses poils et les emmêla.",
+      "deu": "Der Schmutz der Straße klebte in ihrem Fell und verfilzte es.",
+      "glg": "A suciedade da rúa pegóuselle ao pelo e enredoullo.",
+      "eus": "Kaleko zikinkeria ilean itsatsi zitzaion, eta korapilatu egin zion."
     },
     {
       "imagen": null,
       "esp": "Poco a poco, Shu aprendió a buscar comida en los cubos de basura. Al principio hacía calor y todo estaba pegajoso.",
       "cat": "A poc a poc, la Xu va aprendre a buscar menjar als contenidors. Al principi feia calor i tot era enganxós.",
-      "eng": "Little by little, Shoo learned to look for food in the rubbish bins. At first, it was hot and sticky."
+      "eng": "Little by little, Shoo learned to look for food in the rubbish bins. At first, it was hot and sticky.",
+      "fra": "Peu à peu, Chou apprit à chercher à manger dans les poubelles. Au début, il faisait chaud et tout était collant.",
+      "deu": "Nach und nach lernte Husch, in den Mülltonnen nach Futter zu suchen. Anfangs war es heiß und alles klebte.",
+      "glg": "Pouco a pouco, Xu aprendeu a buscar comida nos colectores do lixo. Ao principio facía calor e todo estaba pegañento.",
+      "eus": "Pixkanaka, Xuk zabor-ontzietan janaria bilatzen ikasi zuen. Hasieran beroa egiten zuen, eta dena itsaskorra zen."
     },
     {
       "imagen": "9",
       "esp": "Después llegaron la humedad y el frío. Hambrienta y helada, Shu se tumbó junto a un montón de basura.",
       "cat": "Després van arribar la humitat i el fred. Afamada i glaçada, la Xu es va estirar al costat d'un munt d'escombraries.",
-      "eng": "Then it was wet and cold. Hungry and freezing, Shoo lay down next to a pile of rubbish."
+      "eng": "Then it was wet and cold. Hungry and freezing, Shoo lay down next to a pile of rubbish.",
+      "fra": "Puis vinrent l'humidité et le froid. Affamée et gelée, Chou se coucha près d'un tas d'ordures.",
+      "deu": "Dann wurde es nass und kalt. Hungrig und durchgefroren legte sich Husch neben einen Müllhaufen.",
+      "glg": "Despois chegaron a humidade e o frío. Famenta e xeada, Xu deitouse xunto a un montón de lixo.",
+      "eus": "Gero hezetasuna eta hotza iritsi ziren. Gose eta izoztuta, Xu zabor-pilo baten ondoan etzan zen."
     },
     {
       "imagen": "10",
       "esp": "Un día vio a Adit, que venía por la calle. Él se acercó y la miró.",
       "cat": "Un dia va veure l'Adit, que venia pel carrer. Ell s'hi va acostar i la va mirar.",
-      "eng": "One day, she saw Adit walking down the street. He came closer and looked at Shoo."
+      "eng": "One day, she saw Adit walking down the street. He came closer and looked at Shoo.",
+      "fra": "Un jour, elle vit Adit qui descendait la rue. Il s'approcha et la regarda.",
+      "deu": "Eines Tages sah sie Adit die Straße entlangkommen. Er kam näher und schaute sie an.",
+      "glg": "Un día viu a Adit, que viña pola rúa. El achegouse e mirouna.",
+      "eus": "Egun batean, Adit ikusi zuen kalean zehar zetorrela. Hurbildu eta begiratu egin zion."
     },
     {
       "imagen": null,
       "esp": "Sacó la fiambrera de su mochila del colegio. Todavía le quedaban unos idlis, unos panecillos de arroz.",
       "cat": "Va treure la carmanyola de la motxilla de l'escola. Encara li quedaven uns idlis, uns panets d'arròs.",
-      "eng": "He took a lunch box out of his school bag. There were still a few idlis left, little rice cakes."
+      "eng": "He took a lunch box out of his school bag. There were still a few idlis left, little rice cakes.",
+      "fra": "Il sortit sa boîte à déjeuner de son cartable. Il lui restait encore quelques idlis, des petits gâteaux de riz.",
+      "deu": "Er holte seine Brotdose aus dem Schulranzen. Es waren noch ein paar Idlis übrig, kleine Reisküchlein.",
+      "glg": "Sacou a fiambreira da mochila do colexio. Aínda lle quedaban uns idlis, uns bolechos de arroz.",
+      "eus": "Eskolako motxilatik bazkari-kutxa atera zuen. Oraindik idli batzuk geratzen zitzaizkion, arroz-opil txikiak."
     },
     {
       "imagen": "11",
       "esp": "Desde entonces, Adit compartía cada día su comida con Shu.",
       "cat": "Des d'aleshores, l'Adit compartia cada dia el seu menjar amb la Xu.",
-      "eng": "From then on, Adit shared his food with Shoo every day."
+      "eng": "From then on, Adit shared his food with Shoo every day.",
+      "fra": "À partir de ce jour, Adit partagea son repas avec Chou tous les jours.",
+      "deu": "Von da an teilte Adit jeden Tag sein Essen mit Husch.",
+      "glg": "Desde entón, Adit compartía cada día a súa comida con Xu.",
+      "eus": "Harrezkero, Aditek egunero partekatzen zuen bere janaria Xurekin."
     },
     {
       "imagen": null,
       "esp": "Al principio, Shu era tímida: esperaba a que Adit se fuera para comer.",
       "cat": "Al principi, la Xu era tímida: esperava que l'Adit se n'anés per menjar.",
-      "eng": "At first, Shoo was shy. She waited for Adit to leave before she ate."
+      "eng": "At first, Shoo was shy. She waited for Adit to leave before she ate.",
+      "fra": "Au début, Chou était timide : elle attendait qu'Adit s'en aille pour manger.",
+      "deu": "Anfangs war Husch schüchtern: Sie wartete, bis Adit weg war, und fraß erst dann.",
+      "glg": "Ao principio, Xu era tímida: agardaba a que Adit marchase para comer.",
+      "eus": "Hasieran, Xu lotsatia zen: Adit joan arte itxaroten zuen jateko."
     },
     {
       "imagen": null,
       "esp": "Pero pronto empezó a dar saltos de alegría y ladriditos en cuanto oía los zapatos de Adit. Tap, tap, tap.",
       "cat": "Però aviat va començar a fer salts d'alegria i petits lladrucs tan bon punt sentia les sabates de l'Adit. Tap, tap, tap.",
-      "eng": "But soon she began to jump for joy and give little barks as soon as she heard Adit's shoes. Tap, tap, tap."
+      "eng": "But soon she began to jump for joy and give little barks as soon as she heard Adit's shoes. Tap, tap, tap.",
+      "fra": "Mais bientôt, elle se mit à sauter de joie et à pousser de petits aboiements dès qu'elle entendait les chaussures d'Adit. Tap, tap, tap.",
+      "deu": "Aber bald machte sie Freudensprünge und bellte leise, sobald sie Adits Schuhe hörte. Tapp, tapp, tapp.",
+      "glg": "Pero pronto empezou a dar choutos de alegría e laídos en canto oía os zapatos de Adit. Tap, tap, tap.",
+      "eus": "Baina laster pozez salto egiten eta zaunka txikiak egiten hasi zen Aditen oinetakoak entzuten zituen bezain laster. Tap, tap, tap."
     },
     {
       "imagen": "12",
       "esp": "Un día, cuando Adit volvía a casa, Shu lo siguió.",
       "cat": "Un dia, quan l'Adit tornava a casa, la Xu el va seguir.",
-      "eng": "One day, as Adit walked home, Shoo followed him."
+      "eng": "One day, as Adit walked home, Shoo followed him.",
+      "fra": "Un jour, alors qu'Adit rentrait chez lui, Chou le suivit.",
+      "deu": "Eines Tages, als Adit nach Hause ging, lief Husch ihm nach.",
+      "glg": "Un día, cando Adit volvía á casa, Xu seguiuno.",
+      "eus": "Egun batean, Adit etxera zihoala, Xuk atzetik jarraitu zion."
     },
     {
       "imagen": null,
       "esp": "Cada vez que él miraba atrás, Shu se escondía detrás de una carretilla, de un árbol, de una moto…",
       "cat": "Cada vegada que ell mirava enrere, la Xu s'amagava darrere d'un carretó, d'un arbre, d'una moto…",
-      "eng": "Every time he looked back, Shoo hid behind a cart, a tree, a scooter…"
+      "eng": "Every time he looked back, Shoo hid behind a cart, a tree, a scooter…",
+      "fra": "Chaque fois qu'il se retournait, Chou se cachait derrière une brouette, un arbre, une moto…",
+      "deu": "Jedes Mal, wenn er sich umdrehte, versteckte sich Husch hinter einer Schubkarre, einem Baum, einem Motorroller…",
+      "glg": "Cada vez que el miraba cara atrás, Xu agochábase detrás dunha carretilla, dunha árbore, dunha moto…",
+      "eus": "Hark atzera begiratzen zuen bakoitzean, Xu orgatxo baten, zuhaitz baten edo moto baten atzean ezkutatzen zen…"
     },
     {
       "imagen": null,
       "esp": "Adit se metió las manos en los bolsillos y siguió andando mientras silbaba.",
       "cat": "L'Adit es va ficar les mans a les butxaques i va continuar caminant mentre xiulava.",
-      "eng": "Adit put his hands in his pockets and whistled as he walked."
+      "eng": "Adit put his hands in his pockets and whistled as he walked.",
+      "fra": "Adit mit les mains dans ses poches et continua à marcher en sifflant.",
+      "deu": "Adit steckte die Hände in die Hosentaschen und ging pfeifend weiter.",
+      "glg": "Adit meteu as mans nos petos e seguiu andando mentres asubiaba.",
+      "eus": "Aditek eskuak poltsikoetan sartu zituen, eta txistuka jarraitu zuen oinez."
     },
     {
       "imagen": "13",
       "esp": "Al llegar a casa, Adit dijo: —¡Papá, mira, tenemos una invitada! ¿Se puede quedar con nosotros?",
       "cat": "En arribar a casa, l'Adit va dir: —Papa, mira, tenim una convidada! Es pot quedar amb nosaltres?",
-      "eng": "When he got home, Adit said: “Papa, look, we have a guest! Can she stay with us?”"
+      "eng": "When he got home, Adit said: “Papa, look, we have a guest! Can she stay with us?”",
+      "fra": "En arrivant à la maison, Adit dit : — Papa, regarde, on a une invitée ! Elle peut rester avec nous ?",
+      "deu": "Als er nach Hause kam, sagte Adit: „Papa, schau mal, wir haben Besuch! Darf sie bei uns bleiben?“",
+      "glg": "Ao chegar á casa, Adit dixo: —Papá, mira, temos unha convidada! Pode quedar connosco?",
+      "eus": "Etxera iristean, Aditek esan zuen: —Aita, begira, gonbidatu bat dugu! Gurekin gera daiteke?"
     },
     {
       "imagen": "14",
       "esp": "Shu seguía a Adit a todas partes. Se sentaba junto al baño mientras Adit cantaba en la ducha.",
       "cat": "La Xu seguia l'Adit a tot arreu. S'asseia a la porta del bany mentre l'Adit cantava a la dutxa.",
-      "eng": "Shoo followed Adit everywhere. She sat outside the bathroom while Adit sang in the shower."
+      "eng": "Shoo followed Adit everywhere. She sat outside the bathroom while Adit sang in the shower.",
+      "fra": "Chou suivait Adit partout. Elle s'asseyait devant la salle de bains pendant qu'Adit chantait sous la douche.",
+      "deu": "Husch folgte Adit überallhin. Sie saß vor dem Badezimmer, während Adit unter der Dusche sang.",
+      "glg": "Xu seguía a Adit a todas partes. Sentábase á porta do baño mentres Adit cantaba na ducha.",
+      "eus": "Xuk Adit jarraitzen zuen nonahi. Komunaren atean esertzen zen Adit dutxan kantari zegoen bitartean."
     },
     {
       "imagen": null,
       "esp": "Cuando Adit se iba al colegio, ella se tumbaba en la puerta de casa a esperarlo.",
       "cat": "Quan l'Adit se n'anava a l'escola, ella s'estirava a la porta de casa a esperar-lo.",
-      "eng": "When Adit went to school, she lay by the front door, waiting for him."
+      "eng": "When Adit went to school, she lay by the front door, waiting for him.",
+      "fra": "Quand Adit partait à l'école, elle se couchait devant la porte d'entrée pour l'attendre.",
+      "deu": "Wenn Adit zur Schule ging, legte sie sich vor die Haustür und wartete auf ihn.",
+      "glg": "Cando Adit ía ao colexio, ela deitábase na porta da casa a esperalo.",
+      "eus": "Adit eskolara joaten zenean, etxeko atean etzaten zen haren zain."
     },
     {
       "imagen": null,
       "esp": "Shu estaba preocupada. ¿Y si Adit se marchaba? ¿Y si no volvía nunca?",
       "cat": "La Xu estava preocupada. I si l'Adit marxava? I si no tornava mai més?",
-      "eng": "Shoo was worried. What if Adit went away? What if he never came back?"
+      "eng": "Shoo was worried. What if Adit went away? What if he never came back?",
+      "fra": "Chou était inquiète. Et si Adit s'en allait ? Et s'il ne revenait jamais ?",
+      "deu": "Husch machte sich Sorgen. Was, wenn Adit fortging? Was, wenn er nie zurückkam?",
+      "glg": "Xu estaba preocupada. E se Adit marchaba? E se non volvía nunca?",
+      "eus": "Xu kezkatuta zegoen. Eta Adit joaten bazen? Eta inoiz itzultzen ez bazen?"
     },
     {
       "imagen": "15",
       "esp": "Pasó un año volando. Shu y Adit se hicieron los mejores amigos, y Shu entendió que, aunque Adit se fuera, siempre volvería.",
       "cat": "Va passar un any volant. La Xu i l'Adit es van fer els millors amics, i la Xu va entendre que, encara que l'Adit se n'anés, sempre tornaria.",
-      "eng": "A year flew by. Shoo and Adit became best friends, and Shoo understood that even if Adit went away, he would always come back."
+      "eng": "A year flew by. Shoo and Adit became best friends, and Shoo understood that even if Adit went away, he would always come back.",
+      "fra": "Une année passa en un clin d'œil. Chou et Adit devinrent les meilleurs amis du monde, et Chou comprit que, même si Adit partait, il reviendrait toujours.",
+      "deu": "Ein Jahr verging wie im Flug. Husch und Adit wurden beste Freunde, und Husch verstand: Auch wenn Adit wegging, er würde immer wiederkommen.",
+      "glg": "Pasou un ano voando. Xu e Adit fixéronse os mellores amigos, e Xu entendeu que, aínda que Adit marchase, sempre volvería.",
+      "eus": "Urte bat hegan pasatu zen. Xu eta Adit lagunik onenak egin ziren, eta Xuk ulertu zuen Adit joaten bazen ere, beti itzuliko zela."
     },
     {
       "imagen": null,
       "esp": "Ahora, Shu tiene un nombre de verdad.",
       "cat": "Ara, la Xu té un nom de veritat.",
-      "eng": "Now, Shoo has a real name."
+      "eng": "Now, Shoo has a real name.",
+      "fra": "Maintenant, Chou a un vrai nom.",
+      "deu": "Jetzt hat Husch einen richtigen Namen.",
+      "glg": "Agora, Xu ten un nome de verdade.",
+      "eus": "Orain, Xuk benetako izen bat du."
     },
     {
       "imagen": "16",
       "esp": "—¡Tofe, devuélveme el libro!",
       "cat": "—Tofe, torna'm el llibre!",
-      "eng": "“Toffee, give me back my book!”"
+      "eng": "“Toffee, give me back my book!”",
+      "fra": "— Caramel, rends-moi mon livre !",
+      "deu": "„Karamell, gib mir mein Buch zurück!“",
+      "glg": "—Tofe, devólveme o libro!",
+      "eus": "—Tofe, itzuli liburua!"
     },
     {
       "imagen": null,
       "esp": "FIN",
       "cat": "FI",
-      "eng": "THE END"
+      "eng": "THE END",
+      "fra": "FIN",
+      "deu": "ENDE",
+      "glg": "FIN",
+      "eus": "AMAIERA"
     }
   ]
 }

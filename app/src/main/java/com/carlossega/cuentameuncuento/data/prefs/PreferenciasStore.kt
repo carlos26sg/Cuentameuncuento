@@ -44,7 +44,8 @@ class PreferenciasStore @Inject constructor(
     override val preferencias: Flow<Preferencias> = datos
         .map { p ->
             Preferencias(
-                idioma = Idioma.desdeCodigo(p[IDIOMA]),
+                // Hasta que se elija uno, el del móvil: un niño francés empieza en francés
+                idioma = p[IDIOMA]?.let(Idioma::desdeCodigo) ?: Idioma.delSistema(),
                 favoritos = p.favoritos(),
                 velocidadVoz = VelocidadVoz.desdeCodigo(p[VELOCIDAD_VOZ]),
                 letra = LetraCuento.desdeCodigo(p[LETRA]),

@@ -4,282 +4,470 @@
   "titulo": {
     "esp": "Monstruo Azul",
     "cat": "Monstre Blau",
-    "eng": "Blue Monster"
+    "eng": "Blue Monster",
+    "fra": "Monstre Bleu",
+    "deu": "Blaues Monster",
+    "glg": "Monstro Azul",
+    "eus": "Munstro Urdina"
   },
   "descripcion": {
     "esp": "Esta es la historia de un grupo que creció creyendo que podía jugar sin importar las consecuencias de sus actos. ¿Aprenderán a divertirse sin hacer daño a su entorno?",
     "cat": "Aquesta és la història d'un grup que va créixer creient que podia jugar sense importar les conseqüències dels seus actes. Aprendran a divertir-se sense fer mal al seu entorn?",
-    "eng": "This is the story of a group that grew up believing that they could play regardless of the consequences of their actions. Will they learn to have fun without harming their environment?"
+    "eng": "This is the story of a group that grew up believing that they could play regardless of the consequences of their actions. Will they learn to have fun without harming their environment?",
+    "fra": "C'est l'histoire d'une bande qui a grandi en croyant pouvoir jouer sans se soucier des conséquences de ses actes. Apprendront-ils à s'amuser sans abîmer ce qui les entoure ?",
+    "deu": "Die Geschichte einer Bande, die in dem Glauben aufwuchs, spielen zu können, ohne an die Folgen zu denken. Werden sie lernen, Spaß zu haben, ohne ihrer Umgebung zu schaden?",
+    "glg": "Esta é a historia dun grupo que medrou crendo que podía xogar sen importar as consecuencias dos seus actos. Aprenderán a divertirse sen facerlle dano ao seu contorno?",
+    "eus": "Beren ekintzen ondorioak kontuan hartu gabe jolas zezaketela uste zuen talde baten istorioa da hau. Ikasiko al dute inguruari kalterik egin gabe ondo pasatzen?"
   },
   "creditos": {
     "esp": "Texto e ilustraciones: Olga de Dios. «Monstruo azul», publicado por Apila Ediciones (2020) con licencia Creative Commons BY-NC-SA 4.0. Texto adaptado y traducido para esta app, que se comparte con la misma licencia.",
     "cat": "Text i il·lustracions: Olga de Dios. «Monstruo azul», publicat per Apila Ediciones (2020) amb llicència Creative Commons BY-NC-SA 4.0. Text adaptat i traduït per a aquesta app, que es comparteix amb la mateixa llicència.",
-    "eng": "Text and illustrations: Olga de Dios. “Monstruo azul”, published by Apila Ediciones (2020) under a Creative Commons BY-NC-SA 4.0 licence. Text adapted and translated for this app, shared under the same licence."
+    "eng": "Text and illustrations: Olga de Dios. “Monstruo azul”, published by Apila Ediciones (2020) under a Creative Commons BY-NC-SA 4.0 licence. Text adapted and translated for this app, shared under the same licence.",
+    "fra": "Texte et illustrations : Olga de Dios. « Monstruo azul », publié par Apila Ediciones (2020) sous licence Creative Commons BY-NC-SA 4.0. Texte adapté et traduit pour cette app, partagé sous la même licence.",
+    "deu": "Text und Illustrationen: Olga de Dios. „Monstruo azul“, veröffentlicht bei Apila Ediciones (2020) unter der Lizenz Creative Commons BY-NC-SA 4.0. Text für diese App bearbeitet und übersetzt, unter derselben Lizenz geteilt.",
+    "glg": "Texto e ilustracións: Olga de Dios. «Monstruo azul», publicado por Apila Ediciones (2020) con licenza Creative Commons BY-NC-SA 4.0. Texto adaptado e traducido para esta app, que se comparte coa mesma licenza.",
+    "eus": "Testua eta irudiak: Olga de Dios. «Monstruo azul», Apila Edicionesek argitaratua (2020), Creative Commons BY-NC-SA 4.0 lizentziarekin. Testua aplikazio honetarako egokitua eta itzulia, lizentzia berarekin partekatua."
   },
   "lineas": [
     {
       "imagen": "1",
       "esp": "Érase una vez un lugar maravilloso",
       "cat": "Hi havia una vegada un lloc meravellós",
-      "eng": "There was once a wonderful place"
+      "eng": "There was once a wonderful place",
+      "fra": "Il était une fois un endroit merveilleux",
+      "deu": "Es war einmal ein wunderbarer Ort,",
+      "glg": "Había unha vez un lugar marabilloso",
+      "eus": "Bazen behin leku zoragarri bat,"
     },
     {
       "imagen": "1",
       "esp": "donde las aves volaban y cantaban de alegría,",
       "cat": "on els ocells volaven i cantaven d'alegria,",
-      "eng": "where the birds flew and sang with joy,"
+      "eng": "where the birds flew and sang with joy,",
+      "fra": "où les oiseaux volaient et chantaient de joie,",
+      "deu": "an dem die Vögel flogen und vor Freude sangen,",
+      "glg": "onde as aves voaban e cantaban de alegría,",
+      "eus": "non hegaztiek hegan egiten zuten eta pozez kantatzen zuten,"
     },
     {
       "imagen": "1",
       "esp": "las nubes cambiaban de color y hasta las piedras sonreían.",
       "cat": "els núvols canviaven de color i fins a les pedres somreien.",
-      "eng": "The clouds changed color and even the stones smiled."
+      "eng": "The clouds changed color and even the stones smiled.",
+      "fra": "où les nuages changeaient de couleur et où même les pierres souriaient.",
+      "deu": "die Wolken ihre Farbe wechselten und sogar die Steine lächelten.",
+      "glg": "as nubes cambiaban de cor e ata as pedras sorrían.",
+      "eus": "hodeiek kolorez aldatzen zuten eta harriek ere irribarre egiten zuten."
     },
     {
       "imagen": "1",
       "esp": "En ese lugar nacieron y crecieron...",
       "cat": "En aquest lloc van néixer i van créixer...",
-      "eng": "In this place they were born and grew up..."
+      "eng": "In this place they were born and grew up...",
+      "fra": "C'est là que sont nés et ont grandi…",
+      "deu": "An diesem Ort wurden geboren und wuchsen auf…",
+      "glg": "Nese lugar naceron e medraron…",
+      "eus": "Leku horretan jaio eta hazi ziren…"
     },
     {
       "imagen": "2",
       "esp": "Monstruo Azul, Bocas, Monstruo Naranja y Harri.",
       "cat": "Monstre Blau, Boques, Monstre Taronja i Harri.",
-      "eng": "Blue monster, Mouths, Orange monster and Harri."
+      "eng": "Blue monster, Mouths, Orange monster and Harri.",
+      "fra": "Monstre Bleu, Bouches, Monstre Orange et Harri.",
+      "deu": "Blaues Monster, Großmaul, Oranges Monster und Harri.",
+      "glg": "Monstro Azul, Bocas, Monstro Laranxa e Harri.",
+      "eus": "Munstro Urdina, Ahoandi, Munstro Laranja eta Harri."
     },
     {
       "imagen": "2",
       "esp": "A Bocas se le oía su voz durante todo el día.",
       "cat": "A Boques se li sentia la seva veu durant tot el dia.",
-      "eng": "Mouths was heard throughout the day."
+      "eng": "Mouths was heard throughout the day.",
+      "fra": "On entendait la voix de Bouches toute la journée.",
+      "deu": "Großmauls Stimme hörte man den ganzen Tag.",
+      "glg": "A voz de Bocas oíase durante todo o día.",
+      "eus": "Ahoandiren ahotsa egun osoan entzuten zen."
     },
     {
       "imagen": "2",
       "esp": "Monstruo Naranja con sus enormes piernas saltaba,",
       "cat": "Monstre Taronja amb les seves enormes cames saltava,",
-      "eng": "Monster Orange with his huge legs jumped,"
+      "eng": "Monster Orange with his huge legs jumped,",
+      "fra": "Monstre Orange, avec ses énormes jambes, sautait,",
+      "deu": "Oranges Monster sprang mit seinen riesigen Beinen,",
+      "glg": "Monstro Laranxa, coas súas enormes pernas, saltaba,",
+      "eus": "Munstro Laranjak, bere hanka erraldoiekin, salto egiten zuen,"
     },
     {
       "imagen": "2",
       "esp": "saltaba y saltaba y hasta el cielo alcanzaba.",
       "cat": "saltava i saltava i fins al cel aconseguia.",
-      "eng": "He jumped and jumped and he got to the sky."
+      "eng": "He jumped and jumped and he got to the sky.",
+      "fra": "sautait et sautait, jusqu'à toucher le ciel.",
+      "deu": "sprang und sprang, bis es den Himmel erreichte.",
+      "glg": "saltaba e saltaba e ata o ceo alcanzaba.",
+      "eus": "salto eta salto, zerura iritsi arte."
     },
     {
       "imagen": "2",
       "esp": "Harri con su gran fuerza levantaba todas las piedras.",
       "cat": "Harri amb la seva gran força aixecava totes les pedres.",
-      "eng": "Harri with his great strength raised all the stones."
+      "eng": "Harri with his great strength raised all the stones.",
+      "fra": "Harri, avec sa grande force, soulevait toutes les pierres.",
+      "deu": "Harri hob mit seiner großen Kraft alle Steine hoch.",
+      "glg": "Harri, coa súa gran forza, levantaba todas as pedras.",
+      "eus": "Harrik, bere indar handiarekin, harri guztiak altxatzen zituen."
     },
     {
       "imagen": "3",
       "esp": "Desde muy pronto sintieron que ellos eran LOS MEJORES.",
       "cat": "Des de molt aviat van sentir que ells eren ELS MILLORS.",
-      "eng": "They soon felt that they were the best."
+      "eng": "They soon felt that they were the best.",
+      "fra": "Très vite, ils sentirent qu'ils étaient LES MEILLEURS.",
+      "deu": "Schon sehr früh fühlten sie, dass sie DIE BESTEN waren.",
+      "glg": "Moi pronto sentiron que eles eran OS MELLORES.",
+      "eus": "Oso goiz sentitu zuten haiek zirela ONENAK."
     },
     {
       "imagen": "3",
       "esp": "Monstruo azul, aunque tenía los brazos más largos,",
       "cat": "Monstre blau, tot hi que tenia els braços més llargs,",
-      "eng": "Blue monster, everything that had the longest arms,"
+      "eng": "Blue monster, everything that had the longest arms,",
+      "fra": "Monstre Bleu avait les bras les plus longs,",
+      "deu": "Blaues Monster hatte zwar die längsten Arme,",
+      "glg": "Monstro Azul, aínda que tiña os brazos máis longos,",
+      "eus": "Munstro Urdinak beso luzeenak bazituen ere,"
     },
     {
       "imagen": "3",
       "esp": "todavía no sabía cómo usarlos para ser de LOS MEJORES.",
       "cat": "encara no sabia com usar-los per a ser dels MILLORS.",
-      "eng": "I still didn't know how to use them to be part of the BESTS."
+      "eng": "I still didn't know how to use them to be part of the BESTS.",
+      "fra": "mais il ne savait pas encore comment s'en servir pour être l'un des MEILLEURS.",
+      "deu": "wusste aber noch nicht, wie es sie benutzen sollte, um zu DEN BESTEN zu gehören.",
+      "glg": "aínda non sabía como usalos para ser dos MELLORES.",
+      "eus": "oraindik ez zekien nola erabili ONENETAKO bat izateko."
     },
     {
       "imagen": "3",
       "esp": "A monstruo Azul le gustaba subir al bosque, desde allí,",
       "cat": "A monstre Blau li agradava pujar al bosc, des d'allí,",
-      "eng": "Monster Blue liked to get up into the woods, from there,"
+      "eng": "Monster Blue liked to get up into the woods, from there,",
+      "fra": "Monstre Bleu aimait monter dans la forêt ; de là-haut,",
+      "deu": "Blaues Monster stieg gern in den Wald hinauf; von dort oben",
+      "glg": "A Monstro Azul gustáballe subir ao bosque; desde alí",
+      "eus": "Munstro Urdinari basora igotzea gustatzen zitzaion; handik,"
     },
     {
       "imagen": "3",
       "esp": "disfrutaba observando el maravilloso LUGAR donde vivían.",
       "cat": "gaudia observant el meravellós LLOC on vivien.",
-      "eng": "I enjoyed watching the wonderful place where they lived."
+      "eng": "I enjoyed watching the wonderful place where they lived.",
+      "fra": "il adorait contempler l'ENDROIT merveilleux où ils vivaient.",
+      "deu": "schaute es sich gern den wunderbaren ORT an, an dem sie lebten.",
+      "glg": "gozaba observando o marabilloso LUGAR onde vivían.",
+      "eus": "bizi ziren LEKU zoragarriari begira gozatzen zuen."
     },
     {
       "imagen": "4",
       "esp": "Cuando estaban juntos pasaban el tiempo riendo",
       "cat": "Quan estaven junts passaven el temps rient",
-      "eng": "When they were together they spent time laughing"
+      "eng": "When they were together they spent time laughing",
+      "fra": "Quand ils étaient ensemble, ils passaient leur temps à rire",
+      "deu": "Wenn sie zusammen waren, lachten sie viel",
+      "glg": "Cando estaban xuntos, pasaban o tempo rindo",
+      "eus": "Elkarrekin zeudenean, barrez pasatzen zuten denbora"
     },
     {
       "imagen": "4",
       "esp": "y jugando a ser Los MEJORES.",
       "cat": "i jugant a ser Els MILLORS.",
-      "eng": "And playing to be the best."
+      "eng": "And playing to be the best.",
+      "fra": "et à jouer à être LES MEILLEURS.",
+      "deu": "und spielten, DIE BESTEN zu sein.",
+      "glg": "e xogando a ser OS MELLORES.",
+      "eus": "eta ONENAK izatera jolasten."
     },
     {
       "imagen": "4",
       "esp": "Por la mañana cantaban, Bocas lo hacía más alto que cualquiera.",
       "cat": "Al matí cantaven, Boques ho feia més alt que qualsevol.",
-      "eng": "In the morning they sang, mouths made it taller than anyone."
+      "eng": "In the morning they sang, mouths made it taller than anyone.",
+      "fra": "Le matin, ils chantaient : Bouches chantait plus fort que tout le monde.",
+      "deu": "Morgens sangen sie, und Großmaul sang lauter als alle anderen.",
+      "glg": "Pola mañá cantaban, e Bocas facíao máis alto ca ninguén.",
+      "eus": "Goizean kantatzen zuten, eta Ahoandik inork baino ozenago egiten zuen."
     },
     {
       "imagen": "4",
       "esp": "Por la tarde saltaban, Monstruo Naranja hasta las nubes llegaba.",
       "cat": "A la tarda saltaven, Monstre Taronja fins als núvols arribava.",
-      "eng": "In the afternoon they jumped, Monster Orange was coming to the clouds."
+      "eng": "In the afternoon they jumped, Monster Orange was coming to the clouds.",
+      "fra": "L'après-midi, ils sautaient : Monstre Orange arrivait jusqu'aux nuages.",
+      "deu": "Nachmittags sprangen sie, und Oranges Monster kam bis zu den Wolken.",
+      "glg": "Pola tarde saltaban, e Monstro Laranxa chegaba ata as nubes.",
+      "eus": "Arratsaldean salto egiten zuten, eta Munstro Laranja hodeietaraino iristen zen."
     },
     {
       "imagen": "4",
       "esp": "Y por la noche jugaban con piedras, Harri era quien lanzaba más lejos.",
       "cat": "I a la nit jugaven amb pedres, Harri era qui llançava més lluny.",
-      "eng": "And at night they played with stones, Harri throwing farther."
+      "eng": "And at night they played with stones, Harri throwing farther.",
+      "fra": "Et le soir, ils jouaient avec des pierres : c'était Harri qui les lançait le plus loin.",
+      "deu": "Und abends spielten sie mit Steinen, und Harri warf sie am weitesten.",
+      "glg": "E pola noite xogaban coas pedras, e Harri era quen as lanzaba máis lonxe.",
+      "eus": "Eta gauean harriekin jolasten zuten, eta Harri zen urrutien botatzen zituena."
     },
     {
       "imagen": "4",
       "esp": "Monstruo Azul seguía sin saber qué hacer con sus largos brazos para ser de LOS MEJORES.",
       "cat": "Monstre Blau seguia sense saber què fer amb els seus llargs braços per a ser dels MILLORS.",
-      "eng": "Blue Monster still did not know what to do with his long arms to be part of the BESTS."
+      "eng": "Blue Monster still did not know what to do with his long arms to be part of the BESTS.",
+      "fra": "Monstre Bleu ne savait toujours pas quoi faire de ses longs bras pour être l'un des MEILLEURS.",
+      "deu": "Blaues Monster wusste immer noch nicht, was es mit seinen langen Armen tun sollte, um zu DEN BESTEN zu gehören.",
+      "glg": "Monstro Azul seguía sen saber que facer cos seus longos brazos para ser dos MELLORES.",
+      "eus": "Munstro Urdinak oraindik ez zekien zer egin bere beso luzeekin ONENETAKO bat izateko."
     },
     {
       "imagen": "4",
       "esp": "Los demás no se preocupaban de las acciones de sus actos,",
       "cat": "Els altres no es preocupaven de les accions dels seus actes,",
-      "eng": "The others were not concerned about the actions of their acts,"
+      "eng": "The others were not concerned about the actions of their acts,",
+      "fra": "Les autres ne se souciaient pas des conséquences de leurs actes,",
+      "deu": "Die anderen kümmerten sich nicht um die Folgen ihres Tuns",
+      "glg": "Os demais non se preocupaban polas consecuencias dos seus actos,",
+      "eus": "Besteak ez ziren beren ekintzen ondorioez arduratzen,"
     },
     {
       "imagen": "4",
       "esp": "y le daban ideas que a él no le gustaban.",
       "cat": "i li donaven idees que a ell no li agradaven.",
-      "eng": "And they gave him ideas he didn't like."
+      "eng": "And they gave him ideas he didn't like.",
+      "fra": "et ils lui donnaient des idées qui ne lui plaisaient pas.",
+      "deu": "und gaben ihm Ideen, die ihm nicht gefielen.",
+      "glg": "e dábanlle ideas que a el non lle gustaban.",
+      "eus": "eta hari gustatzen ez zitzaizkion ideiak ematen zizkioten."
     },
     {
       "imagen": "5",
       "esp": "Pasaron muchos días y muchas noches.",
       "cat": "Van passar molts dies i moltes nits.",
-      "eng": "Many days and many nights passed."
+      "eng": "Many days and many nights passed.",
+      "fra": "Beaucoup de jours et beaucoup de nuits passèrent.",
+      "deu": "Viele Tage und viele Nächte vergingen.",
+      "glg": "Pasaron moitos días e moitas noites.",
+      "eus": "Egun eta gau asko igaro ziren."
     },
     {
       "imagen": "5",
       "esp": "Monstruo Azul observó que el lugar estaba distinto.",
       "cat": "Monstre Blau va observar que el lloc estava diferent.",
-      "eng": "Monster Blue observed that the place was different."
+      "eng": "Monster Blue observed that the place was different.",
+      "fra": "Monstre Bleu remarqua que l'endroit avait changé.",
+      "deu": "Blaues Monster merkte, dass der Ort sich verändert hatte.",
+      "glg": "Monstro Azul observou que o lugar estaba distinto.",
+      "eus": "Munstro Urdinak ikusi zuen lekua desberdina zegoela."
     },
     {
       "imagen": "5",
       "esp": "Las nubes ya no cambiaban de color,",
       "cat": "Els núvols ja no canviaven de color,",
-      "eng": "Clouds no longer changed color,"
+      "eng": "Clouds no longer changed color,",
+      "fra": "Les nuages ne changeaient plus de couleur,",
+      "deu": "Die Wolken wechselten nicht mehr ihre Farbe,",
+      "glg": "As nubes xa non cambiaban de cor,",
+      "eus": "Hodeiek ez zuten kolorez aldatzen,"
     },
     {
       "imagen": "5",
       "esp": "las aves nunca cantaban",
       "cat": "els ocells mai cantaven",
-      "eng": "birds never sang"
+      "eng": "birds never sang",
+      "fra": "les oiseaux ne chantaient plus jamais,",
+      "deu": "die Vögel sangen nie mehr,",
+      "glg": "as aves nunca cantaban",
+      "eus": "hegaztiek ez zuten inoiz kantatzen,"
     },
     {
       "imagen": "5",
       "esp": "y hasta las piedras habían dejado de sonreír.",
       "cat": "i fins a les pedres havien deixat de somriure.",
-      "eng": "And even the stones had stopped smiling."
+      "eng": "And even the stones had stopped smiling.",
+      "fra": "et même les pierres avaient cessé de sourire.",
+      "deu": "und sogar die Steine hatten aufgehört zu lächeln.",
+      "glg": "e ata as pedras deixaran de sorrir.",
+      "eus": "eta harriek ere irribarre egiteari utzi zioten."
     },
     {
       "imagen": "5",
       "esp": "-¿Por qué ya no queréis jugar con nosotros, si somos LOS MEJORES?",
       "cat": "-Per què ja no voleu jugar amb nosaltres, si som ELS MILLORS?",
-      "eng": "- Why don't you want to play with us anymore if we're the best?"
+      "eng": "- Why don't you want to play with us anymore if we're the best?",
+      "fra": "— Pourquoi ne voulez-vous plus jouer avec nous, alors que nous sommes LES MEILLEURS ?",
+      "deu": "„Warum wollt ihr nicht mehr mit uns spielen? Wir sind doch DIE BESTEN!“,",
+      "glg": "—Por que xa non queredes xogar connosco, se somos OS MELLORES?",
+      "eus": "—Zergatik ez duzue gurekin jolastu nahi, ONENAK bagara?"
     },
     {
       "imagen": "5",
       "esp": "- preguntó Monstruo Azul, pero nadie respondió.",
       "cat": "- va preguntar Monstre Blau, però ningú va respondre.",
-      "eng": "- asked Monster Blue, but no one answered."
+      "eng": "- asked Monster Blue, but no one answered.",
+      "fra": "demanda Monstre Bleu, mais personne ne répondit.",
+      "deu": "fragte Blaues Monster, aber niemand antwortete.",
+      "glg": "—preguntou Monstro Azul, pero ninguén respondeu.",
+      "eus": "—galdetu zuen Munstro Urdinak, baina inork ez zuen erantzun."
     },
     {
       "imagen": "6",
       "esp": "Monstruo Azul con uno de sus brazos abrazó el árbol.",
       "cat": "Monstre Blau amb un dels seus braços va abraçar l'arbre.",
-      "eng": "Blue monster with one of his arms hugged the tree."
+      "eng": "Blue monster with one of his arms hugged the tree.",
+      "fra": "Monstre Bleu serra l'arbre dans l'un de ses bras.",
+      "deu": "Blaues Monster umarmte den Baum mit einem seiner Arme.",
+      "glg": "Monstro Azul abrazou a árbore cun dos seus brazos.",
+      "eus": "Munstro Urdinak bere beso batekin zuhaitza besarkatu zuen."
     },
     {
       "imagen": "6",
       "esp": "El árbol decidió devolver el abrazo...",
       "cat": "L'arbre va decidir retornar l'abraçada...",
-      "eng": "The tree decided to return the hug..."
+      "eng": "The tree decided to return the hug...",
+      "fra": "L'arbre décida de lui rendre son câlin…",
+      "deu": "Der Baum beschloss, die Umarmung zu erwidern…",
+      "glg": "A árbore decidiu devolverlle a aperta…",
+      "eus": "Zuhaitzak besarkada itzultzea erabaki zuen…"
     },
     {
       "imagen": "6",
       "esp": "Y conversaron. Así Monstruo Azul aprendió a escuchar.",
       "cat": "I van conversar. Així Monstre Blau va aprendre a escoltar.",
-      "eng": "And they talked. So Monster Blue learned to listen."
+      "eng": "And they talked. So Monster Blue learned to listen.",
+      "fra": "Et ils parlèrent. C'est ainsi que Monstre Bleu apprit à écouter.",
+      "deu": "Und sie redeten miteinander. So lernte Blaues Monster zuzuhören.",
+      "glg": "E conversaron. Así Monstro Azul aprendeu a escoitar.",
+      "eus": "Eta hitz egin zuten. Horrela ikasi zuen Munstro Urdinak entzuten."
     },
     {
       "imagen": "6",
       "esp": "Entonces, con sus largos brazos, Monstruo Azul abrazó el bosque.",
       "cat": "Llavors, amb els seus llargs braços, Monstre Blau va abraçar el bosc.",
-      "eng": "Then, with his long arms, Monster Blue hugged the forest."
+      "eng": "Then, with his long arms, Monster Blue hugged the forest.",
+      "fra": "Alors, avec ses longs bras, Monstre Bleu serra toute la forêt contre lui.",
+      "deu": "Dann umarmte Blaues Monster mit seinen langen Armen den ganzen Wald.",
+      "glg": "Entón, cos seus longos brazos, Monstro Azul abrazou o bosque.",
+      "eus": "Orduan, bere beso luzeekin, Munstro Urdinak basoa besarkatu zuen."
     },
     {
       "imagen": "6",
       "esp": "Escuchando y conversando Monstruo Azul pudo entender lo que sentían.",
       "cat": "Escoltant i conversant Monstre Blau va poder entendre el que sentien.",
-      "eng": "Listening and talking, Monster Blue could understand what they felt."
+      "eng": "Listening and talking, Monster Blue could understand what they felt.",
+      "fra": "En écoutant et en parlant, Monstre Bleu put comprendre ce qu'ils ressentaient.",
+      "deu": "Durch Zuhören und Reden konnte Blaues Monster verstehen, wie es ihnen ging.",
+      "glg": "Escoitando e conversando, Monstro Azul puido entender o que sentían.",
+      "eus": "Entzunez eta hitz eginez, Munstro Urdinak ulertu zuen zer sentitzen zuten."
     },
     {
       "imagen": "7",
       "esp": "Monstruo Azul contó a los demás lo vivido en el bosque,",
       "cat": "Monstre Blau va comptar als altres el viscut en el bosc,",
-      "eng": "Monster Blue told others what lived in the forest,"
+      "eng": "Monster Blue told others what lived in the forest,",
+      "fra": "Monstre Bleu raconta aux autres ce qu'il avait vécu dans la forêt,",
+      "deu": "Blaues Monster erzählte den anderen, was es im Wald erlebt hatte,",
+      "glg": "Monstro Azul contoulles aos demais o que vivira no bosque,",
+      "eus": "Munstro Urdinak besteei basoan bizitakoa kontatu zien,"
     },
     {
       "imagen": "7",
       "esp": "y así les propuso que conversaran.",
       "cat": "i així els va proposar que conversessin.",
-      "eng": "And so he proposed to them to talk."
+      "eng": "And so he proposed to them to talk.",
+      "fra": "et il leur proposa de parler, eux aussi.",
+      "deu": "und schlug ihnen vor, auch miteinander zu reden.",
+      "glg": "e así propúxolles que conversasen.",
+      "eus": "eta hitz egiteko proposatu zien."
     },
     {
       "imagen": "7",
       "esp": "Y escuchando fue como aprendieron...",
       "cat": "I escoltant va ser com van aprendre...",
-      "eng": "And listening was how they learned..."
+      "eng": "And listening was how they learned...",
+      "fra": "Et c'est en écoutant qu'ils apprirent…",
+      "deu": "Und durch Zuhören lernten sie…",
+      "glg": "E foi escoitando como aprenderon…",
+      "eus": "Eta entzunez ikasi zuten…"
     },
     {
       "imagen": "7",
       "esp": "Aprendieron a cantar con las aves,",
       "cat": "Van aprendre a cantar amb els ocells,",
-      "eng": "They learned to sing with the birds,"
+      "eng": "They learned to sing with the birds,",
+      "fra": "Ils apprirent à chanter avec les oiseaux,",
+      "deu": "Sie lernten, mit den Vögeln zu singen,",
+      "glg": "Aprenderon a cantar coas aves,",
+      "eus": "Hegaztiekin kantatzen ikasi zuten,"
     },
     {
       "imagen": "7",
       "esp": "a saltar sobre los nenúfares",
       "cat": "a saltar sobre els nenúfars",
-      "eng": "to jump on the babysitters"
+      "eng": "to jump on the babysitters",
+      "fra": "à sauter sur les nénuphars",
+      "deu": "auf Seerosenblättern zu springen",
+      "glg": "a saltar sobre os nenúfares",
+      "eus": "nenufarren gainean salto egiten"
     },
     {
       "imagen": "7",
       "esp": "y a construir con las piedras.",
       "cat": "i a construir amb les pedres.",
-      "eng": "and to build with the stones."
+      "eng": "and to build with the stones.",
+      "fra": "et à construire avec les pierres.",
+      "deu": "und mit den Steinen zu bauen.",
+      "glg": "e a construír coas pedras.",
+      "eus": "eta harriekin eraikitzen."
     },
     {
       "imagen": "8",
       "esp": "De esa manera consiguieron que aquel LUGAR maravilloso...",
       "cat": "D'aquesta manera van aconseguir que aquell LLOC meravellós...",
-      "eng": "So, they got that wonderful place..."
+      "eng": "So, they got that wonderful place...",
+      "fra": "C'est ainsi que cet ENDROIT merveilleux…",
+      "deu": "So schafften sie es, dass dieser wunderbare ORT…",
+      "glg": "Desa maneira conseguiron que aquel LUGAR marabilloso…",
+      "eus": "Horrela lortu zuten LEKU zoragarri hura…"
     },
     {
       "imagen": "8",
       "esp": "Se convirtiera en un LUGAR MEJOR.",
       "cat": "Es convertís en un LLOC MILLOR.",
-      "eng": "It became a better place."
+      "eng": "It became a better place.",
+      "fra": "devint un ENDROIT MEILLEUR.",
+      "deu": "zu einem BESSEREN ORT wurde.",
+      "glg": "se convertese nun LUGAR MELLOR.",
+      "eus": "LEKU HOBE bihurtzea."
     },
     {
       "imagen": "8",
       "esp": "Ahora todo el mundo sabe que Monstruo Azul da los mejores abrazos.",
       "cat": "Ara tothom sap que Monstre Blau fa les millors abraçades.",
-      "eng": "Now everyone knows Monster Blue makes the best hugs."
+      "eng": "Now everyone knows Monster Blue makes the best hugs.",
+      "fra": "Maintenant, tout le monde sait que Monstre Bleu fait les meilleurs câlins.",
+      "deu": "Jetzt weiß jeder: Blaues Monster umarmt am allerbesten.",
+      "glg": "Agora todo o mundo sabe que Monstro Azul dá as mellores apertas.",
+      "eus": "Orain mundu guztiak daki Munstro Urdinak ematen dituela besarkadarik onenak."
     },
     {
       "imagen": "8",
       "esp": "FIN",
       "cat": "FI",
-      "eng": "THE END"
+      "eng": "THE END",
+      "fra": "FIN",
+      "deu": "ENDE",
+      "glg": "FIN",
+      "eus": "AMAIERA"
     }
   ]
 }

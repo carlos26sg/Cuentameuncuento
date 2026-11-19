@@ -4,211 +4,351 @@
   "titulo": {
     "esp": "El pirata Gatopata",
     "cat": "El pirata Gatopata",
-    "eng": "Gatopata Pirate"
+    "eng": "Gatopata Pirate",
+    "fra": "Le pirate Gatopata",
+    "deu": "Der Pirat Gatopata",
+    "glg": "O pirata Gatopata",
+    "eus": "Gatopata pirata"
   },
   "descripcion": {
     "esp": "La historia de un pirata con pata de palo y su inseparable felino.",
     "cat": "La història d'un pirata amb pota de pal i el seu felí inseparable.",
-    "eng": "The story of a wooden-legged pirate and his inseparable feline."
+    "eng": "The story of a wooden-legged pirate and his inseparable feline.",
+    "fra": "L'histoire d'un pirate à la jambe de bois et de son inséparable compagnon félin.",
+    "deu": "Die Geschichte eines Piraten mit Holzbein und seiner unzertrennlichen Katze.",
+    "glg": "A historia dun pirata con pata de pau e o seu inseparable compañeiro felino.",
+    "eus": "Zurezko hanka duen pirata baten eta bere katu banaezinaren istorioa."
   },
   "lineas": [
     {
       "imagen": "1",
       "esp": "Había una vez un pirata con pata de palo,",
       "cat": "Hi havia una vegada un pirata amb cama de fusta,",
-      "eng": "There was once a pirate with a wooden leg,"
+      "eng": "There was once a pirate with a wooden leg,",
+      "fra": "Il était une fois un pirate à la jambe de bois,",
+      "deu": "Es war einmal ein Pirat mit einem Holzbein,",
+      "glg": "Había unha vez un pirata cunha pata de pau,",
+      "eus": "Bazen behin zurezko hanka zuen pirata bat,"
     },
     {
       "imagen": "1",
       "esp": "que llevaba enredado en ella a su inseparable amigo felino.",
       "cat": "que portava embullat en ella al seu inseparable amic felí.",
-      "eng": "that he wore entangled in her inseparable feline friend."
+      "eng": "that he wore entangled in her inseparable feline friend.",
+      "fra": "autour de laquelle s'enroulait son inséparable ami félin.",
+      "deu": "um das sich sein unzertrennlicher Freund, ein Kater, schmiegte.",
+      "glg": "na que levaba enroscado o seu inseparable amigo felino.",
+      "eus": "eta hanka horri bilduta eramaten zuen bere lagun banaezina, katu bat."
     },
     {
       "imagen": "1",
       "esp": "Por eso, todos le llamaba el pirata Gatopata.",
       "cat": "Per això, tots li deien el pirata Gatpata.",
-      "eng": "That's why everyone called him the pirate Gatopata."
+      "eng": "That's why everyone called him the pirate Gatopata.",
+      "fra": "C'est pour cela que tout le monde l'appelait le pirate Gatopata.",
+      "deu": "Deshalb nannten ihn alle den Piraten Gatopata.",
+      "glg": "Por iso todos lle chamaban o pirata Gatopata.",
+      "eus": "Horregatik, denek Gatopata pirata deitzen zioten."
     },
     {
       "imagen": "1",
       "esp": "El pirata Gatopata no perdió la pierna en ninguna lucha encarnizada,",
       "cat": "El pirata Gatpata no va perdre la cama en cap lluita acarnissada,",
-      "eng": "Pirate Gatopata didn't lose his leg in a fierce fight,"
+      "eng": "Pirate Gatopata didn't lose his leg in a fierce fight,",
+      "fra": "Le pirate Gatopata n'avait pas perdu sa jambe dans une bataille acharnée,",
+      "deu": "Der Pirat Gatopata hatte sein Bein nicht in einer wilden Schlacht verloren",
+      "glg": "O pirata Gatopata non perdeu a perna en ningunha loita encarnizada,",
+      "eus": "Gatopata piratak ez zuen hanka galdu borroka gogor batean,"
     },
     {
       "imagen": "1",
       "esp": "ni en ninguna pelea por defender su barco.",
       "cat": "ni en cap baralla per defensar el seu vaixell.",
-      "eng": "Not in any fight to defend his ship."
+      "eng": "Not in any fight to defend his ship.",
+      "fra": "ni en se battant pour défendre son navire.",
+      "deu": "und auch nicht in einem Kampf um sein Schiff.",
+      "glg": "nin en ningunha pelexa por defender o seu barco.",
+      "eus": "ezta bere itsasontzia defendatzeko liskar batean ere."
     },
     {
       "imagen": "1",
       "esp": "No, el pirata Gatopata perdió la pierna por salvar a su gato.",
       "cat": "No, el pirata Gatpata va perdre la cama per salvar al seu gat.",
-      "eng": "No, the pirate Gatopata lost his leg to save his cat."
+      "eng": "No, the pirate Gatopata lost his leg to save his cat.",
+      "fra": "Non, le pirate Gatopata avait perdu sa jambe pour sauver son chat.",
+      "deu": "Nein, der Pirat Gatopata hatte sein Bein verloren, um seinen Kater zu retten.",
+      "glg": "Non, o pirata Gatopata perdeu a perna por salvar o seu gato.",
+      "eus": "Ez, Gatopata piratak bere katua salbatzeagatik galdu zuen hanka."
     },
     {
       "imagen": "1",
       "esp": "Esta es su historia.",
       "cat": "Aquesta es l'historia.",
-      "eng": "This is the story."
+      "eng": "This is the story.",
+      "fra": "Voici son histoire.",
+      "deu": "Das ist seine Geschichte.",
+      "glg": "Esta é a súa historia.",
+      "eus": "Hau da bere istorioa."
     },
     {
       "imagen": "1",
       "esp": "El día que el pirata Gatopata se subió al barco con su gato",
       "cat": "El dia que el pirata Gatpata es va pujar al vaixell amb el seu gat",
-      "eng": "The day the pirate Gatopata boarded the boat with his cat"
+      "eng": "The day the pirate Gatopata boarded the boat with his cat",
+      "fra": "Le jour où le pirate Gatopata monta à bord avec son chat,",
+      "deu": "An dem Tag, als der Pirat Gatopata mit seinem Kater an Bord ging,",
+      "glg": "O día en que o pirata Gatopata subiu ao barco co seu gato",
+      "eus": "Gatopata pirata bere katuarekin itsasontzira igo zen egunean,"
     },
     {
       "imagen": "1",
       "esp": "se convirtió en el centro de todas las miradas y también de todas las burlas.",
       "cat": "es va convertir en el centre de totes les mirades i també de totes les burles.",
-      "eng": "it became the center of all sights and also of all derisions."
+      "eng": "it became the center of all sights and also of all derisions.",
+      "fra": "tous les regards se tournèrent vers lui, et toutes les moqueries aussi.",
+      "deu": "schauten ihn alle an – und alle lachten über ihn.",
+      "glg": "converteuse no centro de todas as miradas e tamén de todas as burlas.",
+      "eus": "begirada guztiak eta iseka guztiak harengana joan ziren."
     },
     {
       "imagen": "1",
       "esp": "—Los piratas no tienen gatos, tienen loros o monos,",
       "cat": "—Els pirates no tenen gats, tenen lloros o micos,",
-      "eng": "- Pirates don't have cats, they have parrots or monkeys,"
+      "eng": "- Pirates don't have cats, they have parrots or monkeys,",
+      "fra": "— Les pirates n'ont pas de chats, ils ont des perroquets ou des singes,",
+      "deu": "„Piraten haben keine Katzen, sie haben Papageien oder Affen,",
+      "glg": "—Os piratas non teñen gatos, teñen loros ou monos,",
+      "eus": "—Piratek ez dute katurik, loroak edo tximinoak dituzte,"
     },
     {
       "imagen": "1",
       "esp": "pero no gatos —le decían los demás piratas.",
       "cat": "però no gats —li deien els altres pirates.",
-      "eng": "But not cats — the other pirates called him."
+      "eng": "But not cats — the other pirates called him.",
+      "fra": "mais pas de chats, lui disaient les autres pirates.",
+      "deu": "aber keine Katzen“, sagten die anderen Piraten zu ihm.",
+      "glg": "pero non gatos —dicíanlle os outros piratas.",
+      "eus": "baina ez katurik —esaten zioten gainerako piratek."
     },
     {
       "imagen": "1",
       "esp": "Pero aquel pirata no estaba dispuesto a renunciar a su gato,",
       "cat": "Però aquell pirata no estava disposat a renunciar al seu gat,",
-      "eng": "But that pirate wasn't willing to give up his cat,"
+      "eng": "But that pirate wasn't willing to give up his cat,",
+      "fra": "Mais ce pirate n'était pas prêt à renoncer à son chat :",
+      "deu": "Doch dieser Pirat dachte nicht daran, seinen Kater aufzugeben:",
+      "glg": "Pero aquel pirata non estaba disposto a renunciar ao seu gato:",
+      "eus": "Baina pirata hark ez zuen bere katuari uko egin nahi:"
     },
     {
       "imagen": "1",
       "esp": "le había acompañado siempre y le había salvado de más de un peligro,",
       "cat": "li havia acompanyat sempre i li havia salvat de més d'un perill,",
-      "eng": "I had always accompanied him and saved him from more than one danger,"
+      "eng": "I had always accompanied him and saved him from more than one danger,",
+      "fra": "il l'avait toujours accompagné et l'avait sauvé de plus d'un danger,",
+      "deu": "Er hatte ihn immer begleitet und ihn vor mehr als einer Gefahr gerettet,",
+      "glg": "acompañárao sempre e salvárao de máis dun perigo,",
+      "eus": "beti lagundu zion, eta arrisku batetik baino gehiagotatik salbatu zuen,"
     },
     {
       "imagen": "1",
       "esp": "dicho sea de paso. Aunque eso es otra historia.",
       "cat": "dit sigui de pas. Encara que això és una altra història.",
-      "eng": "incidentally. But that's another story."
+      "eng": "incidentally. But that's another story.",
+      "fra": "soit dit en passant. Mais ça, c'est une autre histoire.",
+      "deu": "nebenbei bemerkt. Aber das ist eine andere Geschichte.",
+      "glg": "dito sexa de paso. Aínda que iso é outra historia.",
+      "eus": "bide batez esanda. Baina hori beste istorio bat da."
     },
     {
       "imagen": "1",
       "esp": "Ese mismo día el barco zarpó. No habían perdido el puerto de vista aún",
       "cat": "Aquest mateix dia el vaixell va salpar. No havien perdut el port de vista encara",
-      "eng": "That same day the ship set sail. They had not lost their sight port yet"
+      "eng": "That same day the ship set sail. They had not lost their sight port yet",
+      "fra": "Ce jour-là, le navire leva l'ancre. Ils n'avaient pas encore perdu le port de vue",
+      "deu": "Noch am selben Tag stach das Schiff in See. Der Hafen war noch in Sichtweite,",
+      "glg": "Ese mesmo día o barco zarpou. Aínda non perderan o porto de vista",
+      "eus": "Egun berean, itsasontzia itsasoratu zen. Oraindik portua ikusten zuten"
     },
     {
       "imagen": "1",
       "esp": "cuando un gran galeón le salió al paso para robarles todo lo que llevaban a bordo:",
       "cat": "quan un gran galió els va sortir al pas per intentar robar tot el que portaven a bord:",
-      "eng": "When a great galleon came to them to steal everything they had on board:"
+      "eng": "When a great galleon came to them to steal everything they had on board:",
+      "fra": "quand un grand galion leur barra la route pour voler tout ce qu'ils avaient à bord :",
+      "deu": "als ihnen eine große Galeone den Weg versperrte, um alles zu rauben, was sie an Bord hatten:",
+      "glg": "cando un gran galeón lles saíu ao paso para roubarlles todo o que levaban a bordo:",
+      "eus": "galeoi handi bat bidera atera zitzaienean, ontzian zeramaten guztia lapurtzeko:"
     },
     {
       "imagen": "1",
       "esp": "provisiones, mercancías y, un gran tesoro que iban a esconder en alguna isla desierta.",
       "cat": "provisions, mercaderies, i un gran tresor que anaven a amagar en alguna illa deserta.",
-      "eng": "provisions, goods and, a great treasure that were going to hide on some deserted island."
+      "eng": "provisions, goods and, a great treasure that were going to hide on some deserted island.",
+      "fra": "des provisions, des marchandises et un grand trésor qu'ils allaient cacher sur une île déserte.",
+      "deu": "Vorräte, Waren und einen großen Schatz, den sie auf einer einsamen Insel verstecken wollten.",
+      "glg": "provisións, mercadorías e un gran tesouro que ían agochar nalgunha illa deserta.",
+      "eus": "janaria, salgaiak eta altxor handi bat, uharte huts batean ezkutatu behar zutena."
     },
     {
       "imagen": "1",
       "esp": "—Entregad lo que tenéis o ateneos a las consecuencias",
       "cat": "—Lliureu el que teniu o us atendreu a les conseqüències",
-      "eng": "—Submit what you have or attenuate to the consequences"
+      "eng": "—Submit what you have or attenuate to the consequences",
+      "fra": "— Donnez-nous tout ce que vous avez, ou gare à vous !",
+      "deu": "„Gebt uns alles, was ihr habt, sonst ergeht es euch schlecht!“,",
+      "glg": "—Entregade o que tedes ou atédevos ás consecuencias",
+      "eus": "—Eman daukazuen guztia, edo jasan ondorioak!"
     },
     {
       "imagen": "1",
       "esp": "—amenazaron los piratas del gran galeón.",
       "cat": "—van amenaçar els pirates del gran galió.",
-      "eng": "- They threatened the pirates of the great galleon."
+      "eng": "- They threatened the pirates of the great galleon.",
+      "fra": "menacèrent les pirates du grand galion.",
+      "deu": "drohten die Piraten der großen Galeone.",
+      "glg": "—ameazaron os piratas do gran galeón.",
+      "eus": "—mehatxu egin zuten galeoi handiko piratek."
     },
     {
       "imagen": "1",
       "esp": "Por toda respuesta, los otros sacaron son espadas.",
       "cat": "Per tota resposta, els altres van treure les seves espases.",
-      "eng": "For all the answers, the others pulled out are swords."
+      "eng": "For all the answers, the others pulled out are swords.",
+      "fra": "Pour toute réponse, les autres sortirent leurs épées.",
+      "deu": "Statt einer Antwort zogen die anderen ihre Schwerter.",
+      "glg": "Por toda resposta, os outros sacaron as espadas.",
+      "eus": "Erantzun gisa, besteek ezpatak atera zituzten."
     },
     {
       "imagen": "1",
       "esp": "El gato se subió al hombro de su amigo y se puso a la defensiva.",
       "cat": "El gat es va pujar a l'espatlla del seu amic i es va posar a la defensiva.",
-      "eng": "The cat rose to his friend's shoulder and stood on the defensive."
+      "eng": "The cat rose to his friend's shoulder and stood on the defensive.",
+      "fra": "Le chat grimpa sur l'épaule de son ami et se mit sur la défensive.",
+      "deu": "Der Kater kletterte auf die Schulter seines Freundes und machte sich kampfbereit.",
+      "glg": "O gato subiu ao ombreiro do seu amigo e púxose á defensiva.",
+      "eus": "Katua bere lagunaren sorbaldara igo zen eta defentsan jarri zen."
     },
     {
       "imagen": "1",
       "esp": "Esto arrancó una gran carcajada por parte de todos",
       "cat": "Això va arrencar una gran riallada per part de tots",
-      "eng": "This sparked a great laugh on all sides"
+      "eng": "This sparked a great laugh on all sides",
+      "fra": "Tout le monde éclata de rire",
+      "deu": "Da brachen alle in schallendes Gelächter aus,",
+      "glg": "Isto provocou unha gran gargallada de todos",
+      "eus": "Horrek barre-algara handia eragin zuen denen artean,"
     },
     {
       "imagen": "1",
       "esp": "e hizo que los piratas del gran galeón cambiasen de opinión, a cambio de llevarse al gato.",
       "cat": "i va fer que els pirates del gran galió canviessin d'opinió, a canvi d'emportar-se al gat.",
-      "eng": "And he made the pirates of the great galleon change their minds in exchange for taking the cat."
+      "eng": "And he made the pirates of the great galleon change their minds in exchange for taking the cat.",
+      "fra": "et les pirates du grand galion changèrent d'avis : ils voulaient emporter le chat à la place.",
+      "deu": "und die Piraten der großen Galeone änderten ihre Meinung: Stattdessen wollten sie den Kater mitnehmen.",
+      "glg": "e fixo que os piratas do gran galeón cambiasen de idea: agora querían levar o gato.",
+      "eus": "eta galeoi handiko piratek iritziz aldatu zuten: katua eraman nahi zuten orain."
     },
     {
       "imagen": "1",
       "esp": "El forcejo por el gato fue tremendo, hasta que el gato cayó al agua.",
       "cat": "El forcejament pel gat va ser intens, fins que el gat va caure a l'aigua.",
-      "eng": "The cat-force was tremendous, until the cat fell into the water."
+      "eng": "The cat-force was tremendous, until the cat fell into the water.",
+      "fra": "On se disputa le chat avec acharnement, jusqu'à ce qu'il tombe à l'eau.",
+      "deu": "Sie zerrten wild an dem Kater, bis er ins Wasser fiel.",
+      "glg": "O forcexo polo gato foi tremendo, ata que o gato caeu á auga.",
+      "eus": "Katuagatik borroka izugarria izan zen, katua uretara erori zen arte."
     },
     {
       "imagen": "1",
       "esp": "El pirata se tiró a por él, con la mala suerte de que se enganchó la pierna",
       "cat": "El pirata es va tirar per ell, amb la mala sort que es va enganxar la cama",
-      "eng": "The pirate threw himself, with bad luck pasting his leg"
+      "eng": "The pirate threw himself, with bad luck pasting his leg",
+      "fra": "Le pirate plongea pour le sauver, mais par malchance sa jambe resta accrochée",
+      "deu": "Der Pirat sprang hinterher, doch zu seinem Pech blieb sein Bein hängen,",
+      "glg": "O pirata tirouse a por el, coa mala sorte de que se lle enganchou a perna",
+      "eus": "Pirata haren atzetik jauzi egin zuen, baina zorte txarrez hanka trabatu zitzaion"
     },
     {
       "imagen": "1",
       "esp": "y se hizo una herida muy grave, tan grave que hubo que amputar la pierna.",
       "cat": "i es va fer una ferida molt greu, tan greu que va caldre amputar la cama.",
-      "eng": "And there was a very serious wound, so severe that the leg had to be amputated."
+      "eng": "And there was a very serious wound, so severe that the leg had to be amputated.",
+      "fra": "et il se blessa très gravement, si gravement qu'il fallut lui couper la jambe.",
+      "deu": "und er verletzte sich so schwer, dass man ihm das Bein abnehmen musste.",
+      "glg": "e fíxose unha ferida moi grave, tan grave que houbo que amputarlle a perna.",
+      "eus": "eta zauri oso larria egin zuen, hain larria non hanka moztu behar izan zioten."
     },
     {
       "imagen": "1",
       "esp": "El gato no se movió del lado de su amigo y, desde entonces, va siempre con él.",
       "cat": "El gat no es va moure del costat del seu amic i, des de llavors, va sempre amb ell.",
-      "eng": "The cat did not move from his friend's side and has since always been with him."
+      "eng": "The cat did not move from his friend's side and has since always been with him.",
+      "fra": "Le chat ne quitta plus son ami et, depuis ce jour, il l'accompagne partout.",
+      "deu": "Der Kater wich nicht mehr von der Seite seines Freundes und ist seitdem immer bei ihm.",
+      "glg": "O gato non se moveu do lado do seu amigo e, desde entón, vai sempre con el.",
+      "eus": "Katua ez zen bere lagunaren ondotik mugitu, eta harrezkero beti doa berarekin."
     },
     {
       "imagen": "1",
       "esp": "Incluso hicieron una pata de palo especial con un soporte para el gato.",
       "cat": "Fins i tot van fer una cama de fusta especial amb un suport per al gat.",
-      "eng": "They even made a special wooden leg with cat support."
+      "eng": "They even made a special wooden leg with cat support.",
+      "fra": "On lui fabriqua même une jambe de bois spéciale, avec un perchoir pour le chat.",
+      "deu": "Man baute ihm sogar ein besonderes Holzbein mit einem Sitz für den Kater.",
+      "glg": "Mesmo lle fixeron unha pata de pau especial cun soporte para o gato.",
+      "eus": "Zurezko hanka berezi bat ere egin zioten, katuarentzako euskarri batekin."
     },
     {
       "imagen": "1",
       "esp": "Fue entonces cuando el pirata se ganó el apodo de pirata Gatopata.",
       "cat": "Va ser llavors quan el pirata es va guanyar el sobrenom de pirata Gatpata.",
-      "eng": "It was then that the pirate earned the nickname \"Pirate Gatopata\"."
+      "eng": "It was then that the pirate earned the nickname \"Pirate Gatopata\".",
+      "fra": "C'est alors que le pirate gagna son surnom de pirate Gatopata.",
+      "deu": "So bekam der Pirat seinen Spitznamen: der Pirat Gatopata.",
+      "glg": "Foi entón cando o pirata gañou o alcume de pirata Gatopata.",
+      "eus": "Orduan irabazi zuen piratak Gatopata pirata ezizena."
     },
     {
       "imagen": "1",
       "esp": "La valentía y la fiereza del pirata y de su gato se vieron recompensadas,",
       "cat": "La valentia i la feresa del pirata i del seu gat es van veure recompensades,",
-      "eng": "The pirate and his cat were rewarded,"
+      "eng": "The pirate and his cat were rewarded,",
+      "fra": "Le courage et la fierté du pirate et de son chat furent récompensés :",
+      "deu": "Der Mut und die Tapferkeit des Piraten und seines Katers wurden belohnt:",
+      "glg": "A valentía e a fereza do pirata e do seu gato víronse recompensadas:",
+      "eus": "Piratak eta bere katuak erakutsitako ausardia eta kemena saritu egin zituzten:"
     },
     {
       "imagen": "1",
       "esp": "desde entonces, ya nadie se atreve a meterse con ellos.",
       "cat": "des de llavors, ja ningú s'atreveix a ficar-se amb ells.",
-      "eng": "Since then, no one dares to get in with them."
+      "eng": "Since then, no one dares to get in with them.",
+      "fra": "depuis, plus personne n'ose s'en prendre à eux.",
+      "deu": "Seitdem traut sich niemand mehr, sich mit ihnen anzulegen.",
+      "glg": "desde entón, ninguén se atreve a meterse con eles.",
+      "eus": "harrezkero, inor ez da haiekin sartzera ausartzen."
     },
     {
       "imagen": "1",
       "esp": "Y son temidos en el mundo entero.",
       "cat": "I són temuts en el món sencer.",
-      "eng": "And they are feared throughout the world."
+      "eng": "And they are feared throughout the world.",
+      "fra": "Et on les craint dans le monde entier.",
+      "deu": "Und auf der ganzen Welt hat man Respekt vor ihnen.",
+      "glg": "E son temidos no mundo enteiro.",
+      "eus": "Eta mundu osoan beldur diete."
     },
     {
       "imagen": "1",
       "esp": "FIN",
       "cat": "FI",
-      "eng": "THE END"
+      "eng": "THE END",
+      "fra": "FIN",
+      "deu": "ENDE",
+      "glg": "FIN",
+      "eus": "AMAIERA"
     }
   ]
 }

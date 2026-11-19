@@ -67,6 +67,10 @@ val Idioma.endonimo: String
         Idioma.ESPANOL -> "Español"
         Idioma.CATALAN -> "Català"
         Idioma.INGLES -> "English"
+        Idioma.FRANCES -> "Français"
+        Idioma.ALEMAN -> "Deutsch"
+        Idioma.GALLEGO -> "Galego"
+        Idioma.EUSKERA -> "Euskara"
     }
 
 val Idioma.sigla: String
@@ -74,6 +78,10 @@ val Idioma.sigla: String
         Idioma.ESPANOL -> "ES"
         Idioma.CATALAN -> "CA"
         Idioma.INGLES -> "EN"
+        Idioma.FRANCES -> "FR"
+        Idioma.ALEMAN -> "DE"
+        Idioma.GALLEGO -> "GL"
+        Idioma.EUSKERA -> "EU"
     }
 
 /**

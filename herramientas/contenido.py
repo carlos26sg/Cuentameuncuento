@@ -1,7 +1,7 @@
 """
 Genera el contenido de la app a partir de contenido/cuentos/<id>/:
 
-    cuento.json      título, descripción y líneas en los tres idiomas
+    cuento.json      título, descripción y líneas en los siete idiomas
     portada.(jpg|png|webp)
     img_<N>.(png|jpg|webp)   ilustraciones que citan las líneas
 
@@ -34,8 +34,8 @@ FUENTES = RAIZ / 'contenido' / 'cuentos'
 SALIDA_APP = RAIZ / 'app' / 'src' / 'main' / 'assets' / 'contenido'
 SALIDA_WEB = RAIZ / 'build' / 'contenido-web' / 'contenido'
 
-IDIOMAS = ('esp', 'cat', 'eng')
-FINALES = {'esp': 'FIN', 'cat': 'FI', 'eng': 'THE END'}
+IDIOMAS = ('esp', 'cat', 'eng', 'fra', 'deu', 'glg', 'eus')
+FINALES = {'esp': 'FIN', 'cat': 'FI', 'eng': 'THE END', 'fra': 'FIN', 'deu': 'ENDE', 'glg': 'FIN', 'eus': 'AMAIERA'}
 EXTENSIONES = ('.webp', '.png', '.jpg', '.jpeg')
 
 # Las ilustraciones se ven a pantalla completa; las portadas, en la lista (~110-160 dp)
@@ -73,7 +73,7 @@ def validar(carpeta: Path) -> dict:
             if not str(cuento.get(campo, {}).get(idioma, '')).strip():
                 raise ErrorContenido(f'{cid}: falta {campo} en {idioma}')
 
-    # Créditos (autoría y licencia): opcionales, pero si están, en los tres idiomas
+    # Créditos (autoría y licencia): opcionales, pero si están, en todos los idiomas
     if 'creditos' in cuento:
         for idioma in IDIOMAS:
             if not str(cuento['creditos'].get(idioma, '')).strip():

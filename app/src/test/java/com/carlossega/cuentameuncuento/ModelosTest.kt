@@ -26,6 +26,23 @@ class ModelosTest {
         assertThat(Idioma.desdeCodigo("eng")).isEqualTo(Idioma.INGLES)
         assertThat(Idioma.desdeCodigo("xx")).isEqualTo(Idioma.ESPANOL)
         assertThat(Idioma.desdeCodigo(null)).isEqualTo(Idioma.ESPANOL)
+        assertThat(Idioma.desdeCodigo("eus")).isEqualTo(Idioma.EUSKERA)
+    }
+
+    @Test
+    fun idioma_delSistema_eligeElDelMovilSiHayCuentosEnEl() {
+        assertThat(Idioma.delSistema("fr")).isEqualTo(Idioma.FRANCES)
+        assertThat(Idioma.delSistema("de")).isEqualTo(Idioma.ALEMAN)
+        assertThat(Idioma.delSistema("gl")).isEqualTo(Idioma.GALLEGO)
+        assertThat(Idioma.delSistema("eu")).isEqualTo(Idioma.EUSKERA)
+        assertThat(Idioma.delSistema("ca")).isEqualTo(Idioma.CATALAN)
+        assertThat(Idioma.delSistema("ja")).isEqualTo(Idioma.ESPANOL)
+    }
+
+    @Test
+    fun finalDelCuento_enLosIdiomasNuevos() {
+        assertThat(LineaCuento("ENDE", null).esFinal).isTrue()
+        assertThat(LineaCuento("AMAIERA", null).esFinal).isTrue()
     }
 
     @Test
