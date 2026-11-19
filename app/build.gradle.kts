@@ -74,7 +74,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.process)
     implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.palette)
 
     // Interfaz con Jetpack Compose
     implementation(platform(libs.compose.bom))
