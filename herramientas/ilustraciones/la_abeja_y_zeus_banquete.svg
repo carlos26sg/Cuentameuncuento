@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+  <defs>
+    <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#BFE3F2"/>
+      <stop offset="1" stop-color="#EAF6FB"/>
+    </linearGradient>
+    <radialGradient id="luz" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFE9A8" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFE9A8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="miel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFC94D"/>
+      <stop offset="1" stop-color="#E9972A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Cielo y luz dorada del Olimpo -->
+  <rect width="1600" height="1000" fill="url(#cielo)"/>
+  <circle cx="800" cy="380" r="520" fill="url(#luz)"/>
+
+  <!-- Nubes del fondo -->
+  <g fill="#FFFFFF" opacity="0.85">
+    <ellipse cx="260" cy="200" rx="110" ry="40"/><ellipse cx="320" cy="175" rx="70" ry="45"/>
+    <ellipse cx="1330" cy="150" rx="120" ry="42"/><ellipse cx="1270" cy="125" rx="70" ry="45"/>
+  </g>
+
+  <!-- Columnas -->
+  <g>
+    <g transform="translate(110 210)">
+      <rect x="-14" y="-30" width="138" height="34" rx="8" fill="#F7F1E6"/>
+      <rect x="0" y="0" width="110" height="640" fill="#FBF7EF"/>
+      <g stroke="#E3D5C0" stroke-width="6"><line x1="28" y1="10" x2="28" y2="630"/><line x1="55" y1="10" x2="55" y2="630"/><line x1="82" y1="10" x2="82" y2="630"/></g>
+    </g>
+    <g transform="translate(1380 210)">
+      <rect x="-14" y="-30" width="138" height="34" rx="8" fill="#F7F1E6"/>
+      <rect x="0" y="0" width="110" height="640" fill="#FBF7EF"/>
+      <g stroke="#E3D5C0" stroke-width="6"><line x1="28" y1="10" x2="28" y2="630"/><line x1="55" y1="10" x2="55" y2="630"/><line x1="82" y1="10" x2="82" y2="630"/></g>
+    </g>
+    <!-- Guirnalda de boda entre las columnas -->
+    <path d="M200 200 Q800 330 1400 200" fill="none" stroke="#6DBB7A" stroke-width="14" stroke-linecap="round"/>
+    <g fill="#EE6A4A">
+      <circle cx="380" cy="242" r="13"/><circle cx="560" cy="272" r="13"/><circle cx="800" cy="285" r="15"/>
+      <circle cx="1040" cy="272" r="13"/><circle cx="1220" cy="242" r="13"/>
+    </g>
+    <g fill="#FFD36B">
+      <circle cx="470" cy="260" r="10"/><circle cx="680" cy="282" r="10"/><circle cx="920" cy="282" r="10"/><circle cx="1130" cy="260" r="10"/>
+    </g>
+  </g>
+
+  <!-- HERA -->
+  <g transform="translate(600 0)">
+    <path d="M-95 660 L-70 470 Q0 430 70 470 L95 660 Z" fill="#9B6BC9"/>
+    <path d="M-40 455 Q0 500 40 455" fill="none" stroke="#FFD36B" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="0" cy="385" r="66" fill="#4A2E2A"/>
+    <circle cx="0" cy="395" r="58" fill="#F2C29B"/>
+    <path d="M-60 380 Q-58 320 0 318 Q58 320 60 380 Q40 345 0 345 Q-40 345 -60 380 Z" fill="#4A2E2A"/>
+    <circle cx="0" cy="305" r="24" fill="#4A2E2A"/>
+    <path d="M-46 332 L-38 290 L-20 318 L0 280 L20 318 L38 290 L46 332 Z" fill="#FFD36B" stroke="#E9A93A" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="0" cy="300" r="7" fill="#EE6A4A"/>
+    <path d="M-28 395 q8 -9 16 0" fill="none" stroke="#2A2240" stroke-width="5" stroke-linecap="round"/>
+    <path d="M12 395 q8 -9 16 0" fill="none" stroke="#2A2240" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="-34" cy="415" r="10" fill="#F59C8E" opacity="0.7"/><circle cx="34" cy="415" r="10" fill="#F59C8E" opacity="0.7"/>
+    <path d="M-16 425 Q0 440 16 425" fill="none" stroke="#2A2240" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- ZEUS -->
+  <g transform="translate(920 0)">
+    <path d="M-120 660 L-90 450 Q0 405 90 450 L120 660 Z" fill="#5B7BD5"/>
+    <path d="M-90 450 Q-20 470 40 640" fill="none" stroke="#FFFFFF" stroke-width="22" opacity="0.9"/>
+    <!-- brazo con copa -->
+    <path d="M85 470 Q150 470 160 400" fill="none" stroke="#5B7BD5" stroke-width="40" stroke-linecap="round"/>
+    <circle cx="162" cy="392" r="22" fill="#F2C29B"/>
+    <path d="M140 330 L184 330 L176 370 Q162 380 148 370 Z" fill="#FFD36B" stroke="#E9A93A" stroke-width="4"/>
+    <rect x="158" y="370" width="8" height="22" fill="#E9A93A"/>
+    <!-- cabeza -->
+    <circle cx="0" cy="345" r="74" fill="#FFFFFF"/>
+    <circle cx="0" cy="355" r="62" fill="#F2C29B"/>
+    <path d="M-62 360 Q-70 300 0 292 Q70 300 62 360 Q50 320 0 318 Q-50 320 -62 360 Z" fill="#FFFFFF"/>
+    <!-- barba -->
+    <path d="M-62 365 Q-70 470 0 490 Q70 470 62 365 Q40 410 0 410 Q-40 410 -62 365 Z" fill="#FFFFFF"/>
+    <g fill="#FFFFFF"><circle cx="-38" cy="465" r="22"/><circle cx="0" cy="480" r="24"/><circle cx="38" cy="465" r="22"/></g>
+    <!-- laurel -->
+    <g fill="#6DBB7A">
+      <ellipse cx="-56" cy="318" rx="10" ry="20" transform="rotate(-50 -56 318)"/>
+      <ellipse cx="-36" cy="300" rx="10" ry="20" transform="rotate(-30 -36 300)"/>
+      <ellipse cx="-12" cy="292" rx="10" ry="20" transform="rotate(-10 -12 292)"/>
+      <ellipse cx="12" cy="292" rx="10" ry="20" transform="rotate(10 12 292)"/>
+      <ellipse cx="36" cy="300" rx="10" ry="20" transform="rotate(30 36 300)"/>
+      <ellipse cx="56" cy="318" rx="10" ry="20" transform="rotate(50 56 318)"/>
+    </g>
+    <!-- cara -->
+    <path d="M-40 345 q-8 -12 26 -12" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M40 345 q8 -12 -26 -12" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M-30 360 q9 -10 18 0" fill="none" stroke="#2A2240" stroke-width="5" stroke-linecap="round"/>
+    <path d="M12 360 q9 -10 18 0" fill="none" stroke="#2A2240" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="-38" cy="382" r="10" fill="#F59C8E" opacity="0.6"/><circle cx="38" cy="382" r="10" fill="#F59C8E" opacity="0.6"/>
+    <path d="M-22 400 Q0 420 22 400 Q0 410 -22 400 Z" fill="#2A2240"/>
+  </g>
+
+  <!-- Mesa del banquete -->
+  <rect x="360" y="630" width="880" height="40" rx="14" fill="#F7F1E6"/>
+  <path d="M360 660 L1240 660 L1240 720 Q1196 760 1152 720 Q1108 760 1064 720 Q1020 760 976 720 Q932 760 888 720 Q844 760 800 720 Q756 760 712 720 Q668 760 624 720 Q580 760 536 720 Q492 760 448 720 Q404 760 360 720 Z" fill="#EE6A4A"/>
+  <!-- uvas y fruta -->
+  <g transform="translate(440 600)">
+    <ellipse cx="40" cy="38" rx="70" ry="16" fill="#E3D5C0"/>
+    <g fill="#8C5BB8"><circle cx="10" cy="10" r="15"/><circle cx="34" cy="8" r="15"/><circle cx="22" cy="-14" r="15"/><circle cx="46" cy="-12" r="15"/><circle cx="34" cy="-34" r="15"/></g>
+    <circle cx="78" cy="10" r="24" fill="#FFA43A"/>
+    <path d="M34 -50 q6 -16 18 -18" fill="none" stroke="#6DBB7A" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <!-- ánfora -->
+  <g transform="translate(1150 520)">
+    <path d="M-20 0 L20 0 L22 22 Q60 50 40 100 Q20 120 0 120 Q-20 120 -40 100 Q-60 50 -22 22 Z" fill="#E07B4F"/>
+    <path d="M-44 60 L44 60" stroke="#2A2240" stroke-width="6"/>
+    <path d="M-30 80 L30 80" stroke="#2A2240" stroke-width="4"/>
+    <path d="M-22 22 Q-56 20 -46 56" fill="none" stroke="#E07B4F" stroke-width="10"/>
+    <path d="M22 22 Q56 20 46 56" fill="none" stroke="#E07B4F" stroke-width="10"/>
+  </g>
+  <!-- tarro de miel, el regalo -->
+  <g transform="translate(790 540)">
+    <rect x="-56" y="0" width="112" height="100" rx="26" fill="url(#miel)"/>
+    <rect x="-62" y="-16" width="124" height="26" rx="10" fill="#C77B2E"/>
+    <path d="M-62 -4 L62 -4" stroke="#F7F1E6" stroke-width="6" stroke-dasharray="12 10"/>
+    <path d="M-30 8 Q-30 36 -22 44 Q-14 36 -14 8" fill="#FFC94D"/>
+    <ellipse cx="-24" cy="40" rx="10" ry="12" fill="#FFC94D"/>
+    <ellipse cx="22" cy="50" rx="14" ry="26" fill="#FFFFFF" opacity="0.35"/>
+  </g>
+  <!-- brillos -->
+  <g fill="#FFFFFF">
+    <path d="M700 520 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 Z"/>
+    <path d="M880 500 l5 12 12 5 -12 5 -5 12 -5 -12 -12 -5 12 -5 Z"/>
+  </g>
+
+  <!-- ABEJA REINA -->
+  <path d="M470 330 Q600 300 690 420" fill="none" stroke="#2A2240" stroke-width="4" stroke-dasharray="4 14" stroke-linecap="round" opacity="0.45"/>
+  <g transform="translate(752 448) scale(-0.95 0.95) rotate(12)">
+    <ellipse cx="-14" cy="-40" rx="34" ry="22" fill="#FFFFFF" opacity="0.85" stroke="#BFE3F2" stroke-width="4" transform="rotate(-25 -14 -40)"/>
+    <ellipse cx="20" cy="-44" rx="30" ry="20" fill="#FFFFFF" opacity="0.85" stroke="#BFE3F2" stroke-width="4" transform="rotate(20 20 -44)"/>
+    <ellipse cx="0" cy="0" rx="58" ry="40" fill="#FFD36B"/>
+    <path d="M-20 -38 Q-28 0 -20 38" fill="none" stroke="#2A2240" stroke-width="14"/>
+    <path d="M10 -40 Q2 0 10 40" fill="none" stroke="#2A2240" stroke-width="14"/>
+    <path d="M58 0 L74 6 L58 12 Z" fill="#2A2240"/>
+    <circle cx="-56" cy="-4" r="30" fill="#2A2240"/>
+    <circle cx="-66" cy="-10" r="7" fill="#FFFFFF"/>
+    <path d="M-76 8 Q-68 16 -58 10" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+    <path d="M-62 -32 Q-72 -56 -86 -60" fill="none" stroke="#2A2240" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="-88" cy="-61" r="6" fill="#2A2240"/>
+    <path d="M-50 -30 Q-46 -58 -34 -64" fill="none" stroke="#2A2240" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="-32" cy="-66" r="6" fill="#2A2240"/>
+    <path d="M-74 -30 L-70 -48 L-62 -38 L-56 -52 L-50 -38 L-44 -48 L-42 -30 Z" fill="#FFD36B" stroke="#E9A93A" stroke-width="3" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Suelo de nubes -->
+  <g fill="#FFFFFF">
+    <ellipse cx="120" cy="930" rx="220" ry="90"/><ellipse cx="420" cy="960" rx="240" ry="90"/>
+    <ellipse cx="760" cy="950" rx="260" ry="95"/><ellipse cx="1110" cy="960" rx="250" ry="90"/>
+    <ellipse cx="1450" cy="930" rx="240" ry="95"/>
+    <rect x="0" y="940" width="1600" height="60"/>
+  </g>
+</svg>

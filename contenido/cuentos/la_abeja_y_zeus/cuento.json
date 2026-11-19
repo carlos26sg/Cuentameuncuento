@@ -1,0 +1,129 @@
+{
+  "id": "la_abeja_y_zeus",
+  "edad": 4,
+  "titulo": {
+    "esp": "La abeja y Zeus",
+    "cat": "L'abella i Zeus",
+    "eng": "The bee and Zeus"
+  },
+  "descripcion": {
+    "esp": "Una abeja reina sube al Olimpo con su mejor miel para la boda de Zeus. A cambio, le pide un deseo… ¿Por qué pican las abejas?",
+    "cat": "Una abella reina puja a l'Olimp amb la seva millor mel per al casament de Zeus. A canvi, li demana un desig… Per què piquen les abelles?",
+    "eng": "A queen bee flies up to Mount Olympus with her best honey for Zeus's wedding. In return, she asks for a wish… Why do bees sting?"
+  },
+  "creditos": {
+    "esp": "Basado en la fábula de Esopo «La abeja y Zeus», de dominio público. Texto e ilustraciones hechos para esta app.",
+    "cat": "Basat en la faula d'Isop «L'abella i Zeus», de domini públic. Text i il·lustracions fets per a aquesta app.",
+    "eng": "Based on Aesop's fable “The Bee and Jupiter”, in the public domain. Text and illustrations made for this app."
+  },
+  "lineas": [
+    {
+      "imagen": "1",
+      "esp": "En lo alto del monte Himeto, entre tomillo y flores, vivía una abeja reina con su colmena.",
+      "cat": "Dalt de la muntanya Himet, entre farigola i flors, vivia una abella reina amb el seu rusc.",
+      "eng": "High up on Mount Hymettus, among thyme and flowers, lived a queen bee and her hive."
+    },
+    {
+      "imagen": null,
+      "esp": "Sus abejas hacían la miel más dorada y más dulce de toda Grecia.",
+      "cat": "Les seves abelles feien la mel més daurada i més dolça de tota Grècia.",
+      "eng": "Her bees made the most golden, sweetest honey in all of Greece."
+    },
+    {
+      "imagen": "2",
+      "esp": "Pero cada dos por tres alguien se llevaba su miel: un oso goloso, un pastor con su cuchara…",
+      "cat": "Però cada dos per tres algú s'enduia la seva mel: un ós llaminer, un pastor amb la seva cullera…",
+      "eng": "But every so often someone took their honey: a greedy bear, a shepherd with his spoon…"
+    },
+    {
+      "imagen": null,
+      "esp": "—¡Con lo que nos cuesta hacerla! —suspiraba la reina.",
+      "cat": "—Amb el que ens costa fer-la! —sospirava la reina.",
+      "eng": "“And it takes us so long to make it!” sighed the queen."
+    },
+    {
+      "imagen": "3",
+      "esp": "Un día supo que Zeus, el rey de los dioses, celebraba su boda con Hera en el monte Olimpo.",
+      "cat": "Un dia va saber que Zeus, el rei dels déus, celebrava el seu casament amb Hera a la muntanya de l'Olimp.",
+      "eng": "One day she heard that Zeus, the king of the gods, was celebrating his wedding to Hera on Mount Olympus."
+    },
+    {
+      "imagen": null,
+      "esp": "«Le llevaré mi mejor miel», pensó. «Quizá así me ayude.» Y voló y voló, más alto que las nubes.",
+      "cat": "«Li portaré la meva millor mel», va pensar. «Potser així m'ajudarà.» I va volar i volar, més amunt que els núvols.",
+      "eng": "“I'll take him my best honey,” she thought. “Maybe then he'll help me.” And she flew and flew, higher than the clouds."
+    },
+    {
+      "imagen": "4",
+      "esp": "En el banquete había uvas, higos y ánforas de néctar. Pero cuando los dioses probaron la miel…",
+      "cat": "Al banquet hi havia raïm, figues i àmfores de nèctar. Però quan els déus van tastar la mel…",
+      "eng": "At the feast there were grapes, figs and jars of nectar. But when the gods tasted the honey…"
+    },
+    {
+      "imagen": null,
+      "esp": "—¡Qué maravilla! —dijo Zeus—. Es el mejor regalo de mi boda. Pídeme lo que quieras.",
+      "cat": "—Quina meravella! —va dir Zeus—. És el millor regal del meu casament. Demana'm el que vulguis.",
+      "eng": "“How wonderful!” said Zeus. “It's the best wedding present of all. Ask me for anything you like.”"
+    },
+    {
+      "imagen": "5",
+      "esp": "La reina zumbó muy seria:",
+      "cat": "La reina va brunzir molt seriosa:",
+      "eng": "The queen buzzed very seriously:"
+    },
+    {
+      "imagen": null,
+      "esp": "—Dame un aguijón que pique fuerte, para que nadie vuelva a llevarse nuestra miel.",
+      "cat": "—Dona'm un fibló que piqui fort, perquè ningú no torni a endur-se la nostra mel.",
+      "eng": "“Give me a sting that hurts, so that nobody ever takes our honey again.”"
+    },
+    {
+      "imagen": "6",
+      "esp": "A Zeus no le gustó nada aquel deseo: no quería que nadie hiciera daño a nadie.",
+      "cat": "A Zeus no li va agradar gens aquell desig: no volia que ningú fes mal a ningú.",
+      "eng": "Zeus did not like that wish at all: he did not want anyone to hurt anyone."
+    },
+    {
+      "imagen": null,
+      "esp": "Pero lo había prometido, y un rey cumple sus promesas.",
+      "cat": "Però ho havia promès, i un rei compleix les seves promeses.",
+      "eng": "But he had promised, and a king keeps his promises."
+    },
+    {
+      "imagen": null,
+      "esp": "—Tendrás tu aguijón —dijo—, pero úsalo solo si no hay otro remedio: la abeja que pica pierde su aguijón y ya no vuelve a casa.",
+      "cat": "—Tindràs el teu fibló —va dir—, però fes-lo servir només si no hi ha cap altre remei: l'abella que pica perd el fibló i ja no torna a casa.",
+      "eng": "“You shall have your sting,” he said, “but only use it if there is no other way: a bee that stings loses its sting and never comes home again.”"
+    },
+    {
+      "imagen": "7",
+      "esp": "La reina volvió al Himeto pensativa y les contó a sus abejas lo que había dicho Zeus.",
+      "cat": "La reina va tornar a l'Himet pensativa i va explicar a les seves abelles el que havia dit Zeus.",
+      "eng": "The queen flew back to Hymettus, deep in thought, and told her bees what Zeus had said."
+    },
+    {
+      "imagen": null,
+      "esp": "Desde entonces, las abejas solo pican cuando tienen mucho miedo.",
+      "cat": "Des d'aleshores, les abelles només piquen quan tenen molta por.",
+      "eng": "Ever since then, bees only sting when they are very frightened."
+    },
+    {
+      "imagen": null,
+      "esp": "Y si las dejas tranquilas, siguen haciendo la miel más dulce del mundo.",
+      "cat": "I si les deixes tranquil·les, continuen fent la mel més dolça del món.",
+      "eng": "And if you leave them in peace, they keep on making the sweetest honey in the world."
+    },
+    {
+      "imagen": null,
+      "esp": "Porque quien desea mal a los demás, muchas veces se lo hace a sí mismo.",
+      "cat": "Perquè qui desitja mal als altres, moltes vegades se'l fa a si mateix.",
+      "eng": "Because those who wish harm on others often end up harming themselves."
+    },
+    {
+      "imagen": null,
+      "esp": "FIN",
+      "cat": "FI",
+      "eng": "THE END"
+    }
+  ]
+}
