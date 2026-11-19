@@ -11,6 +11,11 @@
     "cat": "Un conte sobre el valor de compartir. Ens convida a cuidar el planeta on vivim i a alliberar les nostres idees pel bé comú.",
     "eng": "A story about the value of sharing. It invites us to take care of the planet we live on and to free our ideas for the common good."
   },
+  "creditos": {
+    "esp": "Texto e ilustraciones: Olga de Dios. «Pájaro amarillo», publicado por Apila Ediciones (2015) con licencia Creative Commons BY-NC-SA 4.0. Texto adaptado y traducido para esta app, que se comparte con la misma licencia.",
+    "cat": "Text i il·lustracions: Olga de Dios. «Pájaro amarillo», publicat per Apila Ediciones (2015) amb llicència Creative Commons BY-NC-SA 4.0. Text adaptat i traduït per a aquesta app, que es comparteix amb la mateixa llicència.",
+    "eng": "Text and illustrations: Olga de Dios. “Pájaro amarillo”, published by Apila Ediciones (2015) under a Creative Commons BY-NC-SA 4.0 licence. Text adapted and translated for this app, shared under the same licence."
+  },
   "lineas": [
     {
       "imagen": "1",

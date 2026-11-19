@@ -11,6 +11,11 @@
     "cat": "Granota de Tres Ulls creix en un lloc contaminat. Salta molt alt per entendre què passa. Aviat descobreix que vol canviar les COSES... Aconseguirà fer-ho sola?",
     "eng": "Three-Eyed Frog grows in a contaminated place. She jumps very high to understand what is happening. She soon discovers that she wants to change THINGS... Will she be able to do it alone?"
   },
+  "creditos": {
+    "esp": "Texto e ilustraciones: Olga de Dios. «Rana de tres ojos», publicado por Apila Ediciones (2017) con licencia Creative Commons BY-NC-SA 4.0. Texto adaptado y traducido para esta app, que se comparte con la misma licencia.",
+    "cat": "Text i il·lustracions: Olga de Dios. «Rana de tres ojos», publicat per Apila Ediciones (2017) amb llicència Creative Commons BY-NC-SA 4.0. Text adaptat i traduït per a aquesta app, que es comparteix amb la mateixa llicència.",
+    "eng": "Text and illustrations: Olga de Dios. “Rana de tres ojos”, published by Apila Ediciones (2017) under a Creative Commons BY-NC-SA 4.0 licence. Text adapted and translated for this app, shared under the same licence."
+  },
   "lineas": [
     {
       "imagen": "1",

@@ -11,6 +11,11 @@
     "cat": "Aquesta és la història d'un grup que va créixer creient que podia jugar sense importar les conseqüències dels seus actes. Aprendran a divertir-se sense fer mal al seu entorn?",
     "eng": "This is the story of a group that grew up believing that they could play regardless of the consequences of their actions. Will they learn to have fun without harming their environment?"
   },
+  "creditos": {
+    "esp": "Texto e ilustraciones: Olga de Dios. «Monstruo azul», publicado por Apila Ediciones (2020) con licencia Creative Commons BY-NC-SA 4.0. Texto adaptado y traducido para esta app, que se comparte con la misma licencia.",
+    "cat": "Text i il·lustracions: Olga de Dios. «Monstruo azul», publicat per Apila Ediciones (2020) amb llicència Creative Commons BY-NC-SA 4.0. Text adaptat i traduït per a aquesta app, que es comparteix amb la mateixa llicència.",
+    "eng": "Text and illustrations: Olga de Dios. “Monstruo azul”, published by Apila Ediciones (2020) under a Creative Commons BY-NC-SA 4.0 licence. Text adapted and translated for this app, shared under the same licence."
+  },
   "lineas": [
     {
       "imagen": "1",
