@@ -20,9 +20,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -32,6 +35,9 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +46,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -136,7 +143,10 @@ fun AjustesHoja(alCerrar: () -> Unit, viewModel: AjustesViewModel = hiltViewMode
                 val activa by musica.activa.collectAsState()
                 Surface(shape = RoundedCornerShape(16.dp), color = Colores.superficie) {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
-                        Text(stringResource(R.string.musica_fondo), style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                        Column(Modifier.weight(1f)) {
+                            Text(stringResource(R.string.musica_fondo), style = MaterialTheme.typography.titleMedium)
+                            Text(stringResource(R.string.credito_musica), style = MaterialTheme.typography.bodySmall, color = Colores.tintaSuave)
+                        }
                         Switch(
                             checked = activa,
                             onCheckedChange = { musica.alternar() },
@@ -145,14 +155,23 @@ fun AjustesHoja(alCerrar: () -> Unit, viewModel: AjustesViewModel = hiltViewMode
                     }
                 }
             }
+            var pidiendoPermiso by rememberSaveable { mutableStateOf(false) }
+            if (pidiendoPermiso) {
+                ControlParental(
+                    alAceptar = {
+                        pidiendoPermiso = false
+                        try {
+                            contexto.startActivity(Intent(Intent.ACTION_VIEW, urlPrivacidad.toUri()))
+                        } catch (e: ActivityNotFoundException) {
+                            Toast.makeText(contexto, R.string.sin_navegador, Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    alCancelar = { pidiendoPermiso = false }
+                )
+            }
             Row(verticalAlignment = Alignment.CenterVertically) {
-                TextButton(onClick = {
-                    try {
-                        contexto.startActivity(Intent(Intent.ACTION_VIEW, urlPrivacidad.toUri()))
-                    } catch (e: ActivityNotFoundException) {
-                        Toast.makeText(contexto, R.string.sin_navegador, Toast.LENGTH_SHORT).show()
-                    }
-                }) {
+                // Los enlaces que salen de la app pasan antes por un control para adultos
+                TextButton(onClick = { pidiendoPermiso = true }) {
                     Text(stringResource(R.string.privacidad), style = MaterialTheme.typography.bodyMedium, color = Colores.coral)
                 }
                 Text(
@@ -165,6 +184,43 @@ fun AjustesHoja(alCerrar: () -> Unit, viewModel: AjustesViewModel = hiltViewMode
             }
         }
     }
+}
+
+/**
+ * Control parental: una suma que un adulto resuelve al momento y un niño pequeño no.
+ * Se pide antes de abrir cualquier cosa fuera de la app (política de Familias de Google Play).
+ */
+@Composable
+fun ControlParental(alAceptar: () -> Unit, alCancelar: () -> Unit) {
+    val a = rememberSaveable { (4..9).random() }
+    val b = rememberSaveable { (3..9).random() }
+    var respuesta by rememberSaveable { mutableStateOf("") }
+    val correcta = respuesta.trim().toIntOrNull() == a + b
+    AlertDialog(
+        onDismissRequest = alCancelar,
+        containerColor = Colores.fondo,
+        title = { Text(stringResource(R.string.control_parental_titulo), style = MaterialTheme.typography.titleLarge) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(stringResource(R.string.control_parental_pregunta, a, b), style = MaterialTheme.typography.bodyLarge)
+                OutlinedTextField(
+                    value = respuesta,
+                    onValueChange = { nuevo -> respuesta = nuevo.filter(Char::isDigit).take(3) },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = alAceptar, enabled = correcta) {
+                Text(stringResource(R.string.continuar), color = if (correcta) Colores.coral else Colores.tintaSuave)
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = alCancelar) { Text(stringResource(R.string.ahora_no), color = Colores.tinta) }
+        }
+    )
 }
 
 @Composable

@@ -71,7 +71,11 @@
     <string name="tamano_grande">Grand</string>
     <string name="tamano_muy_grande">Très grand</string>
     <string name="musica_fondo">Musique de fond</string>
+    <string name="credito_musica">« Happy Lullaby », de cynicmusic (CC0)</string>
     <string name="privacidad">Politique de confidentialité</string>
     <string name="sin_navegador">Aucun navigateur n\'est installé</string>
     <string name="version">Version %1$s</string>
+    <string name="control_parental_titulo">Réservé aux adultes</string>
+    <string name="control_parental_pregunta">Pour continuer, écris combien font %1$d + %2$d.</string>
+    <string name="continuar">Continuer</string>
 </resources>

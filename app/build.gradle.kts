@@ -16,8 +16,8 @@ android {
         applicationId = "com.carlossega.cuentameuncuento"
         minSdk = 26
         targetSdk = 37
-        versionCode = 8
-        versionName = "2.2"
+        versionCode = 9
+        versionName = "3.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

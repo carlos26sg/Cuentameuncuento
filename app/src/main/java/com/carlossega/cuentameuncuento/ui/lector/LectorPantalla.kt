@@ -87,6 +87,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.carlossega.cuentameuncuento.R
 import com.carlossega.cuentameuncuento.data.model.Idioma
+import com.carlossega.cuentameuncuento.ui.ajustes.ControlParental
 import com.carlossega.cuentameuncuento.ui.comun.BotonPrincipal
 import com.carlossega.cuentameuncuento.ui.comun.BotonRedondo
 import com.carlossega.cuentameuncuento.ui.comun.BotonSecundario
@@ -146,19 +147,31 @@ fun LectorPantalla(
         }
     }
 
+    var pidiendoPermiso by rememberSaveable { mutableStateOf(false) }
+    if (pidiendoPermiso) {
+        ControlParental(
+            alAceptar = {
+                pidiendoPermiso = false
+                try {
+                    contexto.startActivity(Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA))
+                } catch (e: ActivityNotFoundException) {
+                    Toast.makeText(contexto, R.string.sin_instalador_voz, Toast.LENGTH_LONG).show()
+                }
+            },
+            alCancelar = { pidiendoPermiso = false }
+        )
+    }
+
     if (faltaVoz) {
         AlertDialog(
             onDismissRequest = { faltaVoz = false },
             title = { Text(stringResource(R.string.falta_voz), style = MaterialTheme.typography.titleLarge) },
             text = { Text(stringResource(R.string.voz_idioma_no_disponible), style = MaterialTheme.typography.bodyLarge) },
             confirmButton = {
+                // Instalar abre los ajustes del sistema: antes, el control para adultos
                 TextButton(onClick = {
                     faltaVoz = false
-                    try {
-                        contexto.startActivity(Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA))
-                    } catch (e: ActivityNotFoundException) {
-                        Toast.makeText(contexto, R.string.sin_instalador_voz, Toast.LENGTH_LONG).show()
-                    }
+                    pidiendoPermiso = true
                 }) { Text(stringResource(R.string.instalar), style = MaterialTheme.typography.labelMedium, color = Colores.coral) }
             },
             dismissButton = {

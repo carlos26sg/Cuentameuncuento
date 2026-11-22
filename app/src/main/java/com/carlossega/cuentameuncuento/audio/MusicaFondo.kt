@@ -87,7 +87,7 @@ class MusicaFondo @Inject constructor(
 
     private fun reproducir() {
         val mp = reproductor ?: MediaPlayer.create(
-            context, R.raw.hilo_musical, atributos, audioManager.generateAudioSessionId()
+            context, R.raw.musica_fondo, atributos, audioManager.generateAudioSessionId()
         )?.apply { isLooping = true }?.also { reproductor = it } ?: return
         if (mp.isPlaying) return
         if (audioManager.requestAudioFocus(peticionFoco) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {

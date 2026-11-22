@@ -69,7 +69,11 @@
     <string name="tamano_grande">Handia</string>
     <string name="tamano_muy_grande">Oso handia</string>
     <string name="musica_fondo">Atzeko musika</string>
+    <string name="credito_musica">«Happy Lullaby», cynicmusic-ena (CC0)</string>
     <string name="privacidad">Pribatutasun-politika</string>
     <string name="sin_navegador">Ez dago nabigatzailerik instalatuta</string>
     <string name="version">%1$s bertsioa</string>
+    <string name="control_parental_titulo">Helduentzat bakarrik</string>
+    <string name="control_parental_pregunta">Jarraitzeko, idatzi zenbat den %1$d + %2$d.</string>
+    <string name="continuar">Jarraitu</string>
 </resources>

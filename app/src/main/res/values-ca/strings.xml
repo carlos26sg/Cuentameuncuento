@@ -71,7 +71,11 @@
     <string name="tamano_grande">Gran</string>
     <string name="tamano_muy_grande">Molt gran</string>
     <string name="musica_fondo">Música de fons</string>
+    <string name="credito_musica">«Happy Lullaby», de cynicmusic (CC0)</string>
     <string name="privacidad">Política de privacitat</string>
     <string name="sin_navegador">No hi ha cap navegador instal·lat</string>
     <string name="version">Versió %1$s</string>
+    <string name="control_parental_titulo">Només per a adults</string>
+    <string name="control_parental_pregunta">Per continuar, escriu quant fan %1$d + %2$d.</string>
+    <string name="continuar">Continuar</string>
 </resources>
