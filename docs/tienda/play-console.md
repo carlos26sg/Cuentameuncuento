@@ -3,6 +3,13 @@
 Textos de la ficha en los 7 idiomas: `docs/tienda/ficha.json` (título, descripción corta,
 descripción larga y novedades; todos dentro de los límites de caracteres).
 
+Imágenes de la ficha:
+- Icono de 512×512: el de la app (ya lo tienes de versiones anteriores).
+- Gráfico destacado (1024×500): `docs/tienda/grafico_destacado.png`.
+- Capturas de teléfono (1200×2400, proporción 2:1): `docs/tienda/capturas/`, en este orden:
+  biblioteca, ficha del cuento, lector con traducción y lector de La abeja y Zeus.
+  Valen para todos los idiomas (la interfaz sale en español).
+
 ## Contenido de la aplicación
 
 ### Política de privacidad
